@@ -112,8 +112,8 @@ function renderApp() {
                         <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest theme-badge-red">📍 SF Bay Area</span>
                         <span class="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest theme-badge-green">GPA 4.0 Verified</span>
                     </div>
-                    <h1 class="hero-title text-6xl md:text-8xl font-black text-slate-900 leading-[1] mb-8 tracking-tighter">
-                        Building the <br/> <span class="text-blue-600 hero-accent">Future.</span>
+                    <h1 class="hero-title">
+                        Building the <br/> <span class="hero-accent">Future.</span>
                     </h1>
                     <div class="h-10 overflow-hidden mb-10 relative">
                         <div id="role-container" class="role-animate space-y-0 transition-transform duration-700">
@@ -162,11 +162,11 @@ function renderApp() {
                 <h2 class="text-4xl md:text-5xl font-semibold mb-16 reveal">Global Journey</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     ${APP_DATA.journey.map((item, i) => `
-                        <div class="p-8 bg-white border border-slate-100 rounded-3xl proof-element transition-all reveal shadow-sm" style="transition-delay: ${i * 100}ms">
-                            <div class="font-mono text-[10px] font-bold text-slate-300 mb-2 uppercase">${item.year}</div>
-                            <div class="text-2xl font-black mb-1 text-slate-900">${item.loc}</div>
-                            <h3 class="font-bold text-blue-600 mb-4 text-[10px] uppercase tracking-widest">${item.title}</h3>
-                            <p class="text-sm text-slate-500 leading-relaxed">${item.desc}</p>
+                        <div class="proof-element transition-all reveal" style="transition-delay: ${i * 100}ms">
+                            <div class="font-mono text-[10px] font-bold" style="color:#7b7b7b; margin-bottom:0.5em; text-transform:uppercase;">${item.year}</div>
+                            <div class="text-2xl font-black mb-1" style="color:#fff;">${item.loc}</div>
+                            <h3 class="font-bold accent mb-4 text-[10px] uppercase tracking-widest">${item.title}</h3>
+                            <p class="text-base" style="color:#e5e7eb;">${item.desc}</p>
                         </div>
                     `).join('')}
                 </div>
@@ -176,23 +176,23 @@ function renderApp() {
         <section id="experience" class="py-24 px-6">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-4xl md:text-5xl font-semibold mb-16 reveal">Experience</h2>
-                <div class="space-y-8">
+                <div class="space-y-12">
                     ${APP_DATA.experience.map((job, i) => `
-                        <div class="reveal proof-element p-8 bg-slate-50/80 border border-slate-100 rounded-3xl transition-all" style="transition-delay: ${i * 50}ms">
-                            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                        <div class="reveal proof-element" style="transition-delay: ${i * 50}ms">
+                            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-2">
                                 <div>
-                                    <h3 class="text-xl font-bold text-slate-900">${job.title}</h3>
-                                    <div class="text-slate-600 font-semibold mt-1">${job.org}</div>
+                                    <h3 class="text-2xl font-bold" style="color:#fff;">${job.title}</h3>
+                                    <div class="font-semibold mt-1" style="color:#e5e7eb;">${job.org}</div>
                                 </div>
-                                <div class="text-right text-[10px] font-bold text-slate-400 uppercase tracking-widest shrink-0">
+                                <div class="text-right text-[10px] font-bold uppercase tracking-widest shrink-0" style="color:#7b7b7b;">
                                     <span>${job.type}</span>
                                     <span class="block mt-1">${job.dateRange}</span>
                                     <span class="block mt-1">${job.location} ${job.remote ? '· Remote' : '· On-site'}</span>
                                 </div>
                             </div>
-                            ${job.bullets.length ? `<ul class="list-disc list-inside text-sm text-slate-600 space-y-2 mb-4">${job.bullets.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
-                            ${job.skills ? `<div class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">${job.skills}</div>` : ''}
-                            ${job.site ? `<a href="${job.site}" target="_blank" class="inline-block mt-2 text-xs font-bold text-blue-600 hover:underline">View site →</a>` : ''}
+                            ${job.bullets.length ? `<ul class="list-disc list-inside text-base" style="color:#e5e7eb;">${job.bullets.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
+                            ${job.skills ? `<div class="text-[10px] font-bold accent uppercase tracking-wider mt-2">${job.skills}</div>` : ''}
+                            ${job.site ? `<a href="${job.site}" target="_blank" class="inline-block mt-2 text-xs font-bold accent hover:underline">View site →</a>` : ''}
                         </div>
                     `).join('')}
                 </div>
@@ -231,11 +231,11 @@ function renderApp() {
                 <h2 class="text-4xl md:text-5xl font-semibold mb-16 reveal">Licenses & Certifications</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     ${APP_DATA.certs.map((c, i) => `
-                        <div class="reveal proof-element p-6 bg-white border border-slate-100 rounded-2xl transition-all shadow-sm" style="transition-delay: ${i * 40}ms">
-                            <div class="font-bold text-slate-800 mb-1">${c.name}</div>
-                            <div class="text-[10px] text-slate-500 font-mono mb-1">${c.issuer} · ${c.date}</div>
-                            ${c.skills ? `<div class="text-[10px] text-blue-600 font-semibold uppercase tracking-wider mt-2">${c.skills}</div>` : ''}
-                            <div class="text-[9px] text-slate-400 font-mono mt-1">ID: ${c.id}</div>
+                        <div class="reveal proof-element transition-all" style="transition-delay: ${i * 40}ms">
+                            <div class="font-bold mb-1" style="color:#fff;">${c.name}</div>
+                            <div class="text-[10px] font-mono mb-1" style="color:#7b7b7b;">${c.issuer} · ${c.date}</div>
+                            ${c.skills ? `<div class="text-[10px] accent font-semibold uppercase tracking-wider mt-2">${c.skills}</div>` : ''}
+                            <div class="text-[9px] font-mono mt-1" style="color:#7b7b7b;">ID: ${c.id}</div>
                         </div>
                     `).join('')}
                 </div>
@@ -251,9 +251,9 @@ function renderApp() {
                             <div class="text-6xl font-semibold theme-stat awards-year pb-2 mb-10">${year}</div>
                             <div class="space-y-8">
                                 ${list.map(a => `
-                                    <div class="proof-element border-l-2 border-slate-100 pl-6 py-1 transition-all">
-                                        <div class="font-bold text-sm text-slate-800 mb-1 leading-tight">${a.title}</div>
-                                        <div class="text-[10px] text-slate-400 leading-tight font-bold uppercase tracking-wider">${a.desc}</div>
+                                    <div class="proof-element pl-6 py-1 transition-all" style="border-left:2px solid #222;">
+                                        <div class="font-bold text-base mb-1 leading-tight" style="color:#fff;">${a.title}</div>
+                                        <div class="text-[10px] font-bold uppercase tracking-wider" style="color:#7b7b7b;">${a.desc}</div>
                                     </div>
                                 `).join('')}
                             </div>
@@ -271,51 +271,50 @@ function renderApp() {
                         <div class="space-y-12">
                             ${APP_DATA.leadership.map((l, i) => `
                                 <div class="reveal group" style="transition-delay: ${i * 100}ms">
-                                    <div class="text-blue-500 font-black text-[9px] uppercase tracking-widest mb-1">${l.org}</div>
-                                    <div class="text-xl font-bold group-hover:translate-x-2 transition-transform">${l.role}</div>
-                                    <p class="text-slate-400 text-sm mt-2 font-light">${l.impact}</p>
+                                    <div class="accent font-black text-[9px] uppercase tracking-widest mb-1">${l.org}</div>
+                                    <div class="text-xl font-bold group-hover:translate-x-2 transition-transform" style="color:#fff;">${l.role}</div>
+                                    <p class="text-base mt-2 font-light" style="color:#e5e7eb;">${l.impact}</p>
                                 </div>
                             `).join('')}
                         </div>
                     </div>
-                    <div class="bg-white/5 border border-white/10 p-12 rounded-[3.5rem] relative overflow-hidden reveal">
-                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl"></div>
-                        <h3 class="text-xl font-bold mb-6">Mentorship Focus</h3>
-                        <p class="text-slate-300 text-lg leading-relaxed italic mb-8 font-light">
-                            "Committed to creating communities that last. In every club founded or led, I prioritize onboarding at least 20 students to ensure technical growth is accessible to all."
-                        </p>
-                        <div class="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
-                           <div>
-                              <div class="text-4xl font-semibold theme-stat mb-1">10+ A's</div>
-                              <div class="text-[9px] font-bold theme-muted uppercase tracking-widest">Yearly Excellence</div>
-                           </div>
-                           <div>
-                              <div class="text-4xl font-semibold theme-stat mb-1">3x</div>
-                              <div class="text-[9px] font-bold theme-muted uppercase tracking-widest">Varsity Captaincy</div>
-                           </div>
-                        </div>
-                    </div>
+                          <div class="relative overflow-hidden reveal">
+                                <h3 class="text-xl font-bold mb-6" style="color:#fff;">Mentorship Focus</h3>
+                                <p class="text-lg leading-relaxed italic mb-8 font-light" style="color:#e5e7eb;">
+                                     "Committed to creating communities that last. In every club founded or led, I prioritize onboarding at least 20 students to ensure technical growth is accessible to all."
+                                </p>
+                                <div class="grid grid-cols-2 gap-8 pt-8" style="border-top:2px solid #222;">
+                                    <div>
+                                        <div class="text-4xl font-semibold theme-stat mb-1">10+ A's</div>
+                                        <div class="text-[9px] font-bold theme-muted uppercase tracking-widest">Yearly Excellence</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-4xl font-semibold theme-stat mb-1">3x</div>
+                                        <div class="text-[9px] font-bold theme-muted uppercase tracking-widest">Varsity Captaincy</div>
+                                    </div>
+                                </div>
+                          </div>
                 </div>
             </div>
         </section>
 
         <footer id="contact" class="py-24 px-6">
             <div class="max-w-7xl mx-auto text-center">
-                <h2 class="text-4xl md:text-5xl font-semibold mb-12 reveal">Let's connect.</h2>
+                <h2 class="text-4xl md:text-5xl font-semibold mb-12 reveal" style="color:#fff;">Let's connect.</h2>
                 <div class="flex flex-wrap justify-center gap-6 mb-24 reveal">
-                    <a href="mailto:prestonjaysusanto@gmail.com" class="p-8 bg-slate-50 border border-slate-100 rounded-3xl min-w-[300px] flex-1 hover:bg-blue-50 hover:border-blue-200 transition-all text-left">
-                        <div class="text-[10px] font-bold uppercase text-slate-400 mb-2">Email</div>
-                        <div class="text-lg font-bold text-slate-800">prestonjaysusanto@gmail.com</div>
+                    <a href="mailto:prestonjaysusanto@gmail.com" class="min-w-[300px] flex-1 text-left">
+                        <div class="text-[10px] font-bold uppercase mb-2" style="color:#7b7b7b;">Email</div>
+                        <div class="text-lg font-bold" style="color:#fff;">prestonjaysusanto@gmail.com</div>
                     </a>
-                    <a href="tel:+19254570055" class="p-8 bg-slate-50 border border-slate-100 rounded-3xl min-w-[300px] flex-1 hover:bg-emerald-50 hover:border-emerald-200 transition-all text-left">
-                        <div class="text-[10px] font-bold uppercase text-slate-400 mb-2">Phone</div>
-                        <div class="text-lg font-bold text-slate-800">+1 (925) 457-0055</div>
+                    <a href="tel:+19254570055" class="min-w-[300px] flex-1 text-left">
+                        <div class="text-[10px] font-bold uppercase mb-2" style="color:#7b7b7b;">Phone</div>
+                        <div class="text-lg font-bold" style="color:#fff;">+1 (925) 457-0055</div>
                     </a>
                 </div>
                 <div class="flex justify-center gap-12 font-bold uppercase text-[10px] tracking-widest reveal">
-                    <a href="https://github.com/ShadowEsu" target="_blank" class="theme-muted hover:text-red-400 transition-colors">GitHub</a>
-                    <a href="https://www.linkedin.com/in/preston-jay-susanto-3a589534b/" target="_blank" class="theme-muted hover:text-red-400 transition-colors">LinkedIn</a>
-                    <a href="https://instagram.com/preston_susanto" target="_blank" class="theme-muted hover:text-red-400 transition-colors">Instagram</a>
+                    <a href="https://github.com/ShadowEsu" target="_blank" class="theme-muted hover:accent transition-colors">GitHub</a>
+                    <a href="https://www.linkedin.com/in/preston-jay-susanto-3a589534b/" target="_blank" class="theme-muted hover:accent transition-colors">LinkedIn</a>
+                    <a href="https://instagram.com/preston_susanto" target="_blank" class="theme-muted hover:accent transition-colors">Instagram</a>
                 </div>
                 <div class="mt-24 text-[9px] font-semibold theme-muted uppercase tracking-[0.3em]">
                     Preston Jay Susanto &copy; 2025 // Professional Portfolio
