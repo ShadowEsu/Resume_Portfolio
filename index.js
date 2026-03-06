@@ -1,6 +1,6 @@
 /**
- * Preston Jay Susanto - Elite Portfolio Engine
- * A purely Vanilla JS implementation. No React, No TypeScript.
+ * Preston Jay Susanto — Portfolio
+ * Vanilla JS. No frameworks. No build step.
  */
 
 const APP_DATA = {
@@ -13,20 +13,19 @@ const APP_DATA = {
         "Early College Entrant"
     ],
     journey: [
-        { year: "2009 — 2021", loc: "Indonesia 🇮🇩", title: "Foundations", desc: "12 years of childhood & early education. Bilingual development and global perspective." },
-        { year: "2021 — 2024", loc: "Australia 🇦🇺", title: "Acceleration", desc: "Wesley College. Founded Hack Clubs, Captained 3 sports. Achievement of 10 A's in Year 9 & 10." },
-        { year: "Early 2025", loc: "China 🇨🇳", title: "Immersion", desc: "4 months intensive Mandarin Chinese immersion at Wendao School." },
-        { year: "Aug 2025 — Present", loc: "USA 🇺🇸", title: "Impact", desc: "CS @ DVC. Google Developer Group Officer. Alpha Gamma Sigma Webmaster. 4.0 GPA." }
+        { year: "2009 — 2021", loc: "Indonesia \uD83C\uDDEE\uD83C\uDDE9", title: "Foundations", desc: "12 years of childhood & early education. Bilingual development and global perspective." },
+        { year: "2021 — 2024", loc: "Australia \uD83C\uDDE6\uD83C\uDDFA", title: "Acceleration", desc: "Wesley College. Founded Hack Clubs, Captained 3 sports. Achievement of 10 A's in Year 9 & 10." },
+        { year: "Early 2025",  loc: "China \uD83C\uDDE8\uD83C\uDDF3",     title: "Immersion",    desc: "4 months intensive Mandarin Chinese immersion at Wendao School." },
+        { year: "Aug 2025 — Present", loc: "USA \uD83C\uDDFA\uD83C\uDDF8", title: "Impact", desc: "CS @ DVC. Google Developer Group Officer. Alpha Gamma Sigma Webmaster. 4.0 GPA." }
     ],
     projects: [
-        { title: "Neuron Book", type: "Full-Stack", site: "https://neuron-book-6198.d.kiloapps.io", desc: "Full-stack app with Next.js frontend and Flask backend. Built for the NeuronBookAI org. Live at neuron-book-6198.d.kiloapps.io with demo at youtu.be/SNowMQ69PAc.", tech: ["Next.js", "TypeScript", "Flask", "Python"] },
-        { title: "Cauliform", type: "Passion Project", site: "https://github.com/ShadowEsu/Cauliform-AI", desc: "AI-powered voice agent that turns any Google Form into a phone call. Paste a form link, get called, answer conversationally—hands-free. Gemini Live API, Twilio, Firebase, auth. Built for Gemini Live Agent Challenge; partnered with ex–JP Morgan PM and top MLH Stanford hackathon winner.", tech: ["Next.js", "TypeScript", "Firebase", "Twilio", "Gemini"] },
+        { title: "Cauliform", type: "Passion Project", featured: true, site: "https://github.com/ShadowEsu/Cauliform-AI", desc: "AI-powered voice agent that turns any Google Form into a phone call. Paste a form link, get called, answer conversationally—hands-free. Gemini Live API, Twilio, Firebase, auth. Built for Gemini Live Agent Challenge; partnered with ex-JP Morgan PM and top MLH Stanford hackathon winner.", tech: ["Next.js", "TypeScript", "Firebase", "Twilio", "Gemini"] },
         { title: "Sortify App", type: "3X Hackathon Winner", site: "#", desc: "SF Hacks winner: Best Hardware, Beginner Hack, Best Use of Broxi AI. Sustainability-focused sorting platform with Gemini image recognition and Google Maps bin finder. Built for global impact on education and the environment.", tech: ["JavaScript", "Gemini", "Google Maps"] },
-        { title: "Access for All", type: "Hackathon Winner", site: "#", desc: "ValleyHacks accessibility-first software for color blindness & dyslexia. Built in < 48hrs.", tech: ["HTML", "CSS", "JavaScript"] },
-        { title: "Aiko Matcha", type: "E-Commerce", site: "https://www.aikomatcha.com.au", desc: "Official retail site for premium matcha. High-performance custom build.", tech: ["HTML", "CSS", "JavaScript", "Python"] },
+        { title: "Access for All", type: "Hackathon Winner", site: "#", desc: "ValleyHacks accessibility-first software for color blindness & dyslexia. Built in under 48 hours.", tech: ["HTML", "CSS", "JavaScript"] },
+        { title: "Aiko Matcha", type: "E-Commerce", site: "https://www.aikomatcha.com.au", desc: "Official retail site for premium matcha. High-performance custom build driving thousands in sales.", tech: ["HTML", "CSS", "JavaScript", "Python"] },
         { title: "AGS Honor Society", type: "Official Portal", site: "https://dvcags.wixstudio.com/honor-society", desc: "Webmaster for the DVC honors chapter. Built for scalability and impact.", tech: ["Wix", "Web Design"] },
         { title: "Wosado Australia", type: "Retail Hub", site: "https://wosadoaustralia.com.au", desc: "International beauty brand platform developer and maintenance lead.", tech: ["Shopify", "HTML", "CSS"] },
-        { title: "Wesley Hack Club", type: "Educational", site: "https://wesley.hackclub.com", desc: "Founder of Wesley Hack Club. 36 members on the first day. Associated with hackclub.com—building tech communities and inspiring students to code.", tech: ["HTML", "JavaScript"] },
+        { title: "Wesley Hack Club", type: "Educational", site: "https://wesley.hackclub.com", desc: "Founder. Inspired 20+ students to join and build sustainable tech communities.", tech: ["HTML", "JavaScript"] },
         { title: "Banyan Vanilla", type: "Brand Design", site: "https://www.banyanvanilla.com.au", desc: "Premium export brand digital presence and maintenance.", tech: ["HTML", "CSS", "JavaScript"] }
     ],
     awards: {
@@ -48,11 +47,11 @@ const APP_DATA = {
         ]
     },
     leadership: [
-        { year: "2025", role: "GDG Software Officer", org: "Google Developer Group", impact: "Leading 20+ active student developers in tech projects." },
-        { year: "2025", role: "AGS Webmaster", org: "Alpha Gamma Sigma Honors", impact: "Managing digital infrastructure and accessibility standards." },
-        { year: "2025", role: "Project Leader", org: "Code the Change", impact: "Involved with non-profit organisation impacting 100+ people in the slums of borneo, concerntrating on webste development and social media impact." },
-        { year: "2024", role: "Founder of Wesley Hack Club", org: "Wesley College · hackclub.com", impact: "36 members on the first day. Built a sustainable tech community associated with hackclub.com." },
-        { year: "2021-2024", role: "3x Team Captain", org: "Volleyball, Soccer, Basketball", impact: "Led diverse teams to competitive success." }
+        { year: "2025", role: "GDG Software Officer",  org: "Google Developer Group",       impact: "Leading 20+ active student developers in tech projects and community initiatives." },
+        { year: "2025", role: "AGS Webmaster",          org: "Alpha Gamma Sigma Honors",     impact: "Managing digital infrastructure and accessibility standards for the honors chapter." },
+        { year: "2025", role: "Project Leader",         org: "Code the Change",              impact: "Leading a team concentrating on website development and social media impact for a non-profit impacting 100+ people in the slums of Borneo." },
+        { year: "2024", role: "Hack Club Founder",      org: "Wesley College",               impact: "Created a sustainable tech community for 20+ members." },
+        { year: "2021-2024", role: "3x Team Captain",  org: "Volleyball, Soccer, Basketball", impact: "Led diverse teams to competitive success across three sports." }
     ],
     certs: [
         { name: "Claude Code in Action: Certificate of Completion", id: "hqb5tqkobj9s", issuer: "Anthropic", date: "Mar 2026", skills: "Claude Skills" },
@@ -65,204 +64,269 @@ const APP_DATA = {
         { name: "Introduction to Generative AI", id: "NDIwNjE5", issuer: "Google x NexusEdge", date: "Sep 2025" }
     ],
     experience: [
-        { title: "Club Council Representative", org: "The InterClub Council (ICC)", type: "Part-time", dateRange: "Feb 2026 - Present · 2 mos", location: "Pleasant Hill, CA", remote: true, bullets: ["Managed club meetings and coordinated payments to ensure smooth operations at Cryptoacademy DVC.", "Strengthened connections through effective collaboration updates, enhancing member engagement.", "Attended over 10 consecutive ICC club meetings, gathering insights to boost club funds and membership growth."], skills: "Project Management, Student Council" },
-        { title: "Computer Engineer Officer", org: "Science and Engineering Club", type: "Full-time", dateRange: "Nov 2025 - Present · 5 mos", location: "Pleasant Hill, CA", remote: false, bullets: [], skills: "Project Management, Project Planning" },
-        { title: "Webmaster", org: "Alpha Gamma Sigma - Gamma Psi Chapter", type: "Seasonal", dateRange: "Sep 2025 - Present · 7 mos", location: "Pleasant Hill, CA", remote: false, bullets: ["Maintaining and updating the official website and communicating with executives and officers about progress in advertising the club through the internet."], skills: "Visual Web Developer, Web Design" },
-        { title: "Software Engineer Officer", org: "Google Developers Group", type: "Full-time", dateRange: "Sep 2025 - Present · 7 mos", location: "Pleasant Hill, CA", remote: false, bullets: ["Collaborated with over 20 members in the Google Developers Group to foster a coding community.", "Led project initiatives, enhancing teamwork and project management skills.", "Developed web applications and coding solutions, strengthening technical proficiency.", "Motivated peers to pursue coding majors and engage in challenging projects."], skills: "Website Building, Website Updating" },
-        { title: "Engagement Coordinator", org: "Toastmasters International", type: "Full-time", dateRange: "Sep 2025 - Present · 7 mos", location: "Pleasant Hill, CA", remote: false, bullets: ["Engaged actively as an Activities Coordinator, enhancing member participation.", "Developed public speaking and storytelling skills through regular attendance and involvement in club activities.", "Fostered a supportive environment for members to practice debating and improve communication skills."], skills: "Speech Writing, Speech" },
-        { title: "Senior Web Application Developer", org: "Wosado Australia", type: "Internship", dateRange: "Jul 2025 - Present · 9 mos", location: "Perth, Australia", remote: true, bullets: ["Developed and managed the Wosado Australia website, enhancing functionality and design to attract female customers.", "Collaborated closely with the business owner to implement new concepts and strategies for customer engagement.", "Contributed to overall sales growth and promotion of eyelash makeup products across Australia."], skills: "Visual Web Developer, Shopify", site: "https://wosadoaustralia.com" },
-        { title: "Senior Web Application Developer", org: "Aiko Matcha", type: "Full-time", dateRange: "Jun 2025 - Present · 10 mos", location: "Perth, Australia", remote: true, bullets: ["Developed and maintained the website for a small matcha business in Australia, enhancing online purchasing capabilities.", "Collaborated closely with the business owner and team members to ensure effective communication and project coordination.", "Contributed to overall success resulting in thousands of dollars in sales and increased customer engagement.", "Gained valuable skills in web development, project management, and teamwork."], skills: "Web Development, Python", site: "https://www.aikomatcha.com.au" },
-        { title: "Project Leader", org: "Code the Change", type: "Full-time", dateRange: "Sep 2025 - Dec 2025 · 4 mos", location: "Pleasant Hill, CA", remote: false, bullets: ["Led a team of web developers to enhance coding skills and project management capabilities.", "Fostered connections and collaborations, emphasizing teamwork and problem-solving.", "Impacted thousands of educators by developing nonprofit organization websites for improved access and information gathering."], skills: "CSS, HTML" }
+        { title: "Club Council Representative", org: "The InterClub Council (ICC)", type: "Part-time", dateRange: "Feb 2026 — Present", location: "Pleasant Hill, CA · Hybrid", bullets: ["Managed club meetings and coordinated payments to ensure smooth operations at Cryptoacademy DVC.", "Strengthened connections through effective collaboration updates, enhancing member engagement.", "Attended over 10 consecutive ICC meetings, gathering insights to boost club funds and membership growth."], skills: "Project Management · Student Council" },
+        { title: "Computer Engineer Officer", org: "Science and Engineering Club", type: "Officer", dateRange: "Nov 2025 — Present", location: "Pleasant Hill, CA · On-site", bullets: [], skills: "Project Management · Project Planning" },
+        { title: "Webmaster", org: "Alpha Gamma Sigma — Gamma Psi Chapter", type: "Seasonal", dateRange: "Sep 2025 — Present", location: "Pleasant Hill, CA · On-site", bullets: ["Maintaining and updating the official website and communicating with officers about club promotion through digital channels."], skills: "Visual Web Development · Web Design" },
+        { title: "Software Engineer Officer", org: "Google Developers Group", type: "Officer", dateRange: "Sep 2025 — Present", location: "Pleasant Hill, CA · On-site", bullets: ["Collaborated with 20+ members to foster a coding community.", "Led project initiatives, enhancing teamwork and project management skills.", "Developed web applications and coding solutions, strengthening technical proficiency.", "Motivated peers to pursue coding majors and engage in challenging projects."], skills: "Website Building · Website Updating" },
+        { title: "Engagement Coordinator", org: "Toastmasters International", type: "Officer", dateRange: "Sep 2025 — Present", location: "Pleasant Hill, CA · On-site", bullets: ["Engaged actively as Activities Coordinator, enhancing member participation.", "Developed public speaking and storytelling skills through regular involvement.", "Fostered a supportive environment for members to practice debating and communication."], skills: "Speech Writing · Communication" },
+        { title: "Senior Web Application Developer", org: "Wosado Australia", type: "Internship", dateRange: "Jul 2025 — Present", location: "Perth, Australia · Remote", bullets: ["Developed and managed the Wosado Australia website, enhancing functionality and design.", "Collaborated with the business owner to implement new engagement strategies.", "Contributed to sales growth and promotion of products across Australia."], skills: "Visual Web Development · Shopify", site: "https://wosadoaustralia.com" },
+        { title: "Senior Web Application Developer", org: "Aiko Matcha", type: "Full-time", dateRange: "Jun 2025 — Present", location: "Perth, Australia · Remote", bullets: ["Developed and maintained the website for a matcha business, enhancing online purchasing capabilities.", "Collaborated with the business owner to ensure effective communication and project coordination.", "Contributed to thousands of dollars in sales and increased customer engagement."], skills: "Web Development · Python", site: "https://www.aikomatcha.com.au" },
+        { title: "Project Leader", org: "Code the Change", type: "Full-time", dateRange: "Sep 2025 — Dec 2025", location: "Pleasant Hill, CA · On-site", bullets: ["Led a team of web developers, enhancing coding skills and project management capabilities.", "Fostered collaborations emphasizing teamwork and problem-solving.", "Impacted thousands of educators by developing nonprofit websites for improved access."], skills: "CSS · HTML" }
     ]
 };
 
+/* ============================================================
+   RENDER
+   ============================================================ */
 function renderApp() {
     const root = document.getElementById('root');
     if (!root) return;
 
+    const featuredProject = APP_DATA.projects.find(p => p.featured);
+    const gridProjects    = APP_DATA.projects.filter(p => !p.featured);
+
     root.innerHTML = `
-        <nav id="navbar" class="fixed top-0 w-full z-50 py-6 transition-all duration-300 px-6">
-            <div class="max-w-7xl mx-auto flex justify-between items-center">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-sm shadow-lg">P</div>
-                    <span class="font-bold tracking-tight text-slate-800 theme-nav-name">Preston Jay Susanto</span>
-                </div>
-                <div class="flex items-center gap-6">
-                    <div class="hidden md:flex gap-6 text-sm font-semibold text-slate-500">
-                        <a href="#about" class="nav-link">Journey</a>
-                        <a href="#experience" class="nav-link">Experience</a>
-                        <a href="#projects" class="nav-link">Work</a>
-                        <a href="#certifications" class="nav-link">Certifications</a>
-                        <a href="#awards" class="nav-link">Awards</a>
-                        <a href="#leadership" class="nav-link">Leadership</a>
-                    </div>
-                </div>
+        <!-- NAV -->
+        <nav id="navbar" aria-label="Main navigation">
+            <div class="nav-inner">
+                <a href="#hero" class="nav-logo" aria-label="Preston Jay Susanto — back to top">
+                    <div class="nav-logo-mark" aria-hidden="true">P</div>
+                    <span class="nav-logo-text">Preston Jay Susanto</span>
+                </a>
+                <nav class="nav-links" aria-label="Site sections">
+                    <a href="#about"          class="nav-link">Journey</a>
+                    <a href="#experience"     class="nav-link">Experience</a>
+                    <a href="#projects"       class="nav-link">Work</a>
+                    <a href="#certifications" class="nav-link">Certs</a>
+                    <a href="#awards"         class="nav-link">Awards</a>
+                    <a href="#leadership"     class="nav-link">Leadership</a>
+                    <a href="#contact"        class="nav-link">Contact</a>
+                </nav>
             </div>
         </nav>
 
-        <section id="hero" class="min-h-screen flex items-center pt-24 px-6">
-            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center w-full">
+        <!-- HERO -->
+        <section id="hero" aria-label="Introduction">
+            <div class="hero-bg" aria-hidden="true">
+                <div class="hero-glow"></div>
+                <div class="hero-grid"></div>
+            </div>
+            <div class="hero-inner">
+                <!-- Left: content -->
                 <div class="reveal">
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest theme-badge-red">🏆 3X Hackathon Winner</span>
-                        <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest theme-badge-red">📍 SF Bay Area</span>
-                        <span class="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest theme-badge-green">GPA 4.0 Verified</span>
+                    <div class="hero-badges">
+                        <span class="hero-badge is-accent">&#x1F3C6; 3X Hackathon Winner</span>
+                        <span class="hero-badge">SF Bay Area</span>
+                        <span class="hero-badge">GPA 4.0</span>
                     </div>
                     <h1 class="hero-title">
-                        Building the <br/> <span class="hero-accent">Future.</span>
+                        Building<br>the <span class="accent-word">Future.</span>
                     </h1>
-                    <div class="h-10 overflow-hidden mb-10 relative">
-                        <div id="role-container" class="role-animate space-y-0 transition-transform duration-700">
-                            ${APP_DATA.roles.map(r => `<div class="h-10 flex items-center text-xl md:text-2xl font-semibold text-slate-400 font-mono italic">${r}</div>`).join('')}
+                    <div class="role-rotator" aria-live="polite" aria-atomic="true">
+                        <div id="role-container" class="role-container">
+                            ${APP_DATA.roles.map(r => `<div class="role-item">${r}</div>`).join('')}
                         </div>
                     </div>
-                    <p class="text-xl text-slate-500 mb-12 leading-relaxed max-w-xl">
-                        Computer Science student @ <span class="text-slate-900 font-bold">DVC</span>. Early entrant. Global perspective from Indonesia, Australia, and China. Mentoring the next generation of builders.
+                    <p class="hero-desc">
+                        Computer Science student at <strong>DVC</strong>. Early entrant. Global perspective from Indonesia, Australia, and China. Mentoring the next generation of builders.
                     </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#projects" class="px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold hover:bg-blue-600 transition-all hover:shadow-2xl hover:-translate-y-1 text-center">View Projects</a>
-                        <a href="mailto:prestonjaysusanto@gmail.com" class="px-10 py-5 bg-white border border-slate-200 text-slate-700 rounded-2xl font-bold hover:border-blue-400 transition-all text-center">Contact</a>
+                    <div class="hero-ctas">
+                        <a href="#projects"                       class="btn-primary">View Projects &#x2192;</a>
+                        <a href="mailto:prestonjaysusanto@gmail.com" class="btn-secondary">Get in Touch</a>
                     </div>
-                    <div class="mt-12 pt-12 border-t border-slate-100 flex gap-10 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
-                        <div class="flex flex-col"><span class="text-2xl font-black theme-stat">3×</span><span class="text-[9px] font-bold text-slate-400 theme-muted uppercase tracking-widest">Hackathon Wins</span></div>
-                        <div class="flex flex-col"><span class="text-2xl font-black theme-stat">4</span><span class="text-[9px] font-bold text-slate-400 theme-muted uppercase tracking-widest">Nations</span></div>
-                        <div class="flex flex-col"><span class="text-2xl font-black theme-stat">4.0</span><span class="text-[9px] font-bold text-slate-400 theme-muted uppercase tracking-widest">GPA</span></div>
-                        <div class="flex flex-col"><span class="text-2xl font-black theme-stat">20+</span><span class="text-[9px] font-bold text-slate-400 theme-muted uppercase tracking-widest">Mentored</span></div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">3&#xD7;</span>
+                            <span class="stat-label">Hackathon Wins</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">4</span>
+                            <span class="stat-label">Nations</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">4.0</span>
+                            <span class="stat-label">GPA</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">20+</span>
+                            <span class="stat-label">Mentored</span>
+                        </div>
                     </div>
                 </div>
-                <div class="hidden lg:block reveal" style="transition-delay: 200ms">
-                    <div class="relative p-12 bg-white border border-slate-100 rounded-[4rem] shadow-2xl overflow-hidden">
-                        <div class="absolute top-0 right-0 p-10">
-                            <div class="w-3 h-3 bg-blue-500 rounded-full animate-ping opacity-20 absolute"></div>
-                            <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+
+                <!-- Right: cert card -->
+                <div class="hero-card reveal" style="transition-delay: 180ms" aria-hidden="true">
+                    <div class="hero-card-label">Recent Certifications</div>
+                    ${APP_DATA.certs.slice(0, 3).map(c => `
+                        <div class="cert-item">
+                            <div class="cert-icon">AI</div>
+                            <div>
+                                <div class="cert-name">${c.name}</div>
+                                <div class="cert-id">ID: ${c.id}</div>
+                            </div>
                         </div>
-                        <h3 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-10">Certifications</h3>
-                        <div class="space-y-6">
-                            ${APP_DATA.certs.slice(0, 3).map(c => `
-                                <div class="flex gap-4 pb-4 border-b border-slate-50">
-                                    <div class="w-10 h-10 bg-slate-900 text-white rounded-xl flex items-center justify-center font-bold text-xs italic">G</div>
-                                    <div>
-                                        <div class="font-bold text-sm text-slate-800">${c.name}</div>
-                                        <div class="text-[10px] text-slate-400 font-mono">ID: ${c.id}</div>
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
+                    `).join('')}
                 </div>
             </div>
         </section>
 
-        <section id="about" class="py-24 px-6">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl md:text-5xl font-semibold mb-16 reveal">Global Journey</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- ABOUT / JOURNEY -->
+        <section id="about" class="section section-alt">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">My Story</span>
+                    <h2 class="section-heading">Global Journey</h2>
+                    <p class="section-subtitle">Four countries. One relentless drive to build, lead, and connect.</p>
+                </div>
+                <div class="journey-grid">
                     ${APP_DATA.journey.map((item, i) => `
-                        <div class="proof-element transition-all reveal" style="transition-delay: ${i * 100}ms">
-                            <div class="font-mono text-[10px] font-bold" style="color:#7b7b7b; margin-bottom:0.5em; text-transform:uppercase;">${item.year}</div>
-                            <div class="text-2xl font-black mb-1" style="color:#fff;">${item.loc}</div>
-                            <h3 class="font-bold accent mb-4 text-[10px] uppercase tracking-widest">${item.title}</h3>
-                            <p class="text-base" style="color:#e5e7eb;">${item.desc}</p>
+                        <div class="journey-card reveal" style="transition-delay: ${i * 80}ms">
+                            <div class="journey-year">${item.year}</div>
+                            <div class="journey-loc">${item.loc}</div>
+                            <div class="journey-title">${item.title}</div>
+                            <p class="journey-desc">${item.desc}</p>
                         </div>
                     `).join('')}
                 </div>
             </div>
         </section>
 
-        <section id="experience" class="py-24 px-6">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl md:text-5xl font-semibold mb-16 reveal">Experience</h2>
-                <div class="space-y-12">
+        <!-- EXPERIENCE -->
+        <section id="experience" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">Work & Roles</span>
+                    <h2 class="section-heading">Experience</h2>
+                    <p class="section-subtitle">Engineering roles, leadership positions, and real-world product delivery.</p>
+                </div>
+                <div class="experience-list">
                     ${APP_DATA.experience.map((job, i) => `
-                        <div class="reveal proof-element" style="transition-delay: ${i * 50}ms; padding: 2.5rem 0;">
-                            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-2">
+                        <article class="exp-card reveal" style="transition-delay: ${i * 45}ms">
+                            <div class="exp-header">
                                 <div>
-                                    <h3 class="text-2xl font-bold" style="color:#fff;">${job.title}</h3>
-                                    <div class="font-semibold mt-1" style="color:#e5e7eb;">${job.org}</div>
+                                    <h3 class="exp-title">${job.title}</h3>
+                                    <div class="exp-org">${job.org}</div>
                                 </div>
-                                <div class="text-right text-[10px] font-bold uppercase tracking-widest shrink-0" style="color:#7b7b7b;">
-                                    <span>${job.type}</span>
-                                    <span class="block mt-1">${job.dateRange}</span>
-                                    <span class="block mt-1">${job.location} ${job.remote ? '· Remote' : '· On-site'}</span>
+                                <div class="exp-meta">
+                                    <span class="exp-type-badge">${job.type}</span>
+                                    <span class="exp-date">${job.dateRange}</span>
+                                    <span class="exp-location">${job.location}</span>
                                 </div>
                             </div>
-                            ${job.bullets.length ? `<ul class="experience-bullets" style="margin-top:1.2em; margin-bottom:1.2em; padding-left:1.5em;">
-                                ${job.bullets.map(b => `<li style='color:#e5e7eb; font-size:1.1rem; line-height:1.7;'>${b}</li>`).join('')}
-                            </ul>` : ''}
-                            ${job.skills ? `<div class="text-[10px] font-bold accent uppercase tracking-wider mt-2">${job.skills}</div>` : ''}
-                            ${job.site ? `<a href="${job.site}" target="_blank" class="inline-block mt-2 text-xs font-bold accent hover:underline">View site →</a>` : ''}
-                        </div>
+                            ${job.bullets.length ? `
+                                <ul class="exp-bullets">
+                                    ${job.bullets.map(b => `<li>${b}</li>`).join('')}
+                                </ul>
+                            ` : ''}
+                            ${job.skills ? `<div class="exp-skills">${job.skills}</div>` : ''}
+                            ${job.site ? `<a href="${job.site}" target="_blank" rel="noopener" class="exp-site-link">Visit site &#x2197;</a>` : ''}
+                        </article>
                     `).join('')}
                 </div>
             </div>
         </section>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+        <!-- PROJECTS -->
         <section id="projects" class="projects-section">
-            <div class="projects-inner max-w-7xl mx-auto">
-                <header class="projects-header flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
-                    <h2 class="projects-title reveal">Projects</h2>
-                    <p class="projects-subtitle reveal max-w-sm">A selection of platforms built for retail, education, and social impact.</p>
+            <div class="projects-inner">
+                <header class="projects-header">
+                    <div>
+                        <span class="section-label">Selected Work</span>
+                        <h2 class="projects-title reveal">Projects</h2>
+                    </div>
+                    <p class="projects-subtitle reveal">Platforms built for retail, education, AI, and social impact.</p>
                 </header>
-                <div class="project-grid">
-=======
-=======
->>>>>>> parent of a23b3f3 (mroe updates)
-        <section id="projects" class="py-32 px-6">
-            <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-                    <h2 class="text-4xl md:text-5xl font-black reveal">Portfolio Sites</h2>
-                    <p class="text-slate-500 max-w-sm reveal">A selection of platforms built for retail, education, and social impact.</p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-<<<<<<< HEAD
->>>>>>> parent of a23b3f3 (mroe updates)
-=======
->>>>>>> parent of a23b3f3 (mroe updates)
-                    ${APP_DATA.projects.map((p, i) => `
-                        <a href="${p.site}" target="_blank" class="block bg-white p-8 rounded-3xl border border-slate-200 card-hover reveal group" style="transition-delay: ${i * 50}ms">
-                            <div class="flex justify-between items-start mb-6">
-                                <span class="text-[9px] font-black uppercase text-blue-600 bg-blue-50 px-3 py-1 rounded-full tracking-widest">${p.type}</span>
-                                <span class="text-slate-300 group-hover:text-blue-600 transition-colors">↗</span>
+
+                <!-- Featured: Cauliform -->
+                ${featuredProject ? `
+                    <article class="project-featured reveal">
+                        <div class="project-featured-inner">
+                            <div class="project-featured-content">
+                                <span class="project-featured-badge">&#x2605; Featured Project &mdash; ${featuredProject.type}</span>
+                                <h3 class="project-featured-title">${featuredProject.title}</h3>
+                                <p class="project-featured-desc">${featuredProject.desc}</p>
+                                ${featuredProject.tech && featuredProject.tech.length ? `
+                                    <ul class="project-tech-list project-featured-tech" aria-label="Tech stack">
+                                        ${featuredProject.tech.map(t => `<li><span class="project-tech-item">${t}</span></li>`).join('')}
+                                    </ul>
+                                ` : ''}
                             </div>
-                            <h3 class="text-2xl font-bold mb-3 text-slate-800">${p.title}</h3>
-                            <p class="text-sm text-slate-500 mb-6 leading-relaxed h-12 overflow-hidden">${p.desc}</p>
-                            <span class="text-xs font-bold text-slate-400 group-hover:text-slate-900 transition-colors">Launch Project</span>
-                        </a>
+                            <div class="project-featured-actions">
+                                <a href="${featuredProject.site}" target="_blank" rel="noopener" class="btn-primary">
+                                    View Project &#x2197;
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                ` : ''}
+
+                <!-- Grid -->
+                <div class="project-grid">
+                    ${gridProjects.map((p, i) => `
+                        <article class="project-card reveal" style="transition-delay: ${i * 50}ms">
+                            <div class="project-card-inner">
+                                <div class="project-meta">
+                                    <span class="project-type">${p.type}</span>
+                                    <a href="${p.site}" target="_blank" rel="noopener"
+                                       class="project-link-arrow"
+                                       aria-label="Open ${p.title}">&#x2197;</a>
+                                </div>
+                                <h3 class="project-name">${p.title}</h3>
+                                <p class="project-desc">${p.desc}</p>
+                                ${p.tech && p.tech.length ? `
+                                    <ul class="project-tech-list" aria-label="Tech stack">
+                                        ${p.tech.map(t => `<li><span class="project-tech-item">${t}</span></li>`).join('')}
+                                    </ul>
+                                ` : ''}
+                                <div class="project-actions">
+                                    <a href="${p.site}" target="_blank" rel="noopener" class="project-link-btn">
+                                        ${p.site && p.site !== '#' ? 'View project &#x2192;' : 'Details &#x2192;'}
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
                     `).join('')}
                 </div>
             </div>
         </section>
 
-        <section id="certifications" class="py-24 px-6">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl md:text-5xl font-semibold mb-16 reveal">Licenses & Certifications</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- CERTIFICATIONS -->
+        <section id="certifications" class="section section-alt">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">Verified Credentials</span>
+                    <h2 class="section-heading">Licenses &amp; Certifications</h2>
+                </div>
+                <div class="certs-grid">
                     ${APP_DATA.certs.map((c, i) => `
-                        <div class="reveal proof-element transition-all" style="transition-delay: ${i * 40}ms">
-                            <div class="font-bold mb-1" style="color:#fff;">${c.name}</div>
-                            <div class="text-[10px] font-mono mb-1" style="color:#7b7b7b;">${c.issuer} · ${c.date}</div>
-                            ${c.skills ? `<div class="text-[10px] accent font-semibold uppercase tracking-wider mt-2">${c.skills}</div>` : ''}
-                            <div class="text-[9px] font-mono mt-1" style="color:#7b7b7b;">ID: ${c.id}</div>
+                        <div class="cert-card reveal" style="transition-delay: ${i * 40}ms">
+                            <div class="cert-card-name">${c.name}</div>
+                            <div class="cert-card-issuer">${c.issuer} &middot; ${c.date}</div>
+                            ${c.skills ? `<div class="cert-card-skills">${c.skills}</div>` : ''}
+                            <div class="cert-card-id">ID: ${c.id}</div>
                         </div>
                     `).join('')}
                 </div>
             </div>
         </section>
 
-        <section id="awards" class="py-24 px-6">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl md:text-5xl font-semibold mb-20 reveal">Awards & Proof</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-16">
-                    ${Object.entries(APP_DATA.awards).sort((a,b) => b[0] - a[0]).map(([year, list]) => `
+        <!-- AWARDS -->
+        <section id="awards" class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">Recognition</span>
+                    <h2 class="section-heading">Awards &amp; Proof</h2>
+                    <p class="section-subtitle">Consistent academic excellence and co-curricular distinction across multiple institutions.</p>
+                </div>
+                <div class="awards-grid">
+                    ${Object.entries(APP_DATA.awards).sort((a, b) => b[0] - a[0]).map(([year, list]) => `
                         <div class="reveal">
-                            <div class="text-6xl font-semibold theme-stat awards-year pb-2 mb-10">${year}</div>
-                            <div class="space-y-8">
+                            <div class="awards-year">${year}</div>
+                            <div>
                                 ${list.map(a => `
-                                    <div class="proof-element pl-6 py-1 transition-all" style="border-left:2px solid #222;">
-                                        <div class="font-bold text-base mb-1 leading-tight" style="color:#fff;">${a.title}</div>
-                                        <div class="text-[10px] font-bold uppercase tracking-wider" style="color:#7b7b7b;">${a.desc}</div>
+                                    <div class="award-item">
+                                        <div class="award-title">${a.title}</div>
+                                        <div class="award-desc">${a.desc}</div>
                                     </div>
                                 `).join('')}
                             </div>
@@ -272,61 +336,66 @@ function renderApp() {
             </div>
         </section>
 
-        <section id="leadership" class="py-24 px-6">
-            <div class="max-w-7xl mx-auto">
-                <div class="grid lg:grid-cols-2 gap-20 items-center">
-                    <div>
-                        <h2 class="text-4xl md:text-5xl font-semibold mb-12 reveal" style="color: var(--retro-text);">Leadership.</h2>
-                        <div class="space-y-12">
-                            ${APP_DATA.leadership.map((l, i) => `
-                                <div class="reveal group" style="transition-delay: ${i * 100}ms">
-                                    <div class="accent font-black text-[9px] uppercase tracking-widest mb-1">${l.org}</div>
-                                    <div class="text-xl font-bold group-hover:translate-x-2 transition-transform" style="color:#fff;">${l.role}</div>
-                                    <p class="text-base mt-2 font-light" style="color:#e5e7eb;">${l.impact}</p>
-                                </div>
-                            `).join('')}
+        <!-- LEADERSHIP -->
+        <section id="leadership" class="section section-alt">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">Community</span>
+                    <h2 class="section-heading">Leadership.</h2>
+                </div>
+                <div class="leadership-grid">
+                    <div class="leadership-list">
+                        ${APP_DATA.leadership.map((l, i) => `
+                            <div class="leadership-item reveal" style="transition-delay: ${i * 80}ms">
+                                <div class="leadership-org">${l.org}</div>
+                                <div class="leadership-role">${l.role}</div>
+                                <p class="leadership-impact">${l.impact}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="leadership-card reveal" style="transition-delay: 200ms">
+                        <h3 class="leadership-card-title">Mentorship Focus</h3>
+                        <p class="leadership-quote">
+                            "Committed to creating communities that last. In every club founded or led, I prioritize onboarding at least 20 students to ensure technical growth is accessible to all."
+                        </p>
+                        <div class="leadership-metrics">
+                            <div>
+                                <div class="leadership-metric-value">10+ A's</div>
+                                <div class="leadership-metric-label">Yearly Excellence</div>
+                            </div>
+                            <div>
+                                <div class="leadership-metric-value">3&#xD7;</div>
+                                <div class="leadership-metric-label">Varsity Captaincy</div>
+                            </div>
                         </div>
                     </div>
-                          <div class="relative overflow-hidden reveal">
-                                <h3 class="text-xl font-bold mb-6" style="color:#fff;">Mentorship Focus</h3>
-                                <p class="text-lg leading-relaxed italic mb-8 font-light" style="color:#e5e7eb;">
-                                     "Committed to creating communities that last. In every club founded or led, I prioritize onboarding at least 20 students to ensure technical growth is accessible to all."
-                                </p>
-                                <div class="grid grid-cols-2 gap-8 pt-8" style="border-top:2px solid #222;">
-                                    <div>
-                                        <div class="text-4xl font-semibold theme-stat mb-1">10+ A's</div>
-                                        <div class="text-[9px] font-bold theme-muted uppercase tracking-widest">Yearly Excellence</div>
-                                    </div>
-                                    <div>
-                                        <div class="text-4xl font-semibold theme-stat mb-1">3x</div>
-                                        <div class="text-[9px] font-bold theme-muted uppercase tracking-widest">Varsity Captaincy</div>
-                                    </div>
-                                </div>
-                          </div>
                 </div>
             </div>
         </section>
 
-        <footer id="contact" class="py-24 px-6">
-            <div class="max-w-7xl mx-auto text-center">
-                <h2 class="text-4xl md:text-5xl font-semibold mb-12 reveal" style="color:#fff;">Let's connect.</h2>
-                <div class="flex flex-wrap justify-center gap-6 mb-24 reveal">
-                    <a href="mailto:prestonjaysusanto@gmail.com" class="min-w-[300px] flex-1 text-left">
-                        <div class="text-[10px] font-bold uppercase mb-2" style="color:#7b7b7b;">Email</div>
-                        <div class="text-lg font-bold" style="color:#fff;">prestonjaysusanto@gmail.com</div>
+        <!-- CONTACT / FOOTER -->
+        <footer id="contact" role="contentinfo">
+            <div class="footer-inner">
+                <h2 class="footer-heading reveal">
+                    Let's <span class="accent-word">connect.</span>
+                </h2>
+                <div class="contact-cards reveal">
+                    <a href="mailto:prestonjaysusanto@gmail.com" class="contact-card">
+                        <span class="contact-card-label">Email</span>
+                        <span class="contact-card-value">prestonjaysusanto@gmail.com</span>
                     </a>
-                    <a href="tel:+19254570055" class="min-w-[300px] flex-1 text-left">
-                        <div class="text-[10px] font-bold uppercase mb-2" style="color:#7b7b7b;">Phone</div>
-                        <div class="text-lg font-bold" style="color:#fff;">+1 (925) 457-0055</div>
+                    <a href="tel:+19254570055" class="contact-card">
+                        <span class="contact-card-label">Phone</span>
+                        <span class="contact-card-value">+1 (925) 457-0055</span>
                     </a>
                 </div>
-                <div class="flex justify-center gap-12 font-bold uppercase text-[10px] tracking-widest reveal">
-                    <a href="https://github.com/ShadowEsu" target="_blank" class="theme-muted hover:accent transition-colors">GitHub</a>
-                    <a href="https://www.linkedin.com/in/preston-jay-susanto-3a589534b/" target="_blank" class="theme-muted hover:accent transition-colors">LinkedIn</a>
-                    <a href="https://instagram.com/preston_susanto" target="_blank" class="theme-muted hover:accent transition-colors">Instagram</a>
-                </div>
-                <div class="mt-24 text-[9px] font-semibold theme-muted uppercase tracking-[0.3em]">
-                    Preston Jay Susanto &copy; 2025 // Professional Portfolio
+                <nav class="social-links reveal" aria-label="Social media">
+                    <a href="https://github.com/ShadowEsu"                                   target="_blank" rel="noopener" class="social-link">GitHub</a>
+                    <a href="https://www.linkedin.com/in/preston-jay-susanto-3a589534b/"     target="_blank" rel="noopener" class="social-link">LinkedIn</a>
+                    <a href="https://instagram.com/preston_susanto"                          target="_blank" rel="noopener" class="social-link">Instagram</a>
+                </nav>
+                <div class="footer-copy reveal">
+                    Preston Jay Susanto &copy; 2025 &mdash; Professional Portfolio
                 </div>
             </div>
         </footer>
@@ -335,6 +404,9 @@ function renderApp() {
     initInteractions();
 }
 
+/* ============================================================
+   INTERACTIONS
+   ============================================================ */
 function initInteractions() {
     // 1. Role Rotator
     let roleIdx = 0;
@@ -346,48 +418,76 @@ function initInteractions() {
         }, 3000);
     }
 
-    // 2. Navbar Scroll Style
-    const navbar = document.getElementById('navbar');
+    // 2. Navbar scroll style + Scroll Progress
+    const navbar   = document.getElementById('navbar');
+    const progress = document.getElementById('scroll-progress');
     window.addEventListener('scroll', () => {
+        const scrollY   = window.scrollY;
+        const scrollMax = document.documentElement.scrollHeight - window.innerHeight;
+
+        // Scroll progress bar
+        if (progress && scrollMax > 0) {
+            progress.style.width = ((scrollY / scrollMax) * 100) + '%';
+        }
+
+        // Navbar glass on scroll
         if (navbar) {
-            if (window.scrollY > 40) {
-                navbar.classList.add('scrolled', 'py-4');
-                navbar.classList.remove('py-6');
+            if (scrollY > 48) {
+                navbar.classList.add('scrolled');
             } else {
-                navbar.classList.remove('scrolled', 'py-4');
-                navbar.classList.add('py-6');
+                navbar.classList.remove('scrolled');
             }
         }
-    });
+    }, { passive: true });
 
-    // 3. Reveal Animations
-    const observer = new IntersectionObserver((entries) => {
+    // 3. Reveal Animations (Intersection Observer)
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
+                revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    // Proof Mode removed
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // 5. Smooth Scroll
-    document.querySelectorAll('.nav-link').forEach(anchor => {
-        anchor.onclick = (e) => {
-            e.preventDefault();
-            const targetId = anchor.getAttribute('href');
-            const target = document.querySelector(targetId);
-            if (target) {
-                window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+    // 4. Active Nav Link (section tracking)
+    const sections  = document.querySelectorAll('section[id], footer[id]');
+    const navLinks  = document.querySelectorAll('.nav-link');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+                });
             }
-        };
+        });
+    }, { threshold: 0.35 });
+
+    sections.forEach(s => sectionObserver.observe(s));
+
+    // 5. Smooth Scroll for nav links
+    document.querySelectorAll('.nav-link, a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+            const href = anchor.getAttribute('href');
+            if (!href || !href.startsWith('#') || href === '#') return;
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                window.scrollTo({ top: target.offsetTop - 72, behavior: 'smooth' });
+            }
+        });
     });
 }
 
-// Ensure the render happens after DOM is fully ready
+/* ============================================================
+   INIT
+   ============================================================ */
 if (document.readyState === 'loading') {
-    window.addEventListener('DOMContentLoaded', renderApp);
+    document.addEventListener('DOMContentLoaded', renderApp);
 } else {
     renderApp();
 }
