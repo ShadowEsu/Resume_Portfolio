@@ -35,7 +35,7 @@
     --shadow-btn:        0 8px 24px rgba(193,18,31,0.35);
 
     /* Typography */
-    --font-display: 'Syne', system-ui, sans-serif;
+    --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
     --font-body:    'Inter', system-ui, sans-serif;
 
     /* Motion */
@@ -149,9 +149,9 @@ ul  { list-style: none; }
 .section-heading {
     font-family: var(--font-display);
     font-size: clamp(2.25rem, 4.5vw, 3.75rem);
-    font-weight: 800;
-    letter-spacing: -0.035em;
-    line-height: 1.05;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
     color: var(--text);
     margin-bottom: 1rem;
 }
@@ -461,8 +461,8 @@ ul  { list-style: none; }
     font-family: var(--font-display);
     font-size: clamp(3.75rem, 9vw, 7rem);
     font-weight: 900;
-    letter-spacing: -0.045em;
-    line-height: 0.93;
+    letter-spacing: -0.015em;
+    line-height: 1.0;
     color: var(--text);
     margin-bottom: 1.75rem;
 }
