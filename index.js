@@ -178,7 +178,7 @@ function renderApp() {
                 <h2 class="text-4xl md:text-5xl font-semibold mb-16 reveal">Experience</h2>
                 <div class="space-y-12">
                     ${APP_DATA.experience.map((job, i) => `
-                        <div class="reveal proof-element" style="transition-delay: ${i * 50}ms">
+                        <div class="reveal proof-element" style="transition-delay: ${i * 50}ms; padding: 2.5rem 0;">
                             <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-2">
                                 <div>
                                     <h3 class="text-2xl font-bold" style="color:#fff;">${job.title}</h3>
@@ -190,7 +190,9 @@ function renderApp() {
                                     <span class="block mt-1">${job.location} ${job.remote ? '· Remote' : '· On-site'}</span>
                                 </div>
                             </div>
-                            ${job.bullets.length ? `<ul class="list-disc list-inside text-base" style="color:#e5e7eb;">${job.bullets.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
+                            ${job.bullets.length ? `<ul class="experience-bullets" style="margin-top:1.2em; margin-bottom:1.2em; padding-left:1.5em;">
+                                ${job.bullets.map(b => `<li style='color:#e5e7eb; font-size:1.1rem; line-height:1.7;'>${b}</li>`).join('')}
+                            </ul>` : ''}
                             ${job.skills ? `<div class="text-[10px] font-bold accent uppercase tracking-wider mt-2">${job.skills}</div>` : ''}
                             ${job.site ? `<a href="${job.site}" target="_blank" class="inline-block mt-2 text-xs font-bold accent hover:underline">View site →</a>` : ''}
                         </div>
