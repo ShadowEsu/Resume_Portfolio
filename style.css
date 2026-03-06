@@ -1,0 +1,80 @@
+:root {
+    --bg: #fcfcfc;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --primary: #2563eb;
+    --primary-light: #eff6ff;
+    --emerald: #10b981;
+    --emerald-light: #ecfdf5;
+    --border: #e2e8f0;
+    --card: #ffffff;
+    --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Navbar Blur */
+#navbar.scrolled {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+
+/* Role Rotator Transition */
+.role-animate {
+    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Proof Mode Active Styles */
+body.proof-active .proof-element {
+    background-color: var(--emerald-light) !important;
+    border-color: var(--emerald) !important;
+    transform: scale(1.01);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.05);
+}
+
+/* Scroll Reveal Base */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: var(--transition);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Card Interaction Styling */
+.card-hover {
+    transition: var(--transition);
+}
+
+.card-hover:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary);
+    box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.08);
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3.5rem !important;
+    }
+}
