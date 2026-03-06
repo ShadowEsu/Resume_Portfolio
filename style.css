@@ -1,7 +1,6 @@
     font-size: 1.2rem;
     line-height: 1.8;
     margin-bottom: 0.7em;
-    animation: fadeUp 1s cubic-bezier(0.4,0.2,0.2,1);
 /* Light theme – black & red, elegant typography */
 :root {
         --bg: #fafaf9;
@@ -484,19 +483,14 @@ p, li, span, label {
 /* ==== Reveal Animations ==== */
 .reveal {
     opacity: 0;
-    transform: translateY(32px) scale(0.98);
-    filter: blur(8px);
-    transition: opacity var(--motion-duration) var(--motion-ease), transform var(--motion-duration) var(--motion-ease), filter var(--motion-duration) var(--motion-ease);
+    transform: translateY(32px);
+    transition: opacity var(--motion-duration) var(--motion-ease), transform var(--motion-duration) var(--motion-ease);
 }
 .reveal.visible {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
+    transform: translateY(0);
 }
-@keyframes fadeUp {
-    0% { opacity: 0; transform: translateY(32px) scale(0.98); filter: blur(8px); }
-    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-}
+/* fadeUp animation removed for reset */
 
 /* ==== Accessibility ==== */
 :focus {
@@ -633,7 +627,6 @@ p, li, span, label {
     background: var(--color-accent);
         font-size: 1.4rem;
         padding: 1.1em 2.6em;
-        animation: fadeUp 1.2s cubic-bezier(0.4,0.2,0.2,1);
     left: 0;
     bottom: -4px;
 }
