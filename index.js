@@ -19,13 +19,14 @@ const APP_DATA = {
         { year: "Aug 2025 — Present", loc: "USA 🇺🇸", title: "Impact", desc: "CS @ DVC. Google Developer Group Officer. Alpha Gamma Sigma Webmaster. 4.0 GPA." }
     ],
     projects: [
-        { title: "Sortify App", type: "3X Hackathon Winner", site: "#", desc: "SF Hacks winner: Best Hardware, Beginner Hack, Best Use of Broxi AI. Sustainability-focused sorting platform with Gemini image recognition and Google Maps bin finder. Built for global impact on education and the environment." },
-        { title: "Access for All", type: "Hackathon Winner", site: "#", desc: "ValleyHacks accessibility-first software for color blindness & dyslexia. Built in < 48hrs." },
-        { title: "Aiko Matcha", type: "E-Commerce", site: "https://www.aikomatcha.com.au", desc: "Official retail site for premium matcha. High-performance custom build." },
-        { title: "AGS Honor Society", type: "Official Portal", site: "https://dvcags.wixstudio.com/honor-society", desc: "Webmaster for the DVC honors chapter. Built for scalability and impact." },
-        { title: "Wosado Australia", type: "Retail Hub", site: "https://wosadoaustralia.com.au", desc: "International beauty brand platform developer and maintenance lead." },
-        { title: "Wesley Hack Club", type: "Educational", site: "https://wesley.hackclub.com", desc: "Founder. Inspired 20+ students to join and build tech communities." },
-        { title: "Banyan Vanilla", type: "Brand Design", site: "https://www.banyanvanilla.com.au", desc: "Premium export brand digital presence and maintenance." }
+        { title: "Cauliform", type: "Passion Project", site: "https://github.com/ShadowEsu/Cauliform-AI", desc: "AI-powered voice agent that turns any Google Form into a phone call. Paste a form link, get called, answer conversationally—hands-free. Gemini Live API, Twilio, Firebase, auth. Built for Gemini Live Agent Challenge; partnered with ex–JP Morgan PM and top MLH Stanford hackathon winner.", tech: ["Next.js", "TypeScript", "Firebase", "Twilio", "Gemini"] },
+        { title: "Sortify App", type: "3X Hackathon Winner", site: "#", desc: "SF Hacks winner: Best Hardware, Beginner Hack, Best Use of Broxi AI. Sustainability-focused sorting platform with Gemini image recognition and Google Maps bin finder. Built for global impact on education and the environment.", tech: ["JavaScript", "Gemini", "Google Maps"] },
+        { title: "Access for All", type: "Hackathon Winner", site: "#", desc: "ValleyHacks accessibility-first software for color blindness & dyslexia. Built in < 48hrs.", tech: ["HTML", "CSS", "JavaScript"] },
+        { title: "Aiko Matcha", type: "E-Commerce", site: "https://www.aikomatcha.com.au", desc: "Official retail site for premium matcha. High-performance custom build.", tech: ["HTML", "CSS", "JavaScript", "Python"] },
+        { title: "AGS Honor Society", type: "Official Portal", site: "https://dvcags.wixstudio.com/honor-society", desc: "Webmaster for the DVC honors chapter. Built for scalability and impact.", tech: ["Wix", "Web Design"] },
+        { title: "Wosado Australia", type: "Retail Hub", site: "https://wosadoaustralia.com.au", desc: "International beauty brand platform developer and maintenance lead.", tech: ["Shopify", "HTML", "CSS"] },
+        { title: "Wesley Hack Club", type: "Educational", site: "https://wesley.hackclub.com", desc: "Founder. Inspired 20+ students to join and build tech communities.", tech: ["HTML", "JavaScript"] },
+        { title: "Banyan Vanilla", type: "Brand Design", site: "https://www.banyanvanilla.com.au", desc: "Premium export brand digital presence and maintenance.", tech: ["HTML", "CSS", "JavaScript"] }
     ],
     awards: {
         "2024": [
