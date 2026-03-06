@@ -120,7 +120,7 @@ function renderApp() {
                         </div>
                     </div>
                     <p class="text-xl text-slate-500 mb-12 leading-relaxed max-w-xl">
-                        Computer Science student @ <span class="text-slate-900 font-bold underline decoration-blue-200">DVC</span>. Early entrant. Global perspective from Indonesia, Australia, and China. Mentoring the next generation of builders.
+                        Computer Science student @ <span class="text-slate-900 font-bold">DVC</span>. Early entrant. Global perspective from Indonesia, Australia, and China. Mentoring the next generation of builders.
                     </p>
                     <div class="flex flex-wrap gap-4">
                         <a href="#projects" class="px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold hover:bg-blue-600 transition-all hover:shadow-2xl hover:-translate-y-1 text-center">View Projects</a>
@@ -156,9 +156,8 @@ function renderApp() {
             </div>
         </section>
 
-        <section id="about" class="px-6">
+        <section id="about" class="py-24 px-6">
             <div class="max-w-7xl mx-auto">
-                <div class="retro-divider reveal"></div>
                 <h2 class="text-4xl md:text-5xl font-semibold mb-16 reveal">Global Journey</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     ${APP_DATA.journey.map((item, i) => `
@@ -173,9 +172,8 @@ function renderApp() {
             </div>
         </section>
 
-        <section id="experience" class="px-6">
+        <section id="experience" class="py-24 px-6">
             <div class="max-w-7xl mx-auto">
-                <div class="retro-divider reveal"></div>
                 <h2 class="text-4xl md:text-5xl font-semibold mb-16 reveal">Experience</h2>
                 <div class="space-y-8">
                     ${APP_DATA.experience.map((job, i) => `
@@ -201,11 +199,10 @@ function renderApp() {
         </section>
 
         <section id="projects" class="projects-section">
-            <div class="projects-inner">
-                <div class="retro-divider reveal"></div>
-                <header class="projects-header">
+            <div class="projects-inner max-w-7xl mx-auto">
+                <header class="projects-header flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
                     <h2 class="projects-title reveal">Projects</h2>
-                    <p class="projects-subtitle reveal">A selection of platforms built for retail, education, and social impact.</p>
+                    <p class="projects-subtitle reveal max-w-sm">A selection of platforms built for retail, education, and social impact.</p>
                 </header>
                 <div class="project-grid">
                     ${APP_DATA.projects.map((p, i) => `
@@ -228,9 +225,8 @@ function renderApp() {
             </div>
         </section>
 
-        <section id="certifications" class="px-6">
+        <section id="certifications" class="py-24 px-6">
             <div class="max-w-7xl mx-auto">
-                <div class="retro-divider reveal"></div>
                 <h2 class="text-4xl md:text-5xl font-semibold mb-16 reveal">Licenses & Certifications</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     ${APP_DATA.certs.map((c, i) => `
@@ -245,9 +241,8 @@ function renderApp() {
             </div>
         </section>
 
-        <section id="awards" class="px-6">
+        <section id="awards" class="py-24 px-6">
             <div class="max-w-7xl mx-auto">
-                <div class="retro-divider reveal"></div>
                 <h2 class="text-4xl md:text-5xl font-semibold mb-20 reveal">Awards & Proof</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-16">
                     ${Object.entries(APP_DATA.awards).sort((a,b) => b[0] - a[0]).map(([year, list]) => `
@@ -267,9 +262,8 @@ function renderApp() {
             </div>
         </section>
 
-        <section id="leadership" class="py-32 px-6">
+        <section id="leadership" class="py-24 px-6">
             <div class="max-w-7xl mx-auto">
-                <div class="retro-divider reveal"></div>
                 <div class="grid lg:grid-cols-2 gap-20 items-center">
                     <div>
                         <h2 class="text-4xl md:text-5xl font-semibold mb-12 reveal" style="color: var(--retro-text);">Leadership.</h2>
@@ -304,10 +298,9 @@ function renderApp() {
             </div>
         </section>
 
-        <footer id="contact" class="py-32 px-6">
+        <footer id="contact" class="py-24 px-6">
             <div class="max-w-7xl mx-auto text-center">
-                <div class="retro-divider reveal"></div>
-                <h2 class="text-4xl md:text-6xl font-semibold mb-12 reveal">Let's connect.</h2>
+                <h2 class="text-4xl md:text-5xl font-semibold mb-12 reveal">Let's connect.</h2>
                 <div class="flex flex-wrap justify-center gap-6 mb-24 reveal">
                     <a href="mailto:prestonjaysusanto@gmail.com" class="p-8 bg-slate-50 border border-slate-100 rounded-3xl min-w-[300px] flex-1 hover:bg-blue-50 hover:border-blue-200 transition-all text-left">
                         <div class="text-[10px] font-bold uppercase text-slate-400 mb-2">Email</div>
