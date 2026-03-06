@@ -3,10 +3,10 @@
    ============================================================ */
 :root {
     /* Colors */
-    --bg:            #0A0A0B;
-    --surface-1:     #111214;
-    --surface-2:     #15171A;
-    --surface-3:     #1C1F23;
+    --bg:            #111318;
+    --surface-1:     #171A22;
+    --surface-2:     #1D2029;
+    --surface-3:     #242833;
     --border:        rgba(255, 255, 255, 0.08);
     --border-strong: rgba(255, 255, 255, 0.14);
     --text:          #F5F7FA;
@@ -35,7 +35,7 @@
     --shadow-btn:        0 8px 24px rgba(193,18,31,0.35);
 
     /* Typography */
-    --font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
+    --font-display: 'Syne', system-ui, sans-serif;
     --font-body:    'Inter', system-ui, sans-serif;
 
     /* Motion */
@@ -101,7 +101,34 @@ ul  { list-style: none; }
    ============================================================ */
 .section {
     padding: var(--section-py) 1.5rem;
+    position: relative;
 }
+
+/* Subtle grid texture on all sections */
+.section::before,
+.projects-section::before,
+#contact::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.016) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.016) 1px, transparent 1px);
+    background-size: 52px 52px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Ensure content sits above the grid */
+.section > .container,
+.projects-section > .projects-inner,
+#contact > .footer-inner {
+    position: relative;
+    z-index: 1;
+}
+
+.projects-section { position: relative; }
+#contact          { position: relative; }
 .section-alt  { background: var(--surface-1); }
 .section-alt2 { background: var(--surface-2); }
 
@@ -206,7 +233,7 @@ ul  { list-style: none; }
 }
 
 #navbar.scrolled {
-    background: rgba(10, 10, 11, 0.82);
+    background: rgba(17, 19, 24, 0.88);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border-bottom-color: var(--border);
@@ -1267,10 +1294,16 @@ ul  { list-style: none; }
 
 .leadership-metrics {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     padding-top: 2rem;
     border-top: 1px solid var(--border);
+}
+
+@media (min-width: 768px) {
+    .leadership-full-card .leadership-metrics {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .leadership-metric-value {
@@ -1406,4 +1439,131 @@ ul  { list-style: none; }
     .hero-stats { gap: 1.25rem; }
     .hero-ctas { flex-direction: column; }
     .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+}
+
+/* ============================================================
+   HACKATHON WINNER STYLES (hero card)
+   ============================================================ */
+.cert-icon-gold {
+    color: #D4A017;
+    border-color: rgba(212, 160, 23, 0.3);
+    background: rgba(212, 160, 23, 0.1);
+}
+
+.hack-winner-name {
+    color: #D4A017;
+    font-weight: 700;
+}
+
+/* ============================================================
+   PINNED EXPERIENCE CARD
+   ============================================================ */
+.exp-pin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.5625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-4);
+    margin-bottom: 1rem;
+}
+
+.exp-card-pinned {
+    border-color: var(--border-strong);
+    background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface-1) 100%);
+}
+
+/* ============================================================
+   AWARD WINNER (gold highlight)
+   ============================================================ */
+.award-item-winner {
+    border-left-color: rgba(212, 160, 23, 0.4);
+}
+
+.award-item-winner:hover {
+    border-left-color: #D4A017;
+}
+
+.award-item-winner .award-title {
+    color: #D4A017;
+}
+
+/* ============================================================
+   LEADERSHIP — CARD GRID LAYOUT
+   ============================================================ */
+.leadership-cards-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 600px)  { .leadership-cards-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .leadership-cards-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.leadership-item-card {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    transition:
+        border-color var(--dur-normal) ease,
+        transform    var(--dur-normal) var(--ease-out);
+}
+
+.leadership-item-card:hover {
+    border-color: var(--accent-border);
+    transform: translateY(-2px);
+}
+
+.leadership-year-badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 0.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-4);
+    background: var(--surface-3);
+    border: 1px solid var(--border);
+    padding: 0.175rem 0.5rem;
+    border-radius: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================================
+   LEADERSHIP — FULL-WIDTH MENTORSHIP CARD
+   ============================================================ */
+.leadership-full-card {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+    .leadership-full-card {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+}
+
+.leadership-full-card::before {
+    content: '';
+    position: absolute;
+    top: -70px; right: -70px;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(193,18,31,0.07) 0%, transparent 70%);
+    pointer-events: none;
 }
