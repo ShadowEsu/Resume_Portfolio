@@ -96,12 +96,9 @@ function renderApp() {
                         <a href="#awards" class="nav-link">Awards</a>
                         <a href="#leadership" class="nav-link">Leadership</a>
                     </div>
-                    <div class="flex items-center gap-3">
-                        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle theme">🌓</button>
-                        <button id="toggle-proof" class="text-[10px] px-4 py-2 rounded-full font-bold uppercase tracking-widest bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shadow-sm">
-                            Proof Mode
-                        </button>
-                    </div>
+                    <button id="toggle-proof" class="text-[10px] px-4 py-2 rounded font-bold uppercase tracking-widest border transition-all">
+                        Proof Mode
+                    </button>
                 </div>
             </div>
         </nav>
@@ -159,9 +156,10 @@ function renderApp() {
             </div>
         </section>
 
-        <section id="about" class="py-32 bg-slate-50 px-6">
+        <section id="about" class="px-6">
             <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl md:text-5xl font-black mb-16 reveal">Global Journey</h2>
+                <div class="retro-divider reveal"></div>
+                <h2 class="text-4xl md:text-5xl font-semibold mb-16 reveal">Global Journey</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     ${APP_DATA.journey.map((item, i) => `
                         <div class="p-8 bg-white border border-slate-100 rounded-3xl proof-element transition-all reveal shadow-sm" style="transition-delay: ${i * 100}ms">
@@ -175,9 +173,10 @@ function renderApp() {
             </div>
         </section>
 
-        <section id="experience" class="py-32 px-6 bg-white">
+        <section id="experience" class="px-6">
             <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl md:text-5xl font-black mb-16 reveal">Experience</h2>
+                <div class="retro-divider reveal"></div>
+                <h2 class="text-4xl md:text-5xl font-semibold mb-16 reveal">Experience</h2>
                 <div class="space-y-8">
                     ${APP_DATA.experience.map((job, i) => `
                         <div class="reveal proof-element p-8 bg-slate-50/80 border border-slate-100 rounded-3xl transition-all" style="transition-delay: ${i * 50}ms">
@@ -203,6 +202,7 @@ function renderApp() {
 
         <section id="projects" class="projects-section">
             <div class="projects-inner">
+                <div class="retro-divider reveal"></div>
                 <header class="projects-header">
                     <h2 class="projects-title reveal">Projects</h2>
                     <p class="projects-subtitle reveal">A selection of platforms built for retail, education, and social impact.</p>
@@ -228,9 +228,10 @@ function renderApp() {
             </div>
         </section>
 
-        <section id="certifications" class="py-32 bg-slate-50 px-6">
+        <section id="certifications" class="px-6">
             <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl md:text-5xl font-black mb-16 reveal">Licenses & Certifications</h2>
+                <div class="retro-divider reveal"></div>
+                <h2 class="text-4xl md:text-5xl font-semibold mb-16 reveal">Licenses & Certifications</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     ${APP_DATA.certs.map((c, i) => `
                         <div class="reveal proof-element p-6 bg-white border border-slate-100 rounded-2xl transition-all shadow-sm" style="transition-delay: ${i * 40}ms">
@@ -244,13 +245,14 @@ function renderApp() {
             </div>
         </section>
 
-        <section id="awards" class="py-32 bg-white px-6">
+        <section id="awards" class="px-6">
             <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl md:text-5xl font-black mb-20 reveal">Awards & Proof</h2>
+                <div class="retro-divider reveal"></div>
+                <h2 class="text-4xl md:text-5xl font-semibold mb-20 reveal">Awards & Proof</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-16">
                     ${Object.entries(APP_DATA.awards).sort((a,b) => b[0] - a[0]).map(([year, list]) => `
                         <div class="reveal">
-                            <div class="text-6xl font-black text-slate-100 border-b-4 border-slate-50 pb-2 mb-10">${year}</div>
+                            <div class="text-6xl font-semibold theme-stat awards-year pb-2 mb-10">${year}</div>
                             <div class="space-y-8">
                                 ${list.map(a => `
                                     <div class="proof-element border-l-2 border-slate-100 pl-6 py-1 transition-all">
@@ -265,11 +267,12 @@ function renderApp() {
             </div>
         </section>
 
-        <section id="leadership" class="py-32 bg-slate-900 text-white px-6">
+        <section id="leadership" class="py-32 px-6">
             <div class="max-w-7xl mx-auto">
+                <div class="retro-divider reveal"></div>
                 <div class="grid lg:grid-cols-2 gap-20 items-center">
                     <div>
-                        <h2 class="text-4xl md:text-5xl font-black mb-12 reveal">Leadership.</h2>
+                        <h2 class="text-4xl md:text-5xl font-semibold mb-12 reveal" style="color: var(--retro-text);">Leadership.</h2>
                         <div class="space-y-12">
                             ${APP_DATA.leadership.map((l, i) => `
                                 <div class="reveal group" style="transition-delay: ${i * 100}ms">
@@ -288,12 +291,12 @@ function renderApp() {
                         </p>
                         <div class="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
                            <div>
-                              <div class="text-4xl font-black mb-1">10+ A's</div>
-                              <div class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Yearly Excellence</div>
+                              <div class="text-4xl font-semibold theme-stat mb-1">10+ A's</div>
+                              <div class="text-[9px] font-bold theme-muted uppercase tracking-widest">Yearly Excellence</div>
                            </div>
                            <div>
-                              <div class="text-4xl font-black mb-1">3x</div>
-                              <div class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Varsity Captaincy</div>
+                              <div class="text-4xl font-semibold theme-stat mb-1">3x</div>
+                              <div class="text-[9px] font-bold theme-muted uppercase tracking-widest">Varsity Captaincy</div>
                            </div>
                         </div>
                     </div>
@@ -301,9 +304,10 @@ function renderApp() {
             </div>
         </section>
 
-        <footer id="contact" class="py-32 bg-white px-6">
+        <footer id="contact" class="py-32 px-6">
             <div class="max-w-7xl mx-auto text-center">
-                <h2 class="text-4xl md:text-6xl font-black mb-12 reveal text-slate-900">Let's connect.</h2>
+                <div class="retro-divider reveal"></div>
+                <h2 class="text-4xl md:text-6xl font-semibold mb-12 reveal">Let's connect.</h2>
                 <div class="flex flex-wrap justify-center gap-6 mb-24 reveal">
                     <a href="mailto:prestonjaysusanto@gmail.com" class="p-8 bg-slate-50 border border-slate-100 rounded-3xl min-w-[300px] flex-1 hover:bg-blue-50 hover:border-blue-200 transition-all text-left">
                         <div class="text-[10px] font-bold uppercase text-slate-400 mb-2">Email</div>
@@ -314,44 +318,19 @@ function renderApp() {
                         <div class="text-lg font-bold text-slate-800">+1 (925) 457-0055</div>
                     </a>
                 </div>
-                <div class="flex justify-center gap-12 text-slate-400 font-bold uppercase text-[10px] tracking-widest reveal">
-                    <a href="https://github.com/ShadowEsu" target="_blank" class="hover:text-slate-900 transition-colors">GitHub</a>
-                    <a href="https://www.linkedin.com/in/preston-jay-susanto-3a589534b/" target="_blank" class="hover:text-blue-600 transition-colors">LinkedIn</a>
-                    <a href="https://instagram.com/preston_susanto" target="_blank" class="hover:text-pink-600 transition-colors">Instagram</a>
+                <div class="flex justify-center gap-12 font-bold uppercase text-[10px] tracking-widest reveal">
+                    <a href="https://github.com/ShadowEsu" target="_blank" class="theme-muted hover:text-red-400 transition-colors">GitHub</a>
+                    <a href="https://www.linkedin.com/in/preston-jay-susanto-3a589534b/" target="_blank" class="theme-muted hover:text-red-400 transition-colors">LinkedIn</a>
+                    <a href="https://instagram.com/preston_susanto" target="_blank" class="theme-muted hover:text-red-400 transition-colors">Instagram</a>
                 </div>
-                <div class="mt-24 text-[9px] font-black text-slate-300 uppercase tracking-[0.3em]">
+                <div class="mt-24 text-[9px] font-semibold theme-muted uppercase tracking-[0.3em]">
                     Preston Jay Susanto &copy; 2025 // Professional Portfolio
                 </div>
             </div>
         </footer>
     `;
 
-    initTheme();
     initInteractions();
-}
-
-function initTheme() {
-    const saved = localStorage.getItem('theme');
-    const isDark = saved !== 'light'; // default dark
-    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-    updateThemeIcon();
-}
-
-function toggleTheme() {
-    const root = document.documentElement;
-    const isDark = root.getAttribute('data-theme') === 'dark';
-    const next = isDark ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    updateThemeIcon();
-}
-
-function updateThemeIcon() {
-    const btn = document.getElementById('theme-toggle');
-    if (!btn) return;
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    btn.textContent = isDark ? '☀️' : '🌙';
-    btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
 }
 
 function initInteractions() {
@@ -402,11 +381,7 @@ function initInteractions() {
         };
     }
 
-    // 5. Theme Toggle
-    const themeBtn = document.getElementById('theme-toggle');
-    if (themeBtn) themeBtn.onclick = toggleTheme;
-
-    // 6. Smooth Scroll
+    // 5. Smooth Scroll
     document.querySelectorAll('.nav-link').forEach(anchor => {
         anchor.onclick = (e) => {
             e.preventDefault();
