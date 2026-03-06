@@ -97,9 +97,6 @@ function renderApp() {
                         <a href="#awards" class="nav-link">Awards</a>
                         <a href="#leadership" class="nav-link">Leadership</a>
                     </div>
-                    <button id="toggle-proof" class="text-[10px] px-4 py-2 rounded font-bold uppercase tracking-widest border transition-all">
-                        Proof Mode
-                    </button>
                 </div>
             </div>
         </nav>
@@ -363,18 +360,7 @@ function initInteractions() {
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // 4. Proof Toggle
-    let proofActive = false;
-    const toggleBtn = document.getElementById('toggle-proof');
-    if (toggleBtn) {
-        toggleBtn.onclick = () => {
-            proofActive = !proofActive;
-            document.body.classList.toggle('proof-active', proofActive);
-            toggleBtn.textContent = proofActive ? 'Proof Verified ✓' : 'Proof Mode';
-            toggleBtn.classList.toggle('bg-emerald-600', proofActive);
-            toggleBtn.classList.toggle('text-white', proofActive);
-        };
-    }
+    // Proof Mode removed
 
     // 5. Smooth Scroll
     document.querySelectorAll('.nav-link').forEach(anchor => {
