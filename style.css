@@ -954,6 +954,7 @@ body.proof-active .proof-element {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #hero .theme-badge-red {
     background: var(--accent-soft) !important;
     color: var(--accent) !important;
@@ -1275,9 +1276,15 @@ body.proof-active .proof-element {
     }
 }
 =======
+=======
+>>>>>>> parent of a23b3f3 (mroe updates)
 @media (max-width: 768px) {
     .hero-title {
         font-size: 3.5rem !important;
     }
+<<<<<<< HEAD
+}
+>>>>>>> parent of a23b3f3 (mroe updates)
+=======
 }
 >>>>>>> parent of a23b3f3 (mroe updates)

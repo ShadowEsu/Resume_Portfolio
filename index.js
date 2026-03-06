@@ -198,6 +198,7 @@ function renderApp() {
         </section>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         <section id="projects" class="projects-section">
             <div class="projects-inner max-w-7xl mx-auto">
                 <header class="projects-header flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
@@ -206,6 +207,8 @@ function renderApp() {
                 </header>
                 <div class="project-grid">
 =======
+=======
+>>>>>>> parent of a23b3f3 (mroe updates)
         <section id="projects" class="py-32 px-6">
             <div class="max-w-7xl mx-auto">
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -213,6 +216,9 @@ function renderApp() {
                     <p class="text-slate-500 max-w-sm reveal">A selection of platforms built for retail, education, and social impact.</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<<<<<<< HEAD
+>>>>>>> parent of a23b3f3 (mroe updates)
+=======
 >>>>>>> parent of a23b3f3 (mroe updates)
                     ${APP_DATA.projects.map((p, i) => `
                         <a href="${p.site}" target="_blank" class="block bg-white p-8 rounded-3xl border border-slate-200 card-hover reveal group" style="transition-delay: ${i * 50}ms">
