@@ -19,13 +19,14 @@ const APP_DATA = {
         { year: "Aug 2025 — Present", loc: "USA 🇺🇸", title: "Impact", desc: "CS @ DVC. Google Developer Group Officer. Alpha Gamma Sigma Webmaster. 4.0 GPA." }
     ],
     projects: [
+        { title: "Neuron Book", type: "Full-Stack", site: "https://neuron-book-6198.d.kiloapps.io", desc: "Full-stack app with Next.js frontend and Flask backend. Built for the NeuronBookAI org. Live at neuron-book-6198.d.kiloapps.io with demo at youtu.be/SNowMQ69PAc.", tech: ["Next.js", "TypeScript", "Flask", "Python"] },
         { title: "Cauliform", type: "Passion Project", site: "https://github.com/ShadowEsu/Cauliform-AI", desc: "AI-powered voice agent that turns any Google Form into a phone call. Paste a form link, get called, answer conversationally—hands-free. Gemini Live API, Twilio, Firebase, auth. Built for Gemini Live Agent Challenge; partnered with ex–JP Morgan PM and top MLH Stanford hackathon winner.", tech: ["Next.js", "TypeScript", "Firebase", "Twilio", "Gemini"] },
         { title: "Sortify App", type: "3X Hackathon Winner", site: "#", desc: "SF Hacks winner: Best Hardware, Beginner Hack, Best Use of Broxi AI. Sustainability-focused sorting platform with Gemini image recognition and Google Maps bin finder. Built for global impact on education and the environment.", tech: ["JavaScript", "Gemini", "Google Maps"] },
         { title: "Access for All", type: "Hackathon Winner", site: "#", desc: "ValleyHacks accessibility-first software for color blindness & dyslexia. Built in < 48hrs.", tech: ["HTML", "CSS", "JavaScript"] },
         { title: "Aiko Matcha", type: "E-Commerce", site: "https://www.aikomatcha.com.au", desc: "Official retail site for premium matcha. High-performance custom build.", tech: ["HTML", "CSS", "JavaScript", "Python"] },
         { title: "AGS Honor Society", type: "Official Portal", site: "https://dvcags.wixstudio.com/honor-society", desc: "Webmaster for the DVC honors chapter. Built for scalability and impact.", tech: ["Wix", "Web Design"] },
         { title: "Wosado Australia", type: "Retail Hub", site: "https://wosadoaustralia.com.au", desc: "International beauty brand platform developer and maintenance lead.", tech: ["Shopify", "HTML", "CSS"] },
-        { title: "Wesley Hack Club", type: "Educational", site: "https://wesley.hackclub.com", desc: "Founder. Inspired 20+ students to join and build tech communities.", tech: ["HTML", "JavaScript"] },
+        { title: "Wesley Hack Club", type: "Educational", site: "https://wesley.hackclub.com", desc: "Founder of Wesley Hack Club. 36 members on the first day. Associated with hackclub.com—building tech communities and inspiring students to code.", tech: ["HTML", "JavaScript"] },
         { title: "Banyan Vanilla", type: "Brand Design", site: "https://www.banyanvanilla.com.au", desc: "Premium export brand digital presence and maintenance.", tech: ["HTML", "CSS", "JavaScript"] }
     ],
     techIcons: { "Next.js": "next", "TypeScript": "ts", "Firebase": "firebase", "Twilio": "twilio", "Gemini": "api", "JavaScript": "js", "Google Maps": "maps", "HTML": "html", "CSS": "css", "Python": "python", "Wix": "wix", "Web Design": "design", "Shopify": "shopify" },
@@ -51,7 +52,7 @@ const APP_DATA = {
         { year: "2025", role: "GDG Software Officer", org: "Google Developer Group", impact: "Leading 20+ active student developers in tech projects." },
         { year: "2025", role: "AGS Webmaster", org: "Alpha Gamma Sigma Honors", impact: "Managing digital infrastructure and accessibility standards." },
         { year: "2025", role: "Project Leader", org: "Code the Change", impact: "Involved with non-profit organisation impacting 100+ people in the slums of borneo, concerntrating on webste development and social media impact." },
-        { year: "2024", role: "Hack Club Founder", org: "Wesley College", impact: "Created a sustainable tech community for 20+ members." },
+        { year: "2024", role: "Founder of Wesley Hack Club", org: "Wesley College · hackclub.com", impact: "36 members on the first day. Built a sustainable tech community associated with hackclub.com." },
         { year: "2021-2024", role: "3x Team Captain", org: "Volleyball, Soccer, Basketball", impact: "Led diverse teams to competitive success." }
     ],
     certs: [
