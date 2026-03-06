@@ -85,7 +85,7 @@ function renderApp() {
             <div class="max-w-7xl mx-auto flex justify-between items-center">
                 <div class="flex items-center gap-2">
                     <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-sm shadow-lg">P</div>
-                    <span class="font-bold tracking-tight text-slate-800">Preston Jay Susanto</span>
+                    <span class="font-bold tracking-tight text-slate-800 theme-nav-name">Preston Jay Susanto</span>
                 </div>
                 <div class="flex items-center gap-6">
                     <div class="hidden md:flex gap-6 text-sm font-semibold text-slate-500">
@@ -96,9 +96,12 @@ function renderApp() {
                         <a href="#awards" class="nav-link">Awards</a>
                         <a href="#leadership" class="nav-link">Leadership</a>
                     </div>
-                    <button id="toggle-proof" class="text-[10px] px-4 py-2 rounded-full font-bold uppercase tracking-widest bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shadow-sm">
-                        Proof Mode
-                    </button>
+                    <div class="flex items-center gap-3">
+                        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle theme">🌓</button>
+                        <button id="toggle-proof" class="text-[10px] px-4 py-2 rounded-full font-bold uppercase tracking-widest bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shadow-sm">
+                            Proof Mode
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -107,12 +110,12 @@ function renderApp() {
             <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center w-full">
                 <div class="reveal">
                     <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">🏆 3X Hackathon Winner</span>
-                        <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">📍 SF Bay Area</span>
-                        <span class="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">GPA 4.0 Verified</span>
+                        <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest theme-badge-red">🏆 3X Hackathon Winner</span>
+                        <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest theme-badge-red">📍 SF Bay Area</span>
+                        <span class="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest theme-badge-green">GPA 4.0 Verified</span>
                     </div>
                     <h1 class="hero-title text-6xl md:text-8xl font-black text-slate-900 leading-[1] mb-8 tracking-tighter">
-                        Building the <br/> <span class="text-blue-600">Future.</span>
+                        Building the <br/> <span class="text-blue-600 hero-accent">Future.</span>
                     </h1>
                     <div class="h-10 overflow-hidden mb-10 relative">
                         <div id="role-container" class="role-animate space-y-0 transition-transform duration-700">
@@ -127,10 +130,10 @@ function renderApp() {
                         <a href="mailto:prestonjaysusanto@gmail.com" class="px-10 py-5 bg-white border border-slate-200 text-slate-700 rounded-2xl font-bold hover:border-blue-400 transition-all text-center">Contact</a>
                     </div>
                     <div class="mt-12 pt-12 border-t border-slate-100 flex gap-10 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
-                        <div class="flex flex-col"><span class="text-2xl font-black">3×</span><span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Hackathon Wins</span></div>
-                        <div class="flex flex-col"><span class="text-2xl font-black">4</span><span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Nations</span></div>
-                        <div class="flex flex-col"><span class="text-2xl font-black">4.0</span><span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">GPA</span></div>
-                        <div class="flex flex-col"><span class="text-2xl font-black">20+</span><span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Mentored</span></div>
+                        <div class="flex flex-col"><span class="text-2xl font-black theme-stat">3×</span><span class="text-[9px] font-bold text-slate-400 theme-muted uppercase tracking-widest">Hackathon Wins</span></div>
+                        <div class="flex flex-col"><span class="text-2xl font-black theme-stat">4</span><span class="text-[9px] font-bold text-slate-400 theme-muted uppercase tracking-widest">Nations</span></div>
+                        <div class="flex flex-col"><span class="text-2xl font-black theme-stat">4.0</span><span class="text-[9px] font-bold text-slate-400 theme-muted uppercase tracking-widest">GPA</span></div>
+                        <div class="flex flex-col"><span class="text-2xl font-black theme-stat">20+</span><span class="text-[9px] font-bold text-slate-400 theme-muted uppercase tracking-widest">Mentored</span></div>
                     </div>
                 </div>
                 <div class="hidden lg:block reveal" style="transition-delay: 200ms">
@@ -323,7 +326,32 @@ function renderApp() {
         </footer>
     `;
 
+    initTheme();
     initInteractions();
+}
+
+function initTheme() {
+    const saved = localStorage.getItem('theme');
+    const isDark = saved !== 'light'; // default dark
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    updateThemeIcon();
+}
+
+function toggleTheme() {
+    const root = document.documentElement;
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    const next = isDark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    updateThemeIcon();
+}
+
+function updateThemeIcon() {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    btn.textContent = isDark ? '☀️' : '🌙';
+    btn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
 }
 
 function initInteractions() {
@@ -374,7 +402,11 @@ function initInteractions() {
         };
     }
 
-    // 5. Smooth Scroll
+    // 5. Theme Toggle
+    const themeBtn = document.getElementById('theme-toggle');
+    if (themeBtn) themeBtn.onclick = toggleTheme;
+
+    // 6. Smooth Scroll
     document.querySelectorAll('.nav-link').forEach(anchor => {
         anchor.onclick = (e) => {
             e.preventDefault();
