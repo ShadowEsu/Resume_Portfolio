@@ -5,6 +5,7 @@
 
 const APP_DATA = {
     roles: [
+        "3X Hackathon Winner",
         "Computer Science Student",
         "Software Engineer",
         "Accessibility Innovator",
@@ -18,6 +19,7 @@ const APP_DATA = {
         { year: "Aug 2025 — Present", loc: "USA 🇺🇸", title: "Impact", desc: "CS @ DVC. Google Developer Group Officer. Alpha Gamma Sigma Webmaster. 4.0 GPA." }
     ],
     projects: [
+        { title: "Sortify App", type: "3X Hackathon Winner", site: "#", desc: "SF Hacks winner: Best Hardware, Beginner Hack, Best Use of Broxi AI. Sustainability-focused sorting platform with Gemini image recognition and Google Maps bin finder. Built for global impact on education and the environment." },
         { title: "Access for All", type: "Hackathon Winner", site: "#", desc: "ValleyHacks accessibility-first software for color blindness & dyslexia. Built in < 48hrs." },
         { title: "Aiko Matcha", type: "E-Commerce", site: "https://www.aikomatcha.com.au", desc: "Official retail site for premium matcha. High-performance custom build." },
         { title: "AGS Honor Society", type: "Official Portal", site: "https://dvcags.wixstudio.com/honor-society", desc: "Webmaster for the DVC honors chapter. Built for scalability and impact." },
@@ -51,10 +53,24 @@ const APP_DATA = {
         { year: "2021-2024", role: "3x Team Captain", org: "Volleyball, Soccer, Basketball", impact: "Led diverse teams to competitive success." }
     ],
     certs: [
+        { name: "Claude Code in Action: Certificate of Completion", id: "hqb5tqkobj9s", issuer: "Anthropic", date: "Mar 2026", skills: "Claude Skills" },
+        { name: "Basics of Prompt Engineering", id: "56976645", issuer: "Alison", date: "Mar 2026", skills: "Prompt Writing, Prompt Engineering" },
+        { name: "Learn Vibe Coding with AI Tools", id: "YMPXSGBJ", issuer: "Great Learning Support", date: "Mar 2026", skills: "Vibe Coding, Claude Skills" },
+        { name: "Understanding Agentic AI", id: "67432c58827e1409ba0ccf8a", issuer: "Digital Workforce Services Plc", date: "Mar 2026", skills: "Agentic AI Development, AI Agents" },
         { name: "Sending Professional Emails", id: "NDIxMDI2", issuer: "Google x NexusEdge", date: "Sep 2025" },
-        { name: "Intro to LLMs and Responsible AI", id: "NDIxMDA1", issuer: "Google x NexusEdge", date: "Sep 2025" },
-        { name: "Introduction to Generative AI", id: "NDIwNjE5", issuer: "Google x NexusEdge", date: "Sep 2025" },
-        { name: "Building Apps with Google AI Studio", id: "NDIxMDYx", issuer: "Google x NexusEdge", date: "Sep 2025" }
+        { name: "Building Apps and Media with Google AI Studio", id: "NDIxMDYx", issuer: "Google x NexusEdge", date: "Sep 2025" },
+        { name: "Intro to Large Language Models and Responsible AI", id: "NDIxMDA1", issuer: "Google x NexusEdge", date: "Sep 2025" },
+        { name: "Introduction to Generative AI", id: "NDIwNjE5", issuer: "Google x NexusEdge", date: "Sep 2025" }
+    ],
+    experience: [
+        { title: "Club Council Representative", org: "The InterClub Council (ICC)", type: "Part-time", dateRange: "Feb 2026 - Present · 2 mos", location: "Pleasant Hill, CA", remote: true, bullets: ["Managed club meetings and coordinated payments to ensure smooth operations at Cryptoacademy DVC.", "Strengthened connections through effective collaboration updates, enhancing member engagement.", "Attended over 10 consecutive ICC club meetings, gathering insights to boost club funds and membership growth."], skills: "Project Management, Student Council" },
+        { title: "Computer Engineer Officer", org: "Science and Engineering Club", type: "Full-time", dateRange: "Nov 2025 - Present · 5 mos", location: "Pleasant Hill, CA", remote: false, bullets: [], skills: "Project Management, Project Planning" },
+        { title: "Webmaster", org: "Alpha Gamma Sigma - Gamma Psi Chapter", type: "Seasonal", dateRange: "Sep 2025 - Present · 7 mos", location: "Pleasant Hill, CA", remote: false, bullets: ["Maintaining and updating the official website and communicating with executives and officers about progress in advertising the club through the internet."], skills: "Visual Web Developer, Web Design" },
+        { title: "Software Engineer Officer", org: "Google Developers Group", type: "Full-time", dateRange: "Sep 2025 - Present · 7 mos", location: "Pleasant Hill, CA", remote: false, bullets: ["Collaborated with over 20 members in the Google Developers Group to foster a coding community.", "Led project initiatives, enhancing teamwork and project management skills.", "Developed web applications and coding solutions, strengthening technical proficiency.", "Motivated peers to pursue coding majors and engage in challenging projects."], skills: "Website Building, Website Updating" },
+        { title: "Engagement Coordinator", org: "Toastmasters International", type: "Full-time", dateRange: "Sep 2025 - Present · 7 mos", location: "Pleasant Hill, CA", remote: false, bullets: ["Engaged actively as an Activities Coordinator, enhancing member participation.", "Developed public speaking and storytelling skills through regular attendance and involvement in club activities.", "Fostered a supportive environment for members to practice debating and improve communication skills."], skills: "Speech Writing, Speech" },
+        { title: "Senior Web Application Developer", org: "Wosado Australia", type: "Internship", dateRange: "Jul 2025 - Present · 9 mos", location: "Perth, Australia", remote: true, bullets: ["Developed and managed the Wosado Australia website, enhancing functionality and design to attract female customers.", "Collaborated closely with the business owner to implement new concepts and strategies for customer engagement.", "Contributed to overall sales growth and promotion of eyelash makeup products across Australia."], skills: "Visual Web Developer, Shopify", site: "https://wosadoaustralia.com" },
+        { title: "Senior Web Application Developer", org: "Aiko Matcha", type: "Full-time", dateRange: "Jun 2025 - Present · 10 mos", location: "Perth, Australia", remote: true, bullets: ["Developed and maintained the website for a small matcha business in Australia, enhancing online purchasing capabilities.", "Collaborated closely with the business owner and team members to ensure effective communication and project coordination.", "Contributed to overall success resulting in thousands of dollars in sales and increased customer engagement.", "Gained valuable skills in web development, project management, and teamwork."], skills: "Web Development, Python", site: "https://www.aikomatcha.com.au" },
+        { title: "Project Leader", org: "Code the Change", type: "Full-time", dateRange: "Sep 2025 - Dec 2025 · 4 mos", location: "Pleasant Hill, CA", remote: false, bullets: ["Led a team of web developers to enhance coding skills and project management capabilities.", "Fostered connections and collaborations, emphasizing teamwork and problem-solving.", "Impacted thousands of educators by developing nonprofit organization websites for improved access and information gathering."], skills: "CSS, HTML" }
     ]
 };
 
@@ -72,7 +88,9 @@ function renderApp() {
                 <div class="flex items-center gap-6">
                     <div class="hidden md:flex gap-6 text-sm font-semibold text-slate-500">
                         <a href="#about" class="nav-link">Journey</a>
+                        <a href="#experience" class="nav-link">Experience</a>
                         <a href="#projects" class="nav-link">Work</a>
+                        <a href="#certifications" class="nav-link">Certifications</a>
                         <a href="#awards" class="nav-link">Awards</a>
                         <a href="#leadership" class="nav-link">Leadership</a>
                     </div>
@@ -86,7 +104,8 @@ function renderApp() {
         <section id="hero" class="min-h-screen flex items-center pt-24 px-6">
             <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center w-full">
                 <div class="reveal">
-                    <div class="flex gap-2 mb-6">
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">🏆 3X Hackathon Winner</span>
                         <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">📍 SF Bay Area</span>
                         <span class="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">GPA 4.0 Verified</span>
                     </div>
@@ -106,6 +125,7 @@ function renderApp() {
                         <a href="mailto:prestonjaysusanto@gmail.com" class="px-10 py-5 bg-white border border-slate-200 text-slate-700 rounded-2xl font-bold hover:border-blue-400 transition-all text-center">Contact</a>
                     </div>
                     <div class="mt-12 pt-12 border-t border-slate-100 flex gap-10 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
+                        <div class="flex flex-col"><span class="text-2xl font-black">3×</span><span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Hackathon Wins</span></div>
                         <div class="flex flex-col"><span class="text-2xl font-black">4</span><span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Nations</span></div>
                         <div class="flex flex-col"><span class="text-2xl font-black">4.0</span><span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">GPA</span></div>
                         <div class="flex flex-col"><span class="text-2xl font-black">20+</span><span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Mentored</span></div>
@@ -117,7 +137,7 @@ function renderApp() {
                             <div class="w-3 h-3 bg-blue-500 rounded-full animate-ping opacity-20 absolute"></div>
                             <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
                         </div>
-                        <h3 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-10">Google Certifications</h3>
+                        <h3 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-10">Certifications</h3>
                         <div class="space-y-6">
                             ${APP_DATA.certs.slice(0, 3).map(c => `
                                 <div class="flex gap-4 pb-4 border-b border-slate-50">
@@ -150,6 +170,32 @@ function renderApp() {
             </div>
         </section>
 
+        <section id="experience" class="py-32 px-6 bg-white">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-black mb-16 reveal">Experience</h2>
+                <div class="space-y-8">
+                    ${APP_DATA.experience.map((job, i) => `
+                        <div class="reveal proof-element p-8 bg-slate-50/80 border border-slate-100 rounded-3xl transition-all" style="transition-delay: ${i * 50}ms">
+                            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-900">${job.title}</h3>
+                                    <div class="text-slate-600 font-semibold mt-1">${job.org}</div>
+                                </div>
+                                <div class="text-right text-[10px] font-bold text-slate-400 uppercase tracking-widest shrink-0">
+                                    <span>${job.type}</span>
+                                    <span class="block mt-1">${job.dateRange}</span>
+                                    <span class="block mt-1">${job.location} ${job.remote ? '· Remote' : '· On-site'}</span>
+                                </div>
+                            </div>
+                            ${job.bullets.length ? `<ul class="list-disc list-inside text-sm text-slate-600 space-y-2 mb-4">${job.bullets.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
+                            ${job.skills ? `<div class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">${job.skills}</div>` : ''}
+                            ${job.site ? `<a href="${job.site}" target="_blank" class="inline-block mt-2 text-xs font-bold text-blue-600 hover:underline">View site →</a>` : ''}
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        </section>
+
         <section id="projects" class="py-32 px-6">
             <div class="max-w-7xl mx-auto">
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -167,6 +213,22 @@ function renderApp() {
                             <p class="text-sm text-slate-500 mb-6 leading-relaxed h-12 overflow-hidden">${p.desc}</p>
                             <span class="text-xs font-bold text-slate-400 group-hover:text-slate-900 transition-colors">Launch Project</span>
                         </a>
+                    `).join('')}
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="py-32 bg-slate-50 px-6">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-black mb-16 reveal">Licenses & Certifications</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    ${APP_DATA.certs.map((c, i) => `
+                        <div class="reveal proof-element p-6 bg-white border border-slate-100 rounded-2xl transition-all shadow-sm" style="transition-delay: ${i * 40}ms">
+                            <div class="font-bold text-slate-800 mb-1">${c.name}</div>
+                            <div class="text-[10px] text-slate-500 font-mono mb-1">${c.issuer} · ${c.date}</div>
+                            ${c.skills ? `<div class="text-[10px] text-blue-600 font-semibold uppercase tracking-wider mt-2">${c.skills}</div>` : ''}
+                            <div class="text-[9px] text-slate-400 font-mono mt-1">ID: ${c.id}</div>
+                        </div>
                     `).join('')}
                 </div>
             </div>
