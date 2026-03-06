@@ -953,6 +953,7 @@ body.proof-active .proof-element {
     color: var(--accent) !important;
 }
 
+<<<<<<< HEAD
 #hero .theme-badge-red {
     background: var(--accent-soft) !important;
     color: var(--accent) !important;
@@ -1273,3 +1274,10 @@ body.proof-active .proof-element {
         font-size: 2.25rem !important;
     }
 }
+=======
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3.5rem !important;
+    }
+}
+>>>>>>> parent of a23b3f3 (mroe updates)

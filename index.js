@@ -29,7 +29,6 @@ const APP_DATA = {
         { title: "Wesley Hack Club", type: "Educational", site: "https://wesley.hackclub.com", desc: "Founder of Wesley Hack Club. 36 members on the first day. Associated with hackclub.com—building tech communities and inspiring students to code.", tech: ["HTML", "JavaScript"] },
         { title: "Banyan Vanilla", type: "Brand Design", site: "https://www.banyanvanilla.com.au", desc: "Premium export brand digital presence and maintenance.", tech: ["HTML", "CSS", "JavaScript"] }
     ],
-    techIcons: { "Next.js": "next", "TypeScript": "ts", "Firebase": "firebase", "Twilio": "twilio", "Gemini": "api", "JavaScript": "js", "Google Maps": "maps", "HTML": "html", "CSS": "css", "Python": "python", "Wix": "wix", "Web Design": "design", "Shopify": "shopify" },
     awards: {
         "2024": [
             { title: "Gold Endeavour Award", desc: "Exceptional effort across all subjects and extracurricular programs." },
@@ -198,6 +197,7 @@ function renderApp() {
             </div>
         </section>
 
+<<<<<<< HEAD
         <section id="projects" class="projects-section">
             <div class="projects-inner max-w-7xl mx-auto">
                 <header class="projects-header flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
@@ -205,21 +205,25 @@ function renderApp() {
                     <p class="projects-subtitle reveal max-w-sm">A selection of platforms built for retail, education, and social impact.</p>
                 </header>
                 <div class="project-grid">
+=======
+        <section id="projects" class="py-32 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                    <h2 class="text-4xl md:text-5xl font-black reveal">Portfolio Sites</h2>
+                    <p class="text-slate-500 max-w-sm reveal">A selection of platforms built for retail, education, and social impact.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+>>>>>>> parent of a23b3f3 (mroe updates)
                     ${APP_DATA.projects.map((p, i) => `
-                        <article class="project-card reveal" style="transition-delay: ${i * 50}ms">
-                            <div class="project-card-inner">
-                                <div class="project-meta">
-                                    <span class="project-type">${p.type}</span>
-                                    <a href="${p.site}" target="_blank" rel="noopener" class="project-link-arrow" aria-label="Open ${p.title}">↗</a>
-                                </div>
-                                <h3 class="project-name">${p.title}</h3>
-                                <p class="project-desc">${p.desc}</p>
-                                ${(p.tech && p.tech.length) ? `<ul class="project-tech-list" aria-label="Tech stack">${p.tech.map(t => `<li><span class="project-tech-item" data-tech="${(t || '').toLowerCase().replace(/\s+/g,'-')}">${t}</span></li>`).join('')}</ul>` : ''}
-                                <div class="project-actions">
-                                    <a href="${p.site}" target="_blank" rel="noopener" class="project-link-btn">${p.site && p.site !== '#' ? 'View project' : 'View details'}</a>
-                                </div>
+                        <a href="${p.site}" target="_blank" class="block bg-white p-8 rounded-3xl border border-slate-200 card-hover reveal group" style="transition-delay: ${i * 50}ms">
+                            <div class="flex justify-between items-start mb-6">
+                                <span class="text-[9px] font-black uppercase text-blue-600 bg-blue-50 px-3 py-1 rounded-full tracking-widest">${p.type}</span>
+                                <span class="text-slate-300 group-hover:text-blue-600 transition-colors">↗</span>
                             </div>
-                        </article>
+                            <h3 class="text-2xl font-bold mb-3 text-slate-800">${p.title}</h3>
+                            <p class="text-sm text-slate-500 mb-6 leading-relaxed h-12 overflow-hidden">${p.desc}</p>
+                            <span class="text-xs font-bold text-slate-400 group-hover:text-slate-900 transition-colors">Launch Project</span>
+                        </a>
                     `).join('')}
                 </div>
             </div>
