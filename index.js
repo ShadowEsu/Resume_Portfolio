@@ -29,7 +29,7 @@ const APP_DATA = {
 
     projects: [
         /* --- FEATURED (pinned) --- */
-        { title: "Sortify App", type: "3X Hackathon Winner", featured: true, site: "#",
+        { title: "Sortify App", type: "3X Hackathon Winner", featured: true, site: "https://github.com/ShadowEsu/Sortify_App",
           desc: "SF Hacks triple-award winner: Best Hardware Hack, Best Beginner Hack, and Best Use of Broxi AI. A sustainability-focused smart-sorting platform powered by Gemini image recognition and Google Maps bin-finding. Built for global impact on education and the environment.",
           tech: ["JavaScript", "Gemini", "Google Maps"] },
 
@@ -37,10 +37,10 @@ const APP_DATA = {
         { title: "Cauliform AI", type: "Passion Project", site: "https://github.com/ShadowEsu/Cauliform-AI",
           desc: "AI-powered voice agent that turns any Google Form into a phone call. Paste a form link, get called, answer conversationally — hands-free. Built for Gemini Live Agent Challenge; partnered with ex-JP Morgan PM and top MLH Stanford hackathon winner.",
           tech: ["Next.js", "TypeScript", "Firebase", "Twilio", "Gemini"] },
-        { title: "PitchNest", type: "FigBuild 2026", site: "#",
+        { title: "PitchNest", type: "FigBuild 2026", site: "https://github.com/immanex/PitchNest",
           desc: "Hackathon project built at FigBuild 2026. A pitch-deck collaboration platform designed to streamline startup storytelling and investor presentation workflows.",
           tech: ["Next.js", "TypeScript", "Figma API"] },
-        { title: "Access for All", type: "Hackathon Winner", site: "#",
+        { title: "Access for All", type: "Hackathon Winner", site: "https://github.com/ShadowEsu",
           desc: "ValleyHacks accessibility-first software for color blindness & dyslexia. Built in under 48 hours.",
           tech: ["HTML", "CSS", "JavaScript"] },
         { title: "Aiko Matcha", type: "E-Commerce", site: "https://www.aikomatcha.com.au",
@@ -473,7 +473,7 @@ function initInteractions() {
     if (roleCont) {
         setInterval(() => {
             roleIdx = (roleIdx + 1) % APP_DATA.roles.length;
-            roleCont.style.transform = `translateY(-${roleIdx * 2.5}rem)`;
+            roleCont.style.transform = `translateY(-${roleIdx * 3.75}rem)`;
         }, 3000);
     }
 
