@@ -1319,6 +1319,10 @@ ul  { list-style: none; }
     line-height: 1.42;
 }
 
+.award-title-gpa {
+    color: #35c96b;
+}
+
 .award-desc {
     font-size: 0.75rem;
     color: var(--text-3);
@@ -1649,6 +1653,17 @@ ul  { list-style: none; }
 .leadership-item-card:hover {
     border-color: var(--accent-border);
     transform: translateY(-2px);
+}
+
+.leadership-item-card-primary {
+    border-color: rgba(80, 140, 255, 0.9);
+    box-shadow: 0 10px 30px rgba(40, 100, 220, 0.45);
+}
+
+.leadership-item-card-primary .leadership-year-badge {
+    background: rgba(40, 100, 220, 0.18);
+    border-color: rgba(80, 140, 255, 0.95);
+    color: #c8ddff;
 }
 
 .leadership-year-badge {

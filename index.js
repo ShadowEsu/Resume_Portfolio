@@ -15,7 +15,7 @@ const APP_DATA = {
 
     /* Recent hackathons shown in the hero card */
     hackathons: [
-        { event: "FigBuild 2026",              project: "PitchNest",    winner: false, icon: "FIG" },
+        { event: "FigBuild 2026",              project: "Headspace",    winner: false, icon: "FIG" },
         { event: "Gemini AI Agent Challenge",  project: "Cauliform AI", winner: false, icon: "AI"  },
         { event: "SF Hacks 2025",              project: "Sortify App",  winner: true,  icon: "\uD83C\uDFC6"  }
     ],
@@ -29,15 +29,18 @@ const APP_DATA = {
 
     projects: [
         /* --- FEATURED (pinned) --- */
-        { title: "Sortify App", type: "3X Hackathon Winner", featured: true, site: "https://github.com/ShadowEsu/Sortify_App",
-          desc: "SF Hacks triple-award winner: Best Hardware Hack, Best Beginner Hack, and Best Use of Broxi AI. A sustainability-focused smart-sorting platform powered by Gemini image recognition and Google Maps bin-finding. Built for global impact on education and the environment.",
-          tech: ["JavaScript", "Gemini", "Google Maps"] },
+        { title: "Pitchnest AI", type: "Gemini Live Agent Hackathon Participant", featured: true, site: "#",
+          desc: "AI interviewer that observes and evaluates your experience stories. Built with Gemini Live Agents to ask unlimited behavioral-style questions, analyze your wording and structure, and score you on clarity, depth, and professionalism.",
+          tech: ["Google Cloud", "Python", "JavaScript", "TypeScript", "Gemini", "Figma"] },
 
         /* --- GRID --- */
+        { title: "Sortify App", type: "3X Hackathon Winner", featured: false, site: "https://github.com/ShadowEsu/Sortify_App",
+          desc: "SF Hacks triple-award winner: Best Hardware Hack, Best Beginner Hack, and Best Use of Broxi AI. A sustainability-focused smart-sorting platform powered by Gemini image recognition and Google Maps bin-finding. Built for global impact on education and the environment.",
+          tech: ["JavaScript", "Gemini", "Google Maps"] },
         { title: "Cauliform AI", type: "Passion Project", site: "https://github.com/ShadowEsu/Cauliform-AI",
           desc: "AI-powered voice agent that turns any Google Form into a phone call. Paste a form link, get called, answer conversationally — hands-free. Built for Gemini Live Agent Challenge; partnered with ex-JP Morgan PM and top MLH Stanford hackathon winner.",
           tech: ["Next.js", "TypeScript", "Firebase", "Twilio", "Gemini"] },
-        { title: "PitchNest", type: "FigBuild 2026", site: "https://github.com/immanex/PitchNest",
+        { title: "Headspace", type: "FigBuild 2026", site: "https://pitchnest-528505551794.us-central1.run.app/",
           desc: "Hackathon project built at FigBuild 2026. A pitch-deck collaboration platform designed to streamline startup storytelling and investor presentation workflows.",
           tech: ["Next.js", "TypeScript", "Figma API"] },
         { title: "Access for All", type: "Hackathon Winner", site: "https://github.com/ShadowEsu",
@@ -67,32 +70,35 @@ const APP_DATA = {
             { title: "Best Beginner Hack",     winner: true,  desc: "Awarded at SF Hacks 2025 for outstanding innovation and execution as a first-time hackathon competitor." },
             { title: "Best Hardware Hack",     winner: true,  desc: "Recognized at SF Hacks 2025 for creative use of hardware in building Sortify, a sustainability-focused smart-sorting platform." },
             { title: "Best Use of Broxi AI",   winner: true,  desc: "Awarded by Broxi AI at SF Hacks 2025 for the most impactful integration of their AI platform into a real-world solution." },
-            { title: "Perfect 4.0 GPA",        winner: false, desc: "Maintained a perfect GPA at Diablo Valley College — achieved alongside active club leadership and hackathon participation." }
+            { title: "Perfect 4.0 GPA",        winner: false, gpaHighlight: true, desc: "Maintained a perfect GPA at Diablo Valley College — achieved alongside active club leadership and hackathon participation." }
         ],
         "2024": [
-            { title: "Gold Endeavour Award",    winner: false, desc: "Exceptional effort across all subjects and extracurricular programs." },
+            { title: "Gold Endeavour Award",    winner: true,  desc: "Exceptional effort across all subjects and extracurricular programs." },
             { title: "Academic Excellence",     winner: false, desc: "10 A grades across the full academic year. Top 1% performance." },
             { title: "Computer Science Prize",  winner: false, desc: "Highest academic achievement in CS curriculum." },
             { title: "Duke of Edinburgh Bronze",winner: false, desc: "Service, leadership, and personal resilience program." }
         ],
         "2023": [
             { title: "Academic Excellence",     winner: false, desc: "10 A grades across the full year for Year 9." },
-            { title: "Gold Endeavour Award",    winner: false, desc: "Sustained high effort distinction in all disciplines." },
+            { title: "Gold Endeavour Award",    winner: true,  desc: "Sustained high effort distinction in all disciplines." },
             { title: "Chinese Language Prize",  winner: false, desc: "Top performer in language immersion studies." }
         ],
         "2022": [
             { title: "Head of College Award",   winner: false, desc: "Top academic standing in the college division." },
             { title: "Basketball Wesley Award", winner: false, desc: "Character, skill, and team discipline on the court." },
-            { title: "SRC Award",               winner: false, desc: "Student Representative Council service and leadership." }
+            { title: "Student Representative Council Award", winner: false, desc: "Student Representative Council service and leadership." }
         ]
     },
 
     leadership: [
-        { year: "2025",      role: "GDG Software Officer",  org: "Google Developer Group",          impact: "Leading 20+ active student developers in tech projects and community initiatives." },
-        { year: "2025",      role: "AGS Webmaster",          org: "Alpha Gamma Sigma Honors",        impact: "Managing digital infrastructure and accessibility standards for the honors chapter." },
-        { year: "2025",      role: "Project Leader",         org: "Code the Change",                 impact: "Leading a team concentrating on website development and social media impact for a non-profit impacting 100+ people in the slums of Borneo." },
-        { year: "2024",      role: "Hack Club Founder",      org: "Wesley College",                  impact: "Created a sustainable tech community for 20+ members." },
-        { year: "2021–2024", role: "3x Team Captain",        org: "Volleyball, Soccer, Basketball",  impact: "Led diverse teams to competitive success across three sports." }
+        { year: "2025",      role: "Computer Engineer Officer",    org: "Science and Engineering Society", impact: "Elected technical lead, organizing engineering projects and mentoring peers in hands-on builds.", primary: true },
+        { year: "2025",      role: "Engagement Coordinator",       org: "Toastmasters International",      impact: "Coordinated meetings and activities that grew member participation and public speaking confidence.", primary: true },
+        { year: "2026",      role: "InterClub Council Representative", org: "CryptoAcademy, SNES, Omega Leo", impact: "Represented three student clubs at the InterClub Council, aligning funding, events, and collaboration across organizations.", primary: true },
+        { year: "2025",      role: "GDG Software Officer",         org: "Google Developer Group",          impact: "Leading 20+ active student developers in tech projects and community initiatives." },
+        { year: "2025",      role: "AGS Webmaster",                org: "Alpha Gamma Sigma Honors",        impact: "Managing digital infrastructure and accessibility standards for the honors chapter." },
+        { year: "2025",      role: "Project Leader",               org: "Code the Change",                 impact: "Leading a team concentrating on website development and social media impact for a non-profit impacting 100+ people in the slums of Borneo." },
+        { year: "2024",      role: "Hack Club Founder",            org: "Wesley College",                  impact: "Created a sustainable tech community for 20+ members." },
+        { year: "2021–2024", role: "3x Team Captain",              org: "Volleyball, Soccer, Basketball",  impact: "Led diverse teams to competitive success across three sports." }
     ],
 
     certs: [
@@ -100,15 +106,19 @@ const APP_DATA = {
         { name: "Basics of Prompt Engineering",                      id: "56976645",                 issuer: "Alison",                         date: "Mar 2026", skills: "Prompt Writing, Prompt Engineering" },
         { name: "Learn Vibe Coding with AI Tools",                   id: "YMPXSGBJ",                 issuer: "Great Learning Support",         date: "Mar 2026", skills: "Vibe Coding, Claude Skills" },
         { name: "Understanding Agentic AI",                          id: "67432c58827e1409ba0ccf8a", issuer: "Digital Workforce Services Plc", date: "Mar 2026", skills: "Agentic AI Development, AI Agents" },
+        { name: "AI Agents Fundamentals",                             id: "Prestosh",                 issuer: "Hugging Face",                   date: "Mar 2026", skills: "Agentic AI Fundamentals, AI Agent Development" },
+        { name: "Certificate of Completion - Cursor AI",             id: "MWYYWTOM",                 issuer: "Great Learning",                 date: "Mar 2026", skills: "Cursor AI Fundamentals, Cursor AI Development, Cursor AI Skills" },
+        { name: "Getting Started with Agentic AI",                   id: "N/A",                       issuer: "Great Learning",                 date: "Mar 2026", skills: "Agentic AI Fundamentals, AI Agent Development" },
         { name: "Sending Professional Emails",                       id: "NDIxMDI2",                 issuer: "Google x NexusEdge",             date: "Sep 2025" },
-        { name: "Building Apps and Media with Google AI Studio",     id: "NDIxMDYx",                 issuer: "Google x NexusEdge",             date: "Sep 2025" },
-        { name: "Intro to Large Language Models and Responsible AI", id: "NDIxMDA1",                 issuer: "Google x NexusEdge",             date: "Sep 2025" },
-        { name: "Introduction to Generative AI",                     id: "NDIwNjE5",                 issuer: "Google x NexusEdge",             date: "Sep 2025" }
+        { name: "Building Apps and Media with Google AI Studio",     id: "NDIxMDYx",                 issuer: "Google x NexusEdge",             date: "Sep 2025", skills: "Google AI Studio Fundamentals, Multimodal App & Media Prototyping" },
+        { name: "Intro to Large Language Models and Responsible AI", id: "NDIxMDA1",                 issuer: "Google x NexusEdge",             date: "Sep 2025", skills: "LLM Fundamentals & Architectures, Responsible & Ethical AI Practices" },
+        { name: "Introduction to Generative AI",                     id: "NDIwNjE5",                 issuer: "Google x NexusEdge",             date: "Sep 2025", skills: "Generative AI Concepts, Prompt Design & Content Generation" }
     ],
 
     /* Wosado pinned to top */
     experience: [
-        { title: "Senior Web Application Developer", org: "Wosado Australia",                   pinned: true, type: "Internship",  dateRange: "Jul 2025 — Present",    location: "Perth, Australia · Remote",    bullets: ["Developed and managed the Wosado Australia website, enhancing functionality and design.", "Collaborated with the business owner to implement new engagement strategies.", "Contributed to sales growth and promotion of products across Australia."], skills: "Visual Web Development · Shopify", site: "https://wosadoaustralia.com" },
+        { title: "Professional Development & Publication", org: "PERMIAS National (Indonesian Students Association in the U.S.)", pinned: true, type: "National Organization", dateRange: "Jan 2026 — Present", location: "United States · Remote", bullets: ["Publish and maintain the PERMIAS National website as a central hub for Indonesian students across the U.S.", "Continuously improve site usability, accessibility, and performance for national-level audiences.", "Collaborate with national leadership to launch new digital initiatives and keep content current."], skills: "Professional Development · Web Publishing · Content Strategy" },
+        { title: "Senior Web Application Developer", org: "Wosado Australia",                   pinned: false, type: "Internship",  dateRange: "Jul 2025 — Present",    location: "Perth, Australia · Remote",    bullets: ["Developed and managed the Wosado Australia website, enhancing functionality and design.", "Collaborated with the business owner to implement new engagement strategies.", "Contributed to sales growth and promotion of products across Australia."], skills: "Visual Web Development · Shopify", site: "https://wosadoaustralia.com" },
         { title: "Club Council Representative",      org: "The InterClub Council (ICC)",        pinned: false, type: "Part-time",  dateRange: "Feb 2026 — Present",    location: "Pleasant Hill, CA · Hybrid",   bullets: ["Managed club meetings and coordinated payments to ensure smooth operations at Cryptoacademy DVC.", "Strengthened connections through effective collaboration updates, enhancing member engagement.", "Attended over 10 consecutive ICC meetings, gathering insights to boost club funds and membership growth."], skills: "Project Management · Student Council" },
         { title: "Computer Engineer Officer",        org: "Science and Engineering Club",       pinned: false, type: "Officer",    dateRange: "Nov 2025 — Present",    location: "Pleasant Hill, CA · On-site",  bullets: [], skills: "Project Management · Project Planning" },
         { title: "Webmaster",                        org: "Alpha Gamma Sigma — Gamma Psi Chapter", pinned: false, type: "Seasonal", dateRange: "Sep 2025 — Present",    location: "Pleasant Hill, CA · On-site",  bullets: ["Maintaining and updating the official website and communicating with officers about club promotion through digital channels."], skills: "Visual Web Development · Web Design" },
@@ -364,13 +374,13 @@ function renderApp() {
                     <p class="section-subtitle">Hackathon victories, academic excellence, and co-curricular distinction across multiple institutions.</p>
                 </div>
                 <div class="awards-grid">
-                    ${Object.entries(APP_DATA.awards).sort((a, b) => b[0] - a[0]).map(([year, list]) => `
+                    ${Object.entries(APP_DATA.awards).sort((a, b) => parseInt(b[0]) - parseInt(a[0])).map(([year, list]) => `
                         <div class="reveal">
-                            <div class="awards-year">${year}</div>
+                            <div class="awards-year">${year === '2024' ? '2024 ×2' : year}</div>
                             <div>
                                 ${list.map(a => `
                                     <div class="award-item ${a.winner ? 'award-item-winner' : ''}">
-                                        <div class="award-title">${a.winner ? '&#x1F3C6; ' : ''}${a.title}</div>
+                                        <div class="award-title ${a.gpaHighlight ? 'award-title-gpa' : ''}">${a.winner ? '&#x1F3C6; ' : ''}${a.title}</div>
                                         <div class="award-desc">${a.desc}</div>
                                     </div>
                                 `).join('')}
@@ -393,7 +403,7 @@ function renderApp() {
                 <!-- Leadership card grid -->
                 <div class="leadership-cards-grid">
                     ${APP_DATA.leadership.map((l, i) => `
-                        <div class="leadership-item-card reveal" style="transition-delay: ${i * 70}ms">
+                        <div class="leadership-item-card ${l.primary ? 'leadership-item-card-primary' : ''} reveal" style="transition-delay: ${i * 70}ms">
                             <span class="leadership-year-badge">${l.year}</span>
                             <div class="leadership-org">${l.org}</div>
                             <div class="leadership-role">${l.role}</div>
