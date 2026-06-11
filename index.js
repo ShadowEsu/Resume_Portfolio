@@ -567,7 +567,8 @@ const APP_DATA = {
 
 function orgMark(entry) {
     if (entry.logo) {
-        return `<div class="exp-logo-wrap"><img src="${entry.logo}" alt="" class="exp-logo" width="48" height="48" loading="lazy"></div>`;
+        const shot = !entry.logo.includes("/logos/");
+        return `<div class="exp-logo-wrap${shot ? " exp-logo-wrap-shot" : ""}"><img src="${entry.logo}" alt="" class="exp-logo${shot ? " exp-logo-shot" : ""}" width="48" height="48" loading="lazy"></div>`;
     }
     return `<div class="exp-icon-wrap">${icon(entry.icon || "briefcase", "icon-md")}</div>`;
 }
@@ -884,8 +885,10 @@ function renderApp() {
                         Websites I've built, shipped, and maintain — from national org portals to live e-commerce.
                     </p>
                 </div>
-                <div class="site-directory-grid">
-                    ${APP_DATA.siteDirectory.map((site, i) => renderSiteDirectoryCard(site, i)).join('')}
+                <div class="site-directory-panel reveal">
+                    <div class="site-directory-grid">
+                        ${APP_DATA.siteDirectory.map((site, i) => renderSiteDirectoryCard(site, i)).join('')}
+                    </div>
                 </div>
             </div>
         </section>
@@ -1005,8 +1008,8 @@ function renderApp() {
                 <div class="leadership-cards-grid">
                     ${APP_DATA.leadership.map((l, i) => `
                         <div class="leadership-item-card reveal" style="transition-delay: ${i * 60}ms">
-                            <div class="leadership-card-icon">
-                                ${l.logo ? `<img src="${l.logo}" alt="" class="leadership-logo" width="32" height="32" loading="lazy">` : icon(l.icon, "icon-sm")}
+                            <div class="leadership-card-icon${l.logo && !l.logo.includes("/logos/") ? " leadership-logo-wrap-shot" : ""}">
+                                ${l.logo ? `<img src="${l.logo}" alt="" class="leadership-logo${l.logo.includes("/logos/") ? "" : " leadership-logo-shot"}" width="32" height="32" loading="lazy">` : icon(l.icon, "icon-sm")}
                             </div>
                             <span class="leadership-year-badge">${l.year}</span>
                             <div class="leadership-org">${l.org}</div>
