@@ -224,11 +224,18 @@ const APP_DATA = {
                     tech: ["HTML", "CSS", "JavaScript"]
                 },
                 {
-                    title: "Headspace",
-                    type: "FigBuild 2026",
-                    site: "https://pitchnest-528505551794.us-central1.run.app/",
-                    desc: "Pitch-deck collaboration platform streamlining startup storytelling and investor presentation workflows.",
-                    tech: ["Next.js", "TypeScript", "Figma API"]
+                    title: "Cauliform",
+                    type: "Gemini Hackathon · Top 1%",
+                    site: "https://github.com/ShadowEsu/Cauliform-AI",
+                    desc: "Autonomous voice agent with reinforced memory — top 1% of 12,000+ participants at the Gemini AI Live Agent Hackathon.",
+                    tech: ["Gemini API", "Twilio", "Google Cloud", "Next.js"]
+                },
+                {
+                    title: "Best Gaming Hack",
+                    type: "Mega Hackathon 2026 · Winner",
+                    site: "https://github.com/ShadowEsu",
+                    desc: "Solo gaming project — top 1% of 950+ participants at Mega Hackathon 2026.",
+                    tech: ["Game Dev", "JavaScript"]
                 }
             ]
         },
@@ -507,6 +514,7 @@ const APP_DATA = {
     awards: {
         "2026": [
             { title: "Best Hardware / Beginner / Boxi AI", winner: true, desc: "SF Hacks 2026 — three category wins among 250+ participants for Sortify." },
+            { title: "ValleyHacks Winner", winner: true, desc: "Access for All — accessibility software for color blindness & dyslexia, built in under 48 hours." },
             { title: "Best Gaming Hack", winner: true, desc: "Mega Hackathon 2026, solo — top 1% of 950+ participants." },
             { title: "Gemini AI Live Agent Hackathon", winner: true, desc: "Top 1% of 12,000+ participants for Cauliform." }
         ],
@@ -742,7 +750,7 @@ function renderApp() {
                             <span class="stat-label">GPA</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-value">3×</span>
+                            <span class="stat-value">4×</span>
                             <span class="stat-label">Hackathon wins</span>
                         </div>
                         <div class="stat-item">
@@ -898,7 +906,7 @@ function renderApp() {
                 <header class="projects-header section-header-center reveal">
                     <span class="section-label">${icon("code", "icon-xs")} Projects</span>
                     <h2 class="projects-title">Work &amp; shipped products</h2>
-                    <p class="projects-subtitle projects-subtitle-center">13 projects across live products, AI agents, hackathon wins, and community platforms.</p>
+                    <p class="projects-subtitle projects-subtitle-center">14 projects across live products, AI agents, hackathon wins, and community platforms.</p>
                 </header>
 
                 ${featured ? `
