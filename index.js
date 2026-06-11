@@ -33,7 +33,7 @@ const APP_DATA = {
 
     highlights: [
         { icon: "app", label: "Regrade", value: "Live iOS app", sub: "Claude Opus 4.7 + Gemini 2.5 dual-model backend", prestige: true },
-        { icon: "research", label: "RL Research", value: "Under review", sub: "USA Junior Student Research · arXiv Sep 2026", prestige: true },
+        { icon: "research", label: "RL Research", value: "In progress", sub: "Reproducing CS285 & CS234 coursework", prestige: true },
         { icon: "trophy", label: "SF Hacks 2026", value: "3× Winner", sub: "Best Hardware · Beginner · Boxi AI — 250+ hackers", prestige: true },
         { icon: "spark", label: "Gemini Hackathon", value: "Top 1%", sub: "12,000+ participants · Cauliform voice agent", prestige: true }
     ],
@@ -67,14 +67,67 @@ const APP_DATA = {
         org: "Diablo Valley College",
         advisor: "Prof. Kyu Woong Lee",
         period: "Jan 2026 — Present",
-        status: "Under review — USA Junior Student Research",
+        status: "In progress — Independent research",
         targets: "arXiv (Sep 2026) · Journal of Student Research (Oct 2026)",
         bullets: [
-            "Investigating Q-learning with adaptive reward shaping to improve convergence speed in sparse-reward environments on consumer hardware (MacBook, no GPU, no cloud budget). Designed reward-shaping heuristics motivated by potential-based shaping theorems.",
-            "Built an RL training and evaluation pipeline from scratch in Python; benchmarking convergence against baseline Q-learning across gridworld and tutoring-simulation tasks. Designed ablations to isolate the contribution of shaping signals.",
-            "Reproduced and extended core results from UC Berkeley CS285 and Stanford CS234 independently from problem-set baselines; targeting first-author arXiv submission Sep 2026."
+            "Investigating Q-learning with adaptive reward shaping to improve convergence speed in sparse-reward environments. Designing reward-shaping heuristics motivated by potential-based shaping theorems.",
+            "Building an RL training and evaluation pipeline in Python; benchmarking convergence against baseline Q-learning across gridworld and tutoring-simulation tasks.",
+            "Reproducing reinforcement learning research through UC Berkeley CS285 and Stanford CS234 coursework, with extensions toward an independent thesis on accessible AI tutoring."
         ]
     },
+
+    siteDirectory: [
+        {
+            title: "PERMIAS Nasional",
+            url: "https://permiasnasional.com/",
+            host: "permiasnasional.com",
+            role: "Senior Web Developer · National Org",
+            desc: "Central hub for Indonesian students across the U.S. — publishing, resources, and chapter directory.",
+            image: "images/permias-nasional.png",
+            icon: "globe",
+            prestige: true
+        },
+        {
+            title: "AGS Honor Society",
+            url: "https://dvcags.wixstudio.com/honor-society",
+            host: "dvcags.wixstudio.com",
+            role: "Webmaster · Gamma Psi Chapter",
+            desc: "Official portal for California's community college honor society — events, scholarships, and membership.",
+            image: "images/ags-honor-society.png",
+            icon: "grad",
+            prestige: true
+        },
+        {
+            title: "Aiko Matcha",
+            url: "https://www.aikomatcha.com.au",
+            host: "aikomatcha.com.au",
+            role: "Lead Developer · E-Commerce",
+            desc: "Premium matcha retail site — custom build driving thousands in sales across Australia.",
+            image: "images/aiko-matcha.png",
+            icon: "leaf",
+            prestige: false
+        },
+        {
+            title: "Wosado Australia",
+            url: "https://wosadoaustralia.com.au",
+            host: "wosadoaustralia.com.au",
+            role: "Lead Architect · Beauty Brand",
+            desc: "Full Shopify e-commerce for a live international beauty brand with workflow automation.",
+            image: "images/wosado-australia.png",
+            icon: "cart",
+            prestige: false
+        },
+        {
+            title: "Regrade",
+            url: "https://regradeapp.tech",
+            host: "regradeapp.tech",
+            role: "Founder · Mobile app",
+            desc: "iOS app with dual-model AI — rubric-grounded grade recovery and appeal support.",
+            image: "images/regrade.png",
+            icon: "app",
+            prestige: true
+        }
+    ],
 
     skills: [
         { icon: "code", category: "Languages", items: ["Python", "C/C++", "JavaScript", "TypeScript"] },
@@ -93,7 +146,7 @@ const APP_DATA = {
                     type: "Live · App Store",
                     featured: true,
                     site: "https://regradeapp.tech",
-                    desc: "Solo-built production iOS & web app that ingests rubrics and graded work, runs multi-step LLM analysis, and surfaces recoverable marks with rubric-grounded evidence in under 60 seconds.",
+                    desc: "Mobile iOS & web app that ingests rubrics and graded work, runs multi-step LLM analysis, and surfaces recoverable marks with rubric-grounded evidence.",
                     bullets: [
                         "Dual-model orchestration: Claude Opus 4.7 for high-stakes reasoning, Gemini 2.5 for throughput.",
                         "Prompt evaluation harness benchmarked against ground-truth rubrics."
@@ -104,6 +157,7 @@ const APP_DATA = {
                     title: "Aiko Matcha",
                     type: "E-Commerce · Live",
                     site: "https://www.aikomatcha.com.au",
+                    preview: "images/aiko-matcha.png",
                     desc: "Official retail site for premium matcha. Custom build driving thousands in sales across Australia.",
                     tech: ["HTML", "CSS", "JavaScript", "Python"]
                 },
@@ -111,6 +165,7 @@ const APP_DATA = {
                     title: "Wosado Australia",
                     type: "Beauty Brand · Live",
                     site: "https://wosadoaustralia.com.au",
+                    preview: "images/wosado-australia.png",
                     desc: "Full e-commerce platform for an international beauty brand — architected, shipped, and maintained end-to-end.",
                     tech: ["Shopify", "Wix", "Automation"]
                 },
@@ -138,7 +193,7 @@ const APP_DATA = {
                     title: "Jarvis",
                     type: "Local-first RL",
                     site: "https://github.com/ShadowEsu",
-                    desc: "Modular RL personal AI agent using Q-learning for on-device adaptive decision-making — research thesis testbed, no GPU or cloud.",
+                    desc: "Modular RL personal AI agent using Q-learning for on-device adaptive decision-making — research thesis testbed tied to CS285 & CS234 coursework.",
                     tech: ["Python", "Q-Learning", "NLP"]
                 },
                 {
@@ -190,15 +245,17 @@ const APP_DATA = {
                 },
                 {
                     title: "AGS Honor Society",
-                    type: "Official Portal",
+                    type: "Webmaster · Official Portal",
                     site: "https://dvcags.wixstudio.com/honor-society",
-                    desc: "Webmaster for the DVC honors chapter — scalable portal for officers and members.",
+                    preview: "images/ags-honor-society.png",
+                    desc: "Webmaster for the DVC Gamma Psi chapter — official portal for scholarships, events, and membership.",
                     tech: ["Wix", "Web Design"]
                 },
                 {
-                    title: "PERMIAS National",
-                    type: "National Org",
-                    site: "https://permias.org",
+                    title: "PERMIAS Nasional",
+                    type: "National Org · Live",
+                    site: "https://permiasnasional.com/",
+                    preview: "images/permias-nasional.png",
                     desc: "Publish and maintain the PERMIAS National website — central hub for Indonesian students across the U.S.",
                     tech: ["Web Publishing", "Content Strategy"]
                 }
@@ -206,92 +263,244 @@ const APP_DATA = {
         }
     ],
 
-    experience: [
+    experienceDirs: [
         {
-            icon: "brain",
-            title: "Lead AI System Architect",
-            org: "AI Business Consulting Group (AIBCG), Parinama Group",
-            pinned: true,
-            type: "Contract",
-            dateRange: "May 2026 — Present",
-            location: "Remote",
-            bullets: [
-                "Architecting agentic AI systems and retrieval-augmented (RAG) pipelines for business consulting clients.",
-                "Owning end-to-end design from data ingestion through model integration and deployment."
-            ],
-            skills: "Agentic AI · RAG · System Architecture"
+            dir: "Professional & industry",
+            icon: "briefcase",
+            entries: [
+                {
+                    org: "AI Business Consulting Group (AIBCG), Parinama Group",
+                    icon: "brain",
+                    location: "Remote",
+                    pinned: true,
+                    roles: [{
+                        title: "Lead AI System Architect",
+                        type: "Contract",
+                        dateRange: "May 2026 — Present",
+                        current: true,
+                        bullets: [
+                            "Architecting agentic AI systems and retrieval-augmented (RAG) pipelines for business consulting clients.",
+                            "Owning end-to-end design from data ingestion through model integration and deployment."
+                        ],
+                        skills: "Agentic AI · RAG · System Architecture"
+                    }]
+                },
+                {
+                    org: "Wosado Australia",
+                    logo: "images/wosado-australia.png",
+                    location: "Perth, Australia · Remote",
+                    site: "https://wosadoaustralia.com.au",
+                    roles: [{
+                        title: "Senior Web Application Developer",
+                        type: "Internship",
+                        dateRange: "Jul 2025 — Present",
+                        current: true,
+                        bullets: [
+                            "Developed and managed the Wosado Australia website, enhancing functionality and design to attract customers.",
+                            "Collaborated with the business owner on engagement strategies; contributed to sales growth across Australia."
+                        ],
+                        skills: "Visual Web Development · Shopify"
+                    }]
+                },
+                {
+                    org: "Aiko Matcha",
+                    logo: "images/aiko-matcha.png",
+                    location: "Perth, Australia · Remote",
+                    site: "https://www.aikomatcha.com.au",
+                    roles: [{
+                        title: "Senior Web Application Developer",
+                        type: "Internship",
+                        dateRange: "Jun 2025 — Present",
+                        current: true,
+                        bullets: [
+                            "Developed and maintained the matcha e-commerce site, enhancing online purchasing capabilities.",
+                            "Collaborated with the business owner on product strategy — thousands in sales and increased engagement."
+                        ],
+                        skills: "Web Development · Website Building · Python"
+                    }]
+                }
+            ]
         },
         {
-            icon: "globe",
-            title: "Senior Web Application Developer",
-            org: "PERMIAS National",
-            pinned: true,
-            type: "National Org",
-            dateRange: "Jan 2026 — Present",
-            location: "United States · Remote",
-            bullets: [
-                "Publish and maintain the PERMIAS National website as a central hub for Indonesian students across the U.S.",
-                "Continuously improve usability, accessibility, and performance for national-level audiences."
-            ],
-            skills: "Web Publishing · Content Strategy"
-        },
-        {
-            icon: "cart",
-            title: "Lead Software Developer & Architect",
-            org: "Wosado Australia",
-            pinned: false,
-            type: "Contract",
-            dateRange: "Jul — Dec 2025",
-            location: "Perth, Australia · Remote",
-            bullets: [
-                "Architected and shipped a full e-commerce platform on Shopify and Wix for a live consumer beauty brand.",
-                "Cut backend operations time ~30% through workflow automation."
-            ],
-            skills: "Shopify · Wix · Workflow Automation",
-            site: "https://wosadoaustralia.com.au"
-        },
-        {
-            icon: "cart",
-            title: "Senior Web Application Developer",
-            org: "Aiko Matcha",
-            pinned: false,
-            type: "Contract",
-            dateRange: "Jun 2025 — Present",
-            location: "Perth, Australia · Remote",
-            bullets: [
-                "Developed and maintained the matcha e-commerce site — thousands in sales and increased customer engagement.",
-                "Collaborated with the business owner on product strategy and online purchasing flows."
-            ],
-            skills: "Web Development · Python",
-            site: "https://www.aikomatcha.com.au"
-        },
-        {
+            dir: "Campus leadership · DVC",
             icon: "users",
-            title: "Software Engineer Officer",
-            org: "Google Developers Group · DVC",
-            pinned: false,
-            type: "Officer",
-            dateRange: "Sep 2025 — Present",
-            location: "Pleasant Hill, CA",
-            bullets: [
-                "Leading 20+ student developers in tech projects and community initiatives.",
-                "Motivated peers to pursue coding majors and engage in challenging builds."
-            ],
-            skills: "Community Building · Web Apps"
-        },
-        {
-            icon: "code",
-            title: "Project Leader",
-            org: "Code the Change",
-            pinned: false,
-            type: "Leadership",
-            dateRange: "Sep — Dec 2025",
-            location: "Pleasant Hill, CA",
-            bullets: [
-                "Led a team building nonprofit websites impacting thousands of educators in Borneo.",
-                "Fostered collaborations emphasizing teamwork and problem-solving."
-            ],
-            skills: "HTML · CSS · Project Management"
+            entries: [
+                {
+                    org: "Google Developers Group · DVC",
+                    logo: "images/logos/gdg.png",
+                    location: "Pleasant Hill, CA · On-site",
+                    pinned: true,
+                    roles: [
+                        {
+                            title: "President",
+                            type: "Full-time",
+                            dateRange: "May 2026 — Present",
+                            current: true,
+                            skills: "Organizational Leadership"
+                        },
+                        {
+                            title: "Software Engineer Officer",
+                            type: "Full-time",
+                            dateRange: "Sep 2025 — Jun 2026",
+                            bullets: [
+                                "Collaborated with 20+ members to foster a coding community at DVC.",
+                                "Led project initiatives; developed web applications and motivated peers toward challenging builds."
+                            ],
+                            skills: "Website Building · Website Updating · Project Management"
+                        }
+                    ]
+                },
+                {
+                    org: "DVC International Students Club",
+                    logo: "images/logos/isc.png",
+                    location: "Pleasant Hill, CA · On-site",
+                    roles: [{
+                        title: "Vice President",
+                        type: "Part-time",
+                        dateRange: "May 2026 — Present",
+                        current: true,
+                        skills: "Collaborative Leadership · Leadership"
+                    }]
+                },
+                {
+                    org: "Science and Engineering Club · DVC",
+                    logo: "images/logos/snes.png",
+                    location: "Pleasant Hill, CA · On-site",
+                    roles: [
+                        {
+                            title: "Executive Treasurer",
+                            type: "Full-time",
+                            dateRange: "May 2026 — Present",
+                            current: true
+                        },
+                        {
+                            title: "Computer Engineer Officer",
+                            type: "Full-time",
+                            dateRange: "Nov 2025 — Jun 2026",
+                            skills: "Project Management · Project Planning"
+                        }
+                    ]
+                },
+                {
+                    org: "Alpha Gamma Sigma — Gamma Psi Chapter",
+                    logo: "images/ags-honor-society.png",
+                    location: "Pleasant Hill, CA · On-site",
+                    site: "https://dvcags.wixstudio.com/honor-society",
+                    roles: [
+                        {
+                            title: "Executive Secretary",
+                            type: "Part-time",
+                            dateRange: "Apr 2026 — Present",
+                            current: true,
+                            skills: "Executive Administrative Assistance · Software Documentation"
+                        },
+                        {
+                            title: "Webmaster",
+                            type: "Seasonal",
+                            dateRange: "Sep 2025 — Apr 2026",
+                            bullets: [
+                                "Maintained and updated the official AGS website; coordinated with executives on digital club promotion."
+                            ],
+                            skills: "Visual Web Development · Web Design"
+                        }
+                    ]
+                },
+                {
+                    org: "Diablo Valley College Inter-Club Council",
+                    logo: "images/logos/icc.png",
+                    location: "Pleasant Hill & Pleasanton, CA",
+                    roles: [
+                        {
+                            title: "Executive Tech and Outreach (SNES, Omega Leo)",
+                            type: "Part-time",
+                            dateRange: "Apr 2026 — Present",
+                            current: true,
+                            location: "Pleasanton, CA · On-site"
+                        },
+                        {
+                            title: "Club Council Representative (Omega Leo, SNES)",
+                            type: "Part-time",
+                            dateRange: "Feb — May 2026",
+                            location: "Pleasant Hill, CA · Remote",
+                            bullets: [
+                                "ICC rep for CryptoAcademy DVC — managed meetings, coordinated payments, and strengthened member engagement.",
+                                "Attended 10+ consecutive ICC meetings to boost club funds and membership growth."
+                            ],
+                            skills: "Project Management · Student Council"
+                        }
+                    ]
+                },
+                {
+                    org: "PERMIAS Nasional",
+                    logo: "images/logos/permias.png",
+                    location: "Pleasant Hill, CA · Remote",
+                    site: "https://permiasnasional.com/",
+                    roles: [{
+                        title: "Promotion and Production",
+                        type: "Apprenticeship",
+                        dateRange: "Mar 2026 — Present",
+                        current: true,
+                        bullets: [
+                            "Supply ordering and social media marketing for the national Indonesian student association.",
+                            "Publish and maintain permiasnasional.com as a hub for students across the U.S."
+                        ],
+                        skills: "Supply Ordering · Social Media Marketing · Web Publishing"
+                    }]
+                },
+                {
+                    org: "Indo DVC",
+                    logo: "images/logos/indo-dvc.png",
+                    location: "Pleasant Hill, CA · On-site",
+                    roles: [{
+                        title: "Event Organiser Officer",
+                        type: "Apprenticeship",
+                        dateRange: "Mar 2026 — Present",
+                        current: true,
+                        skills: "Event Management · Event Marketing"
+                    }]
+                },
+                {
+                    org: "Diablo Valley College",
+                    icon: "grad",
+                    location: "Pleasant Hill, CA · On-site",
+                    roles: [{
+                        title: "Math Tutor",
+                        type: "Part-time",
+                        dateRange: "Apr 2026 — Present",
+                        current: true
+                    }]
+                },
+                {
+                    org: "Toastmasters International · DVC",
+                    logo: "images/logos/toastmasters.png",
+                    location: "Pleasant Hill, CA · On-site",
+                    roles: [{
+                        title: "Engagement Coordinator",
+                        type: "Full-time",
+                        dateRange: "Sep — Dec 2025",
+                        bullets: [
+                            "Activities coordinator enhancing member participation and public speaking practice.",
+                            "Fostered a supportive environment for debating and communication skills."
+                        ],
+                        skills: "Speech Writing · Communication"
+                    }]
+                },
+                {
+                    org: "Code the Change · DVC",
+                    logo: "images/logos/code-the-change.png",
+                    location: "Pleasant Hill, CA · On-site",
+                    roles: [{
+                        title: "Project Leader",
+                        type: "Full-time",
+                        dateRange: "Sep — Dec 2025",
+                        bullets: [
+                            "Led a team of web developers building nonprofit sites for educators in Borneo.",
+                            "Fostered collaborations emphasizing teamwork and problem-solving."
+                        ],
+                        skills: "HTML · CSS · Project Management"
+                    }]
+                }
+            ]
         }
     ],
 
@@ -314,21 +523,138 @@ const APP_DATA = {
         ]
     },
 
+    journey: [
+        {
+            year: "2009 — 2021",
+            place: "Indonesia",
+            title: "Where it started",
+            desc: "Grew up bilingual, with a global perspective forming early — before I knew I'd need it."
+        },
+        {
+            year: "2021 — 2025",
+            place: "Australia",
+            title: "Wesley College",
+            desc: "Ranked #1 private school in Australia. Founded the first CS club, captained three sports, graduated with top honors."
+        },
+        {
+            year: "Early 2025",
+            place: "China",
+            title: "Four months immersion",
+            desc: "Intensive Mandarin at Wendao School — another country, another sacrifice of comfort for growth."
+        },
+        {
+            year: "Aug 2025 — Present",
+            place: "United States",
+            title: "The leap",
+            desc: "Left home and everything familiar to study EECS at DVC. 4.0 GPA. Transfer target: UC Berkeley EECS, Fall 2027."
+        }
+    ],
+
+    journeyDream: {
+        heading: "Berkeley is the door. Y Combinator is the dream.",
+        body: "I did not come to California for an easy path. I came because UC Berkeley EECS is the standard I hold myself to — and every sacrifice since leaving Indonesia and Australia has been oriented toward walking through that door. Building Regrade, leading clubs, tutoring, and shipping client work are not distractions; they are how I prove I belong in rooms that matter. Y Combinator is the dream on the other side: a company that helps real students, built by someone who crossed oceans to get here."
+    },
+
     leadership: [
-        { icon: "users", year: "2021–2025", role: "Co-President, Wesley Coding Club", org: "Wesley College", impact: "Founded the school's first CS club; 30+ members in opening week.", primary: true },
-        { icon: "trophy", year: "2021–2025", role: "3× Team Captain", org: "Volleyball, Soccer, Basketball", impact: "Led 3rd-division teams at Australia's #1 private school.", primary: true },
-        { icon: "code", year: "2025", role: "GDG Software Officer", org: "Google Developer Group · DVC", impact: "Leading 20+ student developers in tech projects." },
-        { icon: "grad", year: "2025", role: "AGS Webmaster", org: "Alpha Gamma Sigma Honors", impact: "Digital infrastructure and accessibility for the honors chapter." }
+        { logo: "images/logos/gdg.png", year: "2026", role: "President", org: "Google Developers Group · DVC", impact: "Leading 20+ student developers in coding projects and community initiatives." },
+        { logo: "images/logos/isc.png", year: "2026", role: "Vice President", org: "DVC International Students Club", impact: "Collaborative leadership for one of DVC's largest international student communities." },
+        { logo: "images/logos/snes.png", year: "2026", role: "Executive Treasurer", org: "Science & Engineering Club", impact: "Executive board member overseeing club finances and engineering initiatives." },
+        { logo: "images/logos/icc.png", year: "2026", role: "Executive Tech & Outreach", org: "Inter-Club Council", impact: "Tech and outreach for SNES and Omega Leo across the ICC." },
+        { icon: "users", year: "2021–2025", role: "Co-President, Wesley Coding Club", org: "Wesley College", impact: "Founded the school's first CS club; 30+ members in opening week." },
+        { icon: "trophy", year: "2021–2025", role: "3× Team Captain", org: "Volleyball, Soccer, Basketball", impact: "Led 3rd-division teams at Australia's #1 private school." }
     ]
 };
+
+function orgMark(entry) {
+    if (entry.logo) {
+        return `<div class="exp-logo-wrap"><img src="${entry.logo}" alt="" class="exp-logo" width="48" height="48" loading="lazy"></div>`;
+    }
+    return `<div class="exp-icon-wrap">${icon(entry.icon || "briefcase", "icon-md")}</div>`;
+}
+
+function renderExpRole(role) {
+    return `
+        <div class="exp-role-block ${role.current ? "exp-role-current" : ""}">
+            <div class="exp-role-header">
+                <div>
+                    <h4 class="exp-title">${role.title}</h4>
+                    ${role.location ? `<span class="exp-role-loc">${role.location}</span>` : ""}
+                </div>
+                <div class="exp-meta">
+                    <span class="exp-type-badge">${role.type}</span>
+                    <span class="exp-date">${role.dateRange}</span>
+                </div>
+            </div>
+            ${role.bullets && role.bullets.length ? `
+                <ul class="exp-bullets">
+                    ${role.bullets.map(b => `<li>${b}</li>`).join("")}
+                </ul>
+            ` : ""}
+            ${role.skills ? `<div class="exp-skills">${role.skills}</div>` : ""}
+        </div>
+    `;
+}
+
+function renderExpCard(entry, i) {
+    return `
+        <article class="exp-card ${entry.pinned ? "exp-card-pinned" : ""} reveal" style="transition-delay: ${i * 45}ms">
+            <div class="exp-card-top">
+                ${orgMark(entry)}
+                <div class="exp-card-main">
+                    ${entry.pinned ? `<div class="exp-pin-badge">● Current</div>` : ""}
+                    <div class="exp-org-header">
+                        <h3 class="exp-org-name">${entry.org}</h3>
+                        <span class="exp-location">${entry.location}</span>
+                    </div>
+                    ${entry.roles.map(renderExpRole).join("")}
+                    ${entry.site ? `<a href="${entry.site}" target="_blank" rel="noopener" class="exp-site-link">${icon("link", "icon-xs")} Visit site</a>` : ""}
+                </div>
+            </div>
+        </article>
+    `;
+}
 
 function icon(name, cls = "icon") {
     return `<span class="${cls}" aria-hidden="true">${ICONS[name] || ICONS.spark}</span>`;
 }
 
+function renderSiteDirectoryCard(site, i) {
+    return `
+        <a href="${site.url}" target="_blank" rel="noopener" class="site-dir-card ${site.prestige ? 'site-dir-card-prestige' : ''} reveal" style="transition-delay: ${i * 70}ms">
+            <div class="site-dir-browser">
+                <div class="site-dir-chrome" aria-hidden="true">
+                    <span class="site-dir-dot"></span>
+                    <span class="site-dir-dot"></span>
+                    <span class="site-dir-dot"></span>
+                    <span class="site-dir-url">${site.host}</span>
+                </div>
+                <div class="site-dir-preview">
+                    <img src="${site.image}" alt="${site.title} website preview" loading="lazy" width="640" height="360">
+                </div>
+            </div>
+            <div class="site-dir-body">
+                <div class="site-dir-title-row">
+                    <span class="site-dir-icon">${icon(site.icon, "icon-sm")}</span>
+                    <h3 class="site-dir-title">${site.title}</h3>
+                </div>
+                <p class="site-dir-role">${site.role}</p>
+                <p class="site-dir-desc">${site.desc}</p>
+                <span class="site-dir-link">Visit site →</span>
+            </div>
+        </a>
+    `;
+}
+
 function renderProjectCard(p, i, delayBase = 50) {
     return `
         <article class="project-card reveal" style="transition-delay: ${i * delayBase}ms">
+            ${p.preview ? `
+                <a href="${p.site}" target="_blank" rel="noopener" class="project-preview-link" aria-label="Open ${p.title}">
+                    <div class="project-preview">
+                        <img src="${p.preview}" alt="${p.title} preview" loading="lazy" width="640" height="360">
+                    </div>
+                </a>
+            ` : ''}
             <div class="project-card-inner">
                 <div class="project-meta">
                     <span class="project-type">${p.type}</span>
@@ -357,7 +683,7 @@ function renderApp() {
     root.innerHTML = `
         <div class="announce-bar reveal">
             ${icon("research", "icon-xs")}
-            <span>Research under review — <strong>USA Junior Student Research</strong> · Regrade founder · Applying to YC W26</span>
+            <span>Transfer target: <strong>UC Berkeley EECS</strong> · Building <strong>Regrade</strong> · Dreaming of <strong>Y Combinator</strong></span>
         </div>
 
         <nav id="navbar" aria-label="Main navigation">
@@ -371,8 +697,10 @@ function renderApp() {
                 </button>
                 <nav class="nav-links" id="nav-menu" aria-label="Site sections">
                     <a href="#about" class="nav-link">About</a>
+                    <a href="#journey" class="nav-link">Journey</a>
                     <a href="#research" class="nav-link">Research</a>
                     <a href="#experience" class="nav-link">Experience</a>
+                    <a href="#sites" class="nav-link">Sites</a>
                     <a href="#projects" class="nav-link">Projects</a>
                     <a href="#education" class="nav-link">Education</a>
                     <a href="#awards" class="nav-link">Awards</a>
@@ -398,11 +726,10 @@ function renderApp() {
                         </div>
                     </div>
                     <p class="hero-desc">
-                        First-year EECS student reproducing <strong>UC Berkeley CS285</strong> and <strong>Stanford CS234</strong>
-                        from scratch on a MacBook — no GPU, no cloud budget.
-                        Solo-shipped <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="inline-link">Regrade</a>,
-                        a live iOS app with dual-model AI. Research currently under review by
-                        <strong>USA Junior Student Research</strong>.
+                        First-year EECS student building mobile apps and reproducing reinforcement learning
+                        research through <strong>UC Berkeley CS285</strong> and <strong>Stanford CS234</strong>.
+                        Working on <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="inline-link">Regrade</a>,
+                        an iOS app with dual-model AI, alongside independent RL coursework and thesis work.
                     </p>
                     <div class="hero-ctas">
                         <a href="#projects" class="btn-primary btn-pill">View work →</a>
@@ -450,8 +777,8 @@ function renderApp() {
                     <span class="section-label">${icon("spark", "icon-xs")} About</span>
                     <h2 class="section-heading">Research meets shipped products.</h2>
                     <p class="section-subtitle section-subtitle-center">
-                        I build under real constraints — consumer hardware, no GPU budget — and ship production AI
-                        systems students actually use.
+                        I build mobile apps, work through RL coursework, and apply what I learn to real products
+                        and independent research.
                     </p>
                 </div>
                 <div class="about-grid reveal">
@@ -459,7 +786,7 @@ function renderApp() {
                         <div class="about-card-icon">${icon("research", "icon-md")}</div>
                         <span class="about-num">01</span>
                         <h3 class="about-card-title">Empirical RL research</h3>
-                        <p class="about-card-desc">Reproducing CS285 & CS234 independently. Paper under review by <strong>USA Junior Student Research</strong>; arXiv target Sep 2026.</p>
+                        <p class="about-card-desc">Reproducing reinforcement learning research through <strong>CS285</strong> and <strong>CS234</strong>, with an independent thesis on reward shaping for AI tutoring.</p>
                     </div>
                     <div class="about-card">
                         <div class="about-card-icon">${icon("app", "icon-md")}</div>
@@ -477,7 +804,33 @@ function renderApp() {
             </div>
         </section>
 
-        <section id="research" class="section section-alt">
+        <section id="journey" class="section section-alt">
+            <div class="container">
+                <div class="section-header section-header-center reveal">
+                    <span class="section-label">${icon("globe", "icon-xs")} Journey</span>
+                    <h2 class="section-heading">Four countries. One destination.</h2>
+                    <p class="section-subtitle section-subtitle-center">
+                        Indonesia, Australia, China, and the United States — each move a deliberate step toward UC Berkeley EECS.
+                    </p>
+                </div>
+                <div class="journey-grid reveal">
+                    ${APP_DATA.journey.map((step, i) => `
+                        <div class="journey-card" style="transition-delay: ${i * 60}ms">
+                            <div class="journey-year">${step.year}</div>
+                            <div class="journey-loc">${step.place}</div>
+                            <div class="journey-title">${step.title}</div>
+                            <p class="journey-desc">${step.desc}</p>
+                        </div>
+                    `).join("")}
+                </div>
+                <article class="journey-dream reveal">
+                    <h3 class="journey-dream-heading">${APP_DATA.journeyDream.heading}</h3>
+                    <p class="journey-dream-body">${APP_DATA.journeyDream.body}</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="research" class="section">
             <div class="container">
                 <div class="section-header section-header-center reveal">
                     <span class="section-label">${icon("research", "icon-xs")} Research</span>
@@ -504,35 +857,35 @@ function renderApp() {
             <div class="container">
                 <div class="section-header section-header-center reveal">
                     <span class="section-label">${icon("briefcase", "icon-xs")} Experience</span>
-                    <h2 class="section-heading">Roles with real ownership.</h2>
+                    <h2 class="section-heading">Professional &amp; campus leadership.</h2>
+                    <p class="section-subtitle section-subtitle-center">Industry contracts, live client sites, and 10+ officer roles across DVC student organizations.</p>
                 </div>
-                <div class="experience-list">
-                    ${APP_DATA.experience.map((job, i) => `
-                        <article class="exp-card ${job.pinned ? 'exp-card-pinned' : ''} reveal" style="transition-delay: ${i * 50}ms">
-                            <div class="exp-card-top">
-                                <div class="exp-icon-wrap">${icon(job.icon, "icon-md")}</div>
-                                <div class="exp-card-main">
-                                    ${job.pinned ? `<div class="exp-pin-badge">● Current</div>` : ''}
-                                    <div class="exp-header">
-                                        <div>
-                                            <h3 class="exp-title">${job.title}</h3>
-                                            <div class="exp-org">${job.org}</div>
-                                        </div>
-                                        <div class="exp-meta">
-                                            <span class="exp-type-badge">${job.type}</span>
-                                            <span class="exp-date">${job.dateRange}</span>
-                                            <span class="exp-location">${job.location}</span>
-                                        </div>
-                                    </div>
-                                    <ul class="exp-bullets">
-                                        ${job.bullets.map(b => `<li>${b}</li>`).join('')}
-                                    </ul>
-                                    ${job.skills ? `<div class="exp-skills">${job.skills}</div>` : ''}
-                                    ${job.site ? `<a href="${job.site}" target="_blank" rel="noopener" class="exp-site-link">${icon("link", "icon-xs")} Visit site</a>` : ''}
-                                </div>
-                            </div>
-                        </article>
-                    `).join('')}
+                ${APP_DATA.experienceDirs.map((group, gi) => `
+                    <div class="exp-directory reveal" style="transition-delay: ${gi * 60}ms">
+                        <div class="directory-header">
+                            <div class="directory-icon">${icon(group.icon, "icon-md")}</div>
+                            <h3 class="directory-title">${group.dir}</h3>
+                            <span class="directory-count">${group.entries.length} organizations</span>
+                        </div>
+                        <div class="experience-list">
+                            ${group.entries.map((entry, i) => renderExpCard(entry, i)).join("")}
+                        </div>
+                    </div>
+                `).join("")}
+            </div>
+        </section>
+
+        <section id="sites" class="section section-alt">
+            <div class="container">
+                <div class="section-header section-header-center reveal">
+                    <span class="section-label">${icon("globe", "icon-xs")} Live sites</span>
+                    <h2 class="section-heading">Site directory</h2>
+                    <p class="section-subtitle section-subtitle-center">
+                        Websites I've built, shipped, and maintain — from national org portals to live e-commerce.
+                    </p>
+                </div>
+                <div class="site-directory-grid">
+                    ${APP_DATA.siteDirectory.map((site, i) => renderSiteDirectoryCard(site, i)).join('')}
                 </div>
             </div>
         </section>
@@ -651,8 +1004,10 @@ function renderApp() {
                 </div>
                 <div class="leadership-cards-grid">
                     ${APP_DATA.leadership.map((l, i) => `
-                        <div class="leadership-item-card ${l.primary ? 'leadership-item-card-primary' : ''} reveal" style="transition-delay: ${i * 60}ms">
-                            <div class="leadership-card-icon">${icon(l.icon, "icon-sm")}</div>
+                        <div class="leadership-item-card reveal" style="transition-delay: ${i * 60}ms">
+                            <div class="leadership-card-icon">
+                                ${l.logo ? `<img src="${l.logo}" alt="" class="leadership-logo" width="32" height="32" loading="lazy">` : icon(l.icon, "icon-sm")}
+                            </div>
                             <span class="leadership-year-badge">${l.year}</span>
                             <div class="leadership-org">${l.org}</div>
                             <div class="leadership-role">${l.role}</div>
