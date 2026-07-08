@@ -379,7 +379,7 @@ a { color: inherit; text-decoration: none; }
     min-height: 120px;
     padding: 24px 28px 16px;
     border-bottom: 1px solid var(--border);
-    background: var(--surface-2);
+    background: #ffffff;
 }
 .edu-logo {
     display: block;
