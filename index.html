@@ -10,23 +10,15 @@
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500;1,8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Page load intro -->
-    <div class="preloader" id="preloader" aria-hidden="true">
-        <div class="preloader-mark"><span class="mono">PS</span><span class="preloader-bar"></span></div>
-    </div>
-
-    <!-- Wandering light that follows your scroll through the story -->
-    <div id="spotlight" aria-hidden="true"></div>
-
     <div id="scroll-progress" aria-hidden="true"></div>
 
     <header class="nav" id="nav">
-        <a href="#hero" class="nav-mark" data-magnetic>
+        <a href="#hero" class="nav-mark">
             <span class="nav-mark-dot"></span>PS<span class="nav-mark-thin">·SUSANTO</span>
         </a>
         <nav class="nav-links" aria-label="Primary">
@@ -38,7 +30,7 @@
             <a href="#leadership" class="nav-link" data-section="leadership">Leadership</a>
             <a href="#awards" class="nav-link" data-section="awards">Awards</a>
         </nav>
-        <a href="#contact" class="btn btn-small" data-magnetic>Get in touch</a>
+        <a href="#contact" class="btn btn-small">Get in touch</a>
         <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
             <span></span><span></span>
         </button>
@@ -73,15 +65,15 @@
                     no GPU, no cloud budget, just constraints treated as the curriculum.
                 </p>
                 <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary" data-magnetic>See the work</a>
-                    <a href="#research" class="btn btn-ghost" data-magnetic>Read the research</a>
+                    <a href="#projects" class="btn btn-primary">See the work</a>
+                    <a href="#research" class="btn btn-ghost">Read the research</a>
                 </div>
 
                 <div class="hero-stats">
-                    <div class="hero-stat"><span class="hero-stat-value mono" data-count="4.0" data-decimals="1">0.0</span><span class="hero-stat-label">GPA at DVC</span></div>
-                    <div class="hero-stat"><span class="hero-stat-value mono" data-count="3">0</span><span class="hero-stat-label">SF Hacks awards</span></div>
-                    <div class="hero-stat"><span class="hero-stat-value mono" data-count="8" data-suffix="+">0</span><span class="hero-stat-label">Shipped projects</span></div>
-                    <div class="hero-stat"><span class="hero-stat-value mono" data-count="1">0</span><span class="hero-stat-label">Paper in progress</span></div>
+                    <div class="hero-stat"><span class="hero-stat-value mono">4.0</span><span class="hero-stat-label">GPA at DVC</span></div>
+                    <div class="hero-stat"><span class="hero-stat-value mono">3</span><span class="hero-stat-label">SF Hacks awards</span></div>
+                    <div class="hero-stat"><span class="hero-stat-value mono">8+</span><span class="hero-stat-label">Shipped projects</span></div>
+                    <div class="hero-stat"><span class="hero-stat-value mono">1</span><span class="hero-stat-label">Paper in progress</span></div>
                 </div>
             </div>
 
@@ -92,7 +84,7 @@
         <section class="section about" id="about">
             <div class="section-head">
                 <span class="section-index mono">01 — WHO I AM</span>
-                <h2 class="section-title" data-split>Constraint is the curriculum</h2>
+                <h2 class="section-title">Constraint is the curriculum</h2>
             </div>
 
             <div class="about-grid">
@@ -123,12 +115,18 @@
 
             <div class="edu-grid">
                 <div class="edu-card reveal">
+                    <div class="edu-logo-wrap">
+                        <img src="images/logos/schools/dvc.png" alt="Diablo Valley College logo" class="edu-logo" loading="lazy">
+                    </div>
                     <span class="edu-badge mono">AUG 2025 — PRESENT</span>
                     <h3 class="edu-school">Diablo Valley College</h3>
                     <p class="edu-degree">A.S. Electrical Engineering &amp; Computer Science — 4.0 GPA</p>
                     <p class="edu-note">Coursework across C/C++ programming, data structures, calculus series, and physics for engineers. Phillip Howe Scholarship and Manuel Gonzales Merit Scholarship recipient.</p>
                 </div>
                 <div class="edu-card reveal">
+                    <div class="edu-logo-wrap">
+                        <img src="images/logos/schools/wesley-college.png" alt="Wesley College logo" class="edu-logo" loading="lazy">
+                    </div>
                     <span class="edu-badge mono">2021 — 2024 · PERTH, AUSTRALIA</span>
                     <h3 class="edu-school">Wesley College</h3>
                     <p class="edu-degree">Computer Science Prize — #1 of 110 students</p>
@@ -143,7 +141,7 @@
         <section class="section journey" id="journey">
             <div class="section-head">
                 <span class="section-index mono">02 — THE ROAD HERE</span>
-                <h2 class="section-title" data-split>Four countries, one direction</h2>
+                <h2 class="section-title">Four countries, one direction</h2>
             </div>
 
             <div class="journey-line">
@@ -183,7 +181,7 @@
         <section class="section research" id="research">
             <div class="section-head">
                 <span class="section-index mono">03 — RESEARCH</span>
-                <h2 class="section-title" data-split>The paper</h2>
+                <h2 class="section-title">The paper</h2>
             </div>
 
             <div class="research-card reveal">
@@ -215,7 +213,7 @@
                 </div>
 
                 <div class="research-links">
-                    <a class="btn btn-ghost" href="https://docs.google.com/document/d/1EoLSi7XYwSRDzf60N0edsvgmYSxYSm88laL6Cd2gUtY/edit?usp=sharing" target="_blank" rel="noopener" data-magnetic>Read the manuscript ↗</a>
+                    <a class="btn btn-ghost" href="https://docs.google.com/document/d/1EoLSi7XYwSRDzf60N0edsvgmYSxYSm88laL6Cd2gUtY/edit?usp=sharing" target="_blank" rel="noopener">Read the manuscript ↗</a>
                 </div>
             </div>
         </section>
@@ -224,11 +222,9 @@
         <section class="section projects" id="projects">
             <div class="section-head">
                 <span class="section-index mono">04 — PROJECTS</span>
-                <h2 class="section-title" data-split>Built, shipped, real</h2>
-                <p class="section-sub">Projects scroll on their own — hover or drag to take control. Everything here was built without a budget.</p>
+                <h2 class="section-title">Built, shipped, real</h2>
+                <p class="section-sub">Everything here was built without a budget — most of it in hackathon weekends or between classes.</p>
             </div>
-
-            <p class="project-scroll-hint mono reveal" aria-live="polite"><span class="pulse-dot"></span>AUTO-SCROLLING · HOVER TO PAUSE</p>
 
             <div class="project-name-bar reveal">
                 <div class="project-name-hero">
@@ -257,7 +253,7 @@
                             </ul>
                             <div class="chips"><span class="chip">React Native</span><span class="chip">TypeScript</span><span class="chip">Claude API</span><span class="chip">Gemini API</span><span class="chip">Supabase</span></div>
                             <div class="project-links">
-                                <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="project-link mono" data-magnetic>regradeapp.tech ↗</a>
+                                <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="project-link mono">regradeapp.tech ↗</a>
                             </div>
                         </div>
                     </article>
@@ -278,8 +274,8 @@
                             </ul>
                             <div class="chips"><span class="chip">Gemini API</span><span class="chip">FastAPI</span><span class="chip">TensorFlow</span><span class="chip">Firebase</span><span class="chip">React</span></div>
                             <div class="project-links">
-                                <a href="https://github.com/ShadowEsu/SortifyApp" target="_blank" rel="noopener" class="project-link mono" data-magnetic>GitHub ↗</a>
-                                <a href="https://sortifywebsiteapp.base44.app" target="_blank" rel="noopener" class="project-link mono" data-magnetic>Live site ↗</a>
+                                <a href="https://github.com/ShadowEsu/SortifyApp" target="_blank" rel="noopener" class="project-link mono">GitHub ↗</a>
+                                <a href="https://sortifywebsiteapp.base44.app" target="_blank" rel="noopener" class="project-link mono">Live site ↗</a>
                             </div>
                         </div>
                     </article>
@@ -300,8 +296,8 @@
                             </ul>
                             <div class="chips"><span class="chip">Gemini Live</span><span class="chip">Twilio</span><span class="chip">Next.js</span><span class="chip">Cloud Run</span><span class="chip">Docker</span></div>
                             <div class="project-links">
-                                <a href="https://github.com/ShadowEsu/Cauliform-AI" target="_blank" rel="noopener" class="project-link mono" data-magnetic>GitHub ↗</a>
-                                <a href="https://cauliform-ai-293051374734.us-west1.run.app" target="_blank" rel="noopener" class="project-link mono" data-magnetic>Live app ↗</a>
+                                <a href="https://github.com/ShadowEsu/Cauliform-AI" target="_blank" rel="noopener" class="project-link mono">GitHub ↗</a>
+                                <a href="https://cauliform-ai-293051374734.us-west1.run.app" target="_blank" rel="noopener" class="project-link mono">Live app ↗</a>
                             </div>
                         </div>
                     </article>
@@ -322,8 +318,8 @@
                             </ul>
                             <div class="chips"><span class="chip">Arduino</span><span class="chip">Raspberry Pi</span><span class="chip">C++</span><span class="chip">Python</span><span class="chip">Twilio / WhatsApp</span></div>
                             <div class="project-links">
-                                <a href="https://devpost.com/software/lifetap" target="_blank" rel="noopener" class="project-link mono" data-magnetic>Devpost ↗</a>
-                                <a href="https://life-tap-website.vercel.app" target="_blank" rel="noopener" class="project-link mono" data-magnetic>Website ↗</a>
+                                <a href="https://devpost.com/software/lifetap" target="_blank" rel="noopener" class="project-link mono">Devpost ↗</a>
+                                <a href="https://life-tap-website.vercel.app" target="_blank" rel="noopener" class="project-link mono">Website ↗</a>
                             </div>
                         </div>
                     </article>
@@ -344,7 +340,7 @@
                             </ul>
                             <div class="chips"><span class="chip">Python</span><span class="chip">Q-Learning</span><span class="chip">NLP</span></div>
                             <div class="project-links">
-                                <a href="https://github.com/ShadowEsu" target="_blank" rel="noopener" class="project-link mono" data-magnetic>GitHub ↗</a>
+                                <a href="https://github.com/ShadowEsu" target="_blank" rel="noopener" class="project-link mono">GitHub ↗</a>
                             </div>
                         </div>
                     </article>
@@ -365,7 +361,7 @@
                             </ul>
                             <div class="chips"><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">MongoDB</span><span class="chip">Gemini API</span><span class="chip">TypeScript</span></div>
                             <div class="project-links">
-                                <a href="https://pitchnest-528505551794.us-central1.run.app/" target="_blank" rel="noopener" class="project-link mono" data-magnetic>Live ↗</a>
+                                <a href="https://pitchnest-528505551794.us-central1.run.app/" target="_blank" rel="noopener" class="project-link mono">Live ↗</a>
                             </div>
                         </div>
                     </article>
@@ -385,7 +381,7 @@
                             </ul>
                             <div class="chips"><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">Accessibility</span></div>
                             <div class="project-links">
-                                <a href="https://github.com/oboy10/Access4All" target="_blank" rel="noopener" class="project-link mono" data-magnetic>GitHub ↗</a>
+                                <a href="https://github.com/oboy10/Access4All" target="_blank" rel="noopener" class="project-link mono">GitHub ↗</a>
                             </div>
                         </div>
                     </article>
@@ -405,7 +401,7 @@
                             </ul>
                             <div class="chips"><span class="chip">Web App</span><span class="chip">Education Tech</span><span class="chip">Product Design</span></div>
                             <div class="project-links">
-                                <a href="https://scholarisapp.tech" target="_blank" rel="noopener" class="project-link mono" data-magnetic>scholarisapp.tech ↗</a>
+                                <a href="https://scholarisapp.tech" target="_blank" rel="noopener" class="project-link mono">scholarisapp.tech ↗</a>
                             </div>
                         </div>
                     </article>
@@ -419,8 +415,8 @@
         <section class="section experience" id="experience">
             <div class="section-head">
                 <span class="section-index mono">05 — EXPERIENCE</span>
-                <h2 class="section-title" data-split>Real clients, real stakes</h2>
-                <p class="section-sub">Production work for businesses and organizations — revenue, deadlines, and people depending on it. The line zigzags as you scroll.</p>
+                <h2 class="section-title">Real clients, real stakes</h2>
+                <p class="section-sub">Production work for businesses and organizations — revenue, deadlines, and people depending on it.</p>
             </div>
 
             <div class="exp-timeline" id="exp-timeline">
@@ -463,7 +459,7 @@
                             </ul>
                             <div class="chips"><span class="chip">Shopify</span><span class="chip">E-commerce UX</span><span class="chip">Operations</span></div>
                             <div class="exp-links">
-                                <a href="https://www.wosado.com.au" target="_blank" rel="noopener" class="project-link mono" data-magnetic>wosado.com.au ↗</a>
+                                <a href="https://www.wosado.com.au" target="_blank" rel="noopener" class="project-link mono">wosado.com.au ↗</a>
                             </div>
                         </div>
                     </div>
@@ -485,7 +481,7 @@
                             </ul>
                             <div class="chips"><span class="chip">Wix Studio</span><span class="chip">Web Design</span><span class="chip">Python</span></div>
                             <div class="exp-links">
-                                <a href="https://www.aikomatcha.com" target="_blank" rel="noopener" class="project-link mono" data-magnetic>aikomatcha.com ↗</a>
+                                <a href="https://www.aikomatcha.com" target="_blank" rel="noopener" class="project-link mono">aikomatcha.com ↗</a>
                             </div>
                         </div>
                     </div>
@@ -507,8 +503,8 @@
                             </ul>
                             <div class="chips"><span class="chip">Web Publishing</span><span class="chip">Design</span><span class="chip">Vendor Coordination</span></div>
                             <div class="exp-links">
-                                <a href="https://www.permiasnasional.org" target="_blank" rel="noopener" class="project-link mono" data-magnetic>permiasnasional.org ↗</a>
-                                <a href="https://www.instagram.com/permiasnasional/" target="_blank" rel="noopener" class="project-link mono" data-magnetic>Instagram ↗</a>
+                                <a href="https://www.permiasnasional.org" target="_blank" rel="noopener" class="project-link mono">permiasnasional.org ↗</a>
+                                <a href="https://www.instagram.com/permiasnasional/" target="_blank" rel="noopener" class="project-link mono">Instagram ↗</a>
                             </div>
                         </div>
                     </div>
@@ -520,7 +516,7 @@
         <section class="section leadership" id="leadership">
             <div class="section-head">
                 <span class="section-index mono">06 — CAMPUS</span>
-                <h2 class="section-title" data-split>Leadership</h2>
+                <h2 class="section-title">Leadership</h2>
                 <p class="section-sub">Eight roles across six organizations — pick a card, read the bullets, follow the links.</p>
             </div>
 
@@ -552,7 +548,7 @@
                                 <li>Previously Software Engineer Officer — grew into the presidency by shipping events and dev resources.</li>
                             </ul>
                             <div class="role-links">
-                                <a href="https://gdg.community.dev/" target="_blank" rel="noopener" class="project-link mono" data-magnetic>GDG Community ↗</a>
+                                <a href="https://gdg.community.dev/" target="_blank" rel="noopener" class="project-link mono">GDG Community ↗</a>
                             </div>
                         </div>
                     </div>
@@ -568,7 +564,7 @@
                                 <li>Managed project scoping, client communication, and delivery timelines for pro-bono builds.</li>
                             </ul>
                             <div class="role-links">
-                                <a href="https://www.codethechange.org/" target="_blank" rel="noopener" class="project-link mono" data-magnetic>Code the Change ↗</a>
+                                <a href="https://www.codethechange.org/" target="_blank" rel="noopener" class="project-link mono">Code the Change ↗</a>
                             </div>
                         </div>
                     </div>
@@ -584,7 +580,7 @@
                                 <li>Coordinate meeting minutes, member communications, and chapter digital assets.</li>
                             </ul>
                             <div class="role-links">
-                                <a href="https://www.dvc.edu/student-life/clubs/alpha-gamma-sigma" target="_blank" rel="noopener" class="project-link mono" data-magnetic>DVC AGS ↗</a>
+                                <a href="https://www.dvc.edu/student-life/clubs/alpha-gamma-sigma" target="_blank" rel="noopener" class="project-link mono">DVC AGS ↗</a>
                             </div>
                         </div>
                     </div>
@@ -600,7 +596,7 @@
                                 <li>Plan cultural events, onboarding support, and cross-club collaboration for new arrivals.</li>
                             </ul>
                             <div class="role-links">
-                                <a href="https://www.dvc.edu/student-life/clubs" target="_blank" rel="noopener" class="project-link mono" data-magnetic>DVC Clubs ↗</a>
+                                <a href="https://www.dvc.edu/student-life/clubs" target="_blank" rel="noopener" class="project-link mono">DVC Clubs ↗</a>
                             </div>
                         </div>
                     </div>
@@ -629,7 +625,7 @@
                                 <li>Bridge engineering clubs with campus-wide initiatives and digital infrastructure.</li>
                             </ul>
                             <div class="role-links">
-                                <a href="https://www.dvc.edu/student-life/clubs" target="_blank" rel="noopener" class="project-link mono" data-magnetic>DVC ICC ↗</a>
+                                <a href="https://www.dvc.edu/student-life/clubs" target="_blank" rel="noopener" class="project-link mono">DVC ICC ↗</a>
                             </div>
                         </div>
                     </div>
@@ -645,7 +641,7 @@
                                 <li>Designed meeting formats that keep new members speaking within their first session.</li>
                             </ul>
                             <div class="role-links">
-                                <a href="https://www.toastmasters.org/" target="_blank" rel="noopener" class="project-link mono" data-magnetic>Toastmasters ↗</a>
+                                <a href="https://www.toastmasters.org/" target="_blank" rel="noopener" class="project-link mono">Toastmasters ↗</a>
                             </div>
                         </div>
                     </div>
@@ -661,7 +657,7 @@
                                 <li>Tutoring math for peers — calculus and pre-engineering coursework.</li>
                             </ul>
                             <div class="role-links">
-                                <a href="https://www.dvc.edu/student-life/clubs" target="_blank" rel="noopener" class="project-link mono" data-magnetic>Indo DVC ↗</a>
+                                <a href="https://www.dvc.edu/student-life/clubs" target="_blank" rel="noopener" class="project-link mono">Indo DVC ↗</a>
                             </div>
                         </div>
                     </div>
@@ -706,7 +702,7 @@
         <section class="section awards" id="awards">
             <div class="section-head">
                 <span class="section-index mono">07 — PROOF</span>
-                <h2 class="section-title" data-split>Awards &amp; scholarships</h2>
+                <h2 class="section-title">Awards &amp; scholarships</h2>
             </div>
 
             <div class="awards-years">
@@ -794,7 +790,7 @@
         <section class="section skills" id="skills">
             <div class="section-head">
                 <span class="section-index mono">08 — STACK</span>
-                <h2 class="section-title" data-split>Languages, tools &amp; infrastructure</h2>
+                <h2 class="section-title">Languages, tools &amp; infrastructure</h2>
                 <p class="section-sub">Everything I build with — from languages and ML frameworks to cloud and hardware.</p>
             </div>
 
@@ -854,12 +850,12 @@
         <section class="section contact" id="contact">
             <div class="contact-inner">
                 <p class="mono contact-eyebrow"><span class="pulse-dot"></span>OPEN TO RESEARCH COLLABS, INTERNSHIPS &amp; INTERESTING PROBLEMS</p>
-                <h2 class="contact-title" data-split>Let's build something.</h2>
-                <a href="mailto:prestonjaysusanto@gmail.com" class="contact-email" data-magnetic>prestonjaysusanto@gmail.com</a>
+                <h2 class="contact-title">Let's build something.</h2>
+                <a href="mailto:prestonjaysusanto@gmail.com" class="contact-email">prestonjaysusanto@gmail.com</a>
                 <div class="contact-links">
-                    <a href="https://github.com/ShadowEsu" target="_blank" rel="noopener" class="btn btn-ghost" data-magnetic>GitHub ↗</a>
-                    <a href="https://www.linkedin.com/in/preston-jay-susanto/" target="_blank" rel="noopener" class="btn btn-ghost" data-magnetic>LinkedIn ↗</a>
-                    <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="btn btn-ghost" data-magnetic>Regrade ↗</a>
+                    <a href="https://github.com/ShadowEsu" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
+                    <a href="https://www.linkedin.com/in/preston-jay-susanto/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn ↗</a>
+                    <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="btn btn-ghost">Regrade ↗</a>
                 </div>
             </div>
             <footer class="footer">
@@ -871,7 +867,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
     <script type="module" src="js/main.js"></script>
 </body>
 </html>
