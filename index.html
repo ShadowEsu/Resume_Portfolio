@@ -8,12 +8,10 @@
     <meta property="og:title" content="Preston Susanto — EECS · RL Research · Regrade Founder">
     <meta property="og:description" content="Real AI and RL systems built on a MacBook. No GPU. No cloud budget.">
     <meta property="og:type" content="website">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="film-root" aria-hidden="true"></div>
 
     <div id="scroll-progress" aria-hidden="true"></div>
 
@@ -865,6 +863,7 @@
         </section>
     </main>
 
+    <script type="module" src="/src/film.tsx"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script type="module" src="js/main.js"></script>

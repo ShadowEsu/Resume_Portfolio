@@ -1,32 +1,13 @@
 /**
  * Preston Susanto — Portfolio
- * Light interactions: Three.js hero, scroll progress, timeline fills, photo parallax, project carousel.
+ * Light interactions: scroll progress, timeline fills, photo parallax, project carousel.
  */
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* Lazy-load Three.js neural-net hero after first paint */
-const heroCanvas = document.getElementById('hero-canvas');
-requestAnimationFrame(() => {
-    import('./hero3d.js')
-        .then((mod) => {
-            const hero3d = mod.initHero(heroCanvas);
-            if (hero3d && !REDUCED) {
-                ScrollTrigger.create({
-                    trigger: '#hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: true,
-                    onUpdate: (self) => hero3d.setScroll(self.progress),
-                });
-            }
-        })
-        .catch(() => { /* WebGL/CDN unavailable — dark backdrop stays */ });
-});
-
-/* Smooth anchor scroll (native) */
+/* Anchor scroll — instant (avoid fighting Lenis/CSS smooth) */
 document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
         const href = a.getAttribute('href');
@@ -34,38 +15,67 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
         const target = document.querySelector(href);
         if (!target) return;
         e.preventDefault();
-        target.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
+        target.scrollIntoView({ behavior: 'auto', block: 'start' });
         closeMobileMenu();
     });
 });
 
-/* Scroll progress bar */
+/* Scroll progress bar — compositor transform, tight scrub */
 gsap.to('#scroll-progress', {
     scaleX: 1,
     ease: 'none',
-    scrollTrigger: { start: 0, end: 'max', scrub: 0.3 },
+    scrollTrigger: { start: 0, end: 'max', scrub: true },
 });
 
-/* Nav: scrolled state + active section */
-const nav = document.getElementById('nav');
+/* Nav: scrolled state (toggle once, not every frame) */
+ScrollTrigger.create({
+    start: 40,
+    end: 'max',
+    toggleClass: { targets: '#nav', className: 'is-scrolled' },
+});
+
+/* Nav: active section — one rAF-throttled pass instead of N ScrollTriggers */
+const navSections = [...document.querySelectorAll('main section[id]')];
+const navLinksBySection = new Map(
+    [...document.querySelectorAll('.nav-link[data-section]')].map((link) => [
+        link.dataset.section,
+        link,
+    ])
+);
+let navActiveId = '';
+let navPickQueued = false;
+
+function pickActiveNavSection() {
+    navPickQueued = false;
+    const mid = window.innerHeight * 0.5;
+    let bestId = navSections[0]?.id || '';
+    let bestDist = Infinity;
+    navSections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const center = rect.top + rect.height * 0.5;
+        const dist = Math.abs(center - mid);
+        if (dist < bestDist) {
+            bestDist = dist;
+            bestId = section.id;
+        }
+    });
+    if (!bestId || bestId === navActiveId) return;
+    navActiveId = bestId;
+    navLinksBySection.forEach((link, id) => {
+        link.classList.toggle('is-active', id === navActiveId);
+    });
+}
+
 ScrollTrigger.create({
     start: 0,
     end: 'max',
-    onUpdate: (self) => {
-        nav?.classList.toggle('is-scrolled', self.scroll() > 40);
+    onUpdate: () => {
+        if (navPickQueued) return;
+        navPickQueued = true;
+        requestAnimationFrame(pickActiveNavSection);
     },
 });
-
-document.querySelectorAll('main section[id]').forEach((section) => {
-    const link = document.querySelector(`.nav-link[data-section="${section.id}"]`);
-    if (!link) return;
-    ScrollTrigger.create({
-        trigger: section,
-        start: 'top 50%',
-        end: 'bottom 50%',
-        onToggle: (self) => link.classList.toggle('is-active', self.isActive),
-    });
-});
+pickActiveNavSection();
 
 /* Mobile menu */
 const burger = document.getElementById('nav-burger');
@@ -126,16 +136,16 @@ const leadOrb = document.getElementById('lead-orb');
 if (leadTimeline && leadFill && leadOrb) {
     if (REDUCED) {
         leadFill.style.transform = 'scaleY(1)';
-        leadOrb.style.top = '100%';
+        leadOrb.style.transform = 'translate3d(-50%, 100%, 0)';
     } else {
         ScrollTrigger.create({
             trigger: leadTimeline,
             start: 'top 75%',
             end: 'bottom 55%',
-            scrub: 0.4,
+            scrub: true,
             onUpdate: (self) => {
                 leadFill.style.transform = `scaleY(${self.progress})`;
-                leadOrb.style.top = `${self.progress * 100}%`;
+                leadOrb.style.transform = `translate3d(-50%, ${self.progress * 100}%, 0)`;
             },
         });
         document.querySelectorAll('.lead-item').forEach((item) => {
@@ -160,7 +170,7 @@ if (expTimeline && expFill) {
             trigger: expTimeline,
             start: 'top 75%',
             end: 'bottom 55%',
-            scrub: 0.4,
+            scrub: true,
             onUpdate: (self) => {
                 expFill.style.transform = `scaleY(${self.progress})`;
             },
@@ -207,6 +217,7 @@ if (projectZone && projectTrack) {
     let dragScrollLeft = 0;
     let isDragging = false;
     let paused = false;
+    let carouselVisible = false;
     let raf = 0;
     let lastT = 0;
     let loopWidth = 0; // width of the original set
@@ -325,7 +336,7 @@ if (projectZone && projectTrack) {
         const dt = Math.min(0.05, (t - lastT) / 1000);
         lastT = t;
 
-        if (!REDUCED && !paused && !isDragging && loopWidth > 0) {
+        if (carouselVisible && !REDUCED && !paused && !isDragging && loopWidth > 0) {
             projectZone.scrollLeft += SPEED_PX_PER_S * dt;
             if (projectZone.scrollLeft >= loopWidth) {
                 projectZone.scrollLeft -= loopWidth;
@@ -333,6 +344,14 @@ if (projectZone && projectTrack) {
         }
         raf = requestAnimationFrame(tick);
     }
+
+    const carouselObserver = new IntersectionObserver(
+        ([entry]) => {
+            carouselVisible = entry.isIntersecting;
+        },
+        { threshold: 0 }
+    );
+    carouselObserver.observe(projectZone);
 
     projectZone.addEventListener('mouseenter', () => (paused = true));
     projectZone.addEventListener('mouseleave', () => (paused = false));
