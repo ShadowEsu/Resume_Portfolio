@@ -176,7 +176,7 @@ if (expTimeline && expFill) {
     }
 }
 
-/* Projects — manual carousel (no autoplay; no page auto-scroll) */
+/* Projects — infinite loop carousel (horizontal only) */
 const projectZone = document.getElementById('project-scroll-zone');
 const projectTrack = document.getElementById('project-track');
 const projectDotsWrap = document.getElementById('project-dots');
@@ -185,15 +185,36 @@ const projectActiveName = document.getElementById('project-active-name');
 const projectActiveIndex = document.getElementById('project-active-index');
 
 if (projectZone && projectTrack) {
+    const originalSlides = [...projectTrack.querySelectorAll('.project-slide')];
+    if (!originalSlides.length) {
+        // no-op
+    }
+
+    // Duplicate once for seamless wrap
+    const clones = originalSlides.map((s) => {
+        const c = s.cloneNode(true);
+        c.setAttribute('aria-hidden', 'true');
+        c.querySelectorAll('a, button, input, textarea, select').forEach((el) => {
+            el.setAttribute('tabindex', '-1');
+        });
+        return c;
+    });
+    clones.forEach((c) => projectTrack.appendChild(c));
+
     const slides = [...projectTrack.querySelectorAll('.project-slide')];
     let activeIndex = 0;
     let dragStartX = 0;
     let dragScrollLeft = 0;
     let isDragging = false;
+    let paused = false;
+    let raf = 0;
+    let lastT = 0;
+    let loopWidth = 0; // width of the original set
+    const SPEED_PX_PER_S = 42;
 
-    slides.forEach((slide, i) => {
+    originalSlides.forEach((slide, i) => {
         slide.classList.toggle('is-active', i === 0);
-        const title = slide.querySelector('.project-title')?.textContent.trim() || `Project ${i + 1}`;
+        const title = slide.querySelector('.project-title')?.textContent?.trim() || `Project ${i + 1}`;
 
         if (projectDotsWrap) {
             const dot = document.createElement('button');
@@ -218,17 +239,32 @@ if (projectZone && projectTrack) {
     const dots = projectDotsWrap ? [...projectDotsWrap.querySelectorAll('.project-dot')] : [];
     const nameChips = projectNameRail ? [...projectNameRail.querySelectorAll('.project-name-chip')] : [];
 
+    function measureLoopWidth() {
+        loopWidth = originalSlides.reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
+        // include gaps from flex container
+        const styles = getComputedStyle(projectTrack);
+        const gap = parseFloat(styles.columnGap || styles.gap || '0') || 0;
+        loopWidth += gap * Math.max(0, originalSlides.length - 1);
+    }
+
     function slideCenter(index) {
-        const slide = slides[index];
+        const slide = originalSlides[index];
         if (!slide) return 0;
         return slide.offsetLeft - (projectZone.clientWidth - slide.clientWidth) / 2;
     }
 
     function syncActiveFromScroll() {
+        // Wrap first so "center" is stable
+        if (loopWidth > 0) {
+            const s = projectZone.scrollLeft;
+            if (s >= loopWidth) projectZone.scrollLeft = s - loopWidth;
+            else if (s < 0) projectZone.scrollLeft = s + loopWidth;
+        }
+
         const center = projectZone.scrollLeft + projectZone.clientWidth / 2;
         let closest = 0;
         let minDist = Infinity;
-        slides.forEach((slide, i) => {
+        originalSlides.forEach((slide, i) => {
             const slideCenterX = slide.offsetLeft + slide.clientWidth / 2;
             const dist = Math.abs(slideCenterX - center);
             if (dist < minDist) {
@@ -248,9 +284,9 @@ if (projectZone && projectTrack) {
     }
 
     function updateNameDisplay(index) {
-        const title = slides[index]?.querySelector('.project-title')?.textContent.trim() || '';
+        const title = originalSlides[index]?.querySelector('.project-title')?.textContent?.trim() || '';
         if (projectActiveIndex) {
-            projectActiveIndex.textContent = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+            projectActiveIndex.textContent = `${String(index + 1).padStart(2, '0')} / ${String(originalSlides.length).padStart(2, '0')}`;
         }
         if (projectActiveName && title) {
             projectActiveName.textContent = title;
@@ -261,7 +297,7 @@ if (projectZone && projectTrack) {
 
     function setActive(index, scroll) {
         activeIndex = index;
-        slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
+        originalSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
         dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
         updateNameDisplay(index);
         if (scroll) {
@@ -270,7 +306,7 @@ if (projectZone && projectTrack) {
     }
 
     function goTo(index) {
-        const next = (index + slides.length) % slides.length;
+        const next = (index + originalSlides.length) % originalSlides.length;
         setActive(next, true);
     }
 
@@ -283,6 +319,25 @@ if (projectZone && projectTrack) {
         },
         { passive: true }
     );
+
+    function tick(t) {
+        if (!lastT) lastT = t;
+        const dt = Math.min(0.05, (t - lastT) / 1000);
+        lastT = t;
+
+        if (!REDUCED && !paused && !isDragging && loopWidth > 0) {
+            projectZone.scrollLeft += SPEED_PX_PER_S * dt;
+            if (projectZone.scrollLeft >= loopWidth) {
+                projectZone.scrollLeft -= loopWidth;
+            }
+        }
+        raf = requestAnimationFrame(tick);
+    }
+
+    projectZone.addEventListener('mouseenter', () => (paused = true));
+    projectZone.addEventListener('mouseleave', () => (paused = false));
+    projectZone.addEventListener('focusin', () => (paused = true));
+    projectZone.addEventListener('focusout', () => (paused = false));
 
     projectZone.addEventListener('pointerdown', (e) => {
         if (e.target.closest('a')) return;
@@ -317,5 +372,10 @@ if (projectZone && projectTrack) {
         }
     });
 
-    window.addEventListener('resize', () => setActive(activeIndex, false));
+    measureLoopWidth();
+    raf = requestAnimationFrame(tick);
+    window.addEventListener('resize', () => {
+        measureLoopWidth();
+        setActive(activeIndex, false);
+    });
 }
