@@ -525,7 +525,7 @@ a { color: inherit; text-decoration: none; }
 .research-fact p { color: var(--text-2); font-size: 0.9rem; }
 
 /* ============================================================
-   PROJECTS — full-bleed auto-scroll carousel
+   PROJECTS — full-bleed carousel
    ============================================================ */
 .projects {
     max-width: none;

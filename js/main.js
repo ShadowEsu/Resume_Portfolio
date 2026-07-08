@@ -117,24 +117,6 @@ if (!REDUCED) {
         );
     }
 
-    const aboutPortrait = document.querySelector('.about-portrait img');
-    if (aboutPortrait) {
-        gsap.fromTo(
-            aboutPortrait,
-            { yPercent: -4, scale: 1.04 },
-            {
-                yPercent: 4,
-                scale: 1,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.about-portrait',
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: true,
-                },
-            }
-        );
-    }
 }
 
 /* Leadership timeline — line fill + orb */
@@ -194,7 +176,7 @@ if (expTimeline && expFill) {
     }
 }
 
-/* Projects — auto-scroll carousel */
+/* Projects — manual carousel (no autoplay; no page auto-scroll) */
 const projectZone = document.getElementById('project-scroll-zone');
 const projectTrack = document.getElementById('project-track');
 const projectDotsWrap = document.getElementById('project-dots');
@@ -205,10 +187,6 @@ const projectActiveIndex = document.getElementById('project-active-index');
 if (projectZone && projectTrack) {
     const slides = [...projectTrack.querySelectorAll('.project-slide')];
     let activeIndex = 0;
-    let paused = false;
-    let userInteracting = false;
-    let autoplayTimer = null;
-    let resumeTimer = null;
     let dragStartX = 0;
     let dragScrollLeft = 0;
     let isDragging = false;
@@ -222,7 +200,7 @@ if (projectZone && projectTrack) {
             dot.type = 'button';
             dot.className = `project-dot${i === 0 ? ' is-active' : ''}`;
             dot.setAttribute('aria-label', `Go to ${title}`);
-            dot.addEventListener('click', () => goTo(i, true));
+            dot.addEventListener('click', () => goTo(i));
             projectDotsWrap.appendChild(dot);
         }
 
@@ -232,7 +210,7 @@ if (projectZone && projectTrack) {
             chip.className = `project-name-chip${i === 0 ? ' is-active' : ''}`;
             chip.setAttribute('aria-label', `View ${title}`);
             chip.innerHTML = `<span class="mono">${String(i + 1).padStart(2, '0')}</span>${title}`;
-            chip.addEventListener('click', () => goTo(i, true));
+            chip.addEventListener('click', () => goTo(i));
             projectNameRail.appendChild(chip);
         }
     });
@@ -261,6 +239,14 @@ if (projectZone && projectTrack) {
         setActive(closest, false);
     }
 
+    function centerNameChip(index) {
+        const chip = nameChips[index];
+        if (!chip || !projectNameRail) return;
+        const left =
+            chip.offsetLeft - (projectNameRail.clientWidth - chip.clientWidth) / 2;
+        projectNameRail.scrollTo({ left: Math.max(0, left), behavior: 'auto' });
+    }
+
     function updateNameDisplay(index) {
         const title = slides[index]?.querySelector('.project-title')?.textContent.trim() || '';
         if (projectActiveIndex) {
@@ -270,7 +256,7 @@ if (projectZone && projectTrack) {
             projectActiveName.textContent = title;
         }
         nameChips.forEach((chip, i) => chip.classList.toggle('is-active', i === index));
-        nameChips[index]?.scrollIntoView({ inline: 'center', behavior: REDUCED ? 'auto' : 'smooth', block: 'nearest' });
+        centerNameChip(index);
     }
 
     function setActive(index, scroll) {
@@ -283,45 +269,10 @@ if (projectZone && projectTrack) {
         }
     }
 
-    function goTo(index, fromUser = false) {
+    function goTo(index) {
         const next = (index + slides.length) % slides.length;
-        if (fromUser) pauseTemporarily();
         setActive(next, true);
     }
-
-    function pauseTemporarily(ms = 8000) {
-        userInteracting = true;
-        clearTimeout(resumeTimer);
-        resumeTimer = setTimeout(() => {
-            userInteracting = false;
-        }, ms);
-    }
-
-    function startAutoplay() {
-        clearInterval(autoplayTimer);
-        if (REDUCED) return;
-        autoplayTimer = setInterval(() => {
-            if (paused || userInteracting || isDragging) return;
-            goTo(activeIndex + 1);
-        }, 5500);
-    }
-
-    projectZone.addEventListener('mouseenter', () => {
-        paused = true;
-        projectZone.classList.add('is-paused');
-    });
-    projectZone.addEventListener('mouseleave', () => {
-        paused = false;
-        projectZone.classList.remove('is-paused');
-    });
-    projectZone.addEventListener('focusin', () => pauseTemporarily());
-    projectZone.addEventListener(
-        'scroll',
-        () => {
-            if (isDragging) syncActiveFromScroll();
-        },
-        { passive: true }
-    );
 
     let scrollEndTimer;
     projectZone.addEventListener(
@@ -340,7 +291,6 @@ if (projectZone && projectTrack) {
         dragScrollLeft = projectZone.scrollLeft;
         projectZone.classList.add('is-dragging');
         projectZone.setPointerCapture(e.pointerId);
-        pauseTemporarily();
     });
     projectZone.addEventListener('pointermove', (e) => {
         if (!isDragging) return;
@@ -359,14 +309,13 @@ if (projectZone && projectTrack) {
     projectZone.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') {
             e.preventDefault();
-            goTo(activeIndex - 1, true);
+            goTo(activeIndex - 1);
         }
         if (e.key === 'ArrowRight') {
             e.preventDefault();
-            goTo(activeIndex + 1, true);
+            goTo(activeIndex + 1);
         }
     });
 
-    startAutoplay();
-    window.addEventListener('resize', () => setActive(activeIndex, true));
+    window.addEventListener('resize', () => setActive(activeIndex, false));
 }

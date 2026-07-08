@@ -196,10 +196,10 @@ export function initHero(canvas) {
         mouse.x += (mouse.tx - mouse.x) * 0.05;
         mouse.y += (mouse.ty - mouse.y) * 0.05;
 
-        group.rotation.y = t * 0.05 + mouse.x * 0.28 + scrollProgress * 1.4;
-        group.rotation.x = mouse.y * 0.18 + scrollProgress * 0.5;
-        camera.position.z = 13 - scrollProgress * 4.5;
-        group.position.y = scrollProgress * 2.2;
+        group.rotation.y = t * 0.05 + mouse.x * 0.28 + scrollProgress * 0.35;
+        group.rotation.x = mouse.y * 0.18 + scrollProgress * 0.12;
+        camera.position.z = 13;
+        group.position.y = scrollProgress * 0.6;
 
         nodeMat.uniforms.uTime.value = t;
 
