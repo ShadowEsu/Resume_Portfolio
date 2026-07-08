@@ -1,36 +1,44 @@
-# Preston Jay Susanto - Premium Portfolio
-https://shadowesu.github.io/Resume_Portfolio/
+# Preston Susanto — 3D Portfolio
 
-A high-performance, visually refined personal portfolio inspired by Framer and Jacques Milton. Built with pure Vanilla JS, CSS3, and HTML5.
+Live: https://shadowesu.github.io/Resume_Portfolio/
 
-## Visual Direction
-- **Premium dark theme**: Pure black backgrounds, layered surfaces, and strong contrast.
-- **Modern typography**: Inter Tight + Inter, large bold headings, clean body text, and confident spacing.
-- **Refined motion**: Smooth scroll, fade-up and blur-to-sharp reveal animations, staggered card transitions, and elegant hover effects.
-- **Section rhythm**: Spacious, centered layout, strong hierarchy, and product-like presentation.
-- **Responsive design**: Fluid layouts optimized for all devices.
-- **Accessibility**: High contrast, semantic headings, focus styles, and reduced-motion fallback.
+An interactive 3D portfolio in a red & black handwritten style, built with vanilla
+JavaScript, Three.js, and GSAP. No build step required — the site is served as
+static files straight from `main`.
 
-## Project Structure
-- `index.html`: Semantic structure and resource linking.
-- `style.css`: Premium dark styling, design tokens, refined typography, and motion.
-- `index.js`: Data-driven rendering engine, interactive UI logic, and reveal animations.
-- `README.md`: Project documentation.
+## Design
+- **One typeface**: Caveat (handwriting), used everywhere
+- **Red & black**: crimson `#c1121f` accent on near-black surfaces
+- **Story-driven motion**: a wandering light follows you down the page, the
+  leadership timeline fills with a traveling orb, and the Golden Gate photo
+  band parallaxes as you pass
 
-## Key Features
-- **Global Journey Timeline**: Tracking growth across four nations (Indonesia, China, Australia, USA).
-- **Licenses & Certifications**: Includes Google x NexusEdge foundations in Generative AI, LLMs, and Python.
-- **Awards & Leadership**: Highlighting hackathon wins, academic excellence, and leadership roles.
-- **Accessibility Focus**: Built with WCAG principles in mind, inspired by "Access for All" hackathon wins.
-- **Responsive Design**: Fluid layouts optimized for all devices.
+## Stack
+- **Three.js** (CDN ES module, lazy-loaded) — red neural-network particle hero that reacts to mouse and scroll
+- **GSAP + ScrollTrigger** (CDN) — scroll-driven reveals, split-text headings, counters, timeline orb
+- **Lenis** (CDN) — smooth scrolling
+- **Vanilla JS + CSS** — magnetic buttons, expandable project cards, zigzag leadership timeline
+
+## Structure
+- `index.html` — all content: hero / about (with portrait) / journey / photo band / research / projects / experience / leadership / awards / contact
+- `style.css` — design tokens, layout, responsive rules
+- `js/main.js` — interactions and scroll animations
+- `js/hero3d.js` — Three.js hero scene (lazy-loaded after first paint)
+- `images/` — project screenshots, club logos, and photos
+
+## Performance & accessibility
+- Three.js loads after first paint; the hero pauses when offscreen or the tab is hidden
+- Node/particle counts and pixel ratio scale down on mobile; spotlight disabled on small screens
+- `prefers-reduced-motion` renders static content and disables animations
+- Preloader has a CSS-only fallback so content is never blocked if JS stalls
+- Elements already in view on load (e.g. anchor deep-links) render statically instead of waiting for scroll animations
+
+## Development
+```bash
+npm install
+npm run dev   # vite dev server on :3000
+```
 
 ## Deployment
-Ready for **GitHub Pages**, **Netlify**, or **Vercel**. Upload these files to the root of your repository.
-- **Global Journey Timeline**: Tracking growth across four nations (Indonesia, China, Australia, USA).
-- **Licenses & Certifications**: Includes Google x NexusEdge foundations in Generative AI, LLMs, and Python.
-- **Awards & Leadership**: Highlighting hackathon wins, academic excellence, and leadership roles.
-- **Accessibility Focus**: Built with WCAG principles in mind, inspired by "Access for All" hackathon wins.
-- **Responsive Design**: Fluid layouts optimized for all devices.
-
-## Deployment
-Ready for **GitHub Pages**, **Netlify**, or **Vercel**. Upload these files to the root of your repository.
+GitHub Pages serves the repository root from `main`. Push to `main` and the site updates —
+no build required.

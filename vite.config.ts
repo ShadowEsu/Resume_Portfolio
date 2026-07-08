@@ -11,9 +11,9 @@ export default defineConfig(({ mode }) => {
       },
       plugins: [
         {
-          name: 'copy-static-js',
+          name: 'copy-static-assets',
           closeBundle() {
-            cpSync('index.js', 'dist/index.js');
+            cpSync('js', 'dist/js', { recursive: true });
             cpSync('images', 'dist/images', { recursive: true });
           },
         },
