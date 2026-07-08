@@ -2,7 +2,7 @@
  * Preston Susanto — Portfolio
  * Interactions: smooth scroll (Lenis), scroll-driven story animations (GSAP
  * ScrollTrigger), wandering spotlight, zigzag leadership timeline, magnetic
- * buttons, expandable project cards, and lazy-loaded Three.js hero.
+ * buttons, project carousel, and lazy-loaded Three.js hero.
  */
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -347,74 +347,166 @@ if (expTimeline && expFill) {
 }
 
 /* ------------------------------------------------------------
-   Project showcase — rail + stage switcher
+   Projects — full-bleed auto-scroll carousel
    ------------------------------------------------------------ */
-const projectShowcase = document.getElementById('project-showcase');
-if (projectShowcase) {
-    const pills = [...projectShowcase.querySelectorAll('.project-pill')];
-    const panes = [...projectShowcase.querySelectorAll('.project-pane')];
-    const prevBtn = document.getElementById('project-prev');
-    const nextBtn = document.getElementById('project-next');
+const projectZone = document.getElementById('project-scroll-zone');
+const projectTrack = document.getElementById('project-track');
+const projectDotsWrap = document.getElementById('project-dots');
+const projectNameRail = document.getElementById('project-name-rail');
+const projectActiveName = document.getElementById('project-active-name');
+const projectActiveIndex = document.getElementById('project-active-index');
+
+if (projectZone && projectTrack) {
+    const slides = [...projectTrack.querySelectorAll('.project-slide')];
     let activeIndex = 0;
+    let paused = false;
+    let userInteracting = false;
+    let autoplayTimer = null;
+    let resumeTimer = null;
+    let dragStartX = 0;
+    let dragScrollLeft = 0;
+    let isDragging = false;
 
-    function showProject(index, direction = 0) {
-        const next = (index + panes.length) % panes.length;
-        if (next === activeIndex) return;
+    slides.forEach((slide, i) => {
+        slide.classList.toggle('is-active', i === 0);
+        const title = slide.querySelector('.project-title')?.textContent.trim() || `Project ${i + 1}`;
 
-        const current = panes[activeIndex];
-        const incoming = panes[next];
-
-        pills.forEach((pill, i) => {
-            const on = i === next;
-            pill.classList.toggle('is-active', on);
-            pill.setAttribute('aria-selected', String(on));
-        });
-
-        if (REDUCED) {
-            current.hidden = true;
-            current.classList.remove('is-active');
-            incoming.hidden = false;
-            incoming.classList.add('is-active');
-        } else {
-            const outX = direction >= 0 ? -40 : 40;
-            const inX = direction >= 0 ? 40 : -40;
-            gsap.timeline()
-                .to(current, {
-                    x: outX,
-                    autoAlpha: 0,
-                    duration: 0.35,
-                    ease: 'power2.in',
-                    onComplete: () => {
-                        current.hidden = true;
-                        current.classList.remove('is-active');
-                        gsap.set(current, { x: 0 });
-                    }
-                })
-                .add(() => {
-                    incoming.hidden = false;
-                    incoming.classList.add('is-active');
-                    gsap.fromTo(incoming,
-                        { x: inX, autoAlpha: 0 },
-                        { x: 0, autoAlpha: 1, duration: 0.45, ease: 'power3.out' }
-                    );
-                });
+        if (projectDotsWrap) {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = `project-dot${i === 0 ? ' is-active' : ''}`;
+            dot.setAttribute('aria-label', `Go to ${title}`);
+            dot.addEventListener('click', () => goTo(i, true));
+            projectDotsWrap.appendChild(dot);
         }
 
-        activeIndex = next;
+        if (projectNameRail) {
+            const chip = document.createElement('button');
+            chip.type = 'button';
+            chip.className = `project-name-chip${i === 0 ? ' is-active' : ''}`;
+            chip.setAttribute('aria-label', `View ${title}`);
+            chip.innerHTML = `<span class="mono">${String(i + 1).padStart(2, '0')}</span>${title}`;
+            chip.addEventListener('click', () => goTo(i, true));
+            projectNameRail.appendChild(chip);
+        }
+    });
+
+    const dots = projectDotsWrap ? [...projectDotsWrap.querySelectorAll('.project-dot')] : [];
+    const nameChips = projectNameRail ? [...projectNameRail.querySelectorAll('.project-name-chip')] : [];
+
+    function slideCenter(index) {
+        const slide = slides[index];
+        if (!slide) return 0;
+        return slide.offsetLeft - (projectZone.clientWidth - slide.clientWidth) / 2;
     }
 
-    pills.forEach((pill) => {
-        pill.addEventListener('click', () => {
-            const target = parseInt(pill.dataset.project, 10);
-            showProject(target, target > activeIndex ? 1 : -1);
+    function syncActiveFromScroll() {
+        const center = projectZone.scrollLeft + projectZone.clientWidth / 2;
+        let closest = 0;
+        let minDist = Infinity;
+        slides.forEach((slide, i) => {
+            const slideCenterX = slide.offsetLeft + slide.clientWidth / 2;
+            const dist = Math.abs(slideCenterX - center);
+            if (dist < minDist) {
+                minDist = dist;
+                closest = i;
+            }
         });
+        setActive(closest, false);
+    }
+
+    function updateNameDisplay(index) {
+        const title = slides[index]?.querySelector('.project-title')?.textContent.trim() || '';
+        if (projectActiveIndex) {
+            projectActiveIndex.textContent = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+        }
+        if (projectActiveName && title) {
+            if (REDUCED || projectActiveName.textContent === title) {
+                projectActiveName.textContent = title;
+            } else {
+                projectActiveName.classList.add('is-changing');
+                setTimeout(() => {
+                    projectActiveName.textContent = title;
+                    projectActiveName.classList.remove('is-changing');
+                }, 180);
+            }
+        }
+        nameChips.forEach((chip, i) => chip.classList.toggle('is-active', i === index));
+        nameChips[index]?.scrollIntoView({ inline: 'center', behavior: REDUCED ? 'auto' : 'smooth', block: 'nearest' });
+    }
+
+    function setActive(index, scroll) {
+        activeIndex = index;
+        slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
+        dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+        updateNameDisplay(index);
+        if (scroll) {
+            projectZone.scrollTo({ left: slideCenter(index), behavior: REDUCED ? 'auto' : 'smooth' });
+        }
+    }
+
+    function goTo(index, fromUser = false) {
+        const next = (index + slides.length) % slides.length;
+        if (fromUser) pauseTemporarily();
+        setActive(next, true);
+    }
+
+    function pauseTemporarily(ms = 8000) {
+        userInteracting = true;
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => { userInteracting = false; }, ms);
+    }
+
+    function startAutoplay() {
+        clearInterval(autoplayTimer);
+        if (REDUCED) return;
+        autoplayTimer = setInterval(() => {
+            if (paused || userInteracting || isDragging) return;
+            goTo(activeIndex + 1);
+        }, 5500);
+    }
+
+    projectZone.addEventListener('mouseenter', () => { paused = true; projectZone.classList.add('is-paused'); });
+    projectZone.addEventListener('mouseleave', () => { paused = false; projectZone.classList.remove('is-paused'); });
+    projectZone.addEventListener('focusin', () => pauseTemporarily());
+    projectZone.addEventListener('scroll', () => {
+        if (isDragging) syncActiveFromScroll();
+    }, { passive: true });
+
+    let scrollEndTimer;
+    projectZone.addEventListener('scroll', () => {
+        clearTimeout(scrollEndTimer);
+        scrollEndTimer = setTimeout(syncActiveFromScroll, 80);
+    }, { passive: true });
+
+    projectZone.addEventListener('pointerdown', (e) => {
+        if (e.target.closest('a')) return;
+        isDragging = true;
+        dragStartX = e.clientX;
+        dragScrollLeft = projectZone.scrollLeft;
+        projectZone.classList.add('is-dragging');
+        projectZone.setPointerCapture(e.pointerId);
+        pauseTemporarily();
+    });
+    projectZone.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        projectZone.scrollLeft = dragScrollLeft - (e.clientX - dragStartX);
+    });
+    projectZone.addEventListener('pointerup', () => {
+        isDragging = false;
+        projectZone.classList.remove('is-dragging');
+        syncActiveFromScroll();
+    });
+    projectZone.addEventListener('pointercancel', () => {
+        isDragging = false;
+        projectZone.classList.remove('is-dragging');
     });
 
-    prevBtn?.addEventListener('click', () => showProject(activeIndex - 1, -1));
-    nextBtn?.addEventListener('click', () => showProject(activeIndex + 1, 1));
-
-    projectShowcase.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') { e.preventDefault(); showProject(activeIndex - 1, -1); }
-        if (e.key === 'ArrowRight') { e.preventDefault(); showProject(activeIndex + 1, 1); }
+    projectZone.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(activeIndex - 1, true); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(activeIndex + 1, true); }
     });
+
+    startAutoplay();
+    window.addEventListener('resize', () => setActive(activeIndex, true));
 }
