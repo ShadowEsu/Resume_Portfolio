@@ -8,42 +8,11 @@
     <meta property="og:title" content="Preston Susanto — EECS · RL Research · Regrade Founder">
     <meta property="og:description" content="Real AI and RL systems built on a MacBook. No GPU. No cloud budget.">
     <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="film-root" aria-hidden="true"></div>
-
     <div id="scroll-progress" aria-hidden="true"></div>
-
-    <header class="nav" id="nav">
-        <a href="#hero" class="nav-mark">
-            <span class="nav-mark-dot"></span>PS<span class="nav-mark-thin">·SUSANTO</span>
-        </a>
-        <nav class="nav-links" aria-label="Primary">
-            <a href="#about" class="nav-link" data-section="about">About</a>
-            <a href="#journey" class="nav-link" data-section="journey">Journey</a>
-            <a href="#research" class="nav-link" data-section="research">Research</a>
-            <a href="#projects" class="nav-link" data-section="projects">Projects</a>
-            <a href="#experience" class="nav-link" data-section="experience">Experience</a>
-            <a href="#leadership" class="nav-link" data-section="leadership">Leadership</a>
-            <a href="#awards" class="nav-link" data-section="awards">Awards</a>
-        </nav>
-        <a href="#contact" class="btn btn-small">Get in touch</a>
-        <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
-            <span></span><span></span>
-        </button>
-    </header>
-
-    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-        <a href="#about">About</a>
-        <a href="#journey">Journey</a>
-        <a href="#research">Research</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#leadership">Leadership</a>
-        <a href="#awards">Awards</a>
-        <a href="#contact">Contact</a>
-    </div>
 
     <main>
         <!-- ============ HERO ============ -->
@@ -52,30 +21,61 @@
             <div class="hero-vignette" aria-hidden="true"></div>
 
             <div class="hero-inner">
-                <p class="hero-eyebrow mono"><span class="pulse-dot"></span>EECS · REINFORCEMENT LEARNING · BUILDER</p>
+                <p class="hero-eyebrow mono">EECS · REINFORCEMENT LEARNING · BUILDER</p>
                 <h1 class="hero-title">
-                    <span class="hero-title-line">This is</span>
-                    <span class="hero-title-line hero-title-accent">Preston Susanto.</span>
+                    <span class="hero-title-line hero-title-display">Preston Susanto</span>
+                    <span class="hero-title-line hero-title-accent">Built where the constraints are real.</span>
                 </h1>
                 <p class="hero-sub">
-                    First-year EECS at Diablo Valley College — 4.0 GPA, applying to and engaging with
-                    Berkeley, Stanford, MIT and friends. I build real AI and RL systems on a MacBook:
-                    no GPU, no cloud budget, just constraints treated as the curriculum.
+                    First-year EECS at Diablo Valley College. Independent RL research, shipped products,
+                    and campus engineering leadership — all on a MacBook with no GPU and no cloud budget.
                 </p>
                 <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">See the work</a>
+                    <a href="#regrade" class="btn btn-primary magnetic-btn">See Regrade</a>
                     <a href="#research" class="btn btn-ghost">Read the research</a>
                 </div>
+            </div>
+        </section>
 
-                <div class="hero-stats">
-                    <div class="hero-stat"><span class="hero-stat-value mono">4.0</span><span class="hero-stat-label">GPA at DVC</span></div>
-                    <div class="hero-stat"><span class="hero-stat-value mono">3</span><span class="hero-stat-label">SF Hacks awards</span></div>
-                    <div class="hero-stat"><span class="hero-stat-value mono">8+</span><span class="hero-stat-label">Shipped projects</span></div>
-                    <div class="hero-stat"><span class="hero-stat-value mono">1</span><span class="hero-stat-label">Paper in progress</span></div>
-                </div>
+        <!-- ============ REGRADE — founder spotlight ============ -->
+        <section class="section regrade-spotlight" id="regrade">
+            <p class="regrade-yc-banner mono reveal">Applying to Y Combinator · Fall 2026 Batch</p>
+            <div class="section-head">
+                <span class="section-index mono">FOUNDER · REGRADE</span>
+                <h2 class="section-title regrade-headline">Free points hide in the rubric.</h2>
+                <p class="section-sub regrade-summary">
+                    Upload graded work and your rubric. Regrade scans every line for credit you earned but did not get,
+                    shows recoverable points and GPA impact, and drafts a professor-safe appeal you control. Live on iOS and Android.
+                </p>
             </div>
 
-            <div class="hero-scroll-hint mono" aria-hidden="true">SCROLL<span class="hero-scroll-line"></span></div>
+            <div class="regrade-scroll-zone reveal" id="regrade-scroll-zone" aria-label="Regrade product screenshots">
+                <div class="regrade-track" id="regrade-track">
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-01.png" alt="Regrade landing page" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-02.png" alt="Regrade problem statement" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-03.png" alt="Regrade grade drop headline" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-04.png" alt="Regrade rubric scanning" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-05.png" alt="Regrade recoverable points" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-06.png" alt="Regrade GPA impact" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-07.png" alt="Regrade feature overview" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-08.png" alt="Regrade app dashboard" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-09.png" alt="Regrade global grading systems" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-10.png" alt="Regrade how it works" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-11.png" alt="Regrade AI engine options" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-12.png" alt="Regrade vs ChatGPT comparison" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-13.png" alt="Regrade waitlist stats" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-14.png" alt="Regrade demo walkthrough" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-15.png" alt="Regrade founder quote" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-16.png" alt="Regrade early access" loading="lazy"></figure>
+                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-17.png" alt="Regrade FAQ" loading="lazy"></figure>
+                </div>
+            </div>
+            <p class="regrade-scroll-hint mono">Scrolls automatically · hover to pause</p>
+
+            <div class="regrade-cta reveal">
+                <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="btn btn-primary magnetic-btn">Visit regradeapp.tech</a>
+                <a href="#projects" class="btn btn-ghost">All projects</a>
+            </div>
         </section>
 
         <!-- ============ ABOUT ============ -->
@@ -135,6 +135,21 @@
             <p class="about-certs reveal"><span class="mono certs-label">CERTIFICATIONS · </span>Hugging Face AI Agents Fundamentals · Anthropic Claude Code in Action · Google AI Studio, LLMs &amp; Responsible AI · Prompt Engineering (Alison) · Agentic AI (Digital Workforce)</p>
         </section>
 
+        <section class="photo-band photo-band-secondary" aria-label="Preston on the Golden Gate Bridge">
+            <img src="images/preston-goldengate.jpg" alt="Preston Susanto on the Golden Gate Bridge" class="img-reveal" loading="lazy">
+            <div class="photo-band-overlay">
+                <p class="photo-band-caption">
+                    <span>Building in public,</span>
+                    <span>learning in the open.</span>
+                </p>
+                <span class="mono photo-band-sub">BAY AREA · EECS · RESEARCH</span>
+                <div class="photo-band-cta">
+                    <a href="#leadership" class="btn btn-ghost btn-small btn-on-photo">Campus leadership</a>
+                    <a href="#research" class="btn btn-ghost btn-small btn-on-photo">Read the research</a>
+                </div>
+            </div>
+        </section>
+
         <!-- ============ JOURNEY ============ -->
         <section class="section journey" id="journey">
             <div class="section-head">
@@ -167,11 +182,18 @@
         </section>
 
         <!-- ============ GOLDEN GATE PARALLAX BAND ============ -->
-        <section class="photo-band" aria-label="Preston walking the Golden Gate Bridge">
-            <img src="images/preston-goldengate.jpg" alt="Preston Susanto walking across the Golden Gate Bridge" id="band-photo" loading="lazy">
+        <section class="photo-band" aria-label="Golden Gate Bridge">
+            <img src="images/sf-bridge.png" alt="Golden Gate Bridge over the bay" id="band-photo" class="img-reveal" loading="lazy">
             <div class="photo-band-overlay">
-                <p class="photo-band-caption">"I didn't come to California for an easy path."</p>
+                <p class="photo-band-caption">
+                    <span>I didn't come to California</span>
+                    <span>for an easy path.</span>
+                </p>
                 <span class="mono photo-band-sub">GOLDEN GATE BRIDGE · SAN FRANCISCO</span>
+                <div class="photo-band-cta">
+                    <a href="#projects" class="btn btn-ghost btn-small btn-on-photo">See the work</a>
+                    <a href="#contact" class="btn btn-ghost btn-small btn-on-photo">Get in touch</a>
+                </div>
             </div>
         </section>
 
@@ -183,7 +205,7 @@
             </div>
 
             <div class="research-card reveal">
-                <div class="research-status mono"><span class="pulse-dot"></span>IN PROGRESS · TARGETING ARXIV + JOURNAL OF STUDENT RESEARCH</div>
+                <div class="research-status mono">IN PROGRESS · TARGETING ARXIV + JOURNAL OF STUDENT RESEARCH</div>
                 <h3 class="research-title">Reward Shaping for Accessible AI Tutoring in Community&nbsp;Colleges</h3>
                 <p class="research-meta">Independent researcher · Advised by Prof. Kyu Woong Lee · Diablo Valley College · Jan 2026 — present</p>
 
@@ -221,54 +243,23 @@
             <div class="section-head">
                 <span class="section-index mono">04 — PROJECTS</span>
                 <h2 class="section-title">Built, shipped, real</h2>
-                <p class="section-sub">Everything here was built without a budget — most of it in hackathon weekends or between classes.</p>
-            </div>
-
-            <div class="project-name-bar reveal">
-                <div class="project-name-hero">
-                    <span class="project-name-index mono" id="project-active-index">01 / 08</span>
-                    <h3 class="project-name-active" id="project-active-name" aria-live="polite">Regrade</h3>
-                </div>
-                <nav class="project-name-rail" id="project-name-rail" aria-label="Project names"></nav>
+                <p class="section-sub">Hackathons, shipped apps, and side builds — screenshot first, details when you want them.</p>
             </div>
 
             <div class="project-scroll-zone reveal" id="project-scroll-zone" tabindex="0" aria-label="Projects carousel">
                 <div class="project-track" id="project-track">
-                    <article class="project-slide" data-project="0">
-                        <div class="project-slide-visual">
-                            <img src="images/regrade.png" alt="Regrade app interface" loading="lazy">
-                            <span class="project-slide-num mono" aria-hidden="true">01</span>
-                        </div>
-                        <div class="project-slide-body">
-                            <span class="project-tag mono live"><span class="pulse-dot"></span>LIVE · iOS + ANDROID</span>
-                            <h3 class="project-title">Regrade</h3>
-                            <p class="project-desc">An app for appealing unfair grades. Students upload rubrics and graded work; a dual-model AI backend finds recoverable marks and drafts calm, evidence-based appeal messages.</p>
-                            <ul class="project-bullets">
-                                <li>Solo-built and shipped to both app stores — dual-model orchestration with Claude for high-stakes reasoning and Gemini for throughput.</li>
-                                <li>Rubric-grounded prompt workflows with an evaluation harness benchmarked against ground-truth rubrics, so the AI argues from evidence instead of vibes.</li>
-                                <li>Designed for anxious students who need fast, non-intimidating guidance after a grade lands — 30+ waitlist signups while still early.</li>
-                                <li>Currently applying to Y Combinator's Winter 2026 batch off the strength of early traction.</li>
-                            </ul>
-                            <div class="chips"><span class="chip">React Native</span><span class="chip">TypeScript</span><span class="chip">Claude API</span><span class="chip">Gemini API</span><span class="chip">Supabase</span></div>
-                            <div class="project-links">
-                                <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="project-link mono">regradeapp.tech ↗</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-slide" data-project="1">
+                    <article class="project-slide">
                         <div class="project-slide-visual">
                             <img src="images/projects/sortify.png" alt="Sortify app landing page" loading="lazy">
-                            <span class="project-slide-num mono" aria-hidden="true">02</span>
                         </div>
                         <div class="project-slide-body">
-                            <span class="project-tag mono win">🏆 SF HACKS 2026 · 3 AWARDS</span>
+                            <span class="project-tag mono win">SF HACKS 2026 · 3 AWARDS</span>
                             <h3 class="project-title">Sortify</h3>
                             <p class="project-desc">AI waste-sorting platform — scan an item, get recycle / compost / trash guidance with explanations. Won Best Beginner Hack, Best Hardware Hack, and Best Use of Boxi AI.</p>
                             <ul class="project-bullets">
-                                <li>Multimodal Gemini image classification behind a FastAPI backend, with Firebase and SQLite for accounts and history, and TensorFlow for on-device model experiments.</li>
-                                <li>Google Maps bin-finding, gamified eco-scores, user profiles, and sustainability education — built in 48 hours among 250+ hackers.</li>
-                                <li>Judged live across three separate categories in one sprint — hardware, beginner track, and best use of Boxi AI — and won all three.</li>
+                                <li>Multimodal Gemini image classification behind a FastAPI backend, with Firebase and SQLite for accounts and history.</li>
+                                <li>Google Maps bin-finding, gamified eco-scores, and sustainability education — built in 48 hours among 250+ hackers.</li>
+                                <li>Judged live across three separate categories in one sprint and won all three.</li>
                             </ul>
                             <div class="chips"><span class="chip">Gemini API</span><span class="chip">FastAPI</span><span class="chip">TensorFlow</span><span class="chip">Firebase</span><span class="chip">React</span></div>
                             <div class="project-links">
@@ -278,10 +269,29 @@
                         </div>
                     </article>
 
-                    <article class="project-slide" data-project="2">
+                    <article class="project-slide">
+                        <div class="project-slide-visual">
+                            <img src="images/regrade.png" alt="Regrade app interface" loading="lazy">
+                        </div>
+                        <div class="project-slide-body">
+                            <span class="project-tag mono live">LIVE · iOS + ANDROID</span>
+                            <h3 class="project-title">Regrade</h3>
+                            <p class="project-desc">Grade appeal app — rubric-grounded AI finds recoverable points and drafts professor-safe appeals. Applying to YC Fall 2026.</p>
+                            <ul class="project-bullets">
+                                <li>Solo-built and shipped to both app stores with dual-model Claude + Gemini orchestration.</li>
+                                <li>Evaluation harness benchmarked against ground-truth rubrics so the AI argues from evidence.</li>
+                            </ul>
+                            <div class="chips"><span class="chip">React Native</span><span class="chip">TypeScript</span><span class="chip">Claude API</span><span class="chip">Supabase</span></div>
+                            <div class="project-links">
+                                <a href="#regrade" class="project-link mono">Spotlight ↗</a>
+                                <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="project-link mono">regradeapp.tech ↗</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-slide">
                         <div class="project-slide-visual">
                             <img src="images/projects/cauliform.png" alt="Cauliform sign-in screen" loading="lazy">
-                            <span class="project-slide-num mono" aria-hidden="true">03</span>
                         </div>
                         <div class="project-slide-body">
                             <span class="project-tag mono">VOICE AI AGENT</span>
@@ -300,10 +310,9 @@
                         </div>
                     </article>
 
-                    <article class="project-slide" data-project="3">
+                    <article class="project-slide">
                         <div class="project-slide-visual">
                             <img src="images/projects/lifetap.png" alt="LifeTap hardware panic button website" loading="lazy">
-                            <span class="project-slide-num mono" aria-hidden="true">04</span>
                         </div>
                         <div class="project-slide-body">
                             <span class="project-tag mono">HARDWARE · AI BERKELEY HACKATHON</span>
@@ -322,10 +331,9 @@
                         </div>
                     </article>
 
-                    <article class="project-slide" data-project="4">
+                    <article class="project-slide">
                         <div class="project-slide-visual project-slide-visual-accent">
-                            <span class="project-slide-num mono" aria-hidden="true">05</span>
-                            <span class="project-slide-emoji" aria-hidden="true">🤖</span>
+                            <span class="project-slide-emoji" aria-hidden="true">RL</span>
                         </div>
                         <div class="project-slide-body">
                             <span class="project-tag mono">LOCAL-FIRST AI</span>
@@ -343,10 +351,9 @@
                         </div>
                     </article>
 
-                    <article class="project-slide" data-project="5">
+                    <article class="project-slide">
                         <div class="project-slide-visual">
                             <img src="images/projects/pitchnest.png" alt="PitchNest landing page" loading="lazy">
-                            <span class="project-slide-num mono" aria-hidden="true">06</span>
                         </div>
                         <div class="project-slide-body">
                             <span class="project-tag mono">GOOGLE DEVELOPERS ONLINE HACKATHON</span>
@@ -364,10 +371,9 @@
                         </div>
                     </article>
 
-                    <article class="project-slide" data-project="6">
+                    <article class="project-slide">
                         <div class="project-slide-visual project-slide-visual-accent">
-                            <span class="project-slide-num mono" aria-hidden="true">07</span>
-                            <span class="project-slide-emoji" aria-hidden="true">♿</span>
+                            <span class="project-slide-emoji" aria-hidden="true">A11Y</span>
                         </div>
                         <div class="project-slide-body">
                             <span class="project-tag mono">CHROME EXTENSION · ACCESSIBILITY</span>
@@ -384,10 +390,9 @@
                         </div>
                     </article>
 
-                    <article class="project-slide" data-project="7">
+                    <article class="project-slide">
                         <div class="project-slide-visual">
                             <img src="images/projects/scholarisapp.png" alt="ScholarisApp landing page" loading="lazy">
-                            <span class="project-slide-num mono" aria-hidden="true">08</span>
                         </div>
                         <div class="project-slide-body">
                             <span class="project-tag mono">LOS ALTOS HACKS 2026</span>
@@ -405,8 +410,7 @@
                     </article>
                 </div>
             </div>
-
-            <div class="project-dots-wrap reveal" id="project-dots" aria-label="Project navigation"></div>
+            <p class="project-rail-hint mono">Scrolls automatically · hover to pause · drag to browse</p>
         </section>
 
         <!-- ============ EXPERIENCE ============ -->
@@ -847,7 +851,7 @@
         <!-- ============ CONTACT ============ -->
         <section class="section contact" id="contact">
             <div class="contact-inner">
-                <p class="mono contact-eyebrow"><span class="pulse-dot"></span>OPEN TO RESEARCH COLLABS, INTERNSHIPS &amp; INTERESTING PROBLEMS</p>
+                <p class="mono contact-eyebrow">OPEN TO RESEARCH COLLABS, INTERNSHIPS &amp; INTERESTING PROBLEMS</p>
                 <h2 class="contact-title">Let's build something.</h2>
                 <a href="mailto:prestonjaysusanto@gmail.com" class="contact-email">prestonjaysusanto@gmail.com</a>
                 <div class="contact-links">
@@ -863,7 +867,7 @@
         </section>
     </main>
 
-    <script type="module" src="/src/film.tsx"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script type="module" src="js/main.js"></script>

@@ -4,10 +4,20 @@
  */
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MOBILE = window.matchMedia('(max-width: 768px), (pointer: coarse)').matches;
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* Anchor scroll — instant (avoid fighting Lenis/CSS smooth) */
+/* Smooth scroll (Lenis) */
+let lenis;
+if (!REDUCED && typeof Lenis !== 'undefined') {
+    lenis = new Lenis({ duration: 1.1, easing: (t) => 1 - Math.pow(1 - t, 3) });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+}
+
+/* Anchor scroll */
 document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
         const href = a.getAttribute('href');
@@ -15,8 +25,11 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
         const target = document.querySelector(href);
         if (!target) return;
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'auto', block: 'start' });
-        closeMobileMenu();
+        if (lenis) {
+            lenis.scrollTo(target, { offset: 0 });
+        } else {
+            target.scrollIntoView({ behavior: 'auto', block: 'start' });
+        }
     });
 });
 
@@ -25,75 +38,6 @@ gsap.to('#scroll-progress', {
     scaleX: 1,
     ease: 'none',
     scrollTrigger: { start: 0, end: 'max', scrub: true },
-});
-
-/* Nav: scrolled state (toggle once, not every frame) */
-ScrollTrigger.create({
-    start: 40,
-    end: 'max',
-    toggleClass: { targets: '#nav', className: 'is-scrolled' },
-});
-
-/* Nav: active section — one rAF-throttled pass instead of N ScrollTriggers */
-const navSections = [...document.querySelectorAll('main section[id]')];
-const navLinksBySection = new Map(
-    [...document.querySelectorAll('.nav-link[data-section]')].map((link) => [
-        link.dataset.section,
-        link,
-    ])
-);
-let navActiveId = '';
-let navPickQueued = false;
-
-function pickActiveNavSection() {
-    navPickQueued = false;
-    const mid = window.innerHeight * 0.5;
-    let bestId = navSections[0]?.id || '';
-    let bestDist = Infinity;
-    navSections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const center = rect.top + rect.height * 0.5;
-        const dist = Math.abs(center - mid);
-        if (dist < bestDist) {
-            bestDist = dist;
-            bestId = section.id;
-        }
-    });
-    if (!bestId || bestId === navActiveId) return;
-    navActiveId = bestId;
-    navLinksBySection.forEach((link, id) => {
-        link.classList.toggle('is-active', id === navActiveId);
-    });
-}
-
-ScrollTrigger.create({
-    start: 0,
-    end: 'max',
-    onUpdate: () => {
-        if (navPickQueued) return;
-        navPickQueued = true;
-        requestAnimationFrame(pickActiveNavSection);
-    },
-});
-pickActiveNavSection();
-
-/* Mobile menu */
-const burger = document.getElementById('nav-burger');
-const mobileMenu = document.getElementById('mobile-menu');
-
-function closeMobileMenu() {
-    burger?.classList.remove('is-open');
-    mobileMenu?.classList.remove('is-open');
-    burger?.setAttribute('aria-expanded', 'false');
-    mobileMenu?.setAttribute('aria-hidden', 'true');
-}
-
-burger?.addEventListener('click', () => {
-    const open = !mobileMenu?.classList.contains('is-open');
-    burger.classList.toggle('is-open', open);
-    mobileMenu?.classList.toggle('is-open', open);
-    burger.setAttribute('aria-expanded', String(open));
-    mobileMenu?.setAttribute('aria-hidden', String(!open));
 });
 
 /* Section title underline draw */
@@ -186,215 +130,247 @@ if (expTimeline && expFill) {
     }
 }
 
-/* Projects — infinite loop carousel (horizontal only) */
+/* Regrade screenshot marquee */
+const regradeZone = document.getElementById('regrade-scroll-zone');
+const regradeTrack = document.getElementById('regrade-track');
+if (regradeZone && regradeTrack) {
+    const originals = [...regradeTrack.children];
+    originals.forEach((card) => {
+        regradeTrack.appendChild(card.cloneNode(true));
+    });
+
+    if (REDUCED) {
+        regradeZone.style.overflowX = 'auto';
+        regradeZone.style.maskImage = 'none';
+        regradeZone.style.webkitMaskImage = 'none';
+        regradeTrack.style.transform = 'none';
+        const hint = document.querySelector('.regrade-scroll-hint');
+        if (hint) hint.textContent = 'Swipe through the product screens';
+    } else {
+        let offsetX = 0;
+        let loopWidth = 0;
+        let paused = false;
+        let rafId = 0;
+        let lastT = 0;
+        const SPEED = 42;
+
+        function measureRegradeLoop() {
+            loopWidth = regradeTrack.scrollWidth / 2;
+        }
+
+        function tickRegrade(t) {
+            rafId = requestAnimationFrame(tickRegrade);
+            if (!lastT) lastT = t;
+            const dt = Math.min((t - lastT) / 1000, 0.05);
+            lastT = t;
+            if (!paused && loopWidth > 0) {
+                offsetX -= SPEED * dt;
+                if (Math.abs(offsetX) >= loopWidth) offsetX += loopWidth;
+                regradeTrack.style.transform = `translate3d(${offsetX}px, 0, 0)`;
+            }
+        }
+
+        regradeZone.addEventListener('mouseenter', () => {
+            paused = true;
+            regradeZone.classList.add('is-paused');
+        });
+        regradeZone.addEventListener('mouseleave', () => {
+            paused = false;
+            regradeZone.classList.remove('is-paused');
+        });
+        regradeZone.addEventListener('focusin', () => {
+            paused = true;
+            regradeZone.classList.add('is-paused');
+        });
+        regradeZone.addEventListener('focusout', () => {
+            paused = false;
+            regradeZone.classList.remove('is-paused');
+        });
+
+        measureRegradeLoop();
+        rafId = requestAnimationFrame(tickRegrade);
+        window.addEventListener('resize', measureRegradeLoop);
+    }
+}
+
+/* Projects — compact infinite horizontal rail */
 const projectZone = document.getElementById('project-scroll-zone');
 const projectTrack = document.getElementById('project-track');
-const projectDotsWrap = document.getElementById('project-dots');
-const projectNameRail = document.getElementById('project-name-rail');
-const projectActiveName = document.getElementById('project-active-name');
-const projectActiveIndex = document.getElementById('project-active-index');
 
 if (projectZone && projectTrack) {
-    const originalSlides = [...projectTrack.querySelectorAll('.project-slide')];
-    if (!originalSlides.length) {
-        // no-op
-    }
-
-    // Duplicate once for seamless wrap
-    const clones = originalSlides.map((s) => {
-        const c = s.cloneNode(true);
-        c.setAttribute('aria-hidden', 'true');
-        c.querySelectorAll('a, button, input, textarea, select').forEach((el) => {
-            el.setAttribute('tabindex', '-1');
-        });
-        return c;
-    });
-    clones.forEach((c) => projectTrack.appendChild(c));
-
-    const slides = [...projectTrack.querySelectorAll('.project-slide')];
-    let activeIndex = 0;
-    let dragStartX = 0;
-    let dragScrollLeft = 0;
-    let isDragging = false;
-    let paused = false;
-    let carouselVisible = false;
-    let raf = 0;
-    let lastT = 0;
-    let loopWidth = 0; // width of the original set
-    const SPEED_PX_PER_S = 42;
-
-    originalSlides.forEach((slide, i) => {
-        slide.classList.toggle('is-active', i === 0);
-        const title = slide.querySelector('.project-title')?.textContent?.trim() || `Project ${i + 1}`;
-
-        if (projectDotsWrap) {
-            const dot = document.createElement('button');
-            dot.type = 'button';
-            dot.className = `project-dot${i === 0 ? ' is-active' : ''}`;
-            dot.setAttribute('aria-label', `Go to ${title}`);
-            dot.addEventListener('click', () => goTo(i));
-            projectDotsWrap.appendChild(dot);
-        }
-
-        if (projectNameRail) {
-            const chip = document.createElement('button');
-            chip.type = 'button';
-            chip.className = `project-name-chip${i === 0 ? ' is-active' : ''}`;
-            chip.setAttribute('aria-label', `View ${title}`);
-            chip.innerHTML = `<span class="mono">${String(i + 1).padStart(2, '0')}</span>${title}`;
-            chip.addEventListener('click', () => goTo(i));
-            projectNameRail.appendChild(chip);
-        }
+    const originals = [...projectTrack.querySelectorAll('.project-slide')];
+    originals.forEach((slide) => {
+        projectTrack.appendChild(slide.cloneNode(true));
     });
 
-    const dots = projectDotsWrap ? [...projectDotsWrap.querySelectorAll('.project-dot')] : [];
-    const nameChips = projectNameRail ? [...projectNameRail.querySelectorAll('.project-name-chip')] : [];
+    if (REDUCED) {
+        projectZone.style.overflowX = 'auto';
+        projectZone.style.maskImage = 'none';
+        projectZone.style.webkitMaskImage = 'none';
+        projectTrack.style.transform = 'none';
+        const hint = document.querySelector('.project-rail-hint');
+        if (hint) hint.textContent = 'Swipe through projects';
+    } else {
+        let offsetX = 0;
+        let loopWidth = 0;
+        let paused = false;
+        let inView = true;
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragStartOffset = 0;
+        let rafId = 0;
+        let lastT = 0;
+        let resumeTimer = 0;
+        const SPEED = 16;
 
-    function measureLoopWidth() {
-        loopWidth = originalSlides.reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
-        // include gaps from flex container
-        const styles = getComputedStyle(projectTrack);
-        const gap = parseFloat(styles.columnGap || styles.gap || '0') || 0;
-        loopWidth += gap * Math.max(0, originalSlides.length - 1);
-    }
-
-    function slideCenter(index) {
-        const slide = originalSlides[index];
-        if (!slide) return 0;
-        return slide.offsetLeft - (projectZone.clientWidth - slide.clientWidth) / 2;
-    }
-
-    function syncActiveFromScroll() {
-        // Wrap first so "center" is stable
-        if (loopWidth > 0) {
-            const s = projectZone.scrollLeft;
-            if (s >= loopWidth) projectZone.scrollLeft = s - loopWidth;
-            else if (s < 0) projectZone.scrollLeft = s + loopWidth;
+        function measureProjectLoop() {
+            loopWidth = projectTrack.scrollWidth / 2;
         }
 
-        const center = projectZone.scrollLeft + projectZone.clientWidth / 2;
-        let closest = 0;
-        let minDist = Infinity;
-        originalSlides.forEach((slide, i) => {
-            const slideCenterX = slide.offsetLeft + slide.clientWidth / 2;
-            const dist = Math.abs(slideCenterX - center);
-            if (dist < minDist) {
-                minDist = dist;
-                closest = i;
+        function applyOffset() {
+            if (loopWidth > 0) {
+                while (offsetX > 0) offsetX -= loopWidth;
+                while (Math.abs(offsetX) >= loopWidth) offsetX += loopWidth;
             }
-        });
-        setActive(closest, false);
-    }
-
-    function centerNameChip(index) {
-        const chip = nameChips[index];
-        if (!chip || !projectNameRail) return;
-        const left =
-            chip.offsetLeft - (projectNameRail.clientWidth - chip.clientWidth) / 2;
-        projectNameRail.scrollTo({ left: Math.max(0, left), behavior: 'auto' });
-    }
-
-    function updateNameDisplay(index) {
-        const title = originalSlides[index]?.querySelector('.project-title')?.textContent?.trim() || '';
-        if (projectActiveIndex) {
-            projectActiveIndex.textContent = `${String(index + 1).padStart(2, '0')} / ${String(originalSlides.length).padStart(2, '0')}`;
+            projectTrack.style.transform = `translate3d(${offsetX}px, 0, 0)`;
         }
-        if (projectActiveName && title) {
-            projectActiveName.textContent = title;
-        }
-        nameChips.forEach((chip, i) => chip.classList.toggle('is-active', i === index));
-        centerNameChip(index);
-    }
 
-    function setActive(index, scroll) {
-        activeIndex = index;
-        originalSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
-        dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
-        updateNameDisplay(index);
-        if (scroll) {
-            projectZone.scrollTo({ left: slideCenter(index), behavior: REDUCED ? 'auto' : 'smooth' });
-        }
-    }
-
-    function goTo(index) {
-        const next = (index + originalSlides.length) % originalSlides.length;
-        setActive(next, true);
-    }
-
-    let scrollEndTimer;
-    projectZone.addEventListener(
-        'scroll',
-        () => {
-            clearTimeout(scrollEndTimer);
-            scrollEndTimer = setTimeout(syncActiveFromScroll, 80);
-        },
-        { passive: true }
-    );
-
-    function tick(t) {
-        if (!lastT) lastT = t;
-        const dt = Math.min(0.05, (t - lastT) / 1000);
-        lastT = t;
-
-        if (carouselVisible && !REDUCED && !paused && !isDragging && loopWidth > 0) {
-            projectZone.scrollLeft += SPEED_PX_PER_S * dt;
-            if (projectZone.scrollLeft >= loopWidth) {
-                projectZone.scrollLeft -= loopWidth;
+        function tickProject(t) {
+            rafId = requestAnimationFrame(tickProject);
+            if (!lastT) lastT = t;
+            const dt = Math.min((t - lastT) / 1000, 0.05);
+            lastT = t;
+            if (!paused && !isDragging && inView && loopWidth > 0) {
+                offsetX -= SPEED * dt;
+                applyOffset();
             }
         }
-        raf = requestAnimationFrame(tick);
+
+        projectZone.addEventListener('mouseenter', () => {
+            paused = true;
+        });
+        projectZone.addEventListener('mouseleave', () => {
+            if (!isDragging) paused = false;
+        });
+        projectZone.addEventListener('focusin', () => {
+            paused = true;
+        });
+        projectZone.addEventListener('focusout', () => {
+            paused = false;
+        });
+
+        projectZone.addEventListener('pointerdown', (e) => {
+            if (e.button !== 0) return;
+            isDragging = true;
+            paused = true;
+            dragStartX = e.clientX;
+            dragStartOffset = offsetX;
+            projectZone.setPointerCapture(e.pointerId);
+            projectZone.classList.add('is-dragging');
+        });
+        projectZone.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+            offsetX = dragStartOffset + (e.clientX - dragStartX);
+            applyOffset();
+        });
+        const endDrag = (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            projectZone.classList.remove('is-dragging');
+            if (e && e.pointerId !== undefined) {
+                try {
+                    projectZone.releasePointerCapture(e.pointerId);
+                } catch (_) {
+                    /* ignore */
+                }
+            }
+            clearTimeout(resumeTimer);
+            resumeTimer = window.setTimeout(() => {
+                paused = false;
+            }, 900);
+        };
+        projectZone.addEventListener('pointerup', endDrag);
+        projectZone.addEventListener('pointercancel', endDrag);
+
+        projectZone.addEventListener(
+            'wheel',
+            (e) => {
+                if (Math.abs(e.deltaX) + Math.abs(e.deltaY) < 2) return;
+                e.preventDefault();
+                paused = true;
+                offsetX -= e.deltaX || e.deltaY;
+                applyOffset();
+                clearTimeout(resumeTimer);
+                resumeTimer = window.setTimeout(() => {
+                    paused = false;
+                }, 1200);
+            },
+            { passive: false }
+        );
+
+        const projectObserver = new IntersectionObserver(
+            ([entry]) => {
+                inView = entry.isIntersecting;
+            },
+            { threshold: 0.08 }
+        );
+        projectObserver.observe(projectZone);
+
+        measureProjectLoop();
+        rafId = requestAnimationFrame(tickProject);
+        window.addEventListener('resize', measureProjectLoop);
     }
+}
 
-    const carouselObserver = new IntersectionObserver(
-        ([entry]) => {
-            carouselVisible = entry.isIntersecting;
-        },
-        { threshold: 0 }
-    );
-    carouselObserver.observe(projectZone);
+/* Hero 3D network */
+const heroCanvas = document.getElementById('hero-canvas');
+if (heroCanvas) {
+    import('./hero3d.js').then(({ initHero }) => {
+        const hero = initHero(heroCanvas);
+        if (!hero) return;
+        ScrollTrigger.create({
+            trigger: '#hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+            onUpdate: (self) => hero.setScroll(self.progress),
+        });
+    });
+}
 
-    projectZone.addEventListener('mouseenter', () => (paused = true));
-    projectZone.addEventListener('mouseleave', () => (paused = false));
-    projectZone.addEventListener('focusin', () => (paused = true));
-    projectZone.addEventListener('focusout', () => (paused = false));
-
-    projectZone.addEventListener('pointerdown', (e) => {
-        if (e.target.closest('a')) return;
-        isDragging = true;
-        dragStartX = e.clientX;
-        dragScrollLeft = projectZone.scrollLeft;
-        projectZone.classList.add('is-dragging');
-        projectZone.setPointerCapture(e.pointerId);
-    });
-    projectZone.addEventListener('pointermove', (e) => {
-        if (!isDragging) return;
-        projectZone.scrollLeft = dragScrollLeft - (e.clientX - dragStartX);
-    });
-    projectZone.addEventListener('pointerup', () => {
-        isDragging = false;
-        projectZone.classList.remove('is-dragging');
-        syncActiveFromScroll();
-    });
-    projectZone.addEventListener('pointercancel', () => {
-        isDragging = false;
-        projectZone.classList.remove('is-dragging');
-    });
-
-    projectZone.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            goTo(activeIndex - 1);
-        }
-        if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            goTo(activeIndex + 1);
-        }
+if (!REDUCED) {
+    /* Image scale reveals */
+    gsap.utils.toArray('.img-reveal, .photo-band img, .project-slide-visual img, .regrade-shot-card img').forEach((img) => {
+        gsap.fromTo(
+            img,
+            { scale: 1.08 },
+            {
+                scale: 1,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: img,
+                    start: 'top 88%',
+                    end: 'top 40%',
+                    scrub: true,
+                },
+            }
+        );
     });
 
-    measureLoopWidth();
-    raf = requestAnimationFrame(tick);
-    window.addEventListener('resize', () => {
-        measureLoopWidth();
-        setActive(activeIndex, false);
-    });
+    /* Magnetic buttons (desktop only) */
+    if (!MOBILE) {
+        document.querySelectorAll('.btn-primary').forEach((btn) => {
+            const xTo = gsap.quickTo(btn, 'x', { duration: 0.35, ease: 'power3.out' });
+            const yTo = gsap.quickTo(btn, 'y', { duration: 0.35, ease: 'power3.out' });
+            btn.addEventListener('pointermove', (e) => {
+                const r = btn.getBoundingClientRect();
+                xTo((e.clientX - (r.left + r.width / 2)) * 0.14);
+                yTo((e.clientY - (r.top + r.height / 2)) * 0.14);
+            });
+            btn.addEventListener('pointerleave', () => {
+                xTo(0);
+                yTo(0);
+            });
+        });
+    }
 }

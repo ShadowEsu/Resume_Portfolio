@@ -9,13 +9,13 @@ const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MOBILE = window.matchMedia('(max-width: 768px), (pointer: coarse)').matches;
 
 const CONFIG = {
-    nodes: MOBILE ? 130 : 300,
-    signals: MOBILE ? 20 : 55,
+    nodes: MOBILE ? 70 : 160,
+    signals: MOBILE ? 14 : 34,
     connectDist: MOBILE ? 3.4 : 2.9,
     maxDpr: MOBILE ? 1.5 : 2,
-    accent: new THREE.Color('#e0232f'),
-    green: new THREE.Color('#f5f7fa'),
-    dim: new THREE.Color('#6e2028')
+    accent: new THREE.Color('#b3181f'),
+    highlight: new THREE.Color('#ff4d57'),
+    dim: new THREE.Color('#e3cfc8')
 };
 
 function makeCircleSprite() {
@@ -88,7 +88,7 @@ export function initHero(canvas) {
     const tmp = new THREE.Color();
     for (let i = 0; i < CONFIG.nodes; i++) {
         const roll = Math.random();
-        tmp.copy(roll > 0.92 ? CONFIG.green : roll > 0.55 ? CONFIG.accent : CONFIG.dim);
+        tmp.copy(roll > 0.92 ? CONFIG.highlight : roll > 0.55 ? CONFIG.accent : CONFIG.dim);
         nodeColors[i * 3] = tmp.r;
         nodeColors[i * 3 + 1] = tmp.g;
         nodeColors[i * 3 + 2] = tmp.b;
@@ -103,7 +103,7 @@ export function initHero(canvas) {
     const nodeMat = new THREE.ShaderMaterial({
         transparent: true,
         depthWrite: false,
-        blending: THREE.AdditiveBlending,
+        blending: THREE.NormalBlending,
         uniforms: { uTime: { value: 0 }, uMap: { value: sprite }, uScale: { value: 1 } },
         vertexShader: `
             attribute float aPhase;
@@ -140,10 +140,10 @@ export function initHero(canvas) {
     const lineGeo = new THREE.BufferGeometry();
     lineGeo.setAttribute('position', new THREE.BufferAttribute(linePos, 3));
     const lineMat = new THREE.LineBasicMaterial({
-        color: CONFIG.accent,
+        color: new THREE.Color('#17120f'),
         transparent: true,
-        opacity: 0.13,
-        blending: THREE.AdditiveBlending,
+        opacity: 0.06,
+        blending: THREE.NormalBlending,
         depthWrite: false
     });
     group.add(new THREE.LineSegments(lineGeo, lineMat));
@@ -166,8 +166,8 @@ export function initHero(canvas) {
         map: sprite,
         color: CONFIG.accent,
         transparent: true,
-        opacity: 0.95,
-        blending: THREE.AdditiveBlending,
+        opacity: 1,
+        blending: THREE.NormalBlending,
         depthWrite: false
     });
     group.add(new THREE.Points(sigGeo, sigMat));
