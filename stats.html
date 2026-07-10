@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Preston Susanto · Visitor stats</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="site-config.js"></script>
+</head>
+<body class="stats-page">
+    <div class="stats-wrap">
+        <span class="stats-badge mono"><span class="stats-badge-dot" aria-hidden="true"></span> Private dashboard</span>
+        <h1 class="stats-title">Site visitors</h1>
+        <p class="stats-sub">
+            Unique browsers only — repeat visits from the same device are not counted again.
+            Portfolio traffic only, separate from Regrade.
+        </p>
+
+        <div id="stats-status" class="stats-loading mono">Loading stats…</div>
+        <div id="stats-grid" class="stats-grid" hidden></div>
+        <p id="stats-meta" class="stats-meta mono" hidden></p>
+
+        <p class="stats-back">
+            <a href="index.html" class="stats-back-link mono">← Back to portfolio</a>
+        </p>
+    </div>
+
+    <script type="module">
+        import { initVisitorDashboard } from "./js/visitors.js";
+
+        initVisitorDashboard({
+            statusEl: document.getElementById("stats-status"),
+            gridEl: document.getElementById("stats-grid"),
+            metaEl: document.getElementById("stats-meta"),
+        });
+    </script>
+</body>
+</html>
