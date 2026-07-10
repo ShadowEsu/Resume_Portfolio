@@ -3,7 +3,7 @@
  * Light interactions: scroll progress, timeline fills, photo parallax, project carousel.
  */
 
-import { initVisitorWidget } from './visitors.js';
+import { registerPortfolioVisitor } from './visitors.js';
 
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MOBILE = window.matchMedia('(max-width: 768px), (pointer: coarse)').matches;
@@ -377,4 +377,4 @@ if (!REDUCED) {
     }
 }
 
-initVisitorWidget();
+registerPortfolioVisitor();

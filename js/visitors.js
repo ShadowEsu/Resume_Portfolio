@@ -57,23 +57,6 @@ export function formatVisitorCount(value) {
     return Number(value ?? 0).toLocaleString();
 }
 
-export async function initVisitorWidget() {
-    await registerPortfolioVisitor();
-
-    const panel = document.getElementById("visitor-stats");
-    const valueEl = panel?.querySelector("[data-visitor-total]");
-    if (!valueEl) return;
-
-    try {
-        const data = await fetchPortfolioVisitorStats();
-        valueEl.textContent = formatVisitorCount(data.total);
-        panel?.classList.remove("is-loading");
-    } catch {
-        valueEl.textContent = "-";
-        panel?.classList.remove("is-loading");
-    }
-}
-
 export async function initVisitorDashboard({
     statusEl,
     gridEl,
