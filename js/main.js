@@ -10,10 +10,15 @@ const MOBILE = window.matchMedia('(max-width: 768px), (pointer: coarse)').matche
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* Smooth scroll (Lenis) */
+/* Smooth scroll (Lenis) — lower duration = less lag on wheel / trackpad */
 let lenis;
 if (!REDUCED && typeof Lenis !== 'undefined') {
-    lenis = new Lenis({ duration: 1.1, easing: (t) => 1 - Math.pow(1 - t, 3) });
+    lenis = new Lenis({
+        duration: 0.72,
+        easing: (t) => 1 - Math.pow(1 - t, 3),
+        wheelMultiplier: 1.15,
+        touchMultiplier: 1.35,
+    });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
@@ -28,7 +33,7 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
         if (!target) return;
         e.preventDefault();
         if (lenis) {
-            lenis.scrollTo(target, { offset: 0 });
+            lenis.scrollTo(target, { offset: 0, duration: 0.85 });
         } else {
             target.scrollIntoView({ behavior: 'auto', block: 'start' });
         }
@@ -223,10 +228,19 @@ if (projectZone && projectTrack) {
         let rafId = 0;
         let lastT = 0;
         let resumeTimer = 0;
-        const SPEED = 16;
+        let hasInitialOffset = false;
+        const SPEED = 26;
+        const WHEEL_GAIN = 1.75;
+        const RESUME_AFTER_DRAG_MS = 450;
+        const RESUME_AFTER_WHEEL_MS = 550;
 
         function measureProjectLoop() {
             loopWidth = projectTrack.scrollWidth / 2;
+            if (!hasInitialOffset && loopWidth > 0) {
+                offsetX = -loopWidth / 2;
+                hasInitialOffset = true;
+                applyOffset();
+            }
         }
 
         function applyOffset() {
@@ -289,7 +303,7 @@ if (projectZone && projectTrack) {
             clearTimeout(resumeTimer);
             resumeTimer = window.setTimeout(() => {
                 paused = false;
-            }, 900);
+            }, RESUME_AFTER_DRAG_MS);
         };
         projectZone.addEventListener('pointerup', endDrag);
         projectZone.addEventListener('pointercancel', endDrag);
@@ -300,12 +314,13 @@ if (projectZone && projectTrack) {
                 if (Math.abs(e.deltaX) + Math.abs(e.deltaY) < 2) return;
                 e.preventDefault();
                 paused = true;
-                offsetX -= e.deltaX || e.deltaY;
+                const delta = e.deltaX !== 0 ? e.deltaX : e.deltaY;
+                offsetX -= delta * WHEEL_GAIN;
                 applyOffset();
                 clearTimeout(resumeTimer);
                 resumeTimer = window.setTimeout(() => {
                     paused = false;
-                }, 1200);
+                }, RESUME_AFTER_WHEEL_MS);
             },
             { passive: false }
         );
