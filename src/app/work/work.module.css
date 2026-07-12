@@ -1,0 +1,29 @@
+.page {
+  padding-top: var(--space-8);
+}
+
+.head {
+  padding: 0 var(--page-padding);
+}
+
+.label {
+  margin: 0 0 var(--space-4);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+}
+
+.page :global(#selected) {
+  border-top: 0;
+  padding-top: var(--space-12);
+}

@@ -1,44 +1,108 @@
-# Preston Susanto — 3D Portfolio
+# Preston Susanto · Cinematic Editorial Portfolio
 
-Live: https://shadowesu.github.io/Resume_Portfolio/
+Premium editorial portfolio inspired by the interaction quality of aikawakenichi.com, rebuilt for Preston Susanto (AI engineer, builder, student founder). Not a clone - same principles, original identity and content.
 
-An interactive 3D portfolio in a red & black handwritten style, built with vanilla
-JavaScript, Three.js, and GSAP. No build step required — the site is served as
-static files straight from `main`.
-
-## Design
-- **One typeface**: Caveat (handwriting), used everywhere
-- **Red & black**: crimson `#c1121f` accent on near-black surfaces
-- **Story-driven motion**: a wandering light follows you down the page, the
-  leadership timeline fills with a traveling orb, and the Golden Gate photo
-  band parallaxes as you pass
+Branch: `cinematic-editorial`
 
 ## Stack
-- **Three.js** (CDN ES module, lazy-loaded) — red neural-network particle hero that reacts to mouse and scroll
-- **GSAP + ScrollTrigger** (CDN) — scroll-driven reveals, split-text headings, counters, timeline orb
-- **Lenis** (CDN) — smooth scrolling
-- **Vanilla JS + CSS** — magnetic buttons, expandable project cards, zigzag leadership timeline
 
-## Structure
-- `index.html` — all content: hero / about (with portrait) / journey / photo band / research / projects / experience / leadership / awards / contact
-- `style.css` — design tokens, layout, responsive rules
-- `js/main.js` — interactions and scroll animations
-- `js/hero3d.js` — Three.js hero scene (lazy-loaded after first paint)
-- `images/` — project screenshots, club logos, and photos
+- Next.js App Router
+- React + TypeScript
+- GSAP + ScrollTrigger + Flip
+- Lenis smooth scrolling
+- CSS Modules + CSS custom properties
+- `next/image` + `next/font` (Inter Tight + Inter)
 
-## Performance & accessibility
-- Three.js loads after first paint; the hero pauses when offscreen or the tab is hidden
-- Node/particle counts and pixel ratio scale down on mobile; spotlight disabled on small screens
-- `prefers-reduced-motion` renders static content and disables animations
-- Preloader has a CSS-only fallback so content is never blocked if JS stalls
-- Elements already in view on load (e.g. anchor deep-links) render statically instead of waiting for scroll animations
+## Install and run
 
-## Development
 ```bash
 npm install
-npm run dev   # vite dev server on :3000
+npm run dev
 ```
 
-## Deployment
-GitHub Pages serves the repository root from `main`. Push to `main` and the site updates —
-no build required.
+Open [http://localhost:3000](http://localhost:3000).
+
+```bash
+npm run build
+npm start
+```
+
+## Routes
+
+| Path | Purpose |
+|------|---------|
+| `/` | Editorial home + selected work gallery |
+| `/work` | Full work index with Editorial / Index modes |
+| `/work/[slug]` | Project detail |
+| `/about` | Profile, milestones, copy-email |
+| `/experiments` | Experiment cluster |
+
+## Add a project
+
+Edit `src/data/projects.ts`.
+
+1. Add a `Project` object with slug, media paths, copy, technologies.
+2. Put media under `public/projects/<slug>/` (`hero.jpg`, `thumb.jpg`, optional gallery frames).
+3. Route `/work/<slug>` is generated automatically via `generateStaticParams`.
+
+## Replace media
+
+Swap files in:
+
+```text
+public/projects/regrade/
+public/projects/jayminilm/
+public/projects/research/
+public/projects/sos/
+public/projects/car-app/
+public/projects/experiments/
+public/about/
+```
+
+Keep filenames referenced in `src/data/projects.ts`, or update the paths there. Prefer AVIF/WebP when you export finals; JPG/PNG placeholders work now.
+
+## Animation system
+
+Central files:
+
+```text
+src/lib/animation/
+  motion.ts          # shared durations / easings
+  gsap.ts            # plugin registration
+  transitions.ts     # page / line / media presets
+  splitText.ts       # line masks
+  reducedMotion.ts   # preference helpers
+
+src/components/motion/
+  Preloader.tsx      # real image-aware % loader
+  MediaReveal.tsx    # clip-path + scale reveals
+  LineReveal.tsx     # heading line reveals
+  PageTransition.tsx # route enter
+  Cursor.tsx         # desktop cursor states
+  SmoothScroll.tsx   # Lenis + ScrollTrigger sync
+```
+
+Work gallery Editorial ↔ Index uses GSAP Flip on shared DOM items. Project open clones the clicked media for a shared-element style transition, then navigates.
+
+## Theme
+
+Light / dark toggle in the header. Persists in `localStorage` (`portfolio-theme`). First visit follows `prefers-color-scheme`. Tokens live in `src/styles/tokens.css`.
+
+## Reduced motion
+
+When `prefers-reduced-motion: reduce`:
+
+- Lenis disabled
+- Preloader skipped after session check / immediate complete
+- Flip and shared-element motion fall back to instant navigation / short fades
+- Parallax-style media reveals snap to final state
+- Custom cursor still hides on coarse pointers
+
+## Legacy site
+
+Previous static Vite/HTML portfolio is archived under `_archive/` on this branch for reference. Host this Next.js app separately (Vercel recommended).
+
+## Notes
+
+- Visitor stats from the old site are not wired here. Re-add if needed.
+- GitHub Pages static deploy workflow in `.github/` targets the old HTML site. Use Vercel/Netlify for this branch, or replace the workflow with a Next export/deploy setup.
