@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preston Susanto — EECS · RL Research · Regrade Founder</title>
-    <meta name="description" content="Preston Susanto — first-year EECS student at Diablo Valley College (4.0 GPA), independent reinforcement learning researcher, and founder of Regrade. Real AI systems built with no GPU and no cloud budget.">
-    <meta property="og:title" content="Preston Susanto — EECS · RL Research · Regrade Founder">
-    <meta property="og:description" content="Real AI and RL systems built on a MacBook. No GPU. No cloud budget.">
+    <title>Preston Susanto · Developer, Startup Builder, EECS</title>
+    <meta name="description" content="Preston Susanto builds AI products people ship with. Founder of UnVibe and Regrade. EECS student, full-stack engineer, and ML researcher.">
+    <meta property="og:title" content="Preston Susanto · Developer, Startup Builder, EECS">
+    <meta property="og:description" content="Shipping UnVibe and Regrade. AI products, full-stack engineering, and machine learning.">
     <meta property="og:type" content="website">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="is-loading">
+    <div id="site-loader" class="site-loader" aria-live="polite" aria-busy="true">
+        <div class="site-loader-inner">
+            <span id="site-loader-pct" class="site-loader-pct">0%</span>
+            <div class="site-loader-bar" aria-hidden="true">
+                <div id="site-loader-fill" class="site-loader-fill"></div>
+            </div>
+            <p class="site-loader-name mono">PRESTON SUSANTO</p>
+        </div>
+    </div>
+
     <div id="scroll-progress" aria-hidden="true"></div>
 
     <main>
@@ -21,59 +31,238 @@
             <div class="hero-vignette" aria-hidden="true"></div>
 
             <div class="hero-inner">
-                <p class="hero-eyebrow mono">EECS · REINFORCEMENT LEARNING · BUILDER</p>
+                <p class="hero-eyebrow mono">DEVELOPER · STARTUP BUILDER · EECS</p>
                 <h1 class="hero-title">
                     <span class="hero-title-line hero-title-display">Preston Susanto</span>
-                    <span class="hero-title-line hero-title-accent">Built where the constraints are real.</span>
+                    <span class="hero-title-line hero-title-accent">I build AI products people ship with.</span>
                 </h1>
                 <p class="hero-sub">
-                    First-year EECS at Diablo Valley College. Independent RL research, shipped products,
-                    and campus engineering leadership — all on a MacBook with no GPU and no cloud budget.
+                    Developer, startup builder, and EECS student. Currently shipping UnVibe and Regrade
+                    with real full-stack, mobile, and machine-learning work.
                 </p>
                 <div class="hero-cta">
-                    <a href="#regrade" class="btn btn-primary magnetic-btn">See Regrade</a>
-                    <a href="#research" class="btn btn-ghost">Read the research</a>
+                    <a href="Preston_Susanto_Resume.pdf" target="_blank" rel="noopener" class="btn btn-primary magnetic-btn">View Resume</a>
+                    <a href="https://www.linkedin.com/in/preston-jay-susanto/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+                    <a href="https://github.com/ShadowEsu" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+                    <a href="#unvibe" class="btn btn-ghost">View My Projects</a>
                 </div>
             </div>
         </section>
 
-        <!-- ============ REGRADE — founder spotlight ============ -->
-        <section class="section regrade-spotlight" id="regrade">
-            <div class="regrade-intro">
-                <span class="regrade-founder-tag mono reveal">FOUNDER · REGRADE</span>
-                <p class="regrade-yc-banner mono reveal">Applying to Y Combinator · Fall 2026 Batch</p>
-                <h2 class="section-title regrade-headline reveal">Free points hide in the rubric.</h2>
-                <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="regrade-logo-link reveal" aria-label="Regrade">
-                    <img src="images/regrade-logo.png" alt="Regrade" class="regrade-logo" width="280" height="84" loading="eager">
-                </a>
-                <p class="section-sub regrade-summary reveal">
-                    Upload graded work and your rubric. Regrade scans every line for credit you earned but did not get,
-                    shows recoverable points and GPA impact, and drafts a professor-safe appeal you control. Live on iOS and Android.
-                </p>
+        <!-- ============ AT A GLANCE ============ -->
+        <section class="section glance" id="capabilities" aria-labelledby="glance-title">
+            <div class="section-head">
+                <h2 id="glance-title" class="section-title">What I build</h2>
+                <p class="section-sub">Products shipped, skills that matter, and the stack behind them.</p>
             </div>
 
-            <div class="regrade-scroll-zone reveal" id="regrade-scroll-zone" aria-label="Regrade product screenshots">
-                <div class="regrade-track" id="regrade-track">
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-01.png" alt="Regrade landing page" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-02.png" alt="Regrade problem statement" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-03.png" alt="Regrade grade drop headline" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-04.png" alt="Regrade rubric scanning" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-05.png" alt="Regrade recoverable points" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-06.png" alt="Regrade GPA impact" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-07.png" alt="Regrade feature overview" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-08.png" alt="Regrade app dashboard" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-09.png" alt="Regrade global grading systems" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-10.png" alt="Regrade how it works" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-11.png" alt="Regrade AI engine options" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-12.png" alt="Regrade vs ChatGPT comparison" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-13.png" alt="Regrade waitlist stats" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-14.png" alt="Regrade demo walkthrough" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-15.png" alt="Regrade founder quote" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-16.png" alt="Regrade early access" loading="lazy"></figure>
-                    <figure class="regrade-shot-card"><img src="images/regrade/regrade-17.png" alt="Regrade FAQ" loading="lazy"></figure>
+            <div class="glance-focus reveal">
+                <img src="images/logos/yc.svg" alt="Y Combinator" width="44" height="44" class="glance-yc">
+                <div class="glance-focus-copy">
+                    <p class="mono glance-label">FOCUS · UNVIBE · YC FALL 2026</p>
+                    <p class="glance-focus-title">Putting UnVibe on the map</p>
+                    <p class="glance-focus-text">Mac-first learning layer for AI-generated code. Private beta live. Applying to Y Combinator Fall 2026.</p>
+                </div>
+                <div class="glance-metrics">
+                    <div>
+                        <span class="glance-metric-value">$500</span>
+                        <span class="glance-metric-label">UnVibe · private investment</span>
+                    </div>
+                    <div>
+                        <span class="glance-metric-value">$300</span>
+                        <span class="glance-metric-label">Regrade · private investment</span>
+                    </div>
                 </div>
             </div>
-            <p class="regrade-scroll-hint mono">Scrolls automatically · hover to pause</p>
+
+            <div class="build-panels">
+                <article class="build-panel build-panel-shipped reveal">
+                    <header class="build-panel-head">
+                        <span class="build-panel-mark" aria-hidden="true"></span>
+                        <div>
+                            <h3 class="mono">SHIPPED</h3>
+                            <p>Live products, awards, and research already out the door.</p>
+                        </div>
+                    </header>
+                    <ul class="build-list">
+                        <li>
+                            <div class="build-item-top">
+                                <strong>UnVibe</strong>
+                                <span class="build-tag build-tag-live">Private beta</span>
+                            </div>
+                            <p>Desktop learning layer for AI code. Active feature shipping.</p>
+                        </li>
+                        <li>
+                            <div class="build-item-top">
+                                <strong>Regrade</strong>
+                                <span class="build-tag build-tag-live">iOS + Android</span>
+                            </div>
+                            <p>Graded-work review and appeals. Live on both app stores.</p>
+                        </li>
+                        <li>
+                            <div class="build-item-top">
+                                <strong>Sortify</strong>
+                                <span class="build-tag build-tag-award">3 awards</span>
+                            </div>
+                            <p>SF Hacks 2026. AI waste sorting, three category wins.</p>
+                        </li>
+                        <li>
+                            <div class="build-item-top">
+                                <strong>LifeTap</strong>
+                                <span class="build-tag">Hardware</span>
+                            </div>
+                            <p>Physical SOS button with live GPS over WhatsApp.</p>
+                        </li>
+                        <li>
+                            <div class="build-item-top">
+                                <strong>Cauliform</strong>
+                                <span class="build-tag">Voice AI</span>
+                            </div>
+                            <p>Phone agents that fill real Google Forms.</p>
+                        </li>
+                        <li>
+                            <div class="build-item-top">
+                                <strong>RL research</strong>
+                                <span class="build-tag build-tag-research">Research</span>
+                            </div>
+                            <p>Reward shaping under Prof. Kyu Woong Lee.</p>
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="build-panel build-panel-can reveal">
+                    <header class="build-panel-head">
+                        <span class="build-panel-mark" aria-hidden="true"></span>
+                        <div>
+                            <h3 class="mono">CAN BUILD</h3>
+                            <p>What I am ready to take on next.</p>
+                        </div>
+                    </header>
+                    <div class="can-grid">
+                        <div class="can-tile">
+                            <span class="can-num mono">01</span>
+                            <strong>AI product features</strong>
+                            <p>Idea to production with LLM APIs, agents, and evaluation.</p>
+                        </div>
+                        <div class="can-tile">
+                            <span class="can-num mono">02</span>
+                            <strong>Frontend craft</strong>
+                            <p>Polished interfaces and design systems that feel intentional.</p>
+                        </div>
+                        <div class="can-tile">
+                            <span class="can-num mono">03</span>
+                            <strong>Backend systems</strong>
+                            <p>APIs, auth, databases, and cloud deploy that hold up.</p>
+                        </div>
+                        <div class="can-tile">
+                            <span class="can-num mono">04</span>
+                            <strong>Mobile and desktop</strong>
+                            <p>React Native apps and Mac-first desktop software.</p>
+                        </div>
+                        <div class="can-tile can-tile-wide">
+                            <span class="can-num mono">05</span>
+                            <strong>0-to-1 founder work</strong>
+                            <p>Ship with real users, private beta loops, and investor conversations.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="glance-stack reveal" id="stack">
+                <h3 class="mono">STACK AND TOOLS</h3>
+                <div class="chips">
+                    <span class="chip chip-icon"><img src="images/logos/stack/typescript.svg" alt="">TypeScript</span>
+                    <span class="chip chip-icon"><img src="images/logos/stack/python.svg" alt="">Python</span>
+                    <span class="chip chip-icon"><img src="images/logos/stack/nextjs.svg" alt="">Next.js</span>
+                    <span class="chip chip-icon"><img src="images/logos/stack/react-native.svg" alt="">React Native</span>
+                    <span class="chip chip-icon"><img src="images/logos/stack/nodejs.svg" alt="">Node.js</span>
+                    <span class="chip chip-icon"><img src="images/logos/stack/fastapi.svg" alt="">FastAPI</span>
+                    <span class="chip chip-icon"><img src="images/logos/stack/pytorch.svg" alt="">PyTorch</span>
+                    <span class="chip chip-icon"><img src="images/logos/stack/openai.png" alt="">OpenAI</span>
+                    <span class="chip">Claude API</span>
+                    <span class="chip chip-icon"><img src="images/logos/tools/supabase.svg" alt="">Supabase</span>
+                    <span class="chip chip-icon"><img src="images/logos/tools/firebase.svg" alt="">Firebase</span>
+                    <span class="chip chip-icon"><img src="images/logos/stack/docker.svg" alt="">Docker</span>
+                    <span class="chip chip-icon"><img src="images/logos/stack/postgresql.svg" alt="">SQL</span>
+                    <span class="chip chip-icon"><img src="images/logos/stack/cpp.svg" alt="">C/C++</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ UNVIBE — current focus ============ -->
+        <section class="section regrade-spotlight unvibe-spotlight shot-xl" id="unvibe">
+            <div class="regrade-intro">
+                <div class="yc-row reveal">
+                    <img src="images/logos/yc.svg" alt="Y Combinator" width="36" height="36">
+                    <span class="mono">YC FALL 2026 · REGISTERING</span>
+                </div>
+                <h2 class="section-title regrade-headline reveal">UnVibe</h2>
+                <p class="section-sub regrade-summary reveal">
+                    A desktop learning layer for AI-generated code. Select code, choose explanation depth,
+                    and learn how it works without leaving your workflow.
+                </p>
+                <p class="glance-quiet reveal">$500 private investment · Mac-first private beta · <a href="https://unvibe.site" target="_blank" rel="noopener">unvibe.site</a></p>
+                <ul class="spotlight-features reveal">
+                    <li>In-workflow code explanations</li>
+                    <li>Adjustable explanation depth</li>
+                    <li>Project and file context</li>
+                    <li>Saved snippets and concepts</li>
+                </ul>
+                <div class="chips reveal">
+                    <span class="chip">TypeScript</span>
+                    <span class="chip">React</span>
+                    <span class="chip">Mac desktop</span>
+                    <span class="chip">LLM APIs</span>
+                </div>
+            </div>
+
+            <div class="product-video-wrap reveal">
+                <video
+                    class="product-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="auto"
+                    aria-label="UnVibe product demo"
+                >
+                    <source src="images/unvibe/demo.mp4" type="video/mp4">
+                    <source src="images/unvibe/demo.mov" type="video/quicktime">
+                </video>
+            </div>
+
+            <div class="regrade-cta reveal">
+                <a href="https://unvibe.site" target="_blank" rel="noopener" class="btn btn-primary magnetic-btn">Visit unvibe.site</a>
+                <a href="#regrade" class="btn btn-ghost">Also building Regrade</a>
+            </div>
+        </section>
+
+        <!-- ============ REGRADE — major project ============ -->
+        <section class="section regrade-spotlight shot-xl" id="regrade">
+            <div class="regrade-intro">
+                <span class="regrade-founder-tag mono reveal">MAJOR PROJECT</span>
+                <h2 class="section-title regrade-headline reveal">Regrade</h2>
+                <p class="section-sub regrade-summary reveal">
+                    Upload graded work and your rubric. Regrade finds credit you earned but did not get,
+                    shows recoverable points and GPA impact, and drafts a professor-safe appeal you control.
+                    Live on iOS and Android.
+                </p>
+                <p class="glance-quiet reveal">$300 private investment · <a href="https://regradeapp.tech" target="_blank" rel="noopener">regradeapp.tech</a></p>
+            </div>
+
+            <div class="product-video-wrap reveal">
+                <video
+                    class="product-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="auto"
+                    aria-label="Regrade product demo"
+                >
+                    <source src="images/regrade/demo.mp4" type="video/mp4">
+                </video>
+            </div>
 
             <div class="regrade-cta reveal">
                 <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="btn btn-primary magnetic-btn">Visit regradeapp.tech</a>
@@ -253,6 +442,34 @@
                 <div class="project-track" id="project-track">
                     <article class="project-slide">
                         <div class="project-slide-visual">
+                            <video
+                                src="images/unvibe/demo.mp4"
+                                muted
+                                autoplay
+                                loop
+                                playsinline
+                                preload="metadata"
+                                aria-label="UnVibe product demo"
+                            ></video>
+                        </div>
+                        <div class="project-slide-body">
+                            <span class="project-tag mono live">YC FALL 2026 · PRIVATE BETA</span>
+                            <h3 class="project-title">UnVibe</h3>
+                            <p class="project-desc">Desktop learning layer for AI-generated code. Select code, choose depth, learn in-workflow. $500 private investment. Applying to YC Fall 2026.</p>
+                            <ul class="project-bullets">
+                                <li>Designed and built the core explanation flow beside the editor.</li>
+                                <li>Active product focus with continuous feature shipping at unvibe.site.</li>
+                            </ul>
+                            <div class="chips"><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Mac desktop</span><span class="chip">LLM APIs</span></div>
+                            <div class="project-links">
+                                <a href="#unvibe" class="project-link mono">Spotlight ↗</a>
+                                <a href="https://unvibe.site" target="_blank" rel="noopener" class="project-link mono">Live site ↗</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-slide">
+                        <div class="project-slide-visual">
                             <img src="images/projects/sortify.png" alt="Sortify app landing page" loading="lazy">
                         </div>
                         <div class="project-slide-body">
@@ -279,7 +496,7 @@
                         <div class="project-slide-body">
                             <span class="project-tag mono live">LIVE · iOS + ANDROID</span>
                             <h3 class="project-title">Regrade</h3>
-                            <p class="project-desc">Grade appeal app — rubric-grounded AI finds recoverable points and drafts professor-safe appeals. Applying to YC Fall 2026.</p>
+                            <p class="project-desc">Grade appeal app. Rubric-grounded AI finds recoverable points and drafts professor-safe appeals. Live on iOS and Android.</p>
                             <ul class="project-bullets">
                                 <li>Solo-built and shipped to both app stores with dual-model Claude + Gemini orchestration.</li>
                                 <li>Evaluation harness benchmarked against ground-truth rubrics so the AI argues from evidence.</li>
@@ -794,9 +1011,9 @@
         <!-- ============ STACK / SKILLS ============ -->
         <section class="section skills" id="skills">
             <div class="section-head">
-                <span class="section-index mono">08 — STACK</span>
-                <h2 class="section-title">Languages, tools &amp; infrastructure</h2>
-                <p class="section-sub">Everything I build with — from languages and ML frameworks to cloud and hardware.</p>
+                <span class="section-index mono">08 — FULL TOOLING</span>
+                <h2 class="section-title">Everything else I build with</h2>
+                <p class="section-sub">Deeper map of languages, ML, cloud, and hardware beyond the front stack.</p>
             </div>
 
             <div class="about-skills">
@@ -858,9 +1075,11 @@
                 <h2 class="contact-title">Let's build something.</h2>
                 <a href="mailto:prestonjaysusanto@gmail.com" class="contact-email">prestonjaysusanto@gmail.com</a>
                 <div class="contact-links">
-                    <a href="https://github.com/ShadowEsu" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
-                    <a href="https://www.linkedin.com/in/preston-jay-susanto/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn ↗</a>
-                    <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="btn btn-ghost">Regrade ↗</a>
+                    <a href="Preston_Susanto_Resume.pdf" target="_blank" rel="noopener" class="btn btn-primary">View Resume</a>
+                    <a href="https://github.com/ShadowEsu" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+                    <a href="https://www.linkedin.com/in/preston-jay-susanto/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+                    <a href="https://unvibe.site" target="_blank" rel="noopener" class="btn btn-ghost">UnVibe</a>
+                    <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="btn btn-ghost">Regrade</a>
                 </div>
             </div>
             <footer class="footer">

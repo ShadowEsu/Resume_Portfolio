@@ -8,6 +8,108 @@ import { registerPortfolioVisitor } from './visitors.js';
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const MOBILE = window.matchMedia('(max-width: 768px), (pointer: coarse)').matches;
 
+/* Site loader — percent count with hard timeout so it never sticks at 100% */
+(function initSiteLoader() {
+    const root = document.getElementById('site-loader');
+    const pctEl = document.getElementById('site-loader-pct');
+    const fillEl = document.getElementById('site-loader-fill');
+    if (!root || !pctEl || !fillEl) {
+        document.body.classList.remove('is-loading');
+        return;
+    }
+
+    const SESSION_KEY = 'portfolio-loader-done';
+    const finish = () => {
+        try {
+            sessionStorage.setItem(SESSION_KEY, '1');
+        } catch (_) {}
+        root.classList.add('is-done');
+        document.body.classList.remove('is-loading');
+        root.setAttribute('aria-busy', 'false');
+        window.setTimeout(() => root.remove(), 700);
+    };
+
+    if (REDUCED || sessionStorage.getItem(SESSION_KEY) === '1') {
+        finish();
+        return;
+    }
+
+    let target = 0;
+    let shown = 0;
+    let assetsDone = false;
+    let exited = false;
+    let raf = 0;
+
+    const hardTimeout = window.setTimeout(() => {
+        target = 100;
+        assetsDone = true;
+    }, 2800);
+
+    const urls = [
+        ...new Set(
+            [...document.querySelectorAll('img[src]')]
+                .map((img) => img.getAttribute('src'))
+                .filter((src) => src && !src.startsWith('data:'))
+                .slice(0, 24)
+        ),
+    ];
+
+    const total = Math.max(urls.length, 1);
+    let loaded = 0;
+    const bump = () => {
+        loaded += 1;
+        target = Math.min(100, Math.round((loaded / total) * 100));
+        if (loaded >= total) {
+            assetsDone = true;
+            target = 100;
+            window.clearTimeout(hardTimeout);
+        }
+    };
+
+    urls.forEach((src) => {
+        const img = new Image();
+        img.onload = bump;
+        img.onerror = bump;
+        img.src = src;
+    });
+
+    if (urls.length === 0) {
+        assetsDone = true;
+        target = 100;
+        window.clearTimeout(hardTimeout);
+    }
+
+    const tick = () => {
+        shown += (target - shown) * 0.14;
+        const n = Math.round(shown);
+        pctEl.textContent = `${n}%`;
+        fillEl.style.width = `${n}%`;
+
+        if (!exited && assetsDone && Math.abs(100 - shown) < 0.5) {
+            exited = true;
+            pctEl.textContent = '100%';
+            fillEl.style.width = '100%';
+            window.setTimeout(finish, 180);
+            return;
+        }
+        raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+
+    window.addEventListener(
+        'load',
+        () => {
+            target = Math.max(target, 92);
+            window.setTimeout(() => {
+                assetsDone = true;
+                target = 100;
+            }, 200);
+        },
+        { once: true }
+    );
+})();
+
 gsap.registerPlugin(ScrollTrigger);
 
 /* Smooth scroll (Lenis) — lower duration = less lag on wheel / trackpad */
@@ -134,69 +236,6 @@ if (expTimeline && expFill) {
                 onLeaveBack: () => node.classList.remove('is-lit'),
             });
         });
-    }
-}
-
-/* Regrade screenshot marquee */
-const regradeZone = document.getElementById('regrade-scroll-zone');
-const regradeTrack = document.getElementById('regrade-track');
-if (regradeZone && regradeTrack) {
-    const originals = [...regradeTrack.children];
-    originals.forEach((card) => {
-        regradeTrack.appendChild(card.cloneNode(true));
-    });
-
-    if (REDUCED) {
-        regradeZone.style.overflowX = 'auto';
-        regradeZone.style.maskImage = 'none';
-        regradeZone.style.webkitMaskImage = 'none';
-        regradeTrack.style.transform = 'none';
-        const hint = document.querySelector('.regrade-scroll-hint');
-        if (hint) hint.textContent = 'Swipe through the product screens';
-    } else {
-        let offsetX = 0;
-        let loopWidth = 0;
-        let paused = false;
-        let rafId = 0;
-        let lastT = 0;
-        const SPEED = 42;
-
-        function measureRegradeLoop() {
-            loopWidth = regradeTrack.scrollWidth / 2;
-        }
-
-        function tickRegrade(t) {
-            rafId = requestAnimationFrame(tickRegrade);
-            if (!lastT) lastT = t;
-            const dt = Math.min((t - lastT) / 1000, 0.05);
-            lastT = t;
-            if (!paused && loopWidth > 0) {
-                offsetX -= SPEED * dt;
-                if (Math.abs(offsetX) >= loopWidth) offsetX += loopWidth;
-                regradeTrack.style.transform = `translate3d(${offsetX}px, 0, 0)`;
-            }
-        }
-
-        regradeZone.addEventListener('mouseenter', () => {
-            paused = true;
-            regradeZone.classList.add('is-paused');
-        });
-        regradeZone.addEventListener('mouseleave', () => {
-            paused = false;
-            regradeZone.classList.remove('is-paused');
-        });
-        regradeZone.addEventListener('focusin', () => {
-            paused = true;
-            regradeZone.classList.add('is-paused');
-        });
-        regradeZone.addEventListener('focusout', () => {
-            paused = false;
-            regradeZone.classList.remove('is-paused');
-        });
-
-        measureRegradeLoop();
-        rafId = requestAnimationFrame(tickRegrade);
-        window.addEventListener('resize', measureRegradeLoop);
     }
 }
 
