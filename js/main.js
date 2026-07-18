@@ -245,6 +245,26 @@ const projectTrack = document.getElementById('project-track');
 
 if (projectZone && projectTrack) {
     const originals = [...projectTrack.querySelectorAll('.project-slide')];
+    const projectRatings = {
+        'UNVIBE': { overall: 92, role: 'AI PRODUCT', stats: [['BLD', 94], ['UX', 91], ['AI', 93], ['SHP', 90], ['GRW', 88], ['SYS', 89]] },
+        'Sortify': { overall: 89, role: 'HACK WINNER', stats: [['BLD', 90], ['UX', 88], ['AI', 91], ['SHP', 89], ['AWD', 96], ['SYS', 84]] },
+        'Regrade': { overall: 91, role: 'MOBILE APP', stats: [['BLD', 93], ['UX', 90], ['AI', 92], ['SHP', 92], ['GRW', 86], ['SYS', 90]] },
+        'Cauliform': { overall: 88, role: 'VOICE AGENT', stats: [['BLD', 89], ['UX', 85], ['AI', 91], ['SHP', 87], ['API', 92], ['SYS', 88]] },
+        'LifeTap': { overall: 87, role: 'HARDWARE', stats: [['BLD', 90], ['UX', 86], ['HW', 94], ['SHP', 86], ['GPS', 91], ['SYS', 87]] },
+        'Jarvis': { overall: 86, role: 'LOCAL AI', stats: [['BLD', 87], ['UX', 81], ['AI', 92], ['SHP', 83], ['RL', 94], ['SYS', 88]] },
+        'PitchNest': { overall: 85, role: 'FOUNDER TOOL', stats: [['BLD', 86], ['UX', 84], ['AI', 88], ['SHP', 84], ['BIZ', 90], ['SYS', 85]] },
+        'Access for All': { overall: 84, role: 'A11Y TOOL', stats: [['BLD', 85], ['UX', 91], ['A11Y', 96], ['SHP', 83], ['WEB', 86], ['SYS', 81]] },
+        'ScholarisApp': { overall: 83, role: 'EDTECH', stats: [['BLD', 84], ['UX', 87], ['FIT', 89], ['SHP', 82], ['WEB', 84], ['SYS', 80]] }
+    };
+    originals.forEach((slide) => {
+        const title = slide.querySelector('.project-title')?.textContent.trim();
+        const rating = projectRatings[title];
+        if (!rating) return;
+        const visual = slide.querySelector('.project-slide-visual');
+        const titleElement = slide.querySelector('.project-title');
+        if (visual) visual.insertAdjacentHTML('beforeend', `<span class="project-card-overall">${rating.overall}<small>OVR</small></span><span class="project-card-role">${rating.role}</span>`);
+        if (titleElement) titleElement.insertAdjacentHTML('afterend', `<div class="project-card-stats" aria-label="Project ratings">${rating.stats.map(([label, value]) => `<span class="project-card-stat"><b>${value}</b>${label}</span>`).join('')}</div>`);
+    });
     originals.forEach((slide) => {
         projectTrack.appendChild(slide.cloneNode(true));
     });
