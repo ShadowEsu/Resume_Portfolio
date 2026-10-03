@@ -6,6 +6,7 @@
 
 import { registerPortfolioVisitor } from './visitors.js';
 import { initHeroGrid } from './hero-grid.js';
+import { initHero3D } from './hero3d.js';
 import { initLake } from './lake.js';
 
 const root = document.documentElement;
@@ -149,7 +150,19 @@ setTimeout(() => $('#intro')?.remove(), INTRO_PLAYING ? 2400 : 0);
 /* ------------------------------------------------------------------ */
 /* Canvases                                                            */
 /* ------------------------------------------------------------------ */
-initHeroGrid($('#hero-grid'), { reduced: REDUCED });
+let hero3d = null;
+(async () => {
+    const canvas = $('#hero-grid');
+    const api = await initHero3D(canvas, { reduced: REDUCED, mobile: window.matchMedia('(max-width: 640px)').matches });
+    if (api) {
+        hero3d = api;
+        return;
+    }
+    // WebGL or the CDN failed: fall back to the 2D value map on a fresh canvas.
+    const fresh = canvas.cloneNode(false);
+    canvas.replaceWith(fresh);
+    initHeroGrid(fresh, { reduced: REDUCED });
+})();
 initLake({
     canvas: $('#lab-canvas'),
     runBtn: $('#lab-run'),
@@ -236,8 +249,8 @@ if (FINE && ANIMATE) {
         el.addEventListener('pointerleave', () => { xTo(0); yTo(0); });
     });
 
-    $$('[data-tilt]').forEach((el) => {
-        const strength = el.classList.contains('portrait') ? 10 : 6;
+    $$('[data-tilt], .project').forEach((el) => {
+        const strength = el.classList.contains('portrait') ? 12 : el.classList.contains('project') ? 7 : 8;
         el.addEventListener('pointermove', (e) => {
             const r = el.getBoundingClientRect();
             const px = (e.clientX - r.left) / r.width;
@@ -275,6 +288,31 @@ function splitLines(el) {
 }
 
 /* ------------------------------------------------------------------ */
+/* Leadership coverflow: cards turn and recede away from screen center */
+/* ------------------------------------------------------------------ */
+function coverflow(strength) {
+    const scroller = $('#lead-scroller');
+    const box = scroller.getBoundingClientRect();
+    if (box.bottom < 0 || box.top > window.innerHeight) return;
+    const mid = window.innerWidth / 2;
+    const cards = $$('.lead-card');
+    // Measure from layout offsets (not transformed rects) so rotation doesn't feed back into itself
+    const trackLeft = $('#lead-track').getBoundingClientRect().left;
+    const offsets = cards.map((card) => {
+        const center = trackLeft + card.offsetLeft + card.offsetWidth / 2;
+        return gsap.utils.clamp(-1.3, 1.3, (center - mid) / mid);
+    });
+    cards.forEach((card, i) => {
+        const d = offsets[i];
+        gsap.set(card, {
+            rotateY: d * -26 * strength,
+            z: -Math.abs(d) * 160 * strength,
+            opacity: 1 - Math.min(Math.abs(d) * 0.3, 0.45),
+        });
+    });
+}
+
+/* ------------------------------------------------------------------ */
 /* Animations                                                          */
 /* ------------------------------------------------------------------ */
 if (ANIMATE) {
@@ -288,8 +326,9 @@ if (ANIMATE) {
     tl.from(heroChars[0], { yPercent: 115, rotate: 6, duration: 1.3, stagger: 0.035 })
         .from(heroChars[1], { yPercent: 115, rotate: 6, duration: 1.3, stagger: 0.035 }, '-=1.15')
         .fromTo('[data-hero]', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 1.1, stagger: 0.08 }, '-=1.0')
-        .fromTo('[data-hero-visual]', { opacity: 0, y: 60, rotate: 3, scale: 0.94 }, { opacity: 1, y: 0, rotate: 0, scale: 1, duration: 1.4 }, '-=1.2')
-        .from('.float-chip', { opacity: 0, scale: 0.6, duration: 0.8, stagger: 0.1, ease: 'back.out(2)' }, '-=0.8')
+        .fromTo('[data-hero-visual]', { opacity: 0, y: 80, rotateY: -32, rotateX: 12, scale: 0.9, transformPerspective: 1200 }, { opacity: 1, y: 0, rotateY: 0, rotateX: 0, scale: 1, duration: 1.6 }, '-=1.2')
+        .from('.float-chip', { opacity: 0, scale: 0.6, duration: 0.8, stagger: 0.1, ease: 'back.out(2)' }, '-=0.9')
+        .from('.app-tile', { opacity: 0, duration: 0.8, stagger: 0.15 }, '-=0.7')
         .from('.nav', { yPercent: -150, duration: 1 }, 0.2);
 
     // Hero scroll-out
@@ -297,7 +336,13 @@ if (ANIMATE) {
         yPercent: -12,
         opacity: 0.2,
         ease: 'none',
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+        scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+            onUpdate: (self) => hero3d?.setScroll(self.progress),
+        },
     });
 
     // Section titles: line-by-line mask reveal
@@ -305,7 +350,10 @@ if (ANIMATE) {
         const lines = splitLines(el);
         gsap.from(lines, {
             yPercent: 110,
-            duration: 1.2,
+            rotateX: -75,
+            transformOrigin: '50% 100%',
+            transformPerspective: 900,
+            duration: 1.3,
             ease: 'expo.out',
             stagger: 0.1,
             scrollTrigger: { trigger: el, start: 'top 85%' },
@@ -326,8 +374,8 @@ if (ANIMATE) {
         });
     });
     $$('[data-reveal-media]').forEach((el) => {
-        gsap.fromTo(el, { opacity: 0, y: 80, scale: 0.94, rotateX: 12, transformPerspective: 1200 }, {
-            opacity: 1, y: 0, scale: 1, rotateX: 0, duration: 1.5, ease: 'expo.out',
+        gsap.fromTo(el, { opacity: 0, y: 60 }, {
+            opacity: 1, y: 0, duration: 1.4, ease: 'expo.out',
             scrollTrigger: { trigger: el, start: 'top 90%' },
         });
     });
@@ -336,11 +384,11 @@ if (ANIMATE) {
     const batch = (selector, from = { y: 50 }) => {
         ScrollTrigger.batch(selector, {
             start: 'top 92%',
-            onEnter: (els) => gsap.fromTo(els, { opacity: 0, ...from }, { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: 'expo.out', stagger: 0.08, overwrite: true }),
+            onEnter: (els) => gsap.fromTo(els, { opacity: 0, ...from }, { opacity: 1, y: 0, scale: 1, rotateX: 0, duration: 1.3, ease: 'expo.out', stagger: 0.09, overwrite: 'auto' }),
         });
     };
-    batch('.project', { y: 60, scale: 0.97 });
-    batch('.award', { y: 40 });
+    batch('.project', { y: 90, scale: 0.94, rotateX: -28, transformOrigin: '50% 0%' });
+    batch('.award', { y: 60, rotateX: -24, transformPerspective: 1200, transformOrigin: '50% 0%' });
     batch('.number', { y: 30 });
 
     // Count-ups
@@ -366,6 +414,27 @@ if (ANIMATE) {
             onUpdate: (self) => skewTo(gsap.utils.clamp(-10, 10, self.getVelocity() / -300)),
         });
     }
+
+    // Unvibe demo window lies back in 3D, then flattens as you scroll to it
+    gsap.fromTo('.window', { rotateX: 32, scale: 0.88, y: 30 }, {
+        rotateX: 0, scale: 1, y: 0, ease: 'none',
+        scrollTrigger: { trigger: '.unvibe-media', start: 'top bottom', end: 'center 60%', scrub: 0.6 },
+    });
+
+    // Research panel swings up like a card being set on a table
+    gsap.fromTo('.research', { rotateX: 10, scale: 0.93, transformPerspective: 1800 }, {
+        rotateX: 0, scale: 1, ease: 'none',
+        scrollTrigger: { trigger: '.research', start: 'top bottom', end: 'top 25%', scrub: 0.6 },
+    });
+
+    // Journey stops turn in from the side
+    $$('.stop').forEach((stop, i) => {
+        gsap.from(stop, {
+            rotateY: i % 2 ? 28 : -28, transformPerspective: 1200, transformOrigin: i % 2 ? '100% 50%' : '0% 50%',
+            duration: 1.4, ease: 'expo.out',
+            scrollTrigger: { trigger: stop, start: 'top 85%' },
+        });
+    });
 
     // Story photo parallax + journey line draw
     const storyImg = $('[data-parallax]');
@@ -404,16 +473,28 @@ if (ANIMATE) {
                 pin: true,
                 scrub: 0.8,
                 invalidateOnRefresh: true,
+                onUpdate: () => coverflow(0.55),
+                onRefresh: () => coverflow(0.55),
             },
         });
-        $$('.lead-card', track).forEach((card, i) => {
-            gsap.from(card, {
-                y: i % 2 ? 60 : -30, rotate: i % 2 ? 2 : -2, opacity: 0.4,
-                ease: 'none',
-                scrollTrigger: { trigger: card, containerAnimation: tween, start: 'left 100%', end: 'left 60%', scrub: true },
-            });
-        });
-        return () => scroller.classList.remove('is-pinned');
+        // Keep cards turning while the track eases toward its scrubbed position
+        const tick = () => coverflow(0.55);
+        gsap.ticker.add(tick);
+        tick();
+        return () => {
+            gsap.ticker.remove(tick);
+            scroller.classList.remove('is-pinned');
+            gsap.set($$('.lead-card'), { clearProps: 'transform,opacity' });
+        };
+    });
+
+    // Mobile: coverflow on native horizontal swipe
+    mm.add('(max-width: 900px)', () => {
+        const scroller = $('#lead-scroller');
+        const onScroll = () => coverflow(1);
+        scroller.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+        return () => scroller.removeEventListener('scroll', onScroll);
     });
 
     // Unvibe ⌘U keycap loop

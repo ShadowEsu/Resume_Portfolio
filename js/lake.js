@@ -135,39 +135,39 @@ export function initLake({ canvas, runBtn, resetBtn, shapingInput, episodesEl, s
             ctx.beginPath();
             ctx.roundRect(x, y, cell, cell, 12);
             if (t === 'H') {
-                ctx.fillStyle = '#080706';
+                ctx.fillStyle = '#030304';
                 ctx.fill();
-                ctx.strokeStyle = 'rgba(242,237,228,0.12)';
+                ctx.strokeStyle = 'rgba(255,255,255,0.12)';
                 ctx.lineWidth = 1;
                 ctx.stroke();
-                ctx.strokeStyle = 'rgba(242,237,228,0.1)';
+                ctx.strokeStyle = 'rgba(255,255,255,0.1)';
                 ctx.beginPath();
                 ctx.arc(x + cell / 2, y + cell / 2, cell * 0.22, 0, Math.PI * 2);
                 ctx.stroke();
                 continue;
             }
             if (t === 'G') {
-                ctx.fillStyle = `rgba(94,224,160,${0.75 + flash * 0.25})`;
+                ctx.fillStyle = `rgba(255,255,255,${0.85 + flash * 0.15})`;
                 ctx.fill();
-                ctx.fillStyle = '#0c0b0a';
-                ctx.font = '600 15px "Geist Mono", monospace';
+                ctx.fillStyle = '#070708';
+                ctx.font = '600 15px "JetBrains Mono", monospace';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 ctx.fillText('GOAL', x + cell / 2, y + cell / 2);
                 continue;
             }
-            ctx.fillStyle = '#211e1a';
+            ctx.fillStyle = '#16161a';
             ctx.fill();
             const v = Math.max(0, values[s]) / vmax;
             if (v > 0.01) {
-                ctx.fillStyle = `rgba(255,91,36,${Math.min(0.9, v * 0.85)})`;
+                ctx.fillStyle = `rgba(140,200,255,${Math.min(0.9, v * 0.85)})`;
                 ctx.beginPath();
                 ctx.roundRect(x, y, cell, cell, 12);
                 ctx.fill();
             }
             if (t === 'S') {
-                ctx.fillStyle = 'rgba(242,237,228,0.45)';
-                ctx.font = '500 11px "Geist Mono", monospace';
+                ctx.fillStyle = 'rgba(255,255,255,0.45)';
+                ctx.font = '500 11px "JetBrains Mono", monospace';
                 ctx.textAlign = 'left';
                 ctx.textBaseline = 'top';
                 ctx.fillText('START', x + 10, y + 10);
@@ -181,7 +181,7 @@ export function initLake({ canvas, runBtn, resetBtn, shapingInput, episodesEl, s
                 const cx = x + cell / 2;
                 const cy = y + cell / 2;
                 const L = cell * 0.18;
-                ctx.strokeStyle = 'rgba(242,237,228,0.9)';
+                ctx.strokeStyle = v > 0.55 ? 'rgba(7,7,8,0.85)' : 'rgba(255,255,255,0.92)';
                 ctx.lineWidth = 2.5;
                 ctx.lineCap = 'round';
                 ctx.beginPath();
@@ -201,11 +201,11 @@ export function initLake({ canvas, runBtn, resetBtn, shapingInput, episodesEl, s
         agentY += (tr - agentY) * 0.35;
         const ax = gap + agentX * (cell + gap) + cell / 2;
         const ay = gap + agentY * (cell + gap) + cell / 2;
-        ctx.fillStyle = 'rgba(242,237,228,0.18)';
+        ctx.fillStyle = 'rgba(140,200,255,0.3)';
         ctx.beginPath();
         ctx.arc(ax, ay, cell * 0.24, 0, Math.PI * 2);
         ctx.fill();
-        ctx.fillStyle = '#f2ede4';
+        ctx.fillStyle = '#ffffff';
         ctx.beginPath();
         ctx.arc(ax, ay, cell * 0.13, 0, Math.PI * 2);
         ctx.fill();

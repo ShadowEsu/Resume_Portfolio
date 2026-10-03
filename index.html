@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preston Susanto — Founder, AI Researcher, Builder</title>
     <meta name="description" content="Preston Susanto is the founder of Unvibe, an independent reinforcement-learning researcher, a 5× hackathon winner, and a 4.0 EECS student in the San Francisco Bay Area.">
-    <meta name="theme-color" content="#0c0b0a">
+    <meta name="theme-color" content="#070708">
     <meta property="og:title" content="Preston Susanto — Founder, AI Researcher, Builder">
     <meta property="og:description" content="Founder of Unvibe. Independent RL researcher. 5× hackathon winner. 4.0 EECS student in the Bay Area.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="images/preston-goldengate.jpg">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ff5b24'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial' font-weight='900' font-size='30' fill='%230c0b0a'%3EPS%3C/text%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23070708'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='28' fill='%23ffffff'%3EPS%3C/text%3E%3Ccircle cx='50' cy='16' r='5' fill='%238cc8ff'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=Inter:wght@300..700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script>
         (function () {
@@ -95,7 +95,7 @@
 
                     <h1 class="hero-title" aria-label="Preston Susanto">
                         <span class="hero-line" data-split>Preston</span>
-                        <span class="hero-line hero-line-outline" data-split>Susanto</span>
+                        <span class="hero-line hero-line-serif" data-split>Susanto</span>
                     </h1>
 
                     <p class="hero-role" data-hero>
@@ -137,7 +137,14 @@
                     </div>
                     <span class="float-chip float-chip-1"><b>4.0</b> GPA</span>
                     <span class="float-chip float-chip-2"><b>5×</b> hackathon winner</span>
-                    <span class="float-chip float-chip-3"><span class="kbd">⌘</span><span class="kbd">U</span> Founder · Unvibe</span>
+                    <a href="#now" class="app-tile app-tile-unvibe" aria-label="Unvibe, my startup">
+                        <img src="images/apps/unvibe.png" alt="" width="192" height="192">
+                        <span class="app-tile-label mono">Unvibe</span>
+                    </a>
+                    <a href="#work" class="app-tile app-tile-regrade" aria-label="Regrade, my previous startup">
+                        <img src="images/apps/regrade.png" alt="" width="250" height="260">
+                        <span class="app-tile-label mono">Regrade</span>
+                    </a>
                 </div>
             </div>
 
@@ -145,21 +152,21 @@
                 <span class="scroll-cue-line" aria-hidden="true"></span>
                 Scroll
             </a>
-            <p class="hero-hint mono" aria-hidden="true">↖ move your cursor — the grid is a Q-learning value map</p>
+            <p class="hero-hint mono" aria-hidden="true">↖ move your cursor · a live 3D value-iteration landscape</p>
         </section>
 
         <!-- ============ MARQUEE ============ -->
         <div class="marquee" aria-label="Highlights">
             <div class="marquee-track">
-                <span>Claude for Startups</span><i>✦</i>
-                <span>Featured in FounderMag</span><i>✦</i>
-                <span>SF Hacks 2026 — 3 awards</span><i>✦</i>
-                <span>Curtin Gen AI Hackathon — 1st place</span><i>✦</i>
-                <span>Mega Hackathon — Best Gaming Hack</span><i>✦</i>
-                <span>Gemini Live Agent — top 1% of 12,000+</span><i>✦</i>
-                <span>Stanford Small Groups</span><i>✦</i>
-                <span>Founders School</span><i>✦</i>
-                <span>GDG @ DVC President</span><i>✦</i>
+                <span>Claude for Startups</span><i></i>
+                <span>Featured in FounderMag</span><i></i>
+                <span>SF Hacks 2026 — 3 awards</span><i></i>
+                <span>Curtin Gen AI Hackathon — 1st place</span><i></i>
+                <span>Mega Hackathon — Best Gaming Hack</span><i></i>
+                <span>Gemini Live Agent — top 1% of 12,000+</span><i></i>
+                <span>Stanford Small Groups</span><i></i>
+                <span>Founders School</span><i></i>
+                <span>GDG @ DVC President</span><i></i>
             </div>
         </div>
 
@@ -196,12 +203,16 @@
             <div class="container">
                 <div class="section-head">
                     <span class="eyebrow mono"><span class="eyebrow-num">01</span> Now building</span>
-                    <h2 class="section-title" data-reveal-title>AI writes the code.<br><span class="text-accent">You should still understand it.</span></h2>
+                    <h2 class="section-title" data-reveal-title>AI writes the code.<br><span class="accent-serif">You should still understand it.</span></h2>
                 </div>
 
                 <div class="unvibe-grid">
                     <div class="unvibe-copy">
                         <div class="unvibe-brand" data-reveal>
+                            <span class="coin" aria-hidden="true">
+                                <span class="coin-face"><img src="images/apps/unvibe.png" alt=""></span>
+                                <span class="coin-face coin-back mono">⌘U</span>
+                            </span>
                             <h3 class="unvibe-name">Unvibe</h3>
                             <span class="tag tag-live mono"><span class="status-dot" aria-hidden="true"></span>Private beta</span>
                         </div>
@@ -218,6 +229,19 @@
                             <li><b>$230K+</b><span>in credits from GitLab, Mixpanel, PostHog, AWS, Google Cloud &amp; MongoDB</span></li>
                             <li><b>Claude</b><span>for Startups. Accepted into Anthropic's program</span></li>
                         </ul>
+
+                        <div class="credit-logos" data-reveal>
+                            <span class="mono">Credits &amp; programs</span>
+                            <div class="credit-logos-row">
+                                <span><img src="images/logos/credits/gitlab.svg" alt="GitLab" loading="lazy"></span>
+                                <span><img src="images/logos/credits/mixpanel.svg" alt="Mixpanel" loading="lazy"></span>
+                                <span><img src="images/logos/credits/posthog.svg" alt="PostHog" loading="lazy"></span>
+                                <span><img src="images/logos/credits/aws.svg" alt="AWS" loading="lazy"></span>
+                                <span><img src="images/logos/credits/googlecloud.svg" alt="Google Cloud" loading="lazy"></span>
+                                <span><img src="images/logos/credits/mongodb.svg" alt="MongoDB" loading="lazy"></span>
+                                <span><img src="images/logos/tools/claude.svg" alt="Claude for Startups" loading="lazy"></span>
+                            </div>
+                        </div>
 
                         <p class="unvibe-pivot" data-reveal>
                             <span class="mono">What users taught me →</span>
@@ -278,7 +302,7 @@
                     <article class="project project-lg" data-tags="ai win hardware" tabindex="0" data-cursor="Open">
                         <div class="project-media"><img src="images/projects/sortify.png" alt="Sortify landing page" loading="lazy"></div>
                         <div class="project-body">
-                            <span class="tag tag-win mono">🏆 SF Hacks 2026 · 3 awards</span>
+                            <span class="tag tag-win mono">SF Hacks 2026 · 3 awards</span>
                             <h3 class="project-title">Sortify</h3>
                             <p class="project-desc">Scan any item, get recycle / compost / trash guidance. Won three categories in one 48-hour sprint.</p>
                             <span class="project-open mono" aria-hidden="true">Details +</span>
@@ -296,7 +320,7 @@
 
                     <!-- Regrade -->
                     <article class="project" data-tags="ai startup" tabindex="0" data-cursor="Open">
-                        <div class="project-media"><img src="images/regrade.png" alt="Regrade app interface" loading="lazy"></div>
+                        <div class="project-media"><img src="images/regrade.png" alt="Regrade app interface" loading="lazy"><img class="project-app-icon" src="images/apps/regrade.png" alt="" aria-hidden="true"></div>
                         <div class="project-body">
                             <span class="tag mono">Startup · Mar – Jul 2026</span>
                             <h3 class="project-title">Regrade</h3>
@@ -439,7 +463,7 @@
             <div class="container">
                 <div class="section-head">
                     <span class="eyebrow mono"><span class="eyebrow-num">03</span> Research</span>
-                    <h2 class="section-title" data-reveal-title>Teaching agents to learn faster,<br><span class="text-accent">on a laptop.</span></h2>
+                    <h2 class="section-title" data-reveal-title>Teaching agents to learn faster,<br><span class="accent-serif">on a laptop.</span></h2>
                 </div>
 
                 <div class="research-grid">
@@ -719,7 +743,7 @@
                 <img src="images/preston-goldengate.jpg" alt="Preston walking across the Golden Gate Bridge" loading="lazy" data-parallax>
                 <div class="story-photo-overlay">
                     <span class="eyebrow mono"><span class="eyebrow-num">06</span> The road here</span>
-                    <p class="story-quote" data-reveal-title>I didn't come to California<br>for an easy path.</p>
+                    <p class="story-quote" data-reveal-title>I didn't come to California<br><span class="accent-serif">for an easy path.</span></p>
                 </div>
             </div>
 
@@ -729,25 +753,25 @@
                 </svg>
 
                 <article class="stop" data-reveal>
-                    <span class="stop-flag" aria-hidden="true">🇮🇩</span>
+                    <span class="stop-flag mono" aria-hidden="true">ID</span>
                     <span class="stop-when mono">2015 – 2021</span>
                     <h3 class="stop-where">Jakarta, Indonesia</h3>
                     <p>Grew up bilingual and went to SMAK 5 Penabur Kelapa Gading. Built my first websites at 13, an HTML/CSS/JS habit that never stopped.</p>
                 </article>
                 <article class="stop" data-reveal>
-                    <span class="stop-flag" aria-hidden="true">🇦🇺</span>
+                    <span class="stop-flag mono" aria-hidden="true">AU</span>
                     <span class="stop-when mono">2021 – 2024</span>
                     <h3 class="stop-where">Perth, Australia</h3>
                     <p>Wesley College, ranked the #1 private high school in Australia (Schools360, 2026). Computer Science Prize, #1 of 110. Co-founded the Wesley Coding Club. Captained soccer, volleyball and basketball teams. Earned a taekwondo blue belt.</p>
                 </article>
                 <article class="stop" data-reveal>
-                    <span class="stop-flag" aria-hidden="true">🇨🇳</span>
+                    <span class="stop-flag mono" aria-hidden="true">CN</span>
                     <span class="stop-when mono">Feb – Jul 2025</span>
                     <h3 class="stop-where">Rural China</h3>
                     <p>A residential immersion at Wen Dao Xue Xiao: 5&nbsp;a.m. to 9&nbsp;p.m. days farming potatoes, rice, carrots and strawberries, laying bricks, and studying Chinese, tai chi, wushu and traditional Chinese medicine, with almost no modern comforts.</p>
                 </article>
                 <article class="stop stop-now" data-reveal>
-                    <span class="stop-flag" aria-hidden="true">🇺🇸</span>
+                    <span class="stop-flag mono" aria-hidden="true">US</span>
                     <span class="stop-when mono">Aug 2025 – Now</span>
                     <h3 class="stop-where">San Francisco Bay Area</h3>
                     <p>Moved here alone to study EECS at Diablo Valley College. 4.0 GPA, RL research, a startup, and a lot of campus leadership. Transfer targets: UC Berkeley, Stanford and Princeton, Fall 2027.</p>
@@ -765,35 +789,35 @@
 
                 <div class="award-grid">
                     <article class="award award-hero tilt" data-tilt>
-                        <span class="award-icon" aria-hidden="true">🏆</span>
+                        <span class="award-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4ZM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/></svg></span>
                         <span class="mono award-kicker">SF Hacks 2026</span>
                         <h3>3 awards in one weekend</h3>
                         <p>Best Beginner Hack · Best Hardware Hack · Best Use of Boxi AI, for Sortify.</p>
                     </article>
                     <article class="award tilt" data-tilt>
-                        <span class="award-icon" aria-hidden="true">🥇</span>
+                        <span class="award-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="15" r="6"/><path d="M8.5 10.5 6 3h4l2 5 2-5h4l-2.5 7.5M12 13v4"/></svg></span>
                         <span class="mono award-kicker">Curtin University Gen AI Hackathon 2026</span>
                         <h3>1st place</h3>
                     </article>
                     <article class="award tilt" data-tilt>
-                        <span class="award-icon" aria-hidden="true">🎮</span>
+                        <span class="award-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 10.5v4M5 12.5h4M15.5 11.5h.01M18 13.5h.01"/></svg></span>
                         <span class="mono award-kicker">Mega Hackathon 2026</span>
                         <h3>Best Gaming Hack</h3>
                         <p>Top 1% of 950+ participants.</p>
                     </article>
                     <article class="award tilt" data-tilt>
-                        <span class="award-icon" aria-hidden="true">⚡</span>
+                        <span class="award-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></span>
                         <span class="mono award-kicker">Gemini AI Live Agent Hackathon</span>
                         <h3>Top 1% of 12,000+</h3>
                     </article>
                     <article class="award award-dark tilt" data-tilt>
-                        <span class="award-icon" aria-hidden="true">✦</span>
+                        <span class="award-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg></span>
                         <span class="mono award-kicker">Diablo Valley College</span>
                         <h3>4.0 GPA</h3>
                         <p>Phillip Howe Scholarship ($2,000) · Manuel Gonzales Merit Scholarship ($350)</p>
                     </article>
                     <article class="award tilt" data-tilt>
-                        <span class="award-icon" aria-hidden="true">🎓</span>
+                        <span class="award-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5L2 9Z"/><path d="M6 11v5c2 2 10 2 12 0v-5M22 9v6"/></svg></span>
                         <span class="mono award-kicker">Wesley College</span>
                         <h3>Computer Science Prize, #1 of 110</h3>
                         <p>Academic Excellence (top 1%, ×2) · Gold Endeavour (top 1%, ×3) · Duke of Edinburgh Bronze</p>
@@ -844,10 +868,10 @@
                     <h2 class="section-title" id="beyond-title" data-reveal-title>The rest of me</h2>
                 </div>
                 <div class="beyond-grid" data-reveal-stagger>
-                    <article class="beyond-card"><span class="beyond-emoji" aria-hidden="true">🥋</span><h3>Taekwondo</h3><p>White belt to blue belt (10th → 5th Geup) in two years at First Taekwondo Dojo, Perth. 8+ Taegeuk forms.</p></article>
-                    <article class="beyond-card"><span class="beyond-emoji" aria-hidden="true">⚽</span><h3>Team captain</h3><p>Soccer, volleyball and basketball at Wesley College, 3rd Division Perth.</p></article>
-                    <article class="beyond-card"><span class="beyond-emoji" aria-hidden="true">🏕️</span><h3>119+ service hours</h3><p>Camp Leader at YMCA Camp Campbell: 89 hours supervising 190+ students at an overnight science camp.</p></article>
-                    <article class="beyond-card"><span class="beyond-emoji" aria-hidden="true">🌾</span><h3>Farmer, briefly</h3><p>Rice, potatoes, carrots and strawberries in rural China. Best lesson in discipline I've had.</p></article>
+                    <article class="beyond-card"><span class="beyond-num mono" aria-hidden="true">01</span><h3>Taekwondo</h3><p>White belt to blue belt (10th → 5th Geup) in two years at First Taekwondo Dojo, Perth. 8+ Taegeuk forms.</p></article>
+                    <article class="beyond-card"><span class="beyond-num mono" aria-hidden="true">02</span><h3>Team captain</h3><p>Soccer, volleyball and basketball at Wesley College, 3rd Division Perth.</p></article>
+                    <article class="beyond-card"><span class="beyond-num mono" aria-hidden="true">03</span><h3>119+ service hours</h3><p>Camp Leader at YMCA Camp Campbell: 89 hours supervising 190+ students at an overnight science camp.</p></article>
+                    <article class="beyond-card"><span class="beyond-num mono" aria-hidden="true">04</span><h3>Farmer, briefly</h3><p>Rice, potatoes, carrots and strawberries in rural China. Best lesson in discipline I've had.</p></article>
                 </div>
             </div>
         </section>
@@ -856,7 +880,7 @@
         <section class="contact" id="contact">
             <div class="container contact-inner">
                 <span class="eyebrow mono"><span class="status-dot" aria-hidden="true"></span>Open to internships, research collabs &amp; founder chats</span>
-                <h2 class="contact-title" data-reveal-title>Let's build<br><span class="text-accent">something real.</span></h2>
+                <h2 class="contact-title" data-reveal-title>Let's build<br><span class="accent-serif">something real.</span></h2>
                 <button class="contact-email magnetic" id="copy-email" data-email="prestonjaysusanto@gmail.com" data-cursor="Copy">
                     <span class="contact-email-text">prestonjaysusanto@gmail.com</span>
                     <span class="contact-email-hint mono" id="copy-hint">Click to copy</span>

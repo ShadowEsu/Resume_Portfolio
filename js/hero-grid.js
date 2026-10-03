@@ -1,12 +1,12 @@
 /**
- * Hero background: a gridworld running value iteration in real time.
+ * 2D fallback for the hero (used when WebGL is unavailable): a gridworld running value iteration in real time.
  * The cursor is the goal; each frame does one Bellman sweep, so value ripples
  * outward and flows around "holes". Little agents follow the greedy policy.
  */
 
 const GAMMA = 0.86;
-const ACCENT = [255, 91, 36];
-const CREAM = [242, 237, 228];
+const ACCENT = [140, 200, 255];
+const CREAM = [255, 255, 255];
 
 export function initHeroGrid(canvas, { reduced = false } = {}) {
     if (!canvas) return;
@@ -148,7 +148,7 @@ export function initHeroGrid(canvas, { reduced = false } = {}) {
                 const x = c * cell;
                 const y = r * cell;
                 if (holes[i]) {
-                    ctx.strokeStyle = 'rgba(242,237,228,0.06)';
+                    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
                     ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.roundRect(x + pad + 0.5, y + pad + 0.5, size - 1, size - 1, 6);
@@ -178,7 +178,7 @@ export function initHeroGrid(canvas, { reduced = false } = {}) {
                         ctx.stroke();
                     }
                 } else {
-                    ctx.fillStyle = 'rgba(242,237,228,0.07)';
+                    ctx.fillStyle = 'rgba(255,255,255,0.07)';
                     ctx.fillRect(x + cell / 2 - 1, y + cell / 2 - 1, 2, 2);
                 }
             }
