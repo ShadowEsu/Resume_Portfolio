@@ -7,8 +7,8 @@ researcher, 5× hackathon winner, and EECS student at Diablo Valley College. Sta
 no build step. GitHub Pages serves it straight from `main`.
 
 ## Design
-- **Palette**: text stays black, white and gray; color lives in the visuals (photos, app logos, the light-blue 3D hero and research demo). No decorative gradients
-- **Type**: Inter Tight (display), Inter (body), JetBrains Mono (labels), Instrument Serif italic (gray) for accent lines
+- **Palette**: text is white on black (black on the light research panel); color lives in the visuals (photos, app logos, the light-blue 3D hero and research demo). No decorative gradients
+- **Type**: Inter Tight (display), Inter (body), JetBrains Mono (labels), Instrument Serif italic for accent lines
 - **App logos**: Unvibe and Regrade icons float in 3D around the portrait; Unvibe's credit partners are shown under its metrics
 - **Signature pieces**
   - Hero is a Three.js 3D landscape running value iteration live. The cursor is the goal, columns rise
