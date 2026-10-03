@@ -1,44 +1,45 @@
-# Preston Susanto — 3D Portfolio
+# Preston Susanto — Portfolio
 
 Live: https://shadowesu.github.io/Resume_Portfolio/
 
-An interactive 3D portfolio in a red & black handwritten style, built with vanilla
-JavaScript, Three.js, and GSAP. No build step required — the site is served as
-static files straight from `main`.
+Personal site for Preston Susanto: founder of Unvibe, independent reinforcement-learning
+researcher, 5× hackathon winner, and EECS student at Diablo Valley College. Static HTML/CSS/JS,
+no build step. GitHub Pages serves it straight from `main`.
 
 ## Design
-- **One typeface**: Caveat (handwriting), used everywhere
-- **Red & black**: crimson `#c1121f` accent on near-black surfaces
-- **Story-driven motion**: a wandering light follows you down the page, the
-  leadership timeline fills with a traveling orb, and the Golden Gate photo
-  band parallaxes as you pass
+- **Palette**: warm ink `#0c0b0a`, cream `#f2ede4`, and Golden Gate orange `#ff5b24`
+- **Type**: Bricolage Grotesque (display), Geist (body), Geist Mono (labels)
+- **Signature pieces**
+  - Hero background is a live gridworld running value iteration. The cursor is the goal,
+    value ripples outward around "holes", and small agents follow the greedy policy.
+  - The research section has a real, in-browser tabular Q-learning demo on a 4×4 FrozenLake,
+    with a toggle for potential-based reward shaping.
 
-## Stack
-- **Three.js** (CDN ES module, lazy-loaded) — red neural-network particle hero that reacts to mouse and scroll
-- **GSAP + ScrollTrigger** (CDN) — scroll-driven reveals, split-text headings, counters, timeline orb
-- **Lenis** (CDN) — smooth scrolling
-- **Vanilla JS + CSS** — magnetic buttons, expandable project cards, zigzag leadership timeline
+## Motion
+- Intro curtain (once per session, pure CSS so it can't get stuck)
+- Split-character hero title, scrambling role text, magnetic buttons, 3D tilt cards, cursor follower
+- Line-mask section title reveals, count-up stats, scroll-velocity marquee
+- GSAP Flip project filtering with a detail modal
+- Pinned horizontal leadership rail on desktop (swipe on mobile)
+- Parallax Golden Gate photo and a journey line that draws on scroll
+- `prefers-reduced-motion` disables animation; content stays visible if the CDN scripts never load
 
 ## Structure
-- `index.html` — all content: hero / about (with portrait) / journey / photo band / research / projects / experience / leadership / awards / contact
-- `style.css` — design tokens, layout, responsive rules
-- `js/main.js` — interactions and scroll animations
-- `js/hero3d.js` — Three.js hero scene (lazy-loaded after first paint)
-- `images/` — project screenshots, club logos, and photos
+- `index.html`: all content (hero, Unvibe, work, research, experience, leadership, story, awards, toolbox, contact)
+- `style.css`: design tokens, layout, responsive rules, and the `stats.html` styles
+- `js/main.js`: smooth scroll, animations, nav, filters, modal, interactions
+- `js/hero-grid.js`: hero value-iteration canvas
+- `js/lake.js`: FrozenLake Q-learning demo
+- `js/visitors.js`: Supabase unique-visitor counter (see `stats.html`, `supabase/`)
+- `Preston_Susanto_Resume.pdf`: current résumé
 
-## Performance & accessibility
-- Three.js loads after first paint; the hero pauses when offscreen or the tab is hidden
-- Node/particle counts and pixel ratio scale down on mobile; spotlight disabled on small screens
-- `prefers-reduced-motion` renders static content and disables animations
-- Preloader has a CSS-only fallback so content is never blocked if JS stalls
-- Elements already in view on load (e.g. anchor deep-links) render statically instead of waiting for scroll animations
+## Libraries (CDN)
+GSAP 3.12 + ScrollTrigger + Flip, and Lenis for smooth scrolling.
 
-## Development
+## Local preview
 ```bash
-npm install
-npm run dev   # vite dev server on :3000
+npx http-server -p 4321 .
 ```
 
 ## Deployment
-GitHub Pages serves the repository root from `main`. Push to `main` and the site updates —
-no build required.
+Pushing to `main` runs `.github/workflows/deploy-pages.yml`, which copies the static files to GitHub Pages.

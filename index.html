@@ -3,1110 +3,898 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preston Susanto · Developer, Startup Builder, EECS</title>
-    <meta name="description" content="Preston Susanto builds AI products people ship with. Founder of UNVIBE and Regrade. EECS student, full-stack engineer, and ML researcher.">
-    <meta property="og:title" content="Preston Susanto · Developer, Startup Builder, EECS">
-    <meta property="og:description" content="Shipping UNVIBE and Regrade. AI products, full-stack engineering, and machine learning.">
+    <title>Preston Susanto — Founder, AI Researcher, Builder</title>
+    <meta name="description" content="Preston Susanto is the founder of Unvibe, an independent reinforcement-learning researcher, a 5× hackathon winner, and a 4.0 EECS student in the San Francisco Bay Area.">
+    <meta name="theme-color" content="#0c0b0a">
+    <meta property="og:title" content="Preston Susanto — Founder, AI Researcher, Builder">
+    <meta property="og:description" content="Founder of Unvibe. Independent RL researcher. 5× hackathon winner. 4.0 EECS student in the Bay Area.">
     <meta property="og:type" content="website">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <meta property="og:image" content="images/preston-goldengate.jpg">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ff5b24'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial' font-weight='900' font-size='30' fill='%230c0b0a'%3EPS%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script>
+        (function () {
+            var html = document.documentElement;
+            var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+            try {
+                if (reduced || sessionStorage.getItem('ps-intro')) html.classList.add('intro-seen');
+                sessionStorage.setItem('ps-intro', '1');
+            } catch (e) {}
+            if (!reduced) {
+                // Hide reveal targets until GSAP takes over; un-hide if scripts never arrive.
+                html.classList.add('anim');
+                setTimeout(function () { if (!window.__animReady) html.classList.remove('anim'); }, 3500);
+            }
+        })();
+    </script>
 </head>
-<body class="is-loading">
-    <div id="site-loader" class="site-loader" aria-live="polite" aria-busy="true">
-        <div class="site-loader-inner">
-            <span id="site-loader-pct" class="site-loader-pct">0%</span>
-            <div class="site-loader-bar" aria-hidden="true">
-                <div id="site-loader-fill" class="site-loader-fill"></div>
-            </div>
-            <p class="site-loader-name mono">PRESTON SUSANTO</p>
+<body>
+    <!-- Intro curtain (plays once per session; CSS fallback hides it if JS never runs) -->
+    <div class="intro" id="intro" aria-hidden="true">
+        <div class="intro-inner">
+            <span class="intro-word"><span>Preston</span></span>
+            <span class="intro-word intro-word-accent"><span>Susanto</span></span>
         </div>
+        <span class="intro-count mono" id="intro-count">00</span>
     </div>
 
-    <div id="scroll-progress" aria-hidden="true"></div>
+    <div class="cursor" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-ring"><span class="cursor-label"></span></span></div>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
 
-    <main>
+    <!-- ============ NAV ============ -->
+    <header class="nav" id="nav">
+        <a href="#top" class="nav-logo" aria-label="Preston Susanto, back to top">
+            <span class="nav-logo-mark">PS</span>
+        </a>
+        <nav class="nav-links" aria-label="Sections">
+            <a href="#now" data-nav>Unvibe</a>
+            <a href="#work" data-nav>Work</a>
+            <a href="#research" data-nav>Research</a>
+            <a href="#experience" data-nav>Experience</a>
+            <a href="#leadership" data-nav>Leadership</a>
+            <a href="#story" data-nav>Story</a>
+            <span class="nav-pill" aria-hidden="true"></span>
+        </nav>
+        <div class="nav-actions">
+            <a href="Preston_Susanto_Resume.pdf" target="_blank" rel="noopener" class="btn btn-sm btn-light magnetic">Résumé</a>
+            <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+        <nav aria-label="Mobile sections">
+            <a href="#now">Unvibe</a>
+            <a href="#work">Work</a>
+            <a href="#research">Research</a>
+            <a href="#experience">Experience</a>
+            <a href="#leadership">Leadership</a>
+            <a href="#story">Story</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a href="Preston_Susanto_Resume.pdf" target="_blank" rel="noopener" class="btn btn-accent">Download résumé</a>
+    </div>
+
+    <main id="top">
         <!-- ============ HERO ============ -->
         <section class="hero" id="hero">
-            <canvas id="hero-canvas" aria-hidden="true"></canvas>
-            <div class="hero-vignette" aria-hidden="true"></div>
+            <canvas class="hero-grid" id="hero-grid" aria-hidden="true"></canvas>
+            <div class="hero-glow" aria-hidden="true"></div>
 
-            <div class="hero-inner">
-                <p class="hero-eyebrow mono">DEVELOPER · STARTUP BUILDER · EECS</p>
-                <h1 class="hero-title">
-                    <span class="hero-title-line hero-title-display">Preston Susanto</span>
-                    <span class="hero-title-line hero-title-accent">I build AI products people ship with.</span>
-                </h1>
-                <p class="hero-sub">
-                    Developer, startup builder, and EECS student. Currently shipping UNVIBE and Regrade
-                    with real full-stack, mobile, and machine-learning work.
-                </p>
-                <div class="hero-cta">
-                    <a href="Preston_Susanto_Resume.pdf" target="_blank" rel="noopener" class="btn btn-primary magnetic-btn">View Resume</a>
-                    <a href="https://www.linkedin.com/in/preston-jay-susanto/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
-                    <a href="https://github.com/ShadowEsu" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
-                    <a href="#unvibe" class="btn btn-ghost">View My Projects</a>
+            <div class="hero-inner container">
+                <div class="hero-copy">
+                    <p class="status-pill" data-hero>
+                        <span class="status-dot" aria-hidden="true"></span>
+                        <span>Now: building <strong>Unvibe</strong><span class="status-extra"> · researching with Stanford Small Groups</span></span>
+                    </p>
+
+                    <h1 class="hero-title" aria-label="Preston Susanto">
+                        <span class="hero-line" data-split>Preston</span>
+                        <span class="hero-line hero-line-outline" data-split>Susanto</span>
+                    </h1>
+
+                    <p class="hero-role" data-hero>
+                        <span class="hero-role-static">I'm a</span>
+                        <span class="hero-role-swap" id="role-swap" data-roles='["founder","AI researcher","5× hackathon winner","full-stack engineer","community builder"]'>founder</span>
+                    </p>
+
+                    <p class="hero-lede" data-hero>
+                        I build tools that help people actually <em>understand</em> the AI-written code they ship.
+                        EECS student at Diablo Valley College with a 4.0, transferring Fall&nbsp;2027.
+                        Grew up across Indonesia, Australia and China. Now building in the Bay&nbsp;Area.
+                    </p>
+
+                    <div class="hero-cta" data-hero>
+                        <a href="#work" class="btn btn-accent magnetic" data-cursor="Scroll">See my work <span class="btn-arrow" aria-hidden="true">↓</span></a>
+                        <a href="Preston_Susanto_Resume.pdf" target="_blank" rel="noopener" class="btn btn-ghost magnetic">Résumé <span class="btn-arrow" aria-hidden="true">↗</span></a>
+                        <div class="hero-socials">
+                            <a href="https://www.linkedin.com/in/preston-jay-susanto/" target="_blank" rel="noopener" class="icon-btn magnetic" aria-label="LinkedIn">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1v5.46h-4v-4.84c0-1.15-.02-2.64-1.6-2.64-1.62 0-1.86 1.26-1.86 2.56v4.92h-4v-11Z"/></svg>
+                            </a>
+                            <a href="https://github.com/ShadowEsu" target="_blank" rel="noopener" class="icon-btn magnetic" aria-label="GitHub">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+                            </a>
+                            <a href="mailto:prestonjaysusanto@gmail.com" class="icon-btn magnetic" aria-label="Email">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1 2.3V17h16V7.3l-8 5.6-8-5.6ZM5.4 7l6.6 4.6L18.6 7H5.4Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual" data-hero-visual>
+                    <div class="portrait tilt" data-tilt>
+                        <img src="images/preston-headshot.jpg" alt="Portrait of Preston Susanto" width="900" height="900">
+                        <div class="portrait-shine" aria-hidden="true"></div>
+                        <div class="portrait-caption mono">
+                            <span>Pleasant Hill, CA</span>
+                            <span id="local-time">Bay Area</span>
+                        </div>
+                    </div>
+                    <span class="float-chip float-chip-1"><b>4.0</b> GPA</span>
+                    <span class="float-chip float-chip-2"><b>5×</b> hackathon winner</span>
+                    <span class="float-chip float-chip-3"><span class="kbd">⌘</span><span class="kbd">U</span> Founder · Unvibe</span>
+                </div>
+            </div>
+
+            <a href="#now" class="scroll-cue mono" aria-label="Scroll to content">
+                <span class="scroll-cue-line" aria-hidden="true"></span>
+                Scroll
+            </a>
+            <p class="hero-hint mono" aria-hidden="true">↖ move your cursor — the grid is a Q-learning value map</p>
+        </section>
+
+        <!-- ============ MARQUEE ============ -->
+        <div class="marquee" aria-label="Highlights">
+            <div class="marquee-track">
+                <span>Claude for Startups</span><i>✦</i>
+                <span>Featured in FounderMag</span><i>✦</i>
+                <span>SF Hacks 2026 — 3 awards</span><i>✦</i>
+                <span>Curtin Gen AI Hackathon — 1st place</span><i>✦</i>
+                <span>Mega Hackathon — Best Gaming Hack</span><i>✦</i>
+                <span>Gemini Live Agent — top 1% of 12,000+</span><i>✦</i>
+                <span>Stanford Small Groups</span><i>✦</i>
+                <span>Founders School</span><i>✦</i>
+                <span>GDG @ DVC President</span><i>✦</i>
+            </div>
+        </div>
+
+        <!-- ============ NUMBERS ============ -->
+        <section class="numbers container" aria-label="By the numbers">
+            <div class="number">
+                <span class="number-value"><span data-count="5">5</span>×</span>
+                <span class="number-label">hackathon winner</span>
+            </div>
+            <div class="number">
+                <span class="number-value">$<span data-count="230">230</span>K+</span>
+                <span class="number-label">startup credits secured for Unvibe</span>
+            </div>
+            <div class="number">
+                <span class="number-value"><span data-count="4.0" data-decimals="1">4.0</span></span>
+                <span class="number-label">GPA in EECS at DVC</span>
+            </div>
+            <div class="number">
+                <span class="number-value">top <span data-count="1">1</span>%</span>
+                <span class="number-label">of 12,000+ at the Gemini Live Agent Hackathon</span>
+            </div>
+            <div class="number">
+                <span class="number-value"><span data-count="300">300</span></span>
+                <span class="number-label">customers served by automations I built</span>
+            </div>
+            <div class="number">
+                <span class="number-value"><span data-count="4">4</span></span>
+                <span class="number-label">countries called home</span>
+            </div>
+        </section>
+
+        <!-- ============ UNVIBE ============ -->
+        <section class="section unvibe" id="now">
+            <div class="container">
+                <div class="section-head">
+                    <span class="eyebrow mono"><span class="eyebrow-num">01</span> Now building</span>
+                    <h2 class="section-title" data-reveal-title>AI writes the code.<br><span class="text-accent">You should still understand it.</span></h2>
+                </div>
+
+                <div class="unvibe-grid">
+                    <div class="unvibe-copy">
+                        <div class="unvibe-brand" data-reveal>
+                            <h3 class="unvibe-name">Unvibe</h3>
+                            <span class="tag tag-live mono"><span class="status-dot" aria-hidden="true"></span>Private beta</span>
+                        </div>
+                        <p class="unvibe-lede" data-reveal>
+                            A Mac and Windows desktop tool that explains AI-generated code right where it lives.
+                            Highlight anything, hit
+                            <span class="keys" aria-label="Command U"><span class="kbd kbd-lg" data-key>⌘</span><span class="kbd kbd-lg" data-key>U</span></span>
+                            and pick how deep you want to go. I solo-founded it in May 2026.
+                        </p>
+
+                        <ul class="metric-list" data-reveal-stagger>
+                            <li><b>~20</b><span>active private-beta users</span></li>
+                            <li><b>50+</b><span>developers giving direct product feedback</span></li>
+                            <li><b>$230K+</b><span>in credits from GitLab, Mixpanel, PostHog, AWS, Google Cloud &amp; MongoDB</span></li>
+                            <li><b>Claude</b><span>for Startups. Accepted into Anthropic's program</span></li>
+                        </ul>
+
+                        <p class="unvibe-pivot" data-reveal>
+                            <span class="mono">What users taught me →</span>
+                            Pointed criticism from beta users changed the roadmap. Unvibe is moving from a code explainer
+                            to a GitHub-connected <strong>engineering knowledge layer</strong> for AI-assisted teams.
+                        </p>
+
+                        <div class="btn-row" data-reveal>
+                            <a href="https://unvibe.site" target="_blank" rel="noopener" class="btn btn-accent magnetic">Visit unvibe.site <span class="btn-arrow" aria-hidden="true">↗</span></a>
+                            <a href="https://unvibe.site/investors" target="_blank" rel="noopener" class="btn btn-ghost magnetic">Investor page <span class="btn-arrow" aria-hidden="true">↗</span></a>
+                        </div>
+                    </div>
+
+                    <div class="unvibe-media" data-reveal-media>
+                        <div class="window">
+                            <div class="window-bar" aria-hidden="true">
+                                <span></span><span></span><span></span>
+                                <em class="mono">unvibe — demo</em>
+                            </div>
+                            <video class="window-video" autoplay muted loop playsinline preload="metadata" aria-label="Unvibe product demo">
+                                <source src="images/unvibe/demo-hq.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="press-cards">
+                            <a class="press-card" href="https://foundermag.co/launches/unvibe/" target="_blank" rel="noopener" data-reveal>
+                                <span class="mono press-kicker">Press · FounderMag · Jul 20, 2026 ↗</span>
+                                <p>“Unvibe Launches a Desktop ‘Understanding Layer’ for AI-Written Code”</p>
+                            </a>
+                            <article class="press-card" data-reveal>
+                                <span class="mono press-kicker">Writing · Publication</span>
+                                <p>“The Hidden Cost of Vibe Coding — And How Unvibe Helps You Actually Own Your Codebase”</p>
+                            </article>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- ============ AT A GLANCE ============ -->
-        <section class="section glance" id="capabilities" aria-labelledby="glance-title">
-            <div class="section-head">
-                <h2 id="glance-title" class="section-title">What I build</h2>
-                <p class="section-sub">Products shipped, skills that matter, and the stack behind them.</p>
-            </div>
-
-            <div class="glance-focus reveal">
-                <img src="images/logos/yc.svg" alt="Y Combinator" width="44" height="44" class="glance-yc">
-                <div class="glance-focus-copy">
-                    <p class="mono glance-label">FOCUS · UNVIBE · YC FALL 2026</p>
-                    <p class="glance-focus-title">Putting UNVIBE on the map</p>
-                    <p class="glance-focus-text">Mac-first learning layer for AI-generated code. Private beta live. Applying to Y Combinator Fall 2026.</p>
-                </div>
-                <div class="glance-metrics">
+        <!-- ============ WORK ============ -->
+        <section class="section work" id="work">
+            <div class="container">
+                <div class="section-head section-head-row">
                     <div>
-                        <span class="glance-metric-value">$500</span>
-                        <span class="glance-metric-label">UNVIBE · private investment</span>
+                        <span class="eyebrow mono"><span class="eyebrow-num">02</span> Selected work</span>
+                        <h2 class="section-title" data-reveal-title>Things I've built,<br>shipped &amp; won with.</h2>
                     </div>
-                    <div>
-                        <span class="glance-metric-value">$300</span>
-                        <span class="glance-metric-label">Regrade · private investment</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="build-panels">
-                <article class="build-panel build-panel-shipped reveal">
-                    <header class="build-panel-head">
-                        <span class="build-panel-mark" aria-hidden="true"></span>
-                        <div>
-                            <h3 class="mono">SHIPPED</h3>
-                            <p>Live products, awards, and research already out the door.</p>
-                        </div>
-                    </header>
-                    <ul class="build-list">
-                        <li>
-                            <div class="build-item-top">
-                                <strong>UNVIBE</strong>
-                                <span class="build-tag build-tag-live">Private beta</span>
-                            </div>
-                            <p>Desktop learning layer for AI code. Active feature shipping.</p>
-                        </li>
-                        <li>
-                            <div class="build-item-top">
-                                <strong>Regrade</strong>
-                                <span class="build-tag build-tag-live">iOS + Android</span>
-                            </div>
-                            <p>Graded-work review and appeals. Live on both app stores.</p>
-                        </li>
-                        <li>
-                            <div class="build-item-top">
-                                <strong>Sortify</strong>
-                                <span class="build-tag build-tag-award">3 awards</span>
-                            </div>
-                            <p>SF Hacks 2026. AI waste sorting, three category wins.</p>
-                        </li>
-                        <li>
-                            <div class="build-item-top">
-                                <strong>LifeTap</strong>
-                                <span class="build-tag">Hardware</span>
-                            </div>
-                            <p>Physical SOS button with live GPS over WhatsApp.</p>
-                        </li>
-                        <li>
-                            <div class="build-item-top">
-                                <strong>Cauliform</strong>
-                                <span class="build-tag">Voice AI</span>
-                            </div>
-                            <p>Phone agents that fill real Google Forms.</p>
-                        </li>
-                        <li>
-                            <div class="build-item-top">
-                                <strong>RL research</strong>
-                                <span class="build-tag build-tag-research">Research</span>
-                            </div>
-                            <p>Reward shaping under Prof. Kyu Woong Lee.</p>
-                        </li>
-                    </ul>
-                </article>
-
-                <article class="build-panel build-panel-can reveal">
-                    <header class="build-panel-head">
-                        <span class="build-panel-mark" aria-hidden="true"></span>
-                        <div>
-                            <h3 class="mono">CAN BUILD</h3>
-                            <p>What I am ready to take on next.</p>
-                        </div>
-                    </header>
-                    <div class="can-grid">
-                        <div class="can-tile">
-                            <span class="can-num mono">01</span>
-                            <strong>AI product features</strong>
-                            <p>Idea to production with LLM APIs, agents, and evaluation.</p>
-                        </div>
-                        <div class="can-tile">
-                            <span class="can-num mono">02</span>
-                            <strong>Frontend craft</strong>
-                            <p>Polished interfaces and design systems that feel intentional.</p>
-                        </div>
-                        <div class="can-tile">
-                            <span class="can-num mono">03</span>
-                            <strong>Backend systems</strong>
-                            <p>APIs, auth, databases, and cloud deploy that hold up.</p>
-                        </div>
-                        <div class="can-tile">
-                            <span class="can-num mono">04</span>
-                            <strong>Mobile and desktop</strong>
-                            <p>React Native apps and Mac-first desktop software.</p>
-                        </div>
-                        <div class="can-tile can-tile-wide">
-                            <span class="can-num mono">05</span>
-                            <strong>0-to-1 founder work</strong>
-                            <p>Ship with real users, private beta loops, and investor conversations.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <div class="glance-stack reveal" id="stack">
-                <div class="stack-heading">
-                    <div><p class="mono">TECHNICAL PROFILE</p><h3>Tools I use to build, research, and ship.</h3></div>
-                    <span>Product engineering · applied AI · reinforcement learning</span>
-                </div>
-                <div class="stack-board">
-                    <article class="stack-lane"><span class="stack-lane-index mono">01</span><span class="stack-lane-label mono">LANGUAGES</span><div class="chips"><span class="chip chip-icon"><img src="images/logos/stack/python.svg" alt="">Python</span><span class="chip chip-icon"><img src="images/logos/stack/cpp.svg" alt="">C++</span><span class="chip chip-icon"><img src="images/logos/stack/javascript.svg" alt="">JavaScript</span><span class="chip chip-icon"><img src="images/logos/stack/typescript.svg" alt="">TypeScript</span></div></article>
-                    <article class="stack-lane"><span class="stack-lane-index mono">02</span><span class="stack-lane-label mono">INTERFACES</span><div class="chips"><span class="chip">React Library</span><span class="chip chip-icon"><img src="images/logos/stack/react-native.svg" alt="">React Native</span><span class="chip chip-icon"><img src="images/logos/stack/nextjs.svg" alt="">Next.js</span><span class="chip">HTML / CSS</span></div></article>
-                    <article class="stack-lane"><span class="stack-lane-index mono">03</span><span class="stack-lane-label mono">AI / ML</span><div class="chips"><span class="chip chip-icon"><img src="images/logos/stack/tensorflow.svg" alt="">TensorFlow</span><span class="chip chip-icon"><img src="images/logos/stack/pytorch.svg" alt="">PyTorch</span><span class="chip">Q-Learning</span><span class="chip">Computer Vision</span></div></article>
-                    <article class="stack-lane"><span class="stack-lane-index mono">04</span><span class="stack-lane-label mono">AI PLATFORMS</span><div class="chips"><span class="chip chip-icon"><img src="images/logos/stack/openai.png" alt="">ChatGPT</span><span class="chip">Claude</span><span class="chip">Gemini</span><span class="chip">Higgsfield</span><span class="chip">Granola</span></div></article>
-                    <article class="stack-lane"><span class="stack-lane-index mono">05</span><span class="stack-lane-label mono">BUILD + SHIP</span><div class="chips"><span class="chip">Cursor</span><span class="chip">Codex</span><span class="chip chip-icon"><img src="images/logos/stack/twilio.png" alt="">Twilio</span><span class="chip">Wati</span><span class="chip chip-icon"><img src="images/logos/stack/googlecloud.svg" alt="">Google Cloud</span></div></article>
-                    <article class="stack-lane"><span class="stack-lane-index mono">06</span><span class="stack-lane-label mono">SYSTEMS</span><div class="chips"><span class="chip chip-icon"><img src="images/logos/stack/nodejs.svg" alt="">Node.js</span><span class="chip chip-icon"><img src="images/logos/stack/fastapi.svg" alt="">FastAPI</span><span class="chip chip-icon"><img src="images/logos/tools/supabase.svg" alt="">Supabase</span><span class="chip chip-icon"><img src="images/logos/stack/docker.svg" alt="">Docker</span></div></article>
-                    <article class="stack-research"><div><span class="stack-lane-label mono">FEATURED RESEARCH · RL / 01</span><h4>Reward shaping for accessible AI tutoring</h4><p>Testing adaptive potential functions, temporal-difference error windows, and Q-learning convergence for low-compute tutoring systems.</p><a href="https://docs.google.com/document/d/1EoLSi7XYwSRDzf60N0edsvgmYSxYSm88laL6Cd2gUtY/edit?usp=sharing" target="_blank" rel="noopener" class="stack-research-link">Read the full paper ↗</a></div><div class="stack-research-tags"><span>Reinforcement Learning</span><span>Reward Shaping</span><span>AI Tutoring</span><span>Consumer Hardware</span></div></article>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ UNVIBE — current focus ============ -->
-        <section class="section regrade-spotlight unvibe-spotlight shot-xl" id="unvibe">
-            <div class="regrade-intro">
-                <div class="yc-row reveal">
-                    <img src="images/logos/yc.svg" alt="Y Combinator" width="36" height="36">
-                    <span class="mono">YC FALL 2026 · REGISTERING</span>
-                </div>
-                <h2 class="section-title regrade-headline reveal">UNVIBE</h2>
-                <p class="section-sub regrade-summary reveal">
-                    A Mac-first desktop learning layer for AI-written code. Select code, choose explanation depth,
-                    and make the code yours without leaving your workflow.
-                </p>
-                <p class="glance-quiet reveal">$500 private investment · Mac-first private beta · <a href="https://unvibe.site" target="_blank" rel="noopener">unvibe.site</a></p>
-                <ul class="spotlight-features reveal">
-                    <li>In-workflow code explanations</li>
-                    <li>Adjustable explanation depth</li>
-                    <li>Project and file context</li>
-                    <li>Saved snippets and concepts</li>
-                </ul>
-                <div class="chips reveal">
-                    <span class="chip">TypeScript</span>
-                    <span class="chip">React</span>
-                    <span class="chip">Mac desktop</span>
-                    <span class="chip">LLM APIs</span>
-                </div>
-            </div>
-
-            <div class="product-video-wrap reveal">
-                <video
-                    class="product-video"
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    preload="auto"
-                    aria-label="UNVIBE product demo"
-                >
-                    <source src="images/unvibe/demo-hq.mp4" type="video/mp4">
-                </video>
-            </div>
-
-            <div class="regrade-cta reveal">
-                <a href="https://unvibe.site" target="_blank" rel="noopener" class="btn btn-primary magnetic-btn">Visit unvibe.site</a>
-                <a href="https://unvibe.site/investors" target="_blank" rel="noopener" class="btn btn-ghost">Investor page ↗</a>
-                <a href="#regrade" class="btn btn-ghost">Also building Regrade</a>
-            </div>
-        </section>
-
-        <!-- ============ REGRADE — major project ============ -->
-        <section class="section regrade-spotlight shot-xl" id="regrade">
-            <div class="regrade-intro">
-                <span class="regrade-founder-tag mono reveal">MAJOR PROJECT</span>
-                <h2 class="section-title regrade-headline reveal">Regrade</h2>
-                <p class="section-sub regrade-summary reveal">
-                    Upload graded work and your rubric. Regrade finds credit you earned but did not get,
-                    shows recoverable points and GPA impact, and drafts a professor-safe appeal you control.
-                    Live on iOS and Android.
-                </p>
-                <p class="glance-quiet reveal">$300 private investment · <a href="https://regradeapp.tech" target="_blank" rel="noopener">regradeapp.tech</a></p>
-            </div>
-
-            <div class="product-video-wrap reveal">
-                <video
-                    class="product-video"
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    preload="auto"
-                    aria-label="Regrade product demo"
-                >
-                    <source src="images/regrade/demo.mp4" type="video/mp4">
-                </video>
-            </div>
-
-            <div class="regrade-cta reveal">
-                <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="btn btn-primary magnetic-btn">Visit regradeapp.tech</a>
-                <a href="#projects" class="btn btn-ghost">All projects</a>
-            </div>
-        </section>
-
-        <!-- ============ ABOUT ============ -->
-        <section class="section about" id="about">
-            <div class="section-head">
-                <span class="section-index mono">01 — WHO I AM</span>
-                <h2 class="section-title">Constraint is the curriculum</h2>
-            </div>
-
-            <div class="about-grid">
-                <figure class="about-portrait reveal" aria-label="Portrait of Preston Susanto">
-                    <img src="images/preston-headshot.jpg" alt="Preston Susanto" loading="lazy">
-                    <figcaption class="mono">PRESTON SUSANTO · PLEASANT HILL, CA</figcaption>
-                </figure>
-
-                <div class="about-copy">
-                    <p class="about-lede reveal">
-                        Most people learn reinforcement learning with a lab, a GPU cluster, and a cloud budget.
-                        I learned it with none of those — working through <strong>UC Berkeley CS285</strong> and
-                        <strong>Stanford CS234</strong> on my own, training every agent on a single MacBook.
-                    </p>
-                    <p class="reveal">
-                        The path here ran through three countries. I grew up in Indonesia, graduated from Wesley College
-                        in Perth — where I founded the school's first CS club and grew it to 30+ members in its opening
-                        week — spent four months in Mandarin immersion in China, then moved to California alone
-                        to study EECS at Diablo Valley College.
-                    </p>
-                    <p class="reveal">
-                        Now I hold a 4.0 GPA while doing independent RL research under Professor Kyu Woong Lee, running
-                        campus engineering organizations, tutoring math, and shipping products people actually use —
-                        while applying to and engaging with <strong>UC Berkeley, Stanford, MIT, CMU, Columbia, Cornell, and Brown</strong>.
-                    </p>
-                </div>
-            </div>
-
-            <div class="edu-grid">
-                <div class="edu-card reveal">
-                    <div class="edu-logo-wrap">
-                        <img src="images/logos/schools/dvc.png" alt="Diablo Valley College logo" class="edu-logo" loading="lazy">
-                    </div>
-                    <span class="edu-badge mono">AUG 2025 — PRESENT</span>
-                    <h3 class="edu-school">Diablo Valley College</h3>
-                    <p class="edu-degree">A.S. Electrical Engineering &amp; Computer Science — 4.0 GPA</p>
-                    <p class="edu-note">Coursework across C/C++ programming, data structures, calculus series, and physics for engineers. Phillip Howe Scholarship and Manuel Gonzales Merit Scholarship recipient.</p>
-                </div>
-                <div class="edu-card reveal">
-                    <div class="edu-logo-wrap">
-                        <img src="images/logos/schools/wesley-college.png" alt="Wesley College logo" class="edu-logo" loading="lazy">
-                    </div>
-                    <span class="edu-badge mono">2021 — 2024 · PERTH, AUSTRALIA</span>
-                    <h3 class="edu-school">Wesley College</h3>
-                    <p class="edu-degree">Computer Science Prize — #1 of 110 students</p>
-                    <p class="edu-note">Founded and co-presided the school's first coding club. Captain of three sports teams. Academic Excellence (top 1%, ×2), Gold Endeavour (top 1%, ×3), Duke of Edinburgh Bronze.</p>
-                </div>
-            </div>
-
-            <p class="about-certs reveal"><span class="mono certs-label">CERTIFICATIONS · </span>Hugging Face AI Agents Fundamentals · Anthropic Claude Code in Action · Google AI Studio, LLMs &amp; Responsible AI · Prompt Engineering (Alison) · Agentic AI (Digital Workforce)</p>
-        </section>
-
-        <section class="photo-band photo-band-secondary" aria-label="Preston on the Golden Gate Bridge">
-            <img src="images/preston-goldengate.jpg" alt="Preston Susanto on the Golden Gate Bridge" class="img-reveal" loading="lazy">
-            <div class="photo-band-overlay">
-                <p class="photo-band-caption">
-                    <span>Building in public,</span>
-                    <span>learning in the open.</span>
-                </p>
-                <span class="mono photo-band-sub">BAY AREA · EECS · RESEARCH</span>
-                <div class="photo-band-cta">
-                    <a href="#leadership" class="btn btn-ghost btn-small btn-on-photo">Campus leadership</a>
-                    <a href="#research" class="btn btn-ghost btn-small btn-on-photo">Read the research</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ JOURNEY ============ -->
-        <section class="section journey" id="journey">
-            <div class="section-head">
-                <span class="section-index mono">02 — THE ROAD HERE</span>
-                <h2 class="section-title">Four countries, one direction</h2>
-            </div>
-
-            <div class="journey-line">
-                <div class="journey-stop reveal">
-                    <span class="journey-year mono">2009 — 2021</span>
-                    <h3 class="journey-place">Indonesia</h3>
-                    <p class="journey-desc">Where it started. Grew up bilingual in Jakarta, building my first websites at 13 — an early HTML/CSS/JavaScript project that never really stopped growing.</p>
-                </div>
-                <div class="journey-stop reveal">
-                    <span class="journey-year mono">2021 — 2024</span>
-                    <h3 class="journey-place">Perth, Australia</h3>
-                    <p class="journey-desc">Wesley College. Founded the school's first CS club (30+ members in week one), captained volleyball, soccer, and basketball, and graduated #1 of 110 in computer science.</p>
-                </div>
-                <div class="journey-stop reveal">
-                    <span class="journey-year mono">EARLY 2025</span>
-                    <h3 class="journey-place">China</h3>
-                    <p class="journey-desc">Four months of intensive Mandarin immersion at Wendao School — another country, another trade of comfort for growth.</p>
-                </div>
-                <div class="journey-stop reveal">
-                    <span class="journey-year mono">AUG 2025 — NOW</span>
-                    <h3 class="journey-place">California, USA</h3>
-                    <p class="journey-desc">Left everything familiar to study EECS at Diablo Valley College. 4.0 GPA, independent RL research, six leadership roles, and a live app on both app stores.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ GOLDEN GATE PARALLAX BAND ============ -->
-        <section class="photo-band" aria-label="Golden Gate Bridge">
-            <img src="images/sf-bridge.png" alt="Golden Gate Bridge over the bay" id="band-photo" class="img-reveal" loading="lazy">
-            <div class="photo-band-overlay">
-                <p class="photo-band-caption">
-                    <span>I didn't come to California</span>
-                    <span>for an easy path.</span>
-                </p>
-                <span class="mono photo-band-sub">GOLDEN GATE BRIDGE · SAN FRANCISCO</span>
-                <div class="photo-band-cta">
-                    <a href="#projects" class="btn btn-ghost btn-small btn-on-photo">See the work</a>
-                    <a href="#contact" class="btn btn-ghost btn-small btn-on-photo">Get in touch</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ RESEARCH ============ -->
-        <section class="section research" id="research">
-            <div class="section-head">
-                <span class="section-index mono">03 — RESEARCH</span>
-                <h2 class="section-title">Independent research, built to matter.</h2>
-                <p class="section-sub">A rigorous reinforcement-learning study with a real education problem at its center.</p>
-            </div>
-
-            <div class="research-card reveal">
-                <span class="research-watermark mono" aria-hidden="true">RL / 01</span>
-                <div class="research-status mono">IN PROGRESS · TARGETING ARXIV + JOURNAL OF STUDENT RESEARCH</div>
-                <h3 class="research-title">Reward Shaping for Accessible AI Tutoring in Community&nbsp;Colleges</h3>
-                <p class="research-meta">Independent researcher · Advised by Prof. Kyu Woong Lee · Diablo Valley College · Jan 2026 — present</p>
-
-                <div class="research-paper-callout">
-                    <div><span class="mono">FULL PAPER</span><p>Methodology, benchmarks, plots, ablations, and the complete research narrative.</p></div>
-                    <a class="btn btn-primary magnetic-btn" href="https://docs.google.com/document/d/1EoLSi7XYwSRDzf60N0edsvgmYSxYSm88laL6Cd2gUtY/edit?usp=sharing" target="_blank" rel="noopener">Read the research paper ↗</a>
-                </div>
-
-                <p class="research-abstract">
-                    Can a rolling window of temporal-difference error act as a <em>dynamic potential function</em> —
-                    speeding up Q-learning convergence in sparse-reward environments without a GPU or cloud compute?
-                    The paper builds and benchmarks adaptive reward-shaping heuristics grounded in potential-based
-                    shaping theory, with AI tutoring for community colleges as the motivating application: tutoring
-                    agents that adapt to students without requiring institutional compute budgets.
-                </p>
-
-                <div class="research-facts">
-                    <div class="research-fact">
-                        <span class="research-fact-label mono">PIPELINE</span>
-                        <p>Full training and evaluation stack built from scratch in Python — Gymnasium environments, NumPy, SciPy, Matplotlib. Vanilla and shaped Q-learning baselines implemented side by side.</p>
-                    </div>
-                    <div class="research-fact">
-                        <span class="research-fact-label mono">RIGOR</span>
-                        <p>Seed-based benchmark runs, convergence plots, statistical significance tests, and ablations across TD-error window sizes W = 10 / 25 / 50 / 100.</p>
-                    </div>
-                    <div class="research-fact">
-                        <span class="research-fact-label mono">FOUNDATION</span>
-                        <p>Self-taught through UC Berkeley CS285 (Deep RL) and Stanford CS234 (RL). Every experiment in the paper runs on consumer hardware — that constraint is the point.</p>
+                    <div class="filters" role="group" aria-label="Filter projects">
+                        <button class="filter is-active" data-filter="all" aria-pressed="true">All</button>
+                        <button class="filter" data-filter="ai" aria-pressed="false">AI</button>
+                        <button class="filter" data-filter="win" aria-pressed="false">Award winners</button>
+                        <button class="filter" data-filter="hardware" aria-pressed="false">Hardware</button>
+                        <button class="filter" data-filter="startup" aria-pressed="false">Startups</button>
                     </div>
                 </div>
 
-                <div class="research-links">
-                    <a class="btn btn-ghost" href="https://docs.google.com/document/d/1EoLSi7XYwSRDzf60N0edsvgmYSxYSm88laL6Cd2gUtY/edit?usp=sharing" target="_blank" rel="noopener">Open full manuscript ↗</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ PROJECTS ============ -->
-        <section class="section projects" id="projects">
-            <div class="section-head">
-                <span class="section-index mono">04 — PROJECTS</span>
-                <h2 class="section-title">Built, shipped, real</h2>
-                <p class="section-sub">Hackathons, shipped apps, and side builds — screenshot first, details when you want them.</p>
-            </div>
-
-            <div class="project-scroll-zone reveal" id="project-scroll-zone" tabindex="0" aria-label="Projects carousel">
-                <div class="project-track" id="project-track">
-                    <article class="project-slide">
-                        <div class="project-slide-visual">
-                            <video
-                                src="images/unvibe/demo-hq.mp4"
-                                muted
-                                autoplay
-                                loop
-                                playsinline
-                                preload="metadata"
-                                aria-label="UNVIBE product demo"
-                            ></video>
-                        </div>
-                        <div class="project-slide-body">
-                            <span class="project-tag mono live">YC FALL 2026 · PRIVATE BETA</span>
-                            <h3 class="project-title">UNVIBE</h3>
-                            <p class="project-desc">Desktop learning layer for AI-generated code. Select code, choose depth, learn in-workflow. $500 private investment. Applying to YC Fall 2026.</p>
-                            <ul class="project-bullets">
-                                <li>Designed and built the core explanation flow beside the editor.</li>
-                                <li>Active product focus with continuous feature shipping at unvibe.site.</li>
-                            </ul>
-                            <div class="chips"><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Mac desktop</span><span class="chip">LLM APIs</span></div>
-                            <div class="project-links">
-                                <a href="#unvibe" class="project-link mono">Spotlight ↗</a>
-                                <a href="https://unvibe.site" target="_blank" rel="noopener" class="project-link mono">Live site ↗</a>
-                                <a href="https://unvibe.site/investors" target="_blank" rel="noopener" class="project-link mono">Investor page ↗</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-slide">
-                        <div class="project-slide-visual">
-                            <img src="images/projects/sortify.png" alt="Sortify app landing page" loading="lazy">
-                        </div>
-                        <div class="project-slide-body">
-                            <span class="project-tag mono win">SF HACKS 2026 · 3 AWARDS</span>
+                <div class="projects" id="projects">
+                    <!-- Sortify -->
+                    <article class="project project-lg" data-tags="ai win hardware" tabindex="0" data-cursor="Open">
+                        <div class="project-media"><img src="images/projects/sortify.png" alt="Sortify landing page" loading="lazy"></div>
+                        <div class="project-body">
+                            <span class="tag tag-win mono">🏆 SF Hacks 2026 · 3 awards</span>
                             <h3 class="project-title">Sortify</h3>
-                            <p class="project-desc">AI waste-sorting platform — scan an item, get recycle / compost / trash guidance with explanations. Won Best Beginner Hack, Best Hardware Hack, and Best Use of Boxi AI.</p>
-                            <ul class="project-bullets">
+                            <p class="project-desc">Scan any item, get recycle / compost / trash guidance. Won three categories in one 48-hour sprint.</p>
+                            <span class="project-open mono" aria-hidden="true">Details +</span>
+                        </div>
+                        <div class="project-detail" hidden>
+                            <ul>
+                                <li>Won <b>Best Beginner Hack</b>, <b>Best Hardware Hack</b> and <b>Best Use of Boxi AI</b> among 250+ hackers.</li>
                                 <li>Multimodal Gemini image classification behind a FastAPI backend, with Firebase and SQLite for accounts and history.</li>
-                                <li>Google Maps bin-finding, gamified eco-scores, and sustainability education — built in 48 hours among 250+ hackers.</li>
-                                <li>Judged live across three separate categories in one sprint and won all three.</li>
+                                <li>Google Maps bin-finding, gamified eco-scores and sustainability education.</li>
                             </ul>
-                            <div class="chips"><span class="chip">Gemini API</span><span class="chip">FastAPI</span><span class="chip">TensorFlow</span><span class="chip">Firebase</span><span class="chip">React</span></div>
-                            <div class="project-links">
-                                <a href="https://github.com/ShadowEsu/SortifyApp" target="_blank" rel="noopener" class="project-link mono">GitHub ↗</a>
-                                <a href="https://sortifywebsiteapp.base44.app" target="_blank" rel="noopener" class="project-link mono">Live site ↗</a>
-                            </div>
+                            <div class="chips"><span>Gemini API</span><span>FastAPI</span><span>TensorFlow</span><span>Firebase</span><span>React</span></div>
+                            <div class="links"><a href="https://github.com/ShadowEsu/SortifyApp" target="_blank" rel="noopener">GitHub ↗</a><a href="https://sortifywebsiteapp.base44.app" target="_blank" rel="noopener">Live site ↗</a></div>
                         </div>
                     </article>
 
-                    <article class="project-slide">
-                        <div class="project-slide-visual">
-                            <img src="images/regrade.png" alt="Regrade app interface" loading="lazy">
-                        </div>
-                        <div class="project-slide-body">
-                            <span class="project-tag mono live">LIVE · iOS + ANDROID</span>
+                    <!-- Regrade -->
+                    <article class="project" data-tags="ai startup" tabindex="0" data-cursor="Open">
+                        <div class="project-media"><img src="images/regrade.png" alt="Regrade app interface" loading="lazy"></div>
+                        <div class="project-body">
+                            <span class="tag mono">Startup · Mar – Jul 2026</span>
                             <h3 class="project-title">Regrade</h3>
-                            <p class="project-desc">Grade appeal app. Rubric-grounded AI finds recoverable points and drafts professor-safe appeals. Live on iOS and Android.</p>
-                            <ul class="project-bullets">
-                                <li>Solo-built and shipped to both app stores with dual-model Claude + Gemini orchestration.</li>
-                                <li>Evaluation harness benchmarked against ground-truth rubrics so the AI argues from evidence.</li>
+                            <p class="project-desc">AI grade-appeal app that reads your rubric and graded work, then drafts an evidence-based appeal.</p>
+                            <span class="project-open mono" aria-hidden="true">Details +</span>
+                        </div>
+                        <div class="project-detail" hidden>
+                            <ul>
+                                <li>Solo-built as Founder &amp; CEO with a Claude + Gemini backend that analyzes rubrics against graded work.</li>
+                                <li>Finds credit you earned but didn't get and drafts a professor-safe appeal you stay in control of.</li>
+                                <li>Grew to <b>30+ waitlist signups</b> before I went all-in on Unvibe.</li>
                             </ul>
-                            <div class="chips"><span class="chip">React Native</span><span class="chip">TypeScript</span><span class="chip">Claude API</span><span class="chip">Supabase</span></div>
-                            <div class="project-links">
-                                <a href="#regrade" class="project-link mono">Spotlight ↗</a>
-                                <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="project-link mono">regradeapp.tech ↗</a>
-                            </div>
+                            <div class="chips"><span>React Native</span><span>TypeScript</span><span>Claude API</span><span>Gemini</span><span>Supabase</span></div>
+                            <div class="links"><a href="https://regradeapp.tech" target="_blank" rel="noopener">regradeapp.tech ↗</a></div>
                         </div>
                     </article>
 
-                    <article class="project-slide">
-                        <div class="project-slide-visual">
-                            <img src="images/projects/cauliform.png" alt="Cauliform sign-in screen" loading="lazy">
-                        </div>
-                        <div class="project-slide-body">
-                            <span class="project-tag mono">VOICE AI AGENT</span>
+                    <!-- Cauliform -->
+                    <article class="project" data-tags="ai win" tabindex="0" data-cursor="Open">
+                        <div class="project-media project-media-tall"><img src="images/projects/cauliform.png" alt="Cauliform sign-in screen" loading="lazy"></div>
+                        <div class="project-body">
+                            <span class="tag tag-win mono">Gemini Live Agent · top 1% of 12,000+</span>
                             <h3 class="project-title">Cauliform</h3>
-                            <p class="project-desc">A voice agent that calls you and fills out Google Forms for you — conversational surveys over the phone or browser, answers submitted back into the real form.</p>
-                            <ul class="project-bullets">
-                                <li>Gemini Live + Twilio phone calls, form parsing with required-field handling, answer confirmation, and real Google Form submission.</li>
-                                <li>Deployed on Google Cloud Run with Docker, Artifact Registry, WebSockets, and real-time event logs. Built at the Gemini Live Agent Hackathon with a Stanford MLH multi-winner.</li>
-                                <li>Ships its own /test console for replaying a full call and inspecting live event logs without placing an actual phone call.</li>
+                            <p class="project-desc">A voice agent that phones you and fills out real Google Forms through conversation.</p>
+                            <span class="project-open mono" aria-hidden="true">Details +</span>
+                        </div>
+                        <div class="project-detail" hidden>
+                            <ul>
+                                <li>Gemini Live + Twilio phone calls, form parsing with required-field handling, answer confirmation and real Google Form submission.</li>
+                                <li>Deployed on Google Cloud Run with Docker, Artifact Registry, WebSockets and real-time event logs.</li>
+                                <li>Ships a /test console to replay a full call and inspect live events without dialing a phone.</li>
                             </ul>
-                            <div class="chips"><span class="chip">Gemini Live</span><span class="chip">Twilio</span><span class="chip">Next.js</span><span class="chip">Cloud Run</span><span class="chip">Docker</span></div>
-                            <div class="project-links">
-                                <a href="https://github.com/ShadowEsu/Cauliform-AI" target="_blank" rel="noopener" class="project-link mono">GitHub ↗</a>
-                                <a href="https://cauliform-ai-293051374734.us-west1.run.app" target="_blank" rel="noopener" class="project-link mono">Live app ↗</a>
-                            </div>
+                            <div class="chips"><span>Gemini Live</span><span>Twilio</span><span>Next.js</span><span>Cloud Run</span><span>Docker</span></div>
+                            <div class="links"><a href="https://github.com/ShadowEsu/Cauliform-AI" target="_blank" rel="noopener">GitHub ↗</a><a href="https://cauliform-ai-293051374734.us-west1.run.app" target="_blank" rel="noopener">Live app ↗</a></div>
                         </div>
                     </article>
 
-                    <article class="project-slide">
-                        <div class="project-slide-visual">
-                            <img src="images/projects/lifetap.png" alt="LifeTap hardware panic button website" loading="lazy">
-                        </div>
-                        <div class="project-slide-body">
-                            <span class="project-tag mono">HARDWARE · AI BERKELEY HACKATHON</span>
+                    <!-- LifeTap -->
+                    <article class="project" data-tags="hardware" tabindex="0" data-cursor="Open">
+                        <div class="project-media"><img src="images/projects/lifetap.png" alt="LifeTap website" loading="lazy"></div>
+                        <div class="project-body">
+                            <span class="tag mono">Hardware · AI Berkeley Hackathon</span>
                             <h3 class="project-title">LifeTap</h3>
-                            <p class="project-desc">A physical emergency panic button. One press triggers an 80 dB alarm and sends live GPS coordinates to an emergency contact over WhatsApp as a Google Maps link.</p>
-                            <ul class="project-bullets">
-                                <li>Raspberry Pi 3 runs the alert logic in Python, serial-linked to an Arduino handling the GPS module and buzzer in C++ — a complete end-to-end hardware demo, not a slideware concept.</li>
-                                <li>Designed for disaster response and personal-safety scenarios where unlocking a phone and opening an app is simply too slow.</li>
-                                <li>Packages live GPS coordinates into a ready-to-tap Google Maps link, sent straight to WhatsApp via Twilio.</li>
+                            <p class="project-desc">A physical SOS button: one press, an 80&nbsp;dB alarm, and live GPS sent over WhatsApp.</p>
+                            <span class="project-open mono" aria-hidden="true">Details +</span>
+                        </div>
+                        <div class="project-detail" hidden>
+                            <ul>
+                                <li>Raspberry Pi 3 runs the alert logic in Python, serial-linked to an Arduino driving the GPS module and buzzer in C++.</li>
+                                <li>Packages live coordinates into a tap-ready Google Maps link sent straight to an emergency contact via Twilio.</li>
+                                <li>Built for disaster-response moments where unlocking a phone is simply too slow.</li>
                             </ul>
-                            <div class="chips"><span class="chip">Arduino</span><span class="chip">Raspberry Pi</span><span class="chip">C++</span><span class="chip">Python</span><span class="chip">Twilio / WhatsApp</span></div>
-                            <div class="project-links">
-                                <a href="https://devpost.com/software/lifetap" target="_blank" rel="noopener" class="project-link mono">Devpost ↗</a>
-                                <a href="https://life-tap-website.vercel.app" target="_blank" rel="noopener" class="project-link mono">Website ↗</a>
-                            </div>
+                            <div class="chips"><span>Arduino</span><span>Raspberry Pi</span><span>C++</span><span>Python</span><span>Twilio</span></div>
+                            <div class="links"><a href="https://devpost.com/software/lifetap" target="_blank" rel="noopener">Devpost ↗</a><a href="https://life-tap-website.vercel.app" target="_blank" rel="noopener">Website ↗</a></div>
                         </div>
                     </article>
 
-                    <article class="project-slide">
-                        <div class="project-slide-visual project-slide-visual-accent">
-                            <span class="project-slide-emoji" aria-hidden="true">RL</span>
-                        </div>
-                        <div class="project-slide-body">
-                            <span class="project-tag mono">LOCAL-FIRST AI</span>
-                            <h3 class="project-title">Jarvis</h3>
-                            <p class="project-desc">A local-first voice AI assistant — a modular agent using Q-learning for on-device adaptive decision-making. No cloud dependency by design.</p>
-                            <ul class="project-bullets">
-                                <li>Testbed for the RL research thesis: the same Q-learning and reward-shaping ideas from the paper, applied to a personal assistant that learns your patterns.</li>
-                                <li>Combines a lightweight NLP layer for command parsing with a Q-learning policy that adapts its responses to usage patterns over time.</li>
-                                <li>Runs entirely on consumer hardware, tying directly to CS285 / CS234 coursework.</li>
-                            </ul>
-                            <div class="chips"><span class="chip">Python</span><span class="chip">Q-Learning</span><span class="chip">NLP</span></div>
-                            <div class="project-links">
-                                <a href="https://github.com/ShadowEsu" target="_blank" rel="noopener" class="project-link mono">GitHub ↗</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-slide">
-                        <div class="project-slide-visual">
-                            <img src="images/projects/pitchnest.png" alt="PitchNest landing page" loading="lazy">
-                        </div>
-                        <div class="project-slide-body">
-                            <span class="project-tag mono">GOOGLE DEVELOPERS ONLINE HACKATHON</span>
+                    <!-- PitchNest -->
+                    <article class="project" data-tags="ai startup" tabindex="0" data-cursor="Open">
+                        <div class="project-media"><img src="images/projects/pitchnest.png" alt="PitchNest landing page" loading="lazy"></div>
+                        <div class="project-body">
+                            <span class="tag mono">Google Developers Hackathon</span>
                             <h3 class="project-title">PitchNest</h3>
-                            <p class="project-desc">An AI startup advisor and investor platform — founders get real-time analytics on burn rate, runway, and unit economics, plus pitch-readiness feedback.</p>
-                            <ul class="project-bullets">
-                                <li>Co-built with Gemini-powered analytics dashboards and intelligent recommendations; now being developed into a startup.</li>
-                                <li>Dashboards analyze burn rate, runway, and unit economics in real time, with Gemini surfacing pitch-readiness feedback for founders.</li>
-                                <li>Backend and data models in Node.js / Express / MongoDB for founder and investor workflows.</li>
+                            <p class="project-desc">AI startup advisor: live burn, runway and unit-economics analytics plus pitch-readiness feedback.</p>
+                            <span class="project-open mono" aria-hidden="true">Details +</span>
+                        </div>
+                        <div class="project-detail" hidden>
+                            <ul>
+                                <li>Gemini-powered dashboards analyze burn rate, runway and unit economics in real time.</li>
+                                <li>Node.js / Express / MongoDB backend for founder and investor workflows.</li>
                             </ul>
-                            <div class="chips"><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">MongoDB</span><span class="chip">Gemini API</span><span class="chip">TypeScript</span></div>
-                            <div class="project-links">
-                                <a href="https://pitchnest-528505551794.us-central1.run.app/" target="_blank" rel="noopener" class="project-link mono">Live ↗</a>
-                            </div>
+                            <div class="chips"><span>Node.js</span><span>Express</span><span>MongoDB</span><span>Gemini API</span><span>TypeScript</span></div>
+                            <div class="links"><a href="https://pitchnest-528505551794.us-central1.run.app/" target="_blank" rel="noopener">Live ↗</a></div>
                         </div>
                     </article>
 
-                    <article class="project-slide">
-                        <div class="project-slide-visual project-slide-visual-accent">
-                            <span class="project-slide-emoji" aria-hidden="true">A11Y</span>
-                        </div>
-                        <div class="project-slide-body">
-                            <span class="project-tag mono">CHROME EXTENSION · ACCESSIBILITY</span>
-                            <h3 class="project-title">Access for All</h3>
-                            <p class="project-desc">Accessibility software for color blindness and dyslexia — readability, contrast, and usability tools built in under 48 hours.</p>
-                            <ul class="project-bullets">
-                                <li>Chrome-extension-style workflows exploring inclusive design patterns and assistive web enhancements.</li>
-                                <li>Technology that adapts to users, instead of forcing users to adapt to technology.</li>
-                            </ul>
-                            <div class="chips"><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">Accessibility</span></div>
-                            <div class="project-links">
-                                <a href="https://github.com/oboy10/Access4All" target="_blank" rel="noopener" class="project-link mono">GitHub ↗</a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-slide">
-                        <div class="project-slide-visual">
-                            <img src="images/projects/scholarisapp.png" alt="ScholarisApp landing page" loading="lazy">
-                        </div>
-                        <div class="project-slide-body">
-                            <span class="project-tag mono">LOS ALTOS HACKS 2026</span>
+                    <!-- ScholarisApp -->
+                    <article class="project" data-tags="startup" tabindex="0" data-cursor="Open">
+                        <div class="project-media"><img src="images/projects/scholarisapp.png" alt="ScholarisApp landing page" loading="lazy"></div>
+                        <div class="project-body">
+                            <span class="tag mono">Los Altos Hacks 2026</span>
                             <h3 class="project-title">ScholarisApp</h3>
-                            <p class="project-desc">A scholarship-matching web app that helps students discover and track opportunities suited to their profile, instead of hunting across a dozen tabs.</p>
-                            <ul class="project-bullets">
-                                <li>Built at Los Altos Hacks 2026 to cut down the time students spend searching for scholarships they actually qualify for.</li>
-                                <li>Matches student profiles against scholarship criteria and keeps deadlines organized in one place.</li>
+                            <p class="project-desc">Scholarship matching that replaces a dozen open tabs with one profile and one deadline list.</p>
+                            <span class="project-open mono" aria-hidden="true">Details +</span>
+                        </div>
+                        <div class="project-detail" hidden>
+                            <ul>
+                                <li>Matches student profiles against scholarship criteria and keeps every deadline in one place.</li>
+                                <li>Built to cut the hours students spend hunting for awards they actually qualify for.</li>
                             </ul>
-                            <div class="chips"><span class="chip">Web App</span><span class="chip">Education Tech</span><span class="chip">Product Design</span></div>
-                            <div class="project-links">
-                                <a href="https://scholarisapp.tech" target="_blank" rel="noopener" class="project-link mono">scholarisapp.tech ↗</a>
-                            </div>
+                            <div class="chips"><span>Web app</span><span>EdTech</span><span>Product design</span></div>
+                            <div class="links"><a href="https://scholarisapp.tech" target="_blank" rel="noopener">scholarisapp.tech ↗</a></div>
+                        </div>
+                    </article>
+
+                    <!-- Jarvis -->
+                    <article class="project project-type" data-tags="ai" tabindex="0" data-cursor="Open">
+                        <div class="project-media project-media-type" aria-hidden="true"><span>Q(s,a)</span></div>
+                        <div class="project-body">
+                            <span class="tag mono">Local-first AI</span>
+                            <h3 class="project-title">Jarvis</h3>
+                            <p class="project-desc">An on-device voice assistant that uses Q-learning to adapt to how you work. No cloud required.</p>
+                            <span class="project-open mono" aria-hidden="true">Details +</span>
+                        </div>
+                        <div class="project-detail" hidden>
+                            <ul>
+                                <li>A testbed for my research: the same Q-learning and reward-shaping ideas, applied to a personal assistant.</li>
+                                <li>Lightweight NLP command parsing plus a policy that adapts responses to usage patterns over time.</li>
+                                <li>Runs entirely on consumer hardware.</li>
+                            </ul>
+                            <div class="chips"><span>Python</span><span>Q-learning</span><span>NLP</span></div>
+                            <div class="links"><a href="https://github.com/ShadowEsu" target="_blank" rel="noopener">GitHub ↗</a></div>
+                        </div>
+                    </article>
+
+                    <!-- Access for All -->
+                    <article class="project project-type" data-tags="" tabindex="0" data-cursor="Open">
+                        <div class="project-media project-media-type project-media-type-alt" aria-hidden="true"><span>Aa</span></div>
+                        <div class="project-body">
+                            <span class="tag mono">Chrome extension · Accessibility</span>
+                            <h3 class="project-title">Access for All</h3>
+                            <p class="project-desc">Readability and contrast tools for color blindness and dyslexia, built in under 48 hours.</p>
+                            <span class="project-open mono" aria-hidden="true">Details +</span>
+                        </div>
+                        <div class="project-detail" hidden>
+                            <ul>
+                                <li>Extension workflows exploring inclusive design patterns and assistive web enhancements.</li>
+                                <li>Technology that adapts to people, instead of people adapting to technology.</li>
+                            </ul>
+                            <div class="chips"><span>JavaScript</span><span>HTML/CSS</span><span>Accessibility</span></div>
+                            <div class="links"><a href="https://github.com/oboy10/Access4All" target="_blank" rel="noopener">GitHub ↗</a></div>
                         </div>
                     </article>
                 </div>
             </div>
-            <p class="project-rail-hint mono">Scrolls automatically · hover to pause · drag to browse</p>
+        </section>
+
+        <!-- ============ RESEARCH (light section) ============ -->
+        <section class="section research" id="research">
+            <div class="container">
+                <div class="section-head">
+                    <span class="eyebrow mono"><span class="eyebrow-num">03</span> Research</span>
+                    <h2 class="section-title" data-reveal-title>Teaching agents to learn faster,<br><span class="text-accent">on a laptop.</span></h2>
+                </div>
+
+                <div class="research-grid">
+                    <div class="paper" data-reveal>
+                        <span class="paper-status mono"><span class="status-dot" aria-hidden="true"></span>In progress · targeting arXiv + Journal of Student Research</span>
+                        <h3 class="paper-title">Reward Shaping for Accessible AI Tutoring in Community Colleges</h3>
+                        <p class="paper-meta">Independent researcher · Advisor: Prof. Kyu Woong Lee · Diablo Valley College · Jan 2026 – present</p>
+                        <p class="paper-abstract">
+                            Can a rolling window of temporal-difference error act as a <em>dynamic potential function</em>,
+                            speeding up Q-learning in sparse-reward environments without a GPU or cloud budget?
+                            The motivation is real: tutoring agents that adapt to students without needing
+                            institutional compute.
+                        </p>
+                        <dl class="paper-facts">
+                            <div><dt class="mono">Seeds</dt><dd>5</dd></div>
+                            <div><dt class="mono">Window sizes</dt><dd>4</dd></div>
+                            <div><dt class="mono">Environment</dt><dd>FrozenLake-v1</dd></div>
+                            <div><dt class="mono">GPUs used</dt><dd>0</dd></div>
+                        </dl>
+                        <p class="paper-stack mono">Python · Gymnasium · NumPy · SciPy · Matplotlib</p>
+                        <div class="btn-row">
+                            <a class="btn btn-dark magnetic" href="https://docs.google.com/document/d/1EoLSi7XYwSRDzf60N0edsvgmYSxYSm88laL6Cd2gUtY/edit?usp=sharing" target="_blank" rel="noopener">Read the paper <span class="btn-arrow" aria-hidden="true">↗</span></a>
+                        </div>
+                        <div class="paper-also">
+                            <span class="mono">Also</span>
+                            <p><b>Student Researcher, Stanford Small Groups</b> · Sep 2026 – present</p>
+                        </div>
+                    </div>
+
+                    <div class="lab" data-reveal>
+                        <div class="lab-head">
+                            <div>
+                                <span class="mono lab-kicker">Try it · live in your browser</span>
+                                <h3 class="lab-title">Watch an agent learn FrozenLake</h3>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="lab-shaping" checked>
+                                <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+                                <span class="switch-label mono">Reward shaping</span>
+                            </label>
+                        </div>
+
+                        <div class="lab-body">
+                            <canvas id="lab-canvas" class="lab-canvas" width="400" height="400" role="img" aria-label="A 4 by 4 frozen lake grid. An agent learns to reach the goal while avoiding holes. Cell shading shows learned value; arrows show the current policy."></canvas>
+                            <div class="lab-side">
+                                <div class="lab-stat"><span class="mono">Episodes</span><b id="lab-episodes">0</b></div>
+                                <div class="lab-stat"><span class="mono">Success · last 50</span><b id="lab-success">0%</b></div>
+                                <div class="lab-stat"><span class="mono">First solved at</span><b id="lab-solved">—</b></div>
+                                <svg class="lab-spark" id="lab-spark" viewBox="0 0 160 48" preserveAspectRatio="none" aria-hidden="true"><path d=""/></svg>
+                                <div class="lab-controls">
+                                    <button class="btn btn-dark btn-sm" id="lab-run">Train</button>
+                                    <button class="btn btn-outline-dark btn-sm" id="lab-reset">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="lab-note">
+                            Simplified demo: tabular Q-learning on a 4×4 lake, with potential-based shaping on distance to the goal.
+                            Toggle shaping and reset to compare. The paper studies a different, adaptive TD-error potential.
+                        </p>
+                        <ul class="lab-legend mono" aria-hidden="true">
+                            <li><i class="lg-agent"></i>Agent</li>
+                            <li><i class="lg-hole"></i>Hole</li>
+                            <li><i class="lg-goal"></i>Goal</li>
+                            <li><i class="lg-value"></i>Learned value</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- ============ EXPERIENCE ============ -->
         <section class="section experience" id="experience">
-            <div class="section-head">
-                <span class="section-index mono">05 — EXPERIENCE</span>
-                <h2 class="section-title">Real clients, real stakes</h2>
-                <p class="section-sub">Production work for businesses and organizations — revenue, deadlines, and people depending on it.</p>
-            </div>
-
-            <div class="exp-timeline" id="exp-timeline">
-                <div class="exp-track" aria-hidden="true">
-                    <div class="exp-track-fill" id="exp-track-fill"></div>
+            <div class="container">
+                <div class="section-head">
+                    <span class="eyebrow mono"><span class="eyebrow-num">04</span> Experience</span>
+                    <h2 class="section-title" data-reveal-title>Real clients.<br>Real stakes.</h2>
                 </div>
 
-                <article class="exp-node exp-node-right exp-node-media reveal-side" data-side="right">
-                    <span class="exp-ghost mono" aria-hidden="true">01</span>
-                    <div class="exp-node-card">
-                        <img src="images/parinama-group.png" alt="Parinama Group of Companies website" class="exp-shot" loading="lazy">
-                        <div class="exp-node-body">
-                            <div class="exp-node-head">
-                                <span class="exp-date mono">JUN 2026 — PRESENT</span>
-                                <h3 class="exp-title">Lead AI Systems Architect</h3>
-                                <span class="exp-org">Parinama Group / AIBCG</span>
-                            </div>
-                            <ul class="exp-bullets">
-                                <li>Architecting automation systems for a four-vertical business group spanning driving, academy, consulting, and operations — integrating WATI, Calendly, and Astra AI into unified client workflows.</li>
-                                <li>Designing agentic AI and RAG-style pipelines end-to-end: data intake, model integration, deployment planning, and operational handoff.</li>
+                <div class="exp-list" id="exp-list">
+                    <details class="exp" data-preview="images/parinama-group.png">
+                        <summary>
+                            <span class="exp-date mono">Jun – Aug 2026</span>
+                            <span class="exp-role">Lead AI Systems Architect</span>
+                            <span class="exp-org">Parinama Group</span>
+                            <span class="exp-toggle" aria-hidden="true"></span>
+                        </summary>
+                        <div class="exp-body">
+                            <ul>
+                                <li>Architected automation and agentic AI / RAG pipelines across a four-vertical business group (driving, academy, consulting, operations), integrating WATI, Calendly and Astra AI.</li>
+                                <li>Customer-support and website automations that served <b>300 customers</b>.</li>
+                                <li>Rebuilt additional company websites, roughly doubling design quality and usability over the originals.</li>
                             </ul>
-                            <div class="chips"><span class="chip">Agentic AI</span><span class="chip">RAG</span><span class="chip">Astra AI</span><span class="chip">Automation</span><span class="chip">System Architecture</span></div>
+                            <div class="chips"><span>Agentic AI</span><span>RAG</span><span>WATI</span><span>Calendly</span><span>Astra AI</span></div>
+                            <div class="links"><a href="https://parinamagroupofcompanies.com/" target="_blank" rel="noopener">parinamagroupofcompanies.com ↗</a></div>
                         </div>
-                    </div>
-                </article>
+                    </details>
 
-                <article class="exp-node exp-node-left exp-node-media reveal-side" data-side="left">
-                    <span class="exp-ghost mono" aria-hidden="true">02</span>
-                    <div class="exp-node-card">
-                        <img src="images/wosado-australia.png" alt="Wosado Australia storefront" class="exp-shot" loading="lazy">
-                        <div class="exp-node-body">
-                            <div class="exp-node-head">
-                                <span class="exp-date mono">JUL 2025 — PRESENT</span>
-                                <h3 class="exp-title">Senior Web Application Developer</h3>
-                                <span class="exp-org">Wosado Australia</span>
-                            </div>
-                            <ul class="exp-bullets">
-                                <li>Own product pages, purchasing flows, pricing support, and backend operations for a live Australian beauty brand.</li>
-                                <li>Supported $7K+ in present-day sales through sales-flow optimization and logistics coordination.</li>
+                    <details class="exp" data-preview="images/wosado-australia.png">
+                        <summary>
+                            <span class="exp-date mono">Jun 2025 – Jul 2026</span>
+                            <span class="exp-role">Senior Web Application Developer</span>
+                            <span class="exp-org">Wosado Australia</span>
+                            <span class="exp-toggle" aria-hidden="true"></span>
+                        </summary>
+                        <div class="exp-body">
+                            <ul>
+                                <li>Built and maintained the e-commerce site for an Australian beauty brand: product pages, purchasing flow, UX and backend operations.</li>
+                                <li>Supported <b>$7K+ in sales</b>.</li>
                             </ul>
-                            <div class="chips"><span class="chip">Shopify</span><span class="chip">E-commerce UX</span><span class="chip">Operations</span></div>
-                            <div class="exp-links">
-                                <a href="https://www.wosado.com.au" target="_blank" rel="noopener" class="project-link mono">wosado.com.au ↗</a>
-                            </div>
+                            <div class="chips"><span>Shopify</span><span>E-commerce UX</span><span>Operations</span></div>
+                            <div class="links"><a href="https://www.wosadoaustralia.com.au" target="_blank" rel="noopener">wosadoaustralia.com.au ↗</a></div>
                         </div>
-                    </div>
-                </article>
+                    </details>
 
-                <article class="exp-node exp-node-right exp-node-media reveal-side" data-side="right">
-                    <span class="exp-ghost mono" aria-hidden="true">03</span>
-                    <div class="exp-node-card">
-                        <img src="images/aiko-matcha.png" alt="Aiko Matcha website" class="exp-shot" loading="lazy">
-                        <div class="exp-node-body">
-                            <div class="exp-node-head">
-                                <span class="exp-date mono">JUN 2025 — PRESENT</span>
-                                <h3 class="exp-title">Senior Web Application Developer</h3>
-                                <span class="exp-org">Aiko Matcha</span>
-                            </div>
-                            <ul class="exp-bullets">
-                                <li>Improved online purchasing flows, product presentation, and content for a premium matcha retailer.</li>
-                                <li>Contributed to thousands of dollars in sales through pricing support and promotion strategy.</li>
+                    <details class="exp" data-preview="images/aiko-matcha.png">
+                        <summary>
+                            <span class="exp-date mono">Jun 2025 – Now</span>
+                            <span class="exp-role">Web Application Developer</span>
+                            <span class="exp-org">Aiko Matcha</span>
+                            <span class="exp-toggle" aria-hidden="true"></span>
+                        </summary>
+                        <div class="exp-body">
+                            <ul>
+                                <li>Built and maintain the e-commerce site for a small Australian matcha business.</li>
+                                <li>Contributed to <b>thousands of dollars in sales</b> through sales-flow optimization and logistics coordination.</li>
                             </ul>
-                            <div class="chips"><span class="chip">Wix Studio</span><span class="chip">Web Design</span><span class="chip">Python</span></div>
-                            <div class="exp-links">
-                                <a href="https://www.aikomatcha.com" target="_blank" rel="noopener" class="project-link mono">aikomatcha.com ↗</a>
-                            </div>
+                            <div class="chips"><span>Wix Studio</span><span>Web design</span><span>Conversion</span></div>
+                            <div class="links"><a href="https://www.aikomatcha.com" target="_blank" rel="noopener">aikomatcha.com ↗</a></div>
                         </div>
-                    </div>
-                </article>
+                    </details>
 
-                <article class="exp-node exp-node-left exp-node-media reveal-side" data-side="left">
-                    <span class="exp-ghost mono" aria-hidden="true">04</span>
-                    <div class="exp-node-card">
-                        <img src="images/permias-nasional.png" alt="PERMIAS Nasional website" class="exp-shot" loading="lazy">
-                        <div class="exp-node-body">
-                            <div class="exp-node-head">
-                                <span class="exp-date mono">MAR 2026 — PRESENT</span>
-                                <h3 class="exp-title">Promotion &amp; Production</h3>
-                                <span class="exp-org">PERMIAS Nasional</span>
-                            </div>
-                            <ul class="exp-bullets">
-                                <li>Produce event posts, infographics, campaign visuals, and social content for a national org with 10K+ Instagram followers.</li>
-                                <li>Manage vendor-facing merchandise production — design coordination, supply ordering, shipping, and fulfillment for graduation shirts, books, and stoles.</li>
+                    <details class="exp">
+                        <summary>
+                            <span class="exp-date mono">Sep 2026 – Now</span>
+                            <span class="exp-role">Student Founder</span>
+                            <span class="exp-org">Founders School</span>
+                            <span class="exp-toggle" aria-hidden="true"></span>
+                        </summary>
+                        <div class="exp-body">
+                            <ul>
+                                <li>Student founder in the San Francisco Bay Area cohort, building Unvibe alongside other early-stage founders.</li>
                             </ul>
-                            <div class="chips"><span class="chip">Web Publishing</span><span class="chip">Design</span><span class="chip">Vendor Coordination</span></div>
-                            <div class="exp-links">
-                                <a href="https://www.permiasnasional.org" target="_blank" rel="noopener" class="project-link mono">permiasnasional.org ↗</a>
-                                <a href="https://www.instagram.com/permiasnasional/" target="_blank" rel="noopener" class="project-link mono">Instagram ↗</a>
-                            </div>
                         </div>
-                    </div>
-                </article>
+                    </details>
+
+                    <details class="exp">
+                        <summary>
+                            <span class="exp-date mono">Aug 2026 – Now</span>
+                            <span class="exp-role">College Ambassador</span>
+                            <span class="exp-org">Backboard.io</span>
+                            <span class="exp-toggle" aria-hidden="true"></span>
+                        </summary>
+                        <div class="exp-body">
+                            <ul>
+                                <li>Selected as <b>one of 25 campus ambassadors nationwide</b>. I lead outreach and community engagement.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details class="exp">
+                        <summary>
+                            <span class="exp-date mono">Apr 2026 – Now</span>
+                            <span class="exp-role">Math Tutor</span>
+                            <span class="exp-org">DVC Tutoring Center</span>
+                            <span class="exp-toggle" aria-hidden="true"></span>
+                        </summary>
+                        <div class="exp-body">
+                            <ul>
+                                <li>Supported <b>50+ students</b> with math coursework and problem-solving strategy.</li>
+                                <li>Completed MATH 140 Tutor Training with an A.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
             </div>
+            <div class="exp-preview" id="exp-preview" aria-hidden="true"><img alt=""></div>
         </section>
 
-        <!-- ============ LEADERSHIP — zigzag timeline ============ -->
+        <!-- ============ LEADERSHIP (horizontal) ============ -->
         <section class="section leadership" id="leadership">
-            <div class="section-head">
-                <span class="section-index mono">06 — CAMPUS</span>
-                <h2 class="section-title">Leadership</h2>
-                <p class="section-sub">Eight roles across six organizations — pick a card, read the bullets, follow the links.</p>
-            </div>
-
-            <div class="lead-orbit reveal" aria-label="Organizations">
-                <span class="lead-orbit-chip"><img src="images/logos/gdg.png" alt="" loading="lazy">GDG</span>
-                <span class="lead-orbit-chip"><img src="images/logos/code-the-change.png" alt="" loading="lazy">Code the Change</span>
-                <span class="lead-orbit-chip"><img src="images/ags-honor-society.png" alt="" loading="lazy">AGS</span>
-                <span class="lead-orbit-chip"><img src="images/logos/isc.png" alt="" loading="lazy">ISC</span>
-                <span class="lead-orbit-chip"><img src="images/logos/snes.png" alt="" loading="lazy">SNES</span>
-                <span class="lead-orbit-chip"><img src="images/logos/icc.png" alt="" loading="lazy">ICC</span>
-                <span class="lead-orbit-chip"><img src="images/logos/toastmasters.png" alt="" loading="lazy">Toastmasters</span>
-                <span class="lead-orbit-chip"><img src="images/logos/indo-dvc.png" alt="" loading="lazy">Indo DVC</span>
-            </div>
-
-            <div class="lead-timeline" id="lead-timeline">
-                <div class="lead-track" aria-hidden="true">
-                    <div class="lead-track-fill" id="lead-track-fill"></div>
-                    <div class="lead-orb" id="lead-orb"></div>
-                </div>
-
-                <div class="lead-item lead-left reveal-side" data-side="left">
-                    <div class="lead-card">
-                        <img src="images/logos/gdg.png" alt="" class="role-logo" loading="lazy">
-                        <div class="role-content">
-                            <span class="role-title">President</span>
-                            <span class="role-org">Google Developer Group · DVC</span>
-                            <ul class="role-bullets">
-                                <li>Leading 20+ student developers in projects, workshops, and community initiatives across campus.</li>
-                                <li>Previously Software Engineer Officer — grew into the presidency by shipping events and dev resources.</li>
-                            </ul>
-                            <div class="role-links">
-                                <a href="https://gdg.community.dev/" target="_blank" rel="noopener" class="project-link mono">GDG Community ↗</a>
-                            </div>
-                        </div>
+            <div class="container">
+                <div class="section-head section-head-row">
+                    <div>
+                        <span class="eyebrow mono"><span class="eyebrow-num">05</span> Leadership</span>
+                        <h2 class="section-title" data-reveal-title>I build communities,<br>not just code.</h2>
                     </div>
-                </div>
-                <div class="lead-item lead-right reveal-side" data-side="right">
-                    <div class="lead-card">
-                        <img src="images/logos/code-the-change.png" alt="" class="role-logo" loading="lazy">
-                        <div class="role-content">
-                            <span class="role-title">Vice President · Project Leader</span>
-                            <span class="role-org">Code the Change · DVC</span>
-                            <ul class="role-bullets">
-                                <li>Led student developers building websites for nonprofits — including educators in Borneo.</li>
-                                <li>Managed project scoping, client communication, and delivery timelines for pro-bono builds.</li>
-                            </ul>
-                            <div class="role-links">
-                                <a href="https://www.codethechange.org/" target="_blank" rel="noopener" class="project-link mono">Code the Change ↗</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="lead-item lead-left reveal-side" data-side="left">
-                    <div class="lead-card">
-                        <img src="images/ags-honor-society.png" alt="" class="role-logo role-logo-shot" loading="lazy">
-                        <div class="role-content">
-                            <span class="role-title">Executive Secretary · Webmaster</span>
-                            <span class="role-org">Alpha Gamma Sigma — Gamma Psi</span>
-                            <ul class="role-bullets">
-                                <li>Run the honor society's official web presence and executive operations.</li>
-                                <li>Coordinate meeting minutes, member communications, and chapter digital assets.</li>
-                            </ul>
-                            <div class="role-links">
-                                <a href="https://www.dvc.edu/student-life/clubs/alpha-gamma-sigma" target="_blank" rel="noopener" class="project-link mono">DVC AGS ↗</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="lead-item lead-right reveal-side" data-side="right">
-                    <div class="lead-card">
-                        <img src="images/logos/isc.png" alt="" class="role-logo" loading="lazy">
-                        <div class="role-content">
-                            <span class="role-title">Vice President</span>
-                            <span class="role-org">DVC International Students Club</span>
-                            <ul class="role-bullets">
-                                <li>Community building for one of DVC's largest international student groups.</li>
-                                <li>Plan cultural events, onboarding support, and cross-club collaboration for new arrivals.</li>
-                            </ul>
-                            <div class="role-links">
-                                <a href="https://www.dvc.edu/student-life/clubs" target="_blank" rel="noopener" class="project-link mono">DVC Clubs ↗</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="lead-item lead-left reveal-side" data-side="left">
-                    <div class="lead-card">
-                        <img src="images/logos/snes.png" alt="" class="role-logo" loading="lazy">
-                        <div class="role-content">
-                            <span class="role-title">Executive Treasurer</span>
-                            <span class="role-org">Science &amp; Engineering Club · DVC</span>
-                            <ul class="role-bullets">
-                                <li>Executive board — finances and engineering initiatives; previously Computer Engineer Officer.</li>
-                                <li>Budget planning, event funding, and hands-on engineering project coordination.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="lead-item lead-right reveal-side" data-side="right">
-                    <div class="lead-card">
-                        <img src="images/logos/icc.png" alt="" class="role-logo" loading="lazy">
-                        <div class="role-content">
-                            <span class="role-title">Executive Tech &amp; Outreach</span>
-                            <span class="role-org">Inter-Club Council · DVC</span>
-                            <ul class="role-bullets">
-                                <li>Tech and outreach across the ICC; attended 10+ consecutive council meetings representing two clubs.</li>
-                                <li>Bridge engineering clubs with campus-wide initiatives and digital infrastructure.</li>
-                            </ul>
-                            <div class="role-links">
-                                <a href="https://www.dvc.edu/student-life/clubs" target="_blank" rel="noopener" class="project-link mono">DVC ICC ↗</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="lead-item lead-left reveal-side" data-side="left">
-                    <div class="lead-card">
-                        <img src="images/logos/toastmasters.png" alt="" class="role-logo" loading="lazy">
-                        <div class="role-content">
-                            <span class="role-title">Engagement Coordinator</span>
-                            <span class="role-org">Toastmasters International · DVC</span>
-                            <ul class="role-bullets">
-                                <li>Coordinated activities for public-speaking practice and member participation.</li>
-                                <li>Designed meeting formats that keep new members speaking within their first session.</li>
-                            </ul>
-                            <div class="role-links">
-                                <a href="https://www.toastmasters.org/" target="_blank" rel="noopener" class="project-link mono">Toastmasters ↗</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="lead-item lead-right reveal-side" data-side="right">
-                    <div class="lead-card">
-                        <img src="images/logos/indo-dvc.png" alt="" class="role-logo" loading="lazy">
-                        <div class="role-content">
-                            <span class="role-title">Event Organizer · Math Tutor</span>
-                            <span class="role-org">Indo DVC · Diablo Valley College</span>
-                            <ul class="role-bullets">
-                                <li>Organizing events for the Indonesian student community on campus.</li>
-                                <li>Tutoring math for peers — calculus and pre-engineering coursework.</li>
-                            </ul>
-                            <div class="role-links">
-                                <a href="https://www.dvc.edu/student-life/clubs" target="_blank" rel="noopener" class="project-link mono">Indo DVC ↗</a>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="section-sub">Ten organizations. One habit: start the thing, grow it, then hand off something that keeps running.</p>
                 </div>
             </div>
 
-            <div class="orbit-block reveal">
-                <h3 class="orbit-block-title mono">TOOLS I USE</h3>
-                <div class="lead-orbit" aria-label="Tools">
-                    <span class="lead-orbit-chip"><img src="images/logos/tools/cursor.svg" alt="" loading="lazy">Cursor</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/tools/claude.svg" alt="" loading="lazy">Claude</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/tools/codex.png" alt="" loading="lazy">Codex</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/tools/antigravity.svg" alt="" loading="lazy">Antigravity</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/tools/firebase.svg" alt="" loading="lazy">Firebase</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/tools/supabase.svg" alt="" loading="lazy">Supabase</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/tools/opencode.png" alt="" loading="lazy">OpenCode</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/tools/n8n.svg" alt="" loading="lazy">n8n</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/tools/figma.svg" alt="" loading="lazy">Figma</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/tools/wix.svg" alt="" loading="lazy">Wix</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/tools/shopify.svg" alt="" loading="lazy">Shopify</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/tools/google-ai-studio.svg" alt="" loading="lazy">Google AI Studio</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/tools/browserbase.png" alt="" loading="lazy">Browserbase</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/tools/arize.png" alt="" loading="lazy">Arize</span>
+            <div class="lead-scroller" id="lead-scroller">
+                <div class="lead-track" id="lead-track">
+                    <article class="lead-card lead-card-feature">
+                        <div class="lead-top"><img src="images/logos/gdg.png" alt="" loading="lazy"><span class="mono">Sep 2025 – Now</span></div>
+                        <h3>President</h3>
+                        <p class="lead-org">Google Developer Group @ DVC</p>
+                        <p class="lead-big"><b>50+</b> active members</p>
+                        <ul>
+                            <li>Rose from Software Engineer Officer to President; built a 16-person executive team.</li>
+                            <li>Returning-member attendance up ~25% through structured project programming.</li>
+                            <li>Shipped 5 club projects and ran an internal hackathon.</li>
+                        </ul>
+                        <a class="lead-link mono" href="https://dvc.campuslabs.com/engage/organization/dvcdevelopers" target="_blank" rel="noopener">Club page ↗</a>
+                    </article>
+                    <article class="lead-card">
+                        <div class="lead-top"><img src="images/logos/isc.png" alt="" loading="lazy"><span class="mono">May 2026 – Now</span></div>
+                        <h3>Vice President</h3>
+                        <p class="lead-org">DVC International Students Club</p>
+                        <p class="lead-big"><b>~70</b> per meeting</p>
+                        <ul>
+                            <li>Built the sign-in and attendance system and event decks, making meetings ~50% more efficient to run.</li>
+                            <li>Effectively ran club operations without an elected president.</li>
+                        </ul>
+                    </article>
+                    <article class="lead-card">
+                        <div class="lead-top"><img src="images/logos/code-the-change.png" alt="" loading="lazy"><span class="mono">Jun 2026 – Now</span></div>
+                        <h3>Vice President &amp; CTO</h3>
+                        <p class="lead-org">Code the Change</p>
+                        <p class="lead-big"><b>20+</b> devs mentored</p>
+                        <ul>
+                            <li>Led a nonprofit client's website build: an estimated 2× lift in online visibility and traffic.</li>
+                            <li>Started as Project Leader (Sep – Dec 2025).</li>
+                        </ul>
+                        <a class="lead-link mono" href="https://codethechange.vercel.app/" target="_blank" rel="noopener">Code the Change ↗</a>
+                    </article>
+                    <article class="lead-card">
+                        <div class="lead-top"><img src="images/logos/permias.png" alt="" loading="lazy"><span class="mono">Mar 2026 – Now</span></div>
+                        <h3>Promotion &amp; Production</h3>
+                        <p class="lead-org">PERMIAS Nasional</p>
+                        <p class="lead-big"><b>500</b> orders nationwide</p>
+                        <ul>
+                            <li>Merch design, vendor coordination and Instagram content for a 10K+ follower national Indonesian student org.</li>
+                            <li>Graduation merch logistics across the US, $1K+ in transactions.</li>
+                        </ul>
+                    </article>
+                    <article class="lead-card">
+                        <div class="lead-top"><img src="images/ags-honor-society.png" alt="" loading="lazy" class="lead-logo-wide"><span class="mono">Sep 2025 – Now</span></div>
+                        <h3>Executive Secretary · Webmaster</h3>
+                        <p class="lead-org">Alpha Gamma Sigma, Gamma Psi</p>
+                        <p class="lead-big"><b>109+</b> honors students</p>
+                        <ul>
+                            <li>Maintain the chapter website and run communications for the honor society.</li>
+                        </ul>
+                        <a class="lead-link mono" href="https://dvcags.wixstudio.com/honor-society" target="_blank" rel="noopener">Chapter site ↗</a>
+                    </article>
+                    <article class="lead-card">
+                        <div class="lead-top"><span class="lead-mono-logo">R</span><span class="mono">Jun 2026 – Now</span></div>
+                        <h3>Chief Technology Officer</h3>
+                        <p class="lead-org">Rotary International · DVC</p>
+                        <ul>
+                            <li>Own the club's technology and digital infrastructure.</li>
+                        </ul>
+                    </article>
+                    <article class="lead-card lead-card-stack">
+                        <div class="lead-logos">
+                            <img src="images/logos/snes.png" alt="" loading="lazy">
+                            <img src="images/logos/icc.png" alt="" loading="lazy">
+                            <img src="images/logos/toastmasters.png" alt="" loading="lazy">
+                            <img src="images/logos/indo-dvc.png" alt="" loading="lazy">
+                        </div>
+                        <h3>And also</h3>
+                        <ul class="lead-also">
+                            <li><b>Executive Treasurer</b>, Science &amp; Engineering Society <span class="mono">prev. Computer Engineer Officer</span></li>
+                            <li><b>Executive Tech &amp; Outreach / ICC Rep</b>, Inter-Club Council <span class="mono">SNES · Omega Leo · CryptoAcademy</span></li>
+                            <li><b>Engagement Coordinator</b>, Toastmasters International</li>
+                            <li><b>Event Organizer Officer</b>, Indo DVC</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+            <p class="lead-hint mono container" aria-hidden="true">Scroll to move sideways →</p>
+        </section>
+
+        <!-- ============ STORY ============ -->
+        <section class="story" id="story">
+            <div class="story-photo">
+                <img src="images/preston-goldengate.jpg" alt="Preston walking across the Golden Gate Bridge" loading="lazy" data-parallax>
+                <div class="story-photo-overlay">
+                    <span class="eyebrow mono"><span class="eyebrow-num">06</span> The road here</span>
+                    <p class="story-quote" data-reveal-title>I didn't come to California<br>for an easy path.</p>
                 </div>
             </div>
 
-            <div class="orbit-block reveal">
-                <h3 class="orbit-block-title mono">CODING STACK</h3>
-                <div class="lead-orbit" aria-label="Coding software">
-                    <span class="lead-orbit-chip"><img src="images/logos/stack/python.svg" alt="" loading="lazy">Python</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/stack/react-native.svg" alt="" loading="lazy">React Native</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/stack/pytorch.svg" alt="" loading="lazy">PyTorch</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/stack/tensorflow.svg" alt="" loading="lazy">TensorFlow</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/stack/cpp.svg" alt="" loading="lazy">C++</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/stack/javascript.svg" alt="" loading="lazy">JavaScript</span>
-                    <span class="lead-orbit-chip"><img src="images/logos/stack/json.svg" alt="" loading="lazy">JSON</span>
-                </div>
+            <div class="container journey">
+                <svg class="journey-path" viewBox="0 0 20 1000" preserveAspectRatio="none" aria-hidden="true">
+                    <path id="journey-line" d="M10 0 V1000"/>
+                </svg>
+
+                <article class="stop" data-reveal>
+                    <span class="stop-flag" aria-hidden="true">🇮🇩</span>
+                    <span class="stop-when mono">2015 – 2021</span>
+                    <h3 class="stop-where">Jakarta, Indonesia</h3>
+                    <p>Grew up bilingual and went to SMAK 5 Penabur Kelapa Gading. Built my first websites at 13, an HTML/CSS/JS habit that never stopped.</p>
+                </article>
+                <article class="stop" data-reveal>
+                    <span class="stop-flag" aria-hidden="true">🇦🇺</span>
+                    <span class="stop-when mono">2021 – 2024</span>
+                    <h3 class="stop-where">Perth, Australia</h3>
+                    <p>Wesley College, ranked the #1 private high school in Australia (Schools360, 2026). Computer Science Prize, #1 of 110. Co-founded the Wesley Coding Club. Captained soccer, volleyball and basketball teams. Earned a taekwondo blue belt.</p>
+                </article>
+                <article class="stop" data-reveal>
+                    <span class="stop-flag" aria-hidden="true">🇨🇳</span>
+                    <span class="stop-when mono">Feb – Jul 2025</span>
+                    <h3 class="stop-where">Rural China</h3>
+                    <p>A residential immersion at Wen Dao Xue Xiao: 5&nbsp;a.m. to 9&nbsp;p.m. days farming potatoes, rice, carrots and strawberries, laying bricks, and studying Chinese, tai chi, wushu and traditional Chinese medicine, with almost no modern comforts.</p>
+                </article>
+                <article class="stop stop-now" data-reveal>
+                    <span class="stop-flag" aria-hidden="true">🇺🇸</span>
+                    <span class="stop-when mono">Aug 2025 – Now</span>
+                    <h3 class="stop-where">San Francisco Bay Area</h3>
+                    <p>Moved here alone to study EECS at Diablo Valley College. 4.0 GPA, RL research, a startup, and a lot of campus leadership. Transfer targets: UC Berkeley, Stanford and Princeton, Fall 2027.</p>
+                </article>
             </div>
         </section>
 
-        <!-- ============ AWARDS — year-grouped ============ -->
+        <!-- ============ AWARDS ============ -->
         <section class="section awards" id="awards">
-            <div class="section-head">
-                <span class="section-index mono">07 — PROOF</span>
-                <h2 class="section-title">Awards &amp; scholarships</h2>
-            </div>
-
-            <div class="awards-years">
-                <div class="awards-year">
-                    <h3 class="awards-year-label mono reveal">2026</h3>
-                    <div class="awards-grid">
-                        <div class="award-card winner reveal">
-                            <span class="award-trophy" aria-hidden="true">🏆</span>
-                            <span class="award-badge mono">WINNER</span>
-                            <h4 class="award-name">Best Hardware · Beginner · Boxi AI</h4>
-                            <p class="award-note">SF Hacks 2026 — three category wins among 250+ participants for Sortify.</p>
-                        </div>
-                        <div class="award-card winner reveal">
-                            <span class="award-trophy" aria-hidden="true">🏆</span>
-                            <span class="award-badge mono">WINNER · SOLO</span>
-                            <h4 class="award-name">Best Gaming Hack</h4>
-                            <p class="award-note">Mega Hackathon 2026 — solo build against 950+ participants.</p>
-                        </div>
-                        <div class="award-card gpa reveal">
-                            <span class="award-trophy" aria-hidden="true">✦</span>
-                            <span class="award-badge mono">4.0</span>
-                            <h4 class="award-name">Perfect GPA</h4>
-                            <p class="award-note">Still perfect — while leading six organizations, shipping products, and conducting RL research.</p>
-                        </div>
-                    </div>
+            <div class="container">
+                <div class="section-head">
+                    <span class="eyebrow mono"><span class="eyebrow-num">07</span> Proof</span>
+                    <h2 class="section-title" data-reveal-title>Awards &amp; honors</h2>
                 </div>
 
-                <div class="awards-year">
-                    <h3 class="awards-year-label mono reveal">2025</h3>
-                    <div class="awards-grid">
-                        <div class="award-card reveal">
-                            <span class="award-trophy" aria-hidden="true">🎓</span>
-                            <span class="award-badge mono">SCHOLARSHIP</span>
-                            <h4 class="award-name">Phillip Howe Scholarship</h4>
-                            <p class="award-note">$2,000 merit scholarship at Diablo Valley College.</p>
-                        </div>
-                        <div class="award-card reveal">
-                            <span class="award-trophy" aria-hidden="true">🎓</span>
-                            <span class="award-badge mono">SCHOLARSHIP</span>
-                            <h4 class="award-name">Manuel Gonzales Merit Scholarship</h4>
-                            <p class="award-note">$350 academic merit award.</p>
-                        </div>
-                        <div class="award-card gpa reveal">
-                            <span class="award-trophy" aria-hidden="true">✦</span>
-                            <span class="award-badge mono">4.0</span>
-                            <h4 class="award-name">Perfect GPA</h4>
-                            <p class="award-note">A perfect first semester at DVC while adjusting to a new country.</p>
-                        </div>
-                    </div>
+                <div class="award-grid">
+                    <article class="award award-hero tilt" data-tilt>
+                        <span class="award-icon" aria-hidden="true">🏆</span>
+                        <span class="mono award-kicker">SF Hacks 2026</span>
+                        <h3>3 awards in one weekend</h3>
+                        <p>Best Beginner Hack · Best Hardware Hack · Best Use of Boxi AI, for Sortify.</p>
+                    </article>
+                    <article class="award tilt" data-tilt>
+                        <span class="award-icon" aria-hidden="true">🥇</span>
+                        <span class="mono award-kicker">Curtin University Gen AI Hackathon 2026</span>
+                        <h3>1st place</h3>
+                    </article>
+                    <article class="award tilt" data-tilt>
+                        <span class="award-icon" aria-hidden="true">🎮</span>
+                        <span class="mono award-kicker">Mega Hackathon 2026</span>
+                        <h3>Best Gaming Hack</h3>
+                        <p>Top 1% of 950+ participants.</p>
+                    </article>
+                    <article class="award tilt" data-tilt>
+                        <span class="award-icon" aria-hidden="true">⚡</span>
+                        <span class="mono award-kicker">Gemini AI Live Agent Hackathon</span>
+                        <h3>Top 1% of 12,000+</h3>
+                    </article>
+                    <article class="award award-dark tilt" data-tilt>
+                        <span class="award-icon" aria-hidden="true">✦</span>
+                        <span class="mono award-kicker">Diablo Valley College</span>
+                        <h3>4.0 GPA</h3>
+                        <p>Phillip Howe Scholarship ($2,000) · Manuel Gonzales Merit Scholarship ($350)</p>
+                    </article>
+                    <article class="award tilt" data-tilt>
+                        <span class="award-icon" aria-hidden="true">🎓</span>
+                        <span class="mono award-kicker">Wesley College</span>
+                        <h3>Computer Science Prize, #1 of 110</h3>
+                        <p>Academic Excellence (top 1%, ×2) · Gold Endeavour (top 1%, ×3) · Duke of Edinburgh Bronze</p>
+                    </article>
                 </div>
 
-                <div class="awards-year">
-                    <h3 class="awards-year-label mono reveal">2024</h3>
-                    <div class="awards-grid">
-                        <div class="award-card winner reveal">
-                            <span class="award-trophy" aria-hidden="true">🏆</span>
-                            <span class="award-badge mono">#1 OF 110</span>
-                            <h4 class="award-name">Computer Science Prize</h4>
-                            <p class="award-note">Top of the class at Wesley College, one of Australia's leading private schools.</p>
-                        </div>
-                        <div class="award-card winner reveal">
-                            <span class="award-trophy" aria-hidden="true">🏆</span>
-                            <span class="award-badge mono">TOP 1% · ×3</span>
-                            <h4 class="award-name">Gold Endeavour Award</h4>
-                            <p class="award-note">Exceptional effort across all subjects and extracurriculars, three years running.</p>
-                        </div>
-                        <div class="award-card reveal">
-                            <span class="award-trophy" aria-hidden="true">✦</span>
-                            <span class="award-badge mono">TOP 1% · ×2</span>
-                            <h4 class="award-name">Academic Excellence</h4>
-                            <p class="award-note">Distinguished performance across the full academic year, twice.</p>
-                        </div>
-                        <div class="award-card reveal">
-                            <span class="award-trophy" aria-hidden="true">✦</span>
-                            <span class="award-badge mono">BRONZE</span>
-                            <h4 class="award-name">Duke of Edinburgh</h4>
-                            <p class="award-note">Service, leadership, and personal resilience.</p>
-                        </div>
-                    </div>
+                <div class="certs" data-reveal>
+                    <h3 class="certs-title mono">Certifications</h3>
+                    <ul class="certs-list">
+                        <li><b>Stanford (Coursera)</b> Supervised ML: Regression &amp; Classification · Advanced Learning Algorithms</li>
+                        <li><b>Anthropic</b> Claude Code in Action</li>
+                        <li><b>Hugging Face</b> AI Agents Fundamentals</li>
+                        <li><b>Google</b> Intro to Generative AI · Intro to LLMs &amp; Responsible AI · Building with AI Studio</li>
+                        <li><b>Great Learning</b> Vibe Coding with AI Tools · Cursor AI</li>
+                        <li><b>Digital Workforce</b> Understanding Agentic AI</li>
+                        <li><b>Alison</b> Basics of Prompt Engineering</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- ============ STACK / SKILLS ============ -->
-        <section class="section skills" id="skills">
-            <div class="section-head">
-                <span class="section-index mono">08 — FULL TOOLING</span>
-                <h2 class="section-title">Everything else I build with</h2>
-                <p class="section-sub">Deeper map of languages, ML, cloud, and hardware beyond the front stack.</p>
+        <!-- ============ TOOLBOX ============ -->
+        <section class="section toolbox" aria-labelledby="toolbox-title">
+            <div class="container">
+                <div class="section-head">
+                    <span class="eyebrow mono"><span class="eyebrow-num">08</span> Toolbox</span>
+                    <h2 class="section-title" id="toolbox-title" data-reveal-title>What I build with</h2>
+                </div>
+                <div class="skill-cols" data-reveal-stagger>
+                    <div class="skill-col"><h3 class="mono">Languages</h3><p>Python · C/C++ · JavaScript · TypeScript · HTML/CSS · SQL</p></div>
+                    <div class="skill-col"><h3 class="mono">AI / ML</h3><p>Reinforcement learning · Q-learning · reward shaping · agentic AI · RAG · computer vision · TensorFlow · OpenCV · Claude / Gemini / OpenAI APIs</p></div>
+                    <div class="skill-col"><h3 class="mono">Frameworks &amp; cloud</h3><p>React · React Native · Next.js · Node.js · FastAPI · Firebase · Supabase · MongoDB · Cloud Run · Vercel · Docker</p></div>
+                    <div class="skill-col"><h3 class="mono">Hardware &amp; tools</h3><p>Arduino · Raspberry Pi · Git · Cursor · VS Code · Figma · Canva · Wix · Shopify</p></div>
+                </div>
             </div>
+            <div class="logo-rail" aria-hidden="true">
+                <div class="logo-rail-track">
+                    <img src="images/logos/stack/python.svg" alt=""><img src="images/logos/stack/typescript.svg" alt=""><img src="images/logos/stack/cpp.svg" alt=""><img src="images/logos/stack/react-native.svg" alt=""><img src="images/logos/stack/nextjs.svg" alt=""><img src="images/logos/stack/nodejs.svg" alt=""><img src="images/logos/stack/fastapi.svg" alt=""><img src="images/logos/stack/tensorflow.svg" alt=""><img src="images/logos/stack/pytorch.svg" alt=""><img src="images/logos/stack/opencv.svg" alt=""><img src="images/logos/stack/docker.svg" alt=""><img src="images/logos/stack/googlecloud.svg" alt=""><img src="images/logos/stack/postgresql.svg" alt=""><img src="images/logos/stack/arduino.svg" alt=""><img src="images/logos/stack/raspberrypi.svg" alt=""><img src="images/logos/tools/supabase.svg" alt=""><img src="images/logos/tools/firebase.svg" alt=""><img src="images/logos/tools/figma.svg" alt=""><img src="images/logos/tools/claude.svg" alt=""><img src="images/logos/tools/cursor.svg" alt=""><img src="images/logos/tools/n8n.svg" alt=""><img src="images/logos/tools/shopify.svg" alt="">
+                </div>
+            </div>
+        </section>
 
-            <div class="about-skills">
-                <div class="skill-block reveal">
-                    <h3 class="skill-title mono">LANGUAGES</h3>
-                    <div class="chips">
-                        <span class="chip chip-icon"><img src="images/logos/stack/python.svg" alt="">Python</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/cpp.svg" alt="">C/C++</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/typescript.svg" alt="">TypeScript</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/javascript.svg" alt="">JavaScript</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/postgresql.svg" alt="">SQL</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/html5.svg" alt="">HTML/CSS</span>
-                    </div>
+        <!-- ============ BEYOND ============ -->
+        <section class="section beyond" aria-labelledby="beyond-title">
+            <div class="container">
+                <div class="section-head">
+                    <span class="eyebrow mono"><span class="eyebrow-num">09</span> Off the keyboard</span>
+                    <h2 class="section-title" id="beyond-title" data-reveal-title>The rest of me</h2>
                 </div>
-                <div class="skill-block reveal">
-                    <h3 class="skill-title mono">AI / ML</h3>
-                    <div class="chips">
-                        <span class="chip">Reinforcement Learning</span>
-                        <span class="chip">Q-Learning</span>
-                        <span class="chip">Reward Shaping</span>
-                        <span class="chip">Computer Vision</span>
-                        <span class="chip">Agentic AI</span>
-                        <span class="chip">RAG Pipelines</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/tensorflow.svg" alt="">TensorFlow</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/pytorch.svg" alt="">PyTorch</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/opencv.svg" alt="">OpenCV</span>
-                    </div>
-                </div>
-                <div class="skill-block reveal">
-                    <h3 class="skill-title mono">WEB / CLOUD</h3>
-                    <div class="chips">
-                        <span class="chip chip-icon"><img src="images/logos/stack/react-native.svg" alt="">React Native</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/nextjs.svg" alt="">Next.js</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/nodejs.svg" alt="">Node.js</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/fastapi.svg" alt="">FastAPI</span>
-                        <span class="chip chip-icon"><img src="images/logos/tools/firebase.svg" alt="">Firebase</span>
-                        <span class="chip chip-icon"><img src="images/logos/tools/supabase.svg" alt="">Supabase</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/googlecloud.svg" alt="">Google Cloud Run</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/docker.svg" alt="">Docker</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/twilio.png" alt="">Twilio</span>
-                    </div>
-                </div>
-                <div class="skill-block reveal">
-                    <h3 class="skill-title mono">HARDWARE</h3>
-                    <div class="chips">
-                        <span class="chip chip-icon"><img src="images/logos/stack/arduino.svg" alt="">Arduino</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/raspberrypi.svg" alt="">Raspberry Pi</span>
-                        <span class="chip">GPS / Serial</span>
-                        <span class="chip">Embedded Prototyping</span>
-                    </div>
-                </div>
-                <div class="skill-block reveal">
-                    <h3 class="skill-title mono">AI + BUILD WORKFLOW</h3>
-                    <div class="chips">
-                        <span class="chip chip-icon"><img src="images/logos/stack/openai.png" alt="">ChatGPT</span>
-                        <span class="chip">Claude</span><span class="chip">Gemini</span><span class="chip">Higgsfield</span><span class="chip">Granola</span>
-                        <span class="chip chip-icon"><img src="images/logos/tools/cursor.svg" alt="">Cursor</span>
-                        <span class="chip chip-icon"><img src="images/logos/tools/codex.png" alt="">Codex</span>
-                        <span class="chip chip-icon"><img src="images/logos/stack/twilio.png" alt="">Twilio</span><span class="chip">Wati</span>
-                    </div>
+                <div class="beyond-grid" data-reveal-stagger>
+                    <article class="beyond-card"><span class="beyond-emoji" aria-hidden="true">🥋</span><h3>Taekwondo</h3><p>White belt to blue belt (10th → 5th Geup) in two years at First Taekwondo Dojo, Perth. 8+ Taegeuk forms.</p></article>
+                    <article class="beyond-card"><span class="beyond-emoji" aria-hidden="true">⚽</span><h3>Team captain</h3><p>Soccer, volleyball and basketball at Wesley College, 3rd Division Perth.</p></article>
+                    <article class="beyond-card"><span class="beyond-emoji" aria-hidden="true">🏕️</span><h3>119+ service hours</h3><p>Camp Leader at YMCA Camp Campbell: 89 hours supervising 190+ students at an overnight science camp.</p></article>
+                    <article class="beyond-card"><span class="beyond-emoji" aria-hidden="true">🌾</span><h3>Farmer, briefly</h3><p>Rice, potatoes, carrots and strawberries in rural China. Best lesson in discipline I've had.</p></article>
                 </div>
             </div>
         </section>
 
         <!-- ============ CONTACT ============ -->
-        <section class="section contact" id="contact">
-            <div class="contact-inner">
-                <p class="mono contact-eyebrow">OPEN TO RESEARCH COLLABS, INTERNSHIPS &amp; INTERESTING PROBLEMS</p>
-                <h2 class="contact-title">Let's build something.</h2>
-                <a href="mailto:prestonjaysusanto@gmail.com" class="contact-email">prestonjaysusanto@gmail.com</a>
+        <section class="contact" id="contact">
+            <div class="container contact-inner">
+                <span class="eyebrow mono"><span class="status-dot" aria-hidden="true"></span>Open to internships, research collabs &amp; founder chats</span>
+                <h2 class="contact-title" data-reveal-title>Let's build<br><span class="text-accent">something real.</span></h2>
+                <button class="contact-email magnetic" id="copy-email" data-email="prestonjaysusanto@gmail.com" data-cursor="Copy">
+                    <span class="contact-email-text">prestonjaysusanto@gmail.com</span>
+                    <span class="contact-email-hint mono" id="copy-hint">Click to copy</span>
+                </button>
                 <div class="contact-links">
-                    <a href="Preston_Susanto_Resume.pdf" target="_blank" rel="noopener" class="btn btn-primary">View Resume</a>
-                    <a href="https://github.com/ShadowEsu" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
-                    <a href="https://www.linkedin.com/in/preston-jay-susanto/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
-                    <a href="https://unvibe.site" target="_blank" rel="noopener" class="btn btn-ghost">UNVIBE</a>
-                    <a href="https://regradeapp.tech" target="_blank" rel="noopener" class="btn btn-ghost">Regrade</a>
+                    <a href="https://www.linkedin.com/in/preston-jay-susanto/" target="_blank" rel="noopener" class="btn btn-ghost magnetic">LinkedIn ↗</a>
+                    <a href="https://github.com/ShadowEsu" target="_blank" rel="noopener" class="btn btn-ghost magnetic">GitHub ↗</a>
+                    <a href="https://unvibe.site" target="_blank" rel="noopener" class="btn btn-ghost magnetic">Unvibe ↗</a>
+                    <a href="Preston_Susanto_Resume.pdf" target="_blank" rel="noopener" class="btn btn-accent magnetic">Résumé ↗</a>
                 </div>
             </div>
-            <footer class="footer">
-                <span class="mono">© 2026 PRESTON SUSANTO</span>
-                <span class="mono footer-note">DESIGNED &amp; BUILT ON A MACBOOK — LIKE EVERYTHING ELSE HERE</span>
+            <footer class="footer container">
+                <span class="mono">© 2026 Preston Susanto</span>
+                <span class="mono">San Francisco Bay Area · <span id="footer-time">PT</span></span>
+                <a href="#top" class="mono footer-top">Back to top ↑</a>
             </footer>
         </section>
     </main>
+
+    <!-- Project detail modal -->
+    <dialog class="modal" id="project-modal" aria-labelledby="modal-title">
+        <div class="modal-inner">
+            <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+            <div class="modal-media" id="modal-media"></div>
+            <div class="modal-body">
+                <span class="tag mono" id="modal-tag"></span>
+                <h3 class="modal-title" id="modal-title"></h3>
+                <p class="modal-desc" id="modal-desc"></p>
+                <div id="modal-detail"></div>
+            </div>
+        </div>
+    </dialog>
 
     <script src="site-config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
     <script type="module" src="js/main.js"></script>
 </body>
 </html>
