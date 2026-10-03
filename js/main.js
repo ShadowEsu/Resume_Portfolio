@@ -4,10 +4,10 @@
  * horizontal leadership rail, journey line, and the two RL canvases.
  */
 
-import { registerPortfolioVisitor } from './visitors.js';
-import { initHeroGrid } from './hero-grid.js';
-import { initHero3D } from './hero3d.js';
-import { initLake } from './lake.js';
+import { registerPortfolioVisitor } from './visitors.js?v=20261003b';
+import { initHeroGrid } from './hero-grid.js?v=20261003b';
+import { initHero3D } from './hero3d.js?v=20261003b';
+import { initLake } from './lake.js?v=20261003b';
 
 const root = document.documentElement;
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
