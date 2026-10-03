@@ -5,7 +5,7 @@
  */
 
 const GAMMA = 0.86;
-const ACCENT = [140, 200, 255];
+const ACCENT = [255, 255, 255];
 const CREAM = [255, 255, 255];
 
 export function initHeroGrid(canvas, { reduced = false } = {}) {

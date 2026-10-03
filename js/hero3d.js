@@ -1,7 +1,7 @@
 /**
  * Hero: a 3D value landscape.
  * A gridworld runs value iteration every frame with the cursor as the goal; each cell is a
- * column whose height and glow follow its value, so value rises toward the cursor and flows
+ * column whose height and brightness follow its value, so value rises toward the cursor and flows
  * around "holes". Small agents ride the surface following the greedy policy.
  * Returns false if WebGL / Three.js is unavailable so the caller can fall back to 2D.
  */
@@ -46,10 +46,10 @@ export async function initHero3D(canvas, { reduced = false, mobile = false } = {
     const key = new THREE.DirectionalLight(0xffffff, 1.6);
     key.position.set(-8, 18, 10);
     scene.add(key);
-    const rim = new THREE.DirectionalLight(0x8cc8ff, 0.9);
+    const rim = new THREE.DirectionalLight(0xffffff, 0.6);
     rim.position.set(12, 6, -14);
     scene.add(rim);
-    const glow = new THREE.PointLight(0x8cc8ff, 60, 14, 1.6);
+    const glow = new THREE.PointLight(0xffffff, 40, 14, 1.6);
     scene.add(glow);
 
     // Columns
@@ -156,8 +156,8 @@ export async function initHero3D(canvas, { reduced = false, mobile = false } = {
 
     const dummy = new THREE.Object3D();
     const cLow = new THREE.Color(0x141418);
-    const cMid = new THREE.Color(0x24384d);
-    const cHigh = new THREE.Color(0x8cc8ff);
+    const cMid = new THREE.Color(0x3a3a40);
+    const cHigh = new THREE.Color(0xe8e8ea);
     const cGoal = new THREE.Color(0xffffff);
     const cHole = new THREE.Color(0x050506);
     const tmp = new THREE.Color();
@@ -233,7 +233,7 @@ export async function initHero3D(canvas, { reduced = false, mobile = false } = {
         glow.position.x += (gx - glow.position.x) * 0.15;
         glow.position.z += (gz - glow.position.z) * 0.15;
         glow.position.y = 7;
-        glow.intensity = 55 + Math.sin(t * 3) * 12;
+        glow.intensity = 36 + Math.sin(t * 3) * 8;
 
         parallax.x += (parallax.tx - parallax.x) * 0.04;
         parallax.y += (parallax.ty - parallax.y) * 0.04;

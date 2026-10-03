@@ -176,43 +176,31 @@ initLake({
 });
 
 /* ------------------------------------------------------------------ */
-/* Role swapper (scramble)                                             */
+/* Role swapper: old word slides up and out, new word slides in        */
 /* ------------------------------------------------------------------ */
 (function roles() {
     const el = $('#role-swap');
     if (!el) return;
     const roles = JSON.parse(el.dataset.roles || '[]');
-    const glyphs = '!<>-_\\/[]{}—=+*^?#01';
     let i = 0;
-
-    function scrambleTo(text) {
-        const from = el.textContent;
-        const len = Math.max(from.length, text.length);
-        const queue = Array.from({ length: len }, (_, k) => ({
-            to: text[k] || '',
-            start: Math.floor(Math.random() * 12),
-            end: 12 + Math.floor(Math.random() * 16),
-        }));
-        let frame = 0;
-        const run = () => {
-            let out = '';
-            let done = 0;
-            for (const q of queue) {
-                if (frame >= q.end) { out += q.to; done++; }
-                else if (frame >= q.start) out += glyphs[Math.floor(Math.random() * glyphs.length)];
-                else out += from[queue.indexOf(q)] || '';
-            }
-            el.textContent = out;
-            if (done < queue.length) { frame++; requestAnimationFrame(run); }
-        };
-        run();
-    }
-
     setInterval(() => {
         i = (i + 1) % roles.length;
-        if (REDUCED) el.textContent = roles[i];
-        else scrambleTo(roles[i]);
-    }, 2800);
+        if (REDUCED || !el.animate) {
+            el.textContent = roles[i];
+            return;
+        }
+        const out = el.animate(
+            [{ transform: 'translateY(0)', opacity: 1 }, { transform: 'translateY(-0.4em)', opacity: 0 }],
+            { duration: 260, easing: 'cubic-bezier(0.4, 0, 1, 1)', fill: 'forwards' }
+        );
+        out.onfinish = () => {
+            el.textContent = roles[i];
+            el.animate(
+                [{ transform: 'translateY(0.4em)', opacity: 0 }, { transform: 'translateY(0)', opacity: 1 }],
+                { duration: 480, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' }
+            );
+        };
+    }, 2600);
 })();
 
 /* ------------------------------------------------------------------ */
@@ -327,7 +315,6 @@ if (ANIMATE) {
         .from(heroChars[1], { yPercent: 115, rotate: 6, duration: 1.3, stagger: 0.035 }, '-=1.15')
         .fromTo('[data-hero]', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 1.1, stagger: 0.08 }, '-=1.0')
         .fromTo('[data-hero-visual]', { opacity: 0, y: 80, rotateY: -32, rotateX: 12, scale: 0.9, transformPerspective: 1200 }, { opacity: 1, y: 0, rotateY: 0, rotateX: 0, scale: 1, duration: 1.6 }, '-=1.2')
-        .from('.float-chip', { opacity: 0, scale: 0.6, duration: 0.8, stagger: 0.1, ease: 'back.out(2)' }, '-=0.9')
         .from('.app-tile', { opacity: 0, duration: 0.8, stagger: 0.15 }, '-=0.7')
         .from('.nav', { yPercent: -150, duration: 1 }, 0.2);
 
@@ -388,7 +375,7 @@ if (ANIMATE) {
         });
     };
     batch('.project', { y: 90, scale: 0.94, rotateX: -28, transformOrigin: '50% 0%' });
-    batch('.award', { y: 60, rotateX: -24, transformPerspective: 1200, transformOrigin: '50% 0%' });
+    batch('.award-row', { y: 30 });
     batch('.number', { y: 30 });
 
     // Count-ups

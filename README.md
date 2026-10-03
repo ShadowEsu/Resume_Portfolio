@@ -7,21 +7,21 @@ researcher, 5× hackathon winner, and EECS student at Diablo Valley College. Sta
 no build step. GitHub Pages serves it straight from `main`.
 
 ## Design
-- **Palette**: black `#070708`, white `#f5f5f4`, light blue `#8cc8ff`
-- **Type**: Inter Tight (display), Inter (body), JetBrains Mono (labels), Instrument Serif italic accents
+- **Palette**: black `#070708` and white `#f5f5f4` with grays; no color accents or decorative gradients
+- **Type**: Inter Tight (display), Inter (body), JetBrains Mono (labels), Instrument Serif italic (gray) for accent lines
 - **App logos**: Unvibe and Regrade icons float in 3D around the portrait; Unvibe's credit partners are shown under its metrics
 - **Signature pieces**
   - Hero is a Three.js 3D landscape running value iteration live. The cursor is the goal, columns rise
-    and glow blue as value flows toward it (around "holes"), and small agents ride the surface following
+    and brighten as value flows toward it (around "holes"), and small agents ride the surface following
     the greedy policy. Falls back to a 2D canvas version if WebGL or the CDN is unavailable.
   - The research section has a real, in-browser tabular Q-learning demo on a 4×4 FrozenLake,
     with a toggle for potential-based reward shaping.
 
 ## Motion
 - Intro curtain (once per session, pure CSS so it can't get stuck)
-- Split-character hero title, scrambling role text, magnetic buttons, cursor follower
+- Split-character hero title, sliding role text, magnetic buttons, cursor follower
 - 3D: headings flip up line by line, the Unvibe demo window lies back and flattens on scroll, the research
-  panel swings up, project and award cards rise in with perspective and tilt toward the cursor, journey
+  panel swings up, project cards rise in with perspective and tilt toward the cursor, journey
   stops turn in from the side, and the leadership rail is a pinned coverflow (swipe on mobile)
 - Count-up stats, scroll-velocity marquee, spinning Unvibe logo coin, GSAP Flip project filtering + modal
 - `prefers-reduced-motion` disables animation; content stays visible if the CDN scripts never load
