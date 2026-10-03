@@ -2,7 +2,7 @@
  * Hero: a 3D value landscape.
  * A gridworld runs value iteration every frame with the cursor as the goal; each cell is a
  * column whose height and brightness follow its value, so value rises toward the cursor and flows
- * around "holes". Small agents ride the surface following the greedy policy.
+ * around "holes".
  * Returns false if WebGL / Three.js is unavailable so the caller can fall back to 2D.
  */
 
@@ -46,10 +46,10 @@ export async function initHero3D(canvas, { reduced = false, mobile = false } = {
     const key = new THREE.DirectionalLight(0xffffff, 1.6);
     key.position.set(-8, 18, 10);
     scene.add(key);
-    const rim = new THREE.DirectionalLight(0xffffff, 0.6);
+    const rim = new THREE.DirectionalLight(0x8cc8ff, 0.8);
     rim.position.set(12, 6, -14);
     scene.add(rim);
-    const glow = new THREE.PointLight(0xffffff, 40, 14, 1.6);
+    const glow = new THREE.PointLight(0x8cc8ff, 50, 14, 1.6);
     scene.add(glow);
 
     // Columns
@@ -98,43 +98,6 @@ export async function initHero3D(canvas, { reduced = false, mobile = false } = {
         const t = V; V = next; next = t;
     }
 
-    // Agents
-    const agentGeo = new THREE.SphereGeometry(0.2, 16, 12);
-    const agentMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.6, roughness: 0.3 });
-    const agents = Array.from({ length: mobile ? 4 : 7 }, () => {
-        const m = new THREE.Mesh(agentGeo, agentMat);
-        scene.add(m);
-        const a = { m, c: 0, r: 0 };
-        respawn(a);
-        m.position.set(...[cellPos(a.c, a.r)[0], 1, cellPos(a.c, a.r)[1]]);
-        return a;
-    });
-    function respawn(a) {
-        do {
-            a.c = Math.floor(Math.random() * COLS);
-            a.r = Math.floor(Math.random() * ROWS);
-        } while (holes[idx(a.c, a.r)]);
-    }
-    function stepAgents() {
-        for (const a of agents) {
-            if ((a.c === goal.c && a.r === goal.r) || V[idx(a.c, a.r)] < 0.02) { respawn(a); continue; }
-            let best = -1;
-            let bc = a.c;
-            let br = a.r;
-            const options = [[1, 0], [-1, 0], [0, 1], [0, -1]];
-            const explore = Math.random() < 0.1;
-            for (const [dc, dr] of options) {
-                const nc = a.c + dc;
-                const nr = a.r + dr;
-                if (nc < 0 || nr < 0 || nc >= COLS || nr >= ROWS || holes[idx(nc, nr)]) continue;
-                const v = explore ? Math.random() : V[idx(nc, nr)];
-                if (v > best) { best = v; bc = nc; br = nr; }
-            }
-            a.c = bc;
-            a.r = br;
-        }
-    }
-
     // Pointer → goal via raycast onto the ground plane
     const raycaster = new THREE.Raycaster();
     const ground = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
@@ -156,9 +119,9 @@ export async function initHero3D(canvas, { reduced = false, mobile = false } = {
 
     const dummy = new THREE.Object3D();
     const cLow = new THREE.Color(0x141418);
-    const cMid = new THREE.Color(0x3a3a40);
-    const cHigh = new THREE.Color(0xe8e8ea);
-    const cGoal = new THREE.Color(0xffffff);
+    const cMid = new THREE.Color(0x2b3d52);
+    const cHigh = new THREE.Color(0x8cc8ff);
+    const cGoal = new THREE.Color(0xbfe0ff);
     const cHole = new THREE.Color(0x050506);
     const tmp = new THREE.Color();
 
@@ -200,7 +163,6 @@ export async function initHero3D(canvas, { reduced = false, mobile = false } = {
 
     let running = false;
     let raf = 0;
-    let lastAgent = 0;
     const t0 = performance.now();
 
     function frame(now) {
@@ -220,20 +182,11 @@ export async function initHero3D(canvas, { reduced = false, mobile = false } = {
         sweep();
         updateMesh(0.12);
 
-        if (now - lastAgent > 140) { stepAgents(); lastAgent = now; }
-        for (const a of agents) {
-            const [x, z] = cellPos(a.c, a.r);
-            const y = H[idx(a.c, a.r)] + 0.28;
-            a.m.position.x += (x - a.m.position.x) * 0.2;
-            a.m.position.z += (z - a.m.position.z) * 0.2;
-            a.m.position.y += (y - a.m.position.y) * 0.2;
-        }
-
         const [gx, gz] = cellPos(goal.c, goal.r);
         glow.position.x += (gx - glow.position.x) * 0.15;
         glow.position.z += (gz - glow.position.z) * 0.15;
         glow.position.y = 7;
-        glow.intensity = 36 + Math.sin(t * 3) * 8;
+        glow.intensity = 46 + Math.sin(t * 3) * 10;
 
         parallax.x += (parallax.tx - parallax.x) * 0.04;
         parallax.y += (parallax.ty - parallax.y) * 0.04;

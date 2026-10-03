@@ -7,19 +7,18 @@ researcher, 5× hackathon winner, and EECS student at Diablo Valley College. Sta
 no build step. GitHub Pages serves it straight from `main`.
 
 ## Design
-- **Palette**: black `#070708` and white `#f5f5f4` with grays; no color accents or decorative gradients
+- **Palette**: text stays black, white and gray; color lives in the visuals (photos, app logos, the light-blue 3D hero and research demo). No decorative gradients
 - **Type**: Inter Tight (display), Inter (body), JetBrains Mono (labels), Instrument Serif italic (gray) for accent lines
 - **App logos**: Unvibe and Regrade icons float in 3D around the portrait; Unvibe's credit partners are shown under its metrics
 - **Signature pieces**
   - Hero is a Three.js 3D landscape running value iteration live. The cursor is the goal, columns rise
-    and brighten as value flows toward it (around "holes"), and small agents ride the surface following
-    the greedy policy. Falls back to a 2D canvas version if WebGL or the CDN is unavailable.
+    and light up blue as value flows toward it (around "holes"). Falls back to a 2D canvas version if WebGL or the CDN is unavailable.
   - The research section has a real, in-browser tabular Q-learning demo on a 4×4 FrozenLake,
     with a toggle for potential-based reward shaping.
 
 ## Motion
 - Intro curtain (once per session, pure CSS so it can't get stuck)
-- Split-character hero title, sliding role text, magnetic buttons, cursor follower
+- Split-character hero title, sliding role text, magnetic buttons
 - 3D: headings flip up line by line, the Unvibe demo window lies back and flattens on scroll, the research
   panel swings up, project cards rise in with perspective and tilt toward the cursor, journey
   stops turn in from the side, and the leadership rail is a pinned coverflow (swipe on mobile)

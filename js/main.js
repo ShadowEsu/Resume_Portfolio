@@ -204,28 +204,9 @@ initLake({
 })();
 
 /* ------------------------------------------------------------------ */
-/* Cursor, magnetic buttons, tilt                                      */
+/* Magnetic buttons, tilt                                              */
 /* ------------------------------------------------------------------ */
 if (FINE && ANIMATE) {
-    const cursor = $('.cursor');
-    const dot = $('.cursor-dot');
-    const ring = $('.cursor-ring');
-    const label = $('.cursor-label');
-    const dx = gsap.quickTo(dot, 'x', { duration: 0.1 });
-    const dy = gsap.quickTo(dot, 'y', { duration: 0.1 });
-    const rx = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
-    const ry = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
-    window.addEventListener('pointermove', (e) => {
-        dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY);
-    });
-    document.addEventListener('pointerover', (e) => {
-        const labelled = e.target.closest('[data-cursor]');
-        const link = e.target.closest('a, button, summary, label, .project');
-        cursor.classList.toggle('is-label', !!labelled);
-        cursor.classList.toggle('is-link', !labelled && !!link);
-        label.textContent = labelled ? labelled.dataset.cursor : '';
-    });
-
     $$('.magnetic').forEach((el) => {
         const xTo = gsap.quickTo(el, 'x', { duration: 0.5, ease: 'power3' });
         const yTo = gsap.quickTo(el, 'y', { duration: 0.5, ease: 'power3' });

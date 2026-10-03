@@ -160,7 +160,7 @@ export function initLake({ canvas, runBtn, resetBtn, shapingInput, episodesEl, s
             ctx.fill();
             const v = Math.max(0, values[s]) / vmax;
             if (v > 0.01) {
-                ctx.fillStyle = `rgba(255,255,255,${Math.min(0.6, v * 0.6)})`;
+                ctx.fillStyle = `rgba(140,200,255,${Math.min(0.9, v * 0.85)})`;
                 ctx.beginPath();
                 ctx.roundRect(x, y, cell, cell, 12);
                 ctx.fill();
@@ -181,7 +181,7 @@ export function initLake({ canvas, runBtn, resetBtn, shapingInput, episodesEl, s
                 const cx = x + cell / 2;
                 const cy = y + cell / 2;
                 const L = cell * 0.18;
-                ctx.strokeStyle = v > 0.6 ? 'rgba(7,7,8,0.85)' : 'rgba(255,255,255,0.92)';
+                ctx.strokeStyle = v > 0.55 ? 'rgba(7,7,8,0.85)' : 'rgba(255,255,255,0.92)';
                 ctx.lineWidth = 2.5;
                 ctx.lineCap = 'round';
                 ctx.beginPath();
