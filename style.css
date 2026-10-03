@@ -87,14 +87,6 @@ h1, h2, h3, h4, p { margin: 0; }
 .text-accent { color: var(--accent); }
 
 /* ---------- Grain + progress ---------- */
-.grain {
-    position: fixed;
-    inset: -50%;
-    z-index: 90;
-    pointer-events: none;
-    opacity: 0.05;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
 
 .scroll-progress {
     position: fixed;
@@ -259,9 +251,9 @@ h1, h2, h3, h4, p { margin: 0; }
     gap: 16px;
     padding: 8px 8px 8px 10px;
     border-radius: 999px;
-    background: rgba(14, 14, 16, 0.6);
-    backdrop-filter: blur(16px) saturate(140%);
-    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    background: rgba(10, 10, 12, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--line);
     transition: transform 0.5s var(--ease), background 0.3s;
 }
@@ -384,7 +376,6 @@ h1, h2, h3, h4, p { margin: 0; }
     font-size: 0.88rem;
     color: var(--muted);
     margin-bottom: 28px;
-    backdrop-filter: blur(6px);
 }
 .status-pill strong { color: var(--text); font-weight: 600; }
 
@@ -397,7 +388,7 @@ h1, h2, h3, h4, p { margin: 0; }
     margin-left: -0.04em;
 }
 .hero-line { display: block; overflow: hidden; padding: 0 0.04em 0.06em; }
-.hero-line .char { display: inline-block; will-change: transform; }
+.hero-line .char { display: inline-block; }
 .hero-line-serif { font-family: var(--f-serif); font-style: italic; font-weight: 400; letter-spacing: -0.02em; color: var(--text); font-size: 1.08em; line-height: 0.82; padding-left: 0.02em; }
 .hero-line .char { transition: color 0.4s; }
 .hero-line .char:hover { color: var(--accent); transition-duration: 0.05s; }
@@ -450,8 +441,7 @@ h1, h2, h3, h4, p { margin: 0; }
     justify-content: space-between;
     padding: 10px 14px;
     border-radius: 14px;
-    background: rgba(7, 7, 8, 0.65);
-    backdrop-filter: blur(8px);
+    background: rgba(7, 7, 8, 0.78);
     font-size: 0.68rem;
     color: var(--text);
 }
@@ -464,7 +454,6 @@ h1, h2, h3, h4, p { margin: 0; }
     border-radius: 999px;
     background: rgba(17, 17, 19, 0.85);
     border: 1px solid var(--line-strong);
-    backdrop-filter: blur(10px);
     font-size: 0.88rem;
     white-space: nowrap;
     box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.8);
@@ -611,10 +600,10 @@ h1, h2, h3, h4, p { margin: 0; }
     border: 1px solid var(--line);
     overflow: hidden;
     cursor: pointer;
-    transition: border-color 0.35s, transform 0.5s var(--ease), box-shadow 0.5s;
+    transition: border-color 0.35s;
 }
 .project:hover,
-.project:focus-visible { border-color: rgba(255, 255, 255, 0.2); transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9); }
+.project:focus-visible { border-color: rgba(255, 255, 255, 0.3); }
 .project.is-hidden { display: none; }
 .project-lg { grid-column: span 2; }
 .project-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--surface-2); }
@@ -745,19 +734,17 @@ h1, h2, h3, h4, p { margin: 0; }
     padding: 28px 0;
     cursor: pointer;
     list-style: none;
-    transition: padding 0.5s var(--ease), color 0.3s;
 }
 .exp summary::-webkit-details-marker { display: none; }
 .exp-date { color: var(--dim); font-size: 0.74rem; }
-.exp-role { font-family: var(--f-display); font-size: clamp(1.4rem, 2.8vw, 2.3rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.1; transition: color 0.3s; }
+.exp-role { font-family: var(--f-display); font-size: clamp(1.4rem, 2.8vw, 2.3rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.1; transition: transform 0.5s var(--ease); }
 .exp-org { color: var(--muted); text-align: right; }
 .exp-toggle { position: relative; width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line-strong); transition: transform 0.45s var(--ease), background 0.3s; }
 .exp-toggle::before,
 .exp-toggle::after { content: ""; position: absolute; top: 50%; left: 50%; width: 10px; height: 1.5px; margin: -0.75px 0 0 -5px; background: var(--text); }
 .exp-toggle::after { transform: rotate(90deg); transition: transform 0.45s var(--ease); }
 @media (hover: hover) {
-    .exp summary:hover { padding-left: 16px; }
-    .exp summary:hover .exp-role { color: var(--accent); }
+    .exp summary:hover .exp-role { transform: translateX(14px); }
 }
 .exp[open] .exp-toggle { background: var(--accent); border-color: var(--accent); transform: rotate(180deg); }
 .exp[open] .exp-toggle::before,
@@ -1065,9 +1052,9 @@ h1, h2, h3, h4, p { margin: 0; }
 
 /* 3D stages */
 .unvibe-media { perspective: 1600px; }
-.window { transform-origin: 50% 100%; will-change: transform; }
+.window { transform-origin: 50% 100%; }
 .projects { perspective: 1800px; }
-.project { transform-style: preserve-3d; will-change: transform; }
+.project { transform-style: preserve-3d; }
 
 .project-app-icon {
     position: absolute;
@@ -1083,8 +1070,6 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 .lead-scroller.is-pinned { perspective: 1500px; }
 .lead-track { position: relative; transform-style: preserve-3d; }
-.lead-card { will-change: transform; }
-.research { transform-origin: 50% 0; will-change: transform; }
 .stop { transform-style: preserve-3d; }
 
 
@@ -1097,12 +1082,11 @@ h1, h2, h3, h4, p { margin: 0; }
     align-items: baseline;
     padding: 22px 0;
     border-top: 1px solid var(--line-strong);
-    transition: padding 0.5s var(--ease);
 }
 .award-year { color: var(--dim); }
-.award-event { font-family: var(--f-display); font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 500; letter-spacing: -0.02em; }
+.award-event { font-family: var(--f-display); font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 500; letter-spacing: -0.02em; transition: transform 0.5s var(--ease); }
 .award-result { color: var(--muted); }
-@media (hover: hover) { .award-row:hover { padding-left: 12px; } }
+@media (hover: hover) { .award-row:hover .award-event { transform: translateX(12px); } }
 @media (max-width: 760px) {
     .award-row { grid-template-columns: 1fr; gap: 4px; }
 }

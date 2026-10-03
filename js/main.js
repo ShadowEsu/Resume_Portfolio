@@ -29,7 +29,8 @@ if (ANIMATE) {
     gsap.registerPlugin(ScrollTrigger);
     if (window.Flip) gsap.registerPlugin(Flip);
     if (typeof window.Lenis !== 'undefined') {
-        lenis = new Lenis({ duration: 1.05, easing: (t) => 1 - Math.pow(1 - t, 4), wheelMultiplier: 1 });
+        // lerp-based smoothing feels responsive (no long tail after the wheel stops)
+        lenis = new Lenis({ lerp: 0.12, wheelMultiplier: 1, smoothWheel: true });
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => lenis.raf(time * 1000));
         gsap.ticker.lagSmoothing(0);
@@ -218,18 +219,29 @@ if (FINE && ANIMATE) {
         el.addEventListener('pointerleave', () => { xTo(0); yTo(0); });
     });
 
+    // Tilt: at most one tween per animation frame (quickTo doesn't drive 3D rotation reliably)
     $$('[data-tilt], .project').forEach((el) => {
-        const strength = el.classList.contains('portrait') ? 12 : el.classList.contains('project') ? 7 : 8;
+        const strength = el.classList.contains('portrait') ? 10 : 6;
+        gsap.set(el, { transformPerspective: 900 });
+        let rect = null;
+        let pending = null;
+        let raf = 0;
+        const apply = () => {
+            raf = 0;
+            gsap.to(el, { rotateX: pending.x, rotateY: pending.y, duration: 0.6, ease: 'power3.out', overwrite: 'auto' });
+        };
+        const queue = (x, y) => {
+            pending = { x, y };
+            if (!raf) raf = requestAnimationFrame(apply);
+        };
+        el.addEventListener('pointerenter', () => { rect = el.getBoundingClientRect(); });
         el.addEventListener('pointermove', (e) => {
-            const r = el.getBoundingClientRect();
-            const px = (e.clientX - r.left) / r.width;
-            const py = (e.clientY - r.top) / r.height;
-            el.style.setProperty('--mx', `${px * 100}%`);
-            el.style.setProperty('--my', `${py * 100}%`);
-            gsap.to(el, { rotateY: (px - 0.5) * strength, rotateX: (0.5 - py) * strength, transformPerspective: 900, duration: 0.5, ease: 'power3' });
+            if (!rect) rect = el.getBoundingClientRect();
+            queue((0.5 - (e.clientY - rect.top) / rect.height) * strength, ((e.clientX - rect.left) / rect.width - 0.5) * strength);
         });
         el.addEventListener('pointerleave', () => {
-            gsap.to(el, { rotateX: 0, rotateY: 0, duration: 0.9, ease: 'elastic.out(1, 0.5)' });
+            rect = null;
+            queue(0, 0);
         });
     });
 }
@@ -352,7 +364,7 @@ if (ANIMATE) {
     const batch = (selector, from = { y: 50 }) => {
         ScrollTrigger.batch(selector, {
             start: 'top 92%',
-            onEnter: (els) => gsap.fromTo(els, { opacity: 0, ...from }, { opacity: 1, y: 0, scale: 1, rotateX: 0, duration: 1.3, ease: 'expo.out', stagger: 0.09, overwrite: 'auto' }),
+            onEnter: (els) => gsap.fromTo(els, { opacity: 0, ...from }, { opacity: 1, y: 0, scale: 1, rotateX: 0, duration: 1.3, ease: 'expo.out', stagger: 0.09, overwrite: false }),
         });
     };
     batch('.project', { y: 90, scale: 0.94, rotateX: -28, transformOrigin: '50% 0%' });
@@ -387,12 +399,6 @@ if (ANIMATE) {
     gsap.fromTo('.window', { rotateX: 32, scale: 0.88, y: 30 }, {
         rotateX: 0, scale: 1, y: 0, ease: 'none',
         scrollTrigger: { trigger: '.unvibe-media', start: 'top bottom', end: 'center 60%', scrub: 0.6 },
-    });
-
-    // Research panel swings up like a card being set on a table
-    gsap.fromTo('.research', { rotateX: 10, scale: 0.93, transformPerspective: 1800 }, {
-        rotateX: 0, scale: 1, ease: 'none',
-        scrollTrigger: { trigger: '.research', start: 'top bottom', end: 'top 25%', scrub: 0.6 },
     });
 
     // Journey stops turn in from the side
@@ -446,10 +452,15 @@ if (ANIMATE) {
             },
         });
         // Keep cards turning while the track eases toward its scrubbed position
-        const tick = () => coverflow(0.55);
+        // ...but only while the section is on screen
+        let leadVisible = false;
+        const io = new IntersectionObserver(([entry]) => { leadVisible = entry.isIntersecting; }, { rootMargin: '200px 0px' });
+        io.observe($('#leadership'));
+        const tick = () => { if (leadVisible) coverflow(0.55); };
         gsap.ticker.add(tick);
         tick();
         return () => {
+            io.disconnect();
             gsap.ticker.remove(tick);
             scroller.classList.remove('is-pinned');
             gsap.set($$('.lead-card'), { clearProps: 'transform,opacity' });

@@ -19,18 +19,18 @@ export async function initHero3D(canvas, { reduced = false, mobile = false } = {
 
     let renderer;
     try {
-        renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+        renderer = new THREE.WebGLRenderer({ canvas, antialias: (window.devicePixelRatio || 1) < 1.5, alpha: true, powerPreference: 'high-performance' });
     } catch {
         return false;
     }
 
     const hero = canvas.parentElement;
-    const COLS = mobile ? 24 : 50;
-    const ROWS = mobile ? 24 : 32;
+    const COLS = mobile ? 22 : 44;
+    const ROWS = mobile ? 22 : 28;
     const N = COLS * ROWS;
     const idx = (c, r) => r * COLS + c;
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 1.75));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
     renderer.setClearColor(0x000000, 0);
 
     const scene = new THREE.Scene();
@@ -55,7 +55,7 @@ export async function initHero3D(canvas, { reduced = false, mobile = false } = {
     // Columns
     const geo = new THREE.BoxGeometry(0.84, 1, 0.84);
     geo.translate(0, 0.5, 0);
-    const mat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.42, metalness: 0.15 });
+    const mat = new THREE.MeshLambertMaterial({ color: 0xffffff });
     const mesh = new THREE.InstancedMesh(geo, mat, N);
     mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
     scene.add(mesh);
@@ -165,8 +165,13 @@ export async function initHero3D(canvas, { reduced = false, mobile = false } = {
     let raf = 0;
     const t0 = performance.now();
 
+    let lastFrame = 0;
     function frame(now) {
         if (!running) return;
+        raf = requestAnimationFrame(frame);
+        // Cap at ~60fps so 120Hz screens don't double the work
+        if (now - lastFrame < 15) return;
+        lastFrame = now;
         const t = (now - t0) / 1000;
         if (pointer) {
             raycaster.setFromCamera(ndc, camera);
@@ -198,7 +203,6 @@ export async function initHero3D(canvas, { reduced = false, mobile = false } = {
         camera.lookAt(lookAt);
 
         renderer.render(scene, camera);
-        raf = requestAnimationFrame(frame);
     }
 
     function start() {
