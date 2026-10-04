@@ -4,10 +4,10 @@
  * horizontal leadership rail, journey line, and the two RL canvases.
  */
 
-import { registerPortfolioVisitor } from './visitors.js?v=20261003b';
-import { initHeroGrid } from './hero-grid.js?v=20261003b';
-import { initHero3D } from './hero3d.js?v=20261003b';
-import { initLake } from './lake.js?v=20261003b';
+import { registerPortfolioVisitor } from './visitors.js?v=20261004a';
+import { initHeroGrid } from './hero-grid.js?v=20261004a';
+import { initHero3D } from './hero3d.js?v=20261004a';
+import { initLake } from './lake.js?v=20261004a';
 
 const root = document.documentElement;
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -93,7 +93,7 @@ const sectionObserver = new IntersectionObserver(
     },
     { rootMargin: '-45% 0px -50% 0px' }
 );
-['hero', 'now', 'work', 'research', 'experience', 'leadership', 'story', 'awards', 'contact'].forEach((id) => {
+['hero', 'now', 'hackathons', 'work', 'research', 'experience', 'leadership', 'story', 'awards', 'contact'].forEach((id) => {
     const el = document.getElementById(id);
     if (el) sectionObserver.observe(el);
 });
@@ -304,25 +304,19 @@ if (ANIMATE) {
     const heroChars = $$('[data-split]').map(splitChars);
     const tl = gsap.timeline({ delay: heroDelay, defaults: { ease: 'expo.out' } });
     gsap.set('[data-split]', { opacity: 1 });
-    tl.from(heroChars[0], { yPercent: 115, rotate: 6, duration: 1.3, stagger: 0.035 })
-        .from(heroChars[1], { yPercent: 115, rotate: 6, duration: 1.3, stagger: 0.035 }, '-=1.15')
+    tl.from(heroChars[0], { yPercent: 105, duration: 1.1, stagger: 0.03 })
+        .from(heroChars[1], { yPercent: 105, duration: 1.1, stagger: 0.03 }, '-=0.95')
         .fromTo('[data-hero]', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 1.1, stagger: 0.08 }, '-=1.0')
         .fromTo('[data-hero-visual]', { opacity: 0, y: 80, rotateY: -32, rotateX: 12, scale: 0.9, transformPerspective: 1200 }, { opacity: 1, y: 0, rotateY: 0, rotateX: 0, scale: 1, duration: 1.6 }, '-=1.2')
         .from('.app-tile', { opacity: 0, duration: 0.8, stagger: 0.15 }, '-=0.7')
         .from('.nav', { yPercent: -150, duration: 1 }, 0.2);
 
-    // Hero scroll-out
-    gsap.to('.hero-inner', {
-        yPercent: -12,
-        opacity: 0.2,
-        ease: 'none',
-        scrollTrigger: {
-            trigger: '.hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-            onUpdate: (self) => hero3d?.setScroll(self.progress),
-        },
+    // Hero: feed scroll progress to the 3D camera (text itself stays put)
+    ScrollTrigger.create({
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        onUpdate: (self) => hero3d?.setScroll(self.progress),
     });
 
     // Section titles: line-by-line mask reveal
@@ -330,10 +324,7 @@ if (ANIMATE) {
         const lines = splitLines(el);
         gsap.from(lines, {
             yPercent: 110,
-            rotateX: -75,
-            transformOrigin: '50% 100%',
-            transformPerspective: 900,
-            duration: 1.3,
+            duration: 1.1,
             ease: 'expo.out',
             stagger: 0.1,
             scrollTrigger: { trigger: el, start: 'top 85%' },
@@ -367,9 +358,10 @@ if (ANIMATE) {
             onEnter: (els) => gsap.fromTo(els, { opacity: 0, ...from }, { opacity: 1, y: 0, scale: 1, rotateX: 0, duration: 1.3, ease: 'expo.out', stagger: 0.09, overwrite: false }),
         });
     };
-    batch('.project', { y: 90, scale: 0.94, rotateX: -28, transformOrigin: '50% 0%' });
+    batch('.project', { y: 60, scale: 0.97, rotateX: -8, transformOrigin: '50% 0%' });
     batch('.award-row', { y: 30 });
     batch('.number', { y: 30 });
+    batch('.hack-card', { y: 50 });
 
     // Count-ups
     $$('[data-count]').forEach((el) => {
@@ -382,7 +374,7 @@ if (ANIMATE) {
             duration: 2,
             ease: 'power3.out',
             scrollTrigger: { trigger: el, start: 'top 92%' },
-            onUpdate: () => { el.textContent = obj.v.toFixed(decimals); },
+            onUpdate: () => { el.textContent = decimals ? obj.v.toFixed(decimals) : Math.round(obj.v).toLocaleString('en-US'); },
         });
     });
 
@@ -396,7 +388,7 @@ if (ANIMATE) {
     }
 
     // Unvibe demo window lies back in 3D, then flattens as you scroll to it
-    gsap.fromTo('.window', { rotateX: 32, scale: 0.88, y: 30 }, {
+    gsap.fromTo('.window', { rotateX: 14, scale: 0.94, y: 30 }, {
         rotateX: 0, scale: 1, y: 0, ease: 'none',
         scrollTrigger: { trigger: '.unvibe-media', start: 'top bottom', end: 'center 60%', scrub: 0.6 },
     });
@@ -404,7 +396,7 @@ if (ANIMATE) {
     // Journey stops turn in from the side
     $$('.stop').forEach((stop, i) => {
         gsap.from(stop, {
-            rotateY: i % 2 ? 28 : -28, transformPerspective: 1200, transformOrigin: i % 2 ? '100% 50%' : '0% 50%',
+            rotateY: i % 2 ? 10 : -10, transformPerspective: 1200, transformOrigin: i % 2 ? '100% 50%' : '0% 50%',
             duration: 1.4, ease: 'expo.out',
             scrollTrigger: { trigger: stop, start: 'top 85%' },
         });
@@ -447,8 +439,8 @@ if (ANIMATE) {
                 pin: true,
                 scrub: 0.8,
                 invalidateOnRefresh: true,
-                onUpdate: () => coverflow(0.55),
-                onRefresh: () => coverflow(0.55),
+                onUpdate: () => coverflow(0.35),
+                onRefresh: () => coverflow(0.35),
             },
         });
         // Keep cards turning while the track eases toward its scrubbed position
@@ -456,7 +448,7 @@ if (ANIMATE) {
         let leadVisible = false;
         const io = new IntersectionObserver(([entry]) => { leadVisible = entry.isIntersecting; }, { rootMargin: '200px 0px' });
         io.observe($('#leadership'));
-        const tick = () => { if (leadVisible) coverflow(0.55); };
+        const tick = () => { if (leadVisible) coverflow(0.35); };
         gsap.ticker.add(tick);
         tick();
         return () => {
@@ -470,7 +462,7 @@ if (ANIMATE) {
     // Mobile: coverflow on native horizontal swipe
     mm.add('(max-width: 900px)', () => {
         const scroller = $('#lead-scroller');
-        const onScroll = () => coverflow(1);
+        const onScroll = () => coverflow(0.6);
         scroller.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
         return () => scroller.removeEventListener('scroll', onScroll);

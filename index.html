@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=Inter:wght@300..700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20261003b">
+    <link rel="stylesheet" href="style.css?v=20261004a">
     <script>
         (function () {
             var html = document.documentElement;
@@ -50,6 +50,7 @@
         </a>
         <nav class="nav-links" aria-label="Sections">
             <a href="#now" data-nav>Unvibe</a>
+            <a href="#hackathons" data-nav>Hackathons</a>
             <a href="#work" data-nav>Work</a>
             <a href="#research" data-nav>Research</a>
             <a href="#experience" data-nav>Experience</a>
@@ -68,6 +69,7 @@
     <div class="mobile-menu" id="mobile-menu" hidden>
         <nav aria-label="Mobile sections">
             <a href="#now">Unvibe</a>
+            <a href="#hackathons">Hackathons</a>
             <a href="#work">Work</a>
             <a href="#research">Research</a>
             <a href="#experience">Experience</a>
@@ -178,16 +180,16 @@
                 <span class="number-label">startups founded</span>
             </div>
             <div class="number">
+                <span class="number-value"><span data-count="5">5</span></span>
+                <span class="number-label">hackathon awards</span>
+            </div>
+            <div class="number">
                 <span class="number-value"><span data-count="10">10</span></span>
                 <span class="number-label">student organizations</span>
             </div>
             <div class="number">
                 <span class="number-value"><span data-count="4.0" data-decimals="1">4.0</span></span>
                 <span class="number-label">GPA at Diablo Valley College</span>
-            </div>
-            <div class="number">
-                <span class="number-value"><span data-count="4">4</span></span>
-                <span class="number-label">countries I've lived in</span>
             </div>
         </section>
 
@@ -273,12 +275,86 @@
             </div>
         </section>
 
+        <!-- ============ HACKATHONS ============ -->
+        <section class="section hackathons" id="hackathons">
+            <div class="container">
+                <div class="section-head section-head-row">
+                    <div>
+                        <span class="eyebrow mono"><span class="eyebrow-num">02</span> Hackathons</span>
+                        <h2 class="section-title" data-reveal-title>Hackathon<br><span class="accent-serif">wins.</span></h2>
+                    </div>
+                    <p class="section-sub">Five awards across three hackathons in 2026, plus a top-1% finish in a 12,000-person online challenge.</p>
+                </div>
+
+                <article class="hack-feature" data-reveal>
+                    <div class="hack-feature-media">
+                        <img src="images/projects/sortify.png" alt="Sortify, the app that won three awards at SF Hacks 2026" loading="lazy">
+                    </div>
+                    <div class="hack-feature-body">
+                        <span class="hack-kicker mono"><svg class="hack-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4ZM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/></svg> SF Hacks 2026 · San Francisco</span>
+                        <h3 class="hack-feature-title"><span data-count="3">3</span> awards at SF&nbsp;Hacks</h3>
+                        <p class="hack-feature-sub">Won three categories with <b>Sortify</b>, an AI waste-sorting app, in a field of about <b>500 hackers</b>.</p>
+                        <ul class="hack-awards">
+                            <li>Best Beginner Hack</li>
+                            <li>Best Hardware Hack</li>
+                            <li>Best Use of Boxi AI</li>
+                        </ul>
+                        <div class="hack-feature-stat">
+                            <span class="hack-count">~<span data-count="500">500</span></span>
+                            <span class="hack-count-label mono">participants</span>
+                        </div>
+                        <div class="links">
+                            <a href="https://github.com/ShadowEsu/SortifyApp" target="_blank" rel="noopener">Sortify on GitHub ↗</a>
+                            <a href="https://sortifywebsiteapp.base44.app" target="_blank" rel="noopener">Live site ↗</a>
+                        </div>
+                    </div>
+                </article>
+
+                <div class="hack-grid">
+                    <article class="hack-card">
+                        <span class="hack-kicker mono"><svg class="hack-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4ZM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/></svg> Mega Hackathon 2026 · Online</span>
+                        <h3 class="hack-card-title">Best Gaming Hack</h3>
+                        <div class="hack-card-stat">
+                            <span class="hack-count">~<span data-count="900">900</span></span>
+                            <span class="hack-count-label mono">online participants</span>
+                        </div>
+                    </article>
+                    <article class="hack-card">
+                        <span class="hack-kicker mono"><svg class="hack-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4ZM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/></svg> Curtin University Gen AI Hackathon 2026</span>
+                        <h3 class="hack-card-title">1st place</h3>
+                        <div class="hack-card-stat">
+                            <span class="hack-count">~<span data-count="200">200</span></span>
+                            <span class="hack-count-label mono">participants</span>
+                        </div>
+                    </article>
+                    <article class="hack-card">
+                        <span class="hack-kicker mono">Gemini AI Live Agent Hackathon</span>
+                        <h3 class="hack-card-title">Top 1% <span class="hack-card-note">with Cauliform</span></h3>
+                        <div class="hack-card-stat">
+                            <span class="hack-count"><span data-count="12000">12,000</span>+</span>
+                            <span class="hack-count-label mono">participants</span>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="hack-also" data-reveal>
+                    <h3 class="hack-also-title mono">Also competed</h3>
+                    <ul>
+                        <li><span>Los Altos Hacks 2026</span><span class="mono">~400 hackers · ScholarisApp</span></li>
+                        <li><span>AI Berkeley Hackathon</span><span class="mono">LifeTap</span></li>
+                        <li><span>Google Developers Online Hackathon</span><span class="mono">PitchNest</span></li>
+                        <li><span>Hack Social 2026</span><span class="mono">Participant</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <!-- ============ WORK ============ -->
         <section class="section work" id="work">
             <div class="container">
                 <div class="section-head section-head-row">
                     <div>
-                        <span class="eyebrow mono"><span class="eyebrow-num">02</span> Selected work</span>
+                        <span class="eyebrow mono"><span class="eyebrow-num">03</span> Selected work</span>
                         <h2 class="section-title" data-reveal-title>Selected<br>projects</h2>
                     </div>
                     <div class="filters" role="group" aria-label="Filter projects">
@@ -295,14 +371,14 @@
                     <article class="project project-lg" data-tags="ai win hardware" tabindex="0">
                         <div class="project-media"><img src="images/projects/sortify.png" alt="Sortify landing page" loading="lazy"></div>
                         <div class="project-body">
-                            <span class="tag mono">SF Hacks 2026</span>
+                            <span class="tag tag-win mono">SF Hacks 2026 · 3 awards</span>
                             <h3 class="project-title">Sortify</h3>
-                            <p class="project-desc">Scan any item and get recycle, compost or trash guidance. Built in 48 hours.</p>
+                            <p class="project-desc">Scan any item and get recycle, compost or trash guidance. Won 3 awards at SF Hacks 2026.</p>
                             <span class="project-open mono" aria-hidden="true">Details +</span>
                         </div>
                         <div class="project-detail" hidden>
                             <ul>
-                                <li>Awarded Best Beginner Hack, Best Hardware Hack and Best Use of Boxi AI at SF Hacks 2026.</li>
+                                <li>Won Best Beginner Hack, Best Hardware Hack and Best Use of Boxi AI at SF Hacks 2026, among roughly 500 hackers.</li>
                                 <li>Multimodal Gemini image classification behind a FastAPI backend, with Firebase and SQLite for accounts and history.</li>
                                 <li>Google Maps bin-finding, gamified eco-scores and sustainability education.</li>
                             </ul>
@@ -394,7 +470,7 @@
                     <article class="project" data-tags="startup" tabindex="0">
                         <div class="project-media"><img src="images/projects/scholarisapp.png" alt="ScholarisApp landing page" loading="lazy"></div>
                         <div class="project-body">
-                            <span class="tag mono">Los Altos Hacks 2026</span>
+                            <span class="tag mono">Los Altos Hacks 2026 · ~400 hackers</span>
                             <h3 class="project-title">ScholarisApp</h3>
                             <p class="project-desc">Scholarship matching that replaces a dozen open tabs with one profile and one deadline list.</p>
                             <span class="project-open mono" aria-hidden="true">Details +</span>
@@ -455,7 +531,7 @@
         <section class="section research" id="research">
             <div class="container">
                 <div class="section-head">
-                    <span class="eyebrow mono"><span class="eyebrow-num">03</span> Research</span>
+                    <span class="eyebrow mono"><span class="eyebrow-num">04</span> Research</span>
                     <h2 class="section-title" data-reveal-title>Teaching agents to learn faster,<br><span class="accent-serif">on a laptop.</span></h2>
                 </div>
 
@@ -531,7 +607,7 @@
         <section class="section experience" id="experience">
             <div class="container">
                 <div class="section-head">
-                    <span class="eyebrow mono"><span class="eyebrow-num">04</span> Experience</span>
+                    <span class="eyebrow mono"><span class="eyebrow-num">05</span> Experience</span>
                     <h2 class="section-title" data-reveal-title>Experience</h2>
                 </div>
 
@@ -640,7 +716,7 @@
             <div class="container">
                 <div class="section-head section-head-row">
                     <div>
-                        <span class="eyebrow mono"><span class="eyebrow-num">05</span> Leadership</span>
+                        <span class="eyebrow mono"><span class="eyebrow-num">06</span> Leadership</span>
                         <h2 class="section-title" data-reveal-title>Leadership</h2>
                     </div>
                     <p class="section-sub">Clubs and organizations I help run, mostly at Diablo Valley College.</p>
@@ -735,7 +811,7 @@
             <div class="story-photo">
                 <img src="images/preston-goldengate.jpg" alt="Preston walking across the Golden Gate Bridge" loading="lazy" data-parallax>
                 <div class="story-photo-overlay">
-                    <span class="eyebrow mono"><span class="eyebrow-num">06</span> The road here</span>
+                    <span class="eyebrow mono"><span class="eyebrow-num">07</span> The road here</span>
                     <p class="story-quote" data-reveal-title>I didn't come to California<br><span class="accent-serif">for an easy path.</span></p>
                 </div>
             </div>
@@ -776,35 +852,15 @@
         <section class="section awards" id="awards">
             <div class="container">
                 <div class="section-head">
-                    <span class="eyebrow mono"><span class="eyebrow-num">07</span> Recognition</span>
-                    <h2 class="section-title" data-reveal-title>Awards &amp; honors</h2>
+                    <span class="eyebrow mono"><span class="eyebrow-num">08</span> Recognition</span>
+                    <h2 class="section-title" data-reveal-title>Academic honors</h2>
                 </div>
 
                 <ul class="award-list">
                     <li class="award-row">
-                        <span class="award-year mono">2026</span>
-                        <span class="award-event">SF Hacks</span>
-                        <span class="award-result">Best Beginner Hack, Best Hardware Hack, Best Use of Boxi AI (Sortify)</span>
-                    </li>
-                    <li class="award-row">
-                        <span class="award-year mono">2026</span>
-                        <span class="award-event">Curtin University Gen AI Hackathon</span>
-                        <span class="award-result">1st place</span>
-                    </li>
-                    <li class="award-row">
-                        <span class="award-year mono">2026</span>
-                        <span class="award-event">Mega Hackathon</span>
-                        <span class="award-result">Best Gaming Hack</span>
-                    </li>
-                    <li class="award-row">
-                        <span class="award-year mono">2026</span>
-                        <span class="award-event">Gemini AI Live Agent Hackathon</span>
-                        <span class="award-result">Top 1% (Cauliform)</span>
-                    </li>
-                    <li class="award-row">
                         <span class="award-year mono">2025</span>
                         <span class="award-event">Diablo Valley College</span>
-                        <span class="award-result">Phillip Howe Scholarship · Manuel Gonzales Merit Scholarship</span>
+                        <span class="award-result">4.0 GPA · Phillip Howe Scholarship · Manuel Gonzales Merit Scholarship</span>
                     </li>
                     <li class="award-row">
                         <span class="award-year mono">2024</span>
@@ -832,7 +888,7 @@
         <section class="section toolbox" aria-labelledby="toolbox-title">
             <div class="container">
                 <div class="section-head">
-                    <span class="eyebrow mono"><span class="eyebrow-num">08</span> Toolbox</span>
+                    <span class="eyebrow mono"><span class="eyebrow-num">09</span> Toolbox</span>
                     <h2 class="section-title" id="toolbox-title" data-reveal-title>What I build with</h2>
                 </div>
                 <div class="skill-cols" data-reveal-stagger>
@@ -853,7 +909,7 @@
         <section class="section beyond" aria-labelledby="beyond-title">
             <div class="container">
                 <div class="section-head">
-                    <span class="eyebrow mono"><span class="eyebrow-num">09</span> Off the keyboard</span>
+                    <span class="eyebrow mono"><span class="eyebrow-num">10</span> Off the keyboard</span>
                     <h2 class="section-title" id="beyond-title" data-reveal-title>The rest of me</h2>
                 </div>
                 <div class="beyond-grid" data-reveal-stagger>
@@ -903,11 +959,11 @@
         </div>
     </dialog>
 
-    <script src="site-config.js?v=20261003b"></script>
+    <script src="site-config.js?v=20261004a"></script>
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
-    <script type="module" src="js/main.js?v=20261003b"></script>
+    <script type="module" src="js/main.js?v=20261004a"></script>
 </body>
 </html>
