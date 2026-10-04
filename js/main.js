@@ -4,10 +4,10 @@
  * horizontal leadership rail, journey line, and the two RL canvases.
  */
 
-import { registerPortfolioVisitor } from './visitors.js?v=20261004a';
-import { initHeroGrid } from './hero-grid.js?v=20261004a';
-import { initHero3D } from './hero3d.js?v=20261004a';
-import { initLake } from './lake.js?v=20261004a';
+import { registerPortfolioVisitor } from './visitors.js?v=20261004b';
+import { initHeroGrid } from './hero-grid.js?v=20261004b';
+import { initHero3D } from './hero3d.js?v=20261004b';
+import { initLake } from './lake.js?v=20261004b';
 
 const root = document.documentElement;
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -93,7 +93,7 @@ const sectionObserver = new IntersectionObserver(
     },
     { rootMargin: '-45% 0px -50% 0px' }
 );
-['hero', 'now', 'hackathons', 'work', 'research', 'experience', 'leadership', 'story', 'awards', 'contact'].forEach((id) => {
+['hero', 'now', 'pitchnest', 'hackathons', 'work', 'research', 'experience', 'leadership', 'story', 'awards', 'contact'].forEach((id) => {
     const el = document.getElementById(id);
     if (el) sectionObserver.observe(el);
 });
@@ -387,10 +387,12 @@ if (ANIMATE) {
         });
     }
 
-    // Unvibe demo window lies back in 3D, then flattens as you scroll to it
-    gsap.fromTo('.window', { rotateX: 14, scale: 0.94, y: 30 }, {
-        rotateX: 0, scale: 1, y: 0, ease: 'none',
-        scrollTrigger: { trigger: '.unvibe-media', start: 'top bottom', end: 'center 60%', scrub: 0.6 },
+    // Demo windows lie back in 3D, then flattens as you scroll to it
+    $$('.window').forEach((win) => {
+        gsap.fromTo(win, { rotateX: 14, scale: 0.94, y: 30 }, {
+            rotateX: 0, scale: 1, y: 0, ease: 'none',
+            scrollTrigger: { trigger: win, start: 'top bottom', end: 'center 60%', scrub: 0.6 },
+        });
     });
 
     // Journey stops turn in from the side

@@ -9,7 +9,7 @@ no build step. GitHub Pages serves it straight from `main`.
 ## Design
 - **Palette**: text is white on black (black on the light research panel); color lives in the visuals (photos, app logos, the light-blue 3D hero and research demo). No decorative gradients
 - **Type**: Inter Tight (display), Inter (body), JetBrains Mono (labels), Instrument Serif italic for accent lines
-- **App logos**: Unvibe and Regrade icons float in 3D around the portrait; Unvibe's credit partners are shown under its metrics
+- **App logos**: Unvibe and PitchNest icons float in 3D around the portrait; each has its own spotlight section
 - **Signature pieces**
   - Hero is a Three.js 3D landscape running value iteration live. The cursor is the goal, columns rise
     and light up blue as value flows toward it (around "holes"). Falls back to a 2D canvas version if WebGL or the CDN is unavailable.
@@ -26,7 +26,7 @@ no build step. GitHub Pages serves it straight from `main`.
 - `prefers-reduced-motion` disables animation; content stays visible if the CDN scripts never load
 
 ## Structure
-- `index.html`: all content (hero, Unvibe, work, research, experience, leadership, story, awards, toolbox, contact)
+- `index.html`: all content (hero, Unvibe, PitchNest, hackathons, work, research, experience, leadership, story, awards, toolbox, contact)
 - `style.css`: design tokens, layout, responsive rules, and the `stats.html` styles
 - `js/main.js`: smooth scroll, animations, nav, filters, modal, interactions
 - `js/hero3d.js`: Three.js 3D hero landscape
